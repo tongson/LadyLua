@@ -9,6 +9,7 @@ import (
 	"github.com/yuin/gopher-lua/parse"
 	"layeh.com/gopher-lfs"
 	"os"
+	"runtime"
 	"runtime/pprof"
 )
 
@@ -16,6 +17,7 @@ import (
 var luaSrc embed.FS
 
 func main() {
+	runtime.MemProfileRate = 0
 	os.Exit(mainAux())
 }
 
