@@ -1,8 +1,8 @@
 package main
 
 import (
-	"math"
 	"github.com/yuin/gopher-lua"
+	"math"
 )
 
 // From: https://golang.org/doc/play/pi.go
@@ -23,5 +23,3 @@ func globalPi(L *lua.LState) int {
 func globalPiTerm(ch chan float64, k float64) {
 	ch <- 4 * math.Pow(-1, k) / (2*k + 1)
 }
-
-

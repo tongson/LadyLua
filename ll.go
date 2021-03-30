@@ -71,7 +71,7 @@ Available options are:
 		}
 		L.SetField(preload, "test", utest)
 	}
-  { // inspect
+	{ // inspect
 		inspectSrc, _ := luaSrc.ReadFile("lua/inspect.lua")
 		inspect, err := L.LoadString(string(inspectSrc))
 		if err != nil {
