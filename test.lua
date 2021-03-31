@@ -1,6 +1,5 @@
 #!./ll
 local T = require 'test'
-local json = require 'json'
 
 T["global => pi"] = function()
   T.is_function(pi)
