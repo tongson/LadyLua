@@ -1,5 +1,6 @@
 #!./ll
 local T = require 'test'
+local json = require 'json'
 
 T["global => pi"] = function()
   T.is_function(pi)
@@ -13,6 +14,10 @@ T["module => kikito/inspect"] = function()
   local t = { 1, 2 }
   T.is_function(inspect.inspect)
   T.equal(inspect(t), '{ 1, 2 }')
+end
+T["json.encode"] = function()
+  T.is_function(json.encode)
+  T.is_function(json.decode)
 end
 T["fs.isdir"] = function()
   T.is_function(fs.isdir)
