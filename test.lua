@@ -1,6 +1,20 @@
 #!./ll
 local T = require 'test'
+local errstr = function(tested, str, ...)
+  local n, s = tested(...)
+  if n ~= nil then
+    return false, 'First return value is not nil.'
+  end
+  if nil == (string.find(s, str, 1, true)) then
+    return false, string.format('Not found in error string: "%s".', str)
+  end
+  return true
+end
 
+T.register_assert("error", errstr)
+
+local Tjson = dofile'tests/json.lua'
+T['built-in => json'] = Tjson
 T["global => pi"] = function()
   T.is_function(pi)
   T.is_number(pi(300))
@@ -13,10 +27,6 @@ T["module => kikito/inspect"] = function()
   local t = { 1, 2 }
   T.is_function(inspect.inspect)
   T.equal(inspect(t), '{ 1, 2 }')
-end
-T["json.encode"] = function()
-  T.is_function(json.encode)
-  T.is_function(json.decode)
 end
 T["fs.isdir"] = function()
   T.is_function(fs.isdir)
