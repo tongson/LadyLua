@@ -65,6 +65,19 @@ Available options are:
 
 	L := lua.NewState()
 	defer L.Close()
+	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
+	nsJson := L.SetFuncs(L.NewTable(), ljson.Api)
+	L.SetGlobal("fs", nsFs)
+	L.SetGlobal("json", nsJson)
+	L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
+	L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
+	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
+	L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
+	L.SetGlobal("exec", L.NewTable())
+	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
+	L.SetField(nsExec, "command", L.NewFunction(execCommand))
+	L.SetGlobal("pi", L.NewFunction(globalPi))
+
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	{ // u-test
 		utestSrc, _ := luaSrc.ReadFile("lua/u-test.lua")
@@ -82,16 +95,6 @@ Available options are:
 		}
 		L.SetField(preload, "inspect", inspect)
 	}
-	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
-	nsJson := L.SetFuncs(L.NewTable(), ljson.Api)
-	L.SetGlobal("fs", nsFs)
-	L.SetGlobal("json", nsJson)
-	L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
-	L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
-	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
-	L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
-	L.SetGlobal("pi", L.NewFunction(globalPi))
-
 	if opt_m > 0 {
 		L.SetMx(opt_m)
 	}
