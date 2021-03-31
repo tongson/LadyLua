@@ -28,7 +28,7 @@ T["module => kikito/inspect"] = function()
   T.is_function(inspect.inspect)
   T.equal(inspect(t), '{ 1, 2 }')
 end
-T["os.hostname"] = function()
+T["built-in => os.hostname"] = function()
   T.is_function(os.hostname)
   T.is_string(os.hostname())
 end
