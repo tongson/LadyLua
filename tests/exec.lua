@@ -20,4 +20,10 @@ return function()
     T.is_false(fs.isfile(F))
     T.is_true(fs.rmdir(D))
   end
+  T['exec.command ENV'] = function()
+    local r, o, e = exec.command('/usr/bin/env', nil, {'EXEC=ok'})
+    T.is_true(r)
+    local s = string.find(o, 'EXEC=ok', 1, true)
+    T.is_number(s)
+  end
 end
