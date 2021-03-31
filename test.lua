@@ -11,10 +11,9 @@ local errstr = function(tested, str, ...)
   return true
 end
 
-T.register_assert("error", errstr)
+T.register_assert('error', errstr)
 
-local Tjson = dofile'tests/json.lua'
-T['built-in => json'] = Tjson
+T['built-in => json'] = dofile 'tests/json.lua'
 T["global => pi"] = function()
   T.is_function(pi)
   T.is_number(pi(300))
