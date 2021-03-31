@@ -8,6 +8,7 @@ import (
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
 	"layeh.com/gopher-lfs"
+	ljson "layeh.com/gopher-json"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -85,6 +86,7 @@ Available options are:
 	L.SetGlobal("fs", nsFs)
 	L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
 	L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
+	ljson.Preload(L)
 	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
 	L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
 	L.SetGlobal("pi", L.NewFunction(globalPi))
