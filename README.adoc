@@ -6,4 +6,8 @@
 
 == What?
 
-Single executable(static) kitchen-sink Lua 5.1 interpreter.
+Single executable(static) kitchen-sink Lua 5.1 interpreter. A fat gopher-lua amalgamation of modules in Go and Lua.
+
+== Why?
+
+Lua is a good language but no one wants to use it for general-purpose scripting. Complaints are 1-based indexing and missing libraries. The latter is a valid issue. The 5.1+ split also does not help. I was convinced that gopher-lua is a good base for a kitchen-sink interpreter. Writing wrappers for the vast Go selection of packages would be a breeze.
