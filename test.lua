@@ -13,6 +13,7 @@ end
 
 T.register_assert('error', errstr)
 
+T['built-in => exec'] = dofile 'tests/exec.lua'
 T['built-in => json'] = dofile 'tests/json.lua'
 T['built-in => fs'] = dofile 'tests/fs.lua'
 T["built-in => os.hostname"] = function()
