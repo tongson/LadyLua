@@ -15,7 +15,7 @@ type RunArgs struct {
 	Args  []string
 	Dir   string
 	Env   []string
-	Input []byte
+	Stdin []byte
 }
 
 type panicT struct {
@@ -36,8 +36,8 @@ func (a RunArgs) Run() (bool, string, string) {
 	if a.Env != nil || len(a.Env) > 0 {
 		cmd.Env = append(os.Environ(), a.Env...)
 	}
-	if a.Input != nil || len(a.Input) > 0 {
-		cmd.Stdin = bytes.NewBuffer(a.Input)
+	if a.Stdin != nil || len(a.Stdin) > 0 {
+		cmd.Stdin = bytes.NewBuffer(a.Stdin)
 	}
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
