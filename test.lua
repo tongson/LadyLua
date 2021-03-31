@@ -28,16 +28,6 @@ T["module => kikito/inspect"] = function()
   T.is_function(inspect.inspect)
   T.equal(inspect(t), '{ 1, 2 }')
 end
-T["fs.isdir"] = function()
-  T.is_function(fs.isdir)
-  T.is_true(fs.isdir('/etc'))
-  T.is_false(fs.isdir('/dev/null'))
-end
-T["fs.isfile"] = function()
-  T.is_function(fs.isfile)
-  T.is_true(fs.isfile('/etc/passwd'))
-  T.is_false(fs.isfile('/dev'))
-end
 T["os.hostname"] = function()
   T.is_function(os.hostname)
   T.is_string(os.hostname())
