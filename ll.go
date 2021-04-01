@@ -65,7 +65,6 @@ Available options are:
 
 	L := lua.NewState()
 	defer L.Close()
-	L.PreloadModule("json", ljson.Loader)
 	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
 	L.SetGlobal("fs", nsFs)
 	L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
@@ -85,7 +84,7 @@ Available options are:
 		L.PCall(0, lua.MultRet, nil)
 	}
 	L.SetGlobal("pi", L.NewFunction(globalPi))
-
+	L.PreloadModule("json", ljson.Loader)
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	{ // u-test
 		utestSrc, _ := luaSrc.ReadFile("lua/u-test.lua")
