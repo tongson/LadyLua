@@ -9,6 +9,7 @@ import (
 	"github.com/yuin/gopher-lua/parse"
 	ljson "layeh.com/gopher-json"
 	"layeh.com/gopher-lfs"
+	"github.com/cjoudrey/gluahttp"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -84,6 +85,7 @@ Available options are:
 		L.PCall(0, lua.MultRet, nil)
 	}
 	L.SetGlobal("pi", L.NewFunction(globalPi))
+	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	{ // u-test
