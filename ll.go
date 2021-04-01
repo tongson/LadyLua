@@ -104,6 +104,14 @@ Available options are:
 		}
 		L.SetField(preload, "inspect", inspect)
 	}
+	{ // etlua
+		etluaSrc, _ := luaSrc.ReadFile("lua/etlua.lua")
+		etlua, err := L.LoadString(string(etluaSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.SetField(preload, "template", etlua)
+	}
 	if opt_m > 0 {
 		L.SetMx(opt_m)
 	}
