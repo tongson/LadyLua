@@ -7,8 +7,8 @@ import (
 	"github.com/chzyer/readline"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
-	"layeh.com/gopher-lfs"
 	ljson "layeh.com/gopher-json"
+	"layeh.com/gopher-lfs"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -76,6 +76,15 @@ Available options are:
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
 	L.SetField(nsExec, "command", L.NewFunction(execCommand))
+	{
+		execSrc, _ := luaSrc.ReadFile("lua/exec.lua")
+		exec, err := L.LoadString(string(execSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.Push(exec)
+		L.PCall(0, lua.MultRet, nil)
+	}
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
