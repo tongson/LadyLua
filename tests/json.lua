@@ -1,5 +1,6 @@
 return function()
   local T = require 'test'
+  local json = require 'json'
   T['json'] = function()
     T.is_table(json)
   end

@@ -65,10 +65,9 @@ Available options are:
 
 	L := lua.NewState()
 	defer L.Close()
+	L.PreloadModule("json", ljson.Loader)
 	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
-	nsJson := L.SetFuncs(L.NewTable(), ljson.Api)
 	L.SetGlobal("fs", nsFs)
-	L.SetGlobal("json", nsJson)
 	L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
 	L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
 	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
