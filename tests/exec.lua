@@ -32,7 +32,6 @@ return function()
     local s = string.find(o, 'gg', 1, true)
     T.is_number(s)
   end
-  -----
   T['exec.ctx SIMPLE'] = function()
     T.is_true(fs.mkdir(D))
     local touch = exec.ctx('/bin/touch')
@@ -75,5 +74,15 @@ return function()
     T.is_true(r)
     local s = string.find(o, 'gg', 1, true)
     T.is_number(s)
+  end
+  T['exec.run SIMPLE'] = function()
+    T.is_true(fs.mkdir(D))
+    local t = exec.run.touch(F)
+    T.is_true(t)
+    T.is_true(fs.isfile(F))
+    local r = exec.run.rm(F)
+    T.is_true(r)
+    T.is_false(fs.isfile(F))
+    T.is_true(fs.rmdir(D))
   end
 end
