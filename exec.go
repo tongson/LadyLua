@@ -20,7 +20,7 @@ func execCommand(L *lua.LState) int {
 		})
 	}
 	if env.Len() > 0 {
-		env.ForEach(func(_, value lua.LValue){
+		env.ForEach(func(_, value lua.LValue) {
 			tenv = append(tenv, lua.LVAsString(value))
 		})
 	}
@@ -32,7 +32,7 @@ func execCommand(L *lua.LState) int {
 	} else {
 		L.Push(lua.LNil)
 	}
-  L.Push(lua.LString(stdout))
+	L.Push(lua.LString(stdout))
 	L.Push(lua.LString(stderr))
 	return 3
 }
