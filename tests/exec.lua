@@ -26,4 +26,10 @@ return function()
     local s = string.find(o, 'EXEC=ok', 1, true)
     T.is_number(s)
   end
+  T['exec.command STDIN'] = function()
+    local r, o, e = exec.command('/usr/bin/sed', {'s|ss|gg|'}, nil, nil, 'ss')
+    T.is_true(r)
+    local s = string.find(o, 'gg', 1, true)
+    T.is_number(s)
+  end
 end
