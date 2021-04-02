@@ -11,3 +11,38 @@ Single executable(static) kitchen-sink Lua 5.1 interpreter. A fat gopher-lua ama
 == Why?
 
 Lua is a good language but no one wants to use it for general-purpose scripting. Complaints are 1-based indexing and missing libraries. The latter is a valid issue. The 5.1+ split also does not help. I was convinced that gopher-lua would be a good base for a kitchen-sink interpreter. Writing wrappers for the vast selection of Go packages would be a breeze.
+
+== Benchmark
+Wonder how it compares to PUC-Rio Lua 5.1.5 and LuaJIT2?
+
+Here's a benchmark for object access time. Check the `bench/` directory for the code.
+
+.GopherLua
+|=======================
+|72.804599166 |Standard (solid)
+|85.15575082900001 |Standard (metatable)
+|76.84095142800001 |Object using closures (PiL 16.4)
+|56.77138606499997 |Object using closures (noself)
+|54.96075333699997 |Direct Access
+|32.508254155999964 |Local Variable
+|=======================
+
+.Lua 5.1.5
+|=======================
+|12.906285 |Standard (solid)
+|13.649843 |Standard (metatable)
+|13.294447 |Object using closures (PiL 16.4)
+|9.024326  |Object using closures (noself)
+|5.618169  |Direct Access
+|1.76135   |Local Variable
+|=======================
+
+.LuaJIT 2.1
+|=======================
+|0.200721  |Standard (solid)
+|0.200649  |Standard (metatable)
+|0.200672  |Object using closures (PiL 16.4)
+|0.200635  |Object using closures (noself)
+|0.200627  |Direct Access
+|0.200628  |Local Variable
+|=======================
