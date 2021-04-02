@@ -6,17 +6,17 @@ import (
 	"fmt"
 	"github.com/chzyer/readline"
 	"github.com/cjoudrey/gluahttp"
+	"github.com/cosmotek/loguago"
+	"github.com/rs/zerolog"
+	gluacrypto "github.com/tengattack/gluacrypto/crypto"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
-	"github.com/rs/zerolog"
-	"github.com/cosmotek/loguago"
-	gluacrypto "github.com/tengattack/gluacrypto/crypto"
 	ljson "layeh.com/gopher-json"
 	"layeh.com/gopher-lfs"
 	"os"
-	"time"
 	"runtime"
 	"runtime/pprof"
+	"time"
 )
 
 //go:embed lua/*
@@ -96,8 +96,8 @@ Available options are:
 		zerolog.TimeFieldFormat = time.RFC3339
 		stdout := zerolog.New(os.Stdout)
 		stderr := zerolog.New(os.Stderr)
-	  stdoutLog := loguago.NewLogger(stdout.With().Timestamp().Logger())
-	  stderrLog := loguago.NewLogger(stderr.With().Timestamp().Logger())
+		stdoutLog := loguago.NewLogger(stdout.With().Timestamp().Logger())
+		stderrLog := loguago.NewLogger(stderr.With().Timestamp().Logger())
 		L.PreloadModule("stdout", stdoutLog.Loader)
 		L.PreloadModule("stderr", stderrLog.Loader)
 	}
