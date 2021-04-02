@@ -8,10 +8,13 @@ import (
 	"github.com/cjoudrey/gluahttp"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
+	"github.com/rs/zerolog"
+	"github.com/cosmotek/loguago"
 	gluacrypto "github.com/tengattack/gluacrypto/crypto"
 	ljson "layeh.com/gopher-json"
 	"layeh.com/gopher-lfs"
 	"os"
+	"time"
 	"runtime"
 	"runtime/pprof"
 )
@@ -89,6 +92,15 @@ Available options are:
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
+	{
+		zerolog.TimeFieldFormat = time.RFC3339
+		stdout := zerolog.New(os.Stdout)
+		stderr := zerolog.New(os.Stderr)
+	  stdoutLog := loguago.NewLogger(stdout.With().Timestamp().Logger())
+	  stderrLog := loguago.NewLogger(stderr.With().Timestamp().Logger())
+		L.PreloadModule("stdout", stdoutLog.Loader)
+		L.PreloadModule("stderr", stderrLog.Loader)
+	}
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	{ // u-test
 		utestSrc, _ := luaSrc.ReadFile("lua/u-test.lua")
