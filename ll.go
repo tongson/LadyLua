@@ -8,6 +8,7 @@ import (
 	"github.com/cjoudrey/gluahttp"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
+	gluacrypto "github.com/tengattack/gluacrypto/crypto"
 	ljson "layeh.com/gopher-json"
 	"layeh.com/gopher-lfs"
 	"os"
@@ -87,6 +88,7 @@ Available options are:
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
+	L.PreloadModule("crypto", gluacrypto.Loader)
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	{ // u-test
 		utestSrc, _ := luaSrc.ReadFile("lua/u-test.lua")
