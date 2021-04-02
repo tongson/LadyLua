@@ -92,6 +92,7 @@ Available options are:
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
+	L.PreloadModule("uid", uidLoader)
 	{
 		zerolog.TimeFieldFormat = time.RFC3339
 		stdout := zerolog.New(os.Stdout)

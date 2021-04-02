@@ -13,6 +13,7 @@ end
 
 T.register_assert('error', errstr)
 
+T["module => uid"] = dofile 'tests/uid.lua'
 T["module => tengattack/gluacrypto"] = dofile 'tests/crypto.lua'
 T["module => leafo/etlua"] = dofile 'tests/template.lua'
 T['built-in => exec'] = dofile 'tests/exec.lua'
