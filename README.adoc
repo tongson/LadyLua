@@ -46,3 +46,16 @@ Here's a benchmark for object access time. Check the `bench/` directory for the 
 |0.200627  |Direct Access
 |0.200628  |Local Variable
 |=======================
+
+Before you go disabling function inlining to reduce the executable size; here are the benchmarks for it.
+
+.GopherLua (disabled function inlining)
+|=======================
+|97.82842299|Standard (solid)
+|117.51864293899999|Standard (metatable)
+|103.283447037|Object using closures (PiL 16.4)
+|66.51865570900003|Object using closures (noself)
+|69.64288394199997|Direct Access
+|37.33177725300004|Local Variable
+|=======================
+
