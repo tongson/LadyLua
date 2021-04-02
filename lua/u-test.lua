@@ -1,3 +1,6 @@
+local tostring = function(s)
+  return string.format('„%s“', tostring(s))
+end
 local function red(str)    return grey and str or "\27[1;31m" .. str .. "\27[0m" end
 local function blue(str)   return grey and str or "\27[1;34m" .. str .. "\27[0m" end
 local function green(str)  return grey and str or "\27[1;32m" .. str .. "\27[0m" end
