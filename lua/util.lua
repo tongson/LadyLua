@@ -215,9 +215,13 @@ end
 local arglist_mt = {}
 
 -- have pack/unpack both respect the 'n' field
-local _unpack = table.unpack or unpack
-local unpack = function(t, i, j) return _unpack(t, i or 1, j or t.n or #t) end
-local pack = function(...) return { n = select("#", ...), ... } end
+local _unpack = unpack
+local unpack = function(t, i, j)
+  return _unpack(t, i or 1, j or t.n or #t)
+end
+local pack = function(...)
+  return { n = select("#", ...), ... }
+end
 util.pack = pack
 util.unpack = unpack
 
@@ -288,42 +292,6 @@ function util.shallowcopy(t)
   return copy
 end
 
-function util.deepcopy(t, deepmt, cache)
-  local spy = require 'luassert.spy'
-  if type(t) ~= "table" then return t end
-  local copy = {}
-
-  -- handle recursive tables
-  local cache = cache or {}
-  if cache[t] then return cache[t] end
-  cache[t] = copy
-
-  for k,v in next, t do
-    copy[k] = (spy.is_spy(v) and v or util.deepcopy(v, deepmt, cache))
-  end
-  if deepmt then
-    debug.setmetatable(copy, util.deepcopy(debug.getmetatable(t, nil, cache)))
-  else
-    debug.setmetatable(copy, debug.getmetatable(t))
-  end
-  return copy
-end
-
------------------------------------------------
--- Copies arguments as a list of arguments
--- @param args the arguments of which to copy
--- @return the copy of the arguments
-function util.copyargs(args)
-  local copy = {}
-  setmetatable(copy, getmetatable(args))
-  local match = require 'luassert.match'
-  local spy = require 'luassert.spy'
-  for k,v in pairs(args) do
-    copy[k] = ((match.is_matcher(v) or spy.is_spy(v)) and v or util.deepcopy(v))
-  end
-  return { vals = copy, refs = util.shallowcopy(args) }
-end
-
 -----------------------------------------------
 -- Clear an arguments or return values list from a table
 -- @param arglist the table to clear of arguments or return values and their count
@@ -333,85 +301,6 @@ function util.cleararglist(arglist)
     util.tremove(arglist, idx)
   end
   arglist.n = nil
-end
-
------------------------------------------------
--- Test specs against an arglist in deepcopy and refs flavours.
--- @param args deepcopy arglist
--- @param argsrefs refs arglist
--- @param specs arguments/return values to match against args/argsrefs
--- @return true if specs match args/argsrefs, false otherwise
-local function matcharg(args, argrefs, specs)
-  local match = require 'luassert.match'
-  for idx, argval in pairs(args) do
-    local spec = specs[idx]
-    if match.is_matcher(spec) then
-      if match.is_ref_matcher(spec) then
-        argval = argrefs[idx]
-      end
-      if not spec(argval) then
-        return false
-      end
-    elseif (spec == nil or not util.deepcompare(argval, spec)) then
-      return false
-    end
-  end
-
-  for idx, spec in pairs(specs) do
-    -- only check whether each element has an args counterpart,
-    -- actual comparison has been done in first loop above
-    local argval = args[idx]
-    if argval == nil then
-      -- no args counterpart, so try to compare using matcher
-      if match.is_matcher(spec) then
-        if not spec(argval) then
-          return false
-        end
-      else
-        return false
-      end
-    end
-  end
-  return true
-end
-
------------------------------------------------
--- Find matching arguments/return values in a saved list of
--- arguments/returned values.
--- @param invocations_list list of arguments/returned values to search (list of lists)
--- @param specs arguments/return values to match against argslist
--- @return the last matching arguments/returned values if a match is found, otherwise nil
-function util.matchargs(invocations_list, specs)
-  -- Search the arguments/returned values last to first to give the
-  -- most helpful answer possible. In the cases where you can place
-  -- your assertions between calls to check this gives you the best
-  -- information if no calls match. In the cases where you can't do
-  -- that there is no good way to predict what would work best.
-  assert(not util.is_arglist(invocations_list), "expected a list of arglist-object, got an arglist")
-  for ii = #invocations_list, 1, -1 do
-    local val = invocations_list[ii]
-    if matcharg(val.vals, val.refs, specs) then
-      return val
-    end
-  end
-  return nil
-end
-
------------------------------------------------
--- Find matching oncall for an actual call.
--- @param oncalls list of oncalls to search
--- @param args actual call argslist to match against
--- @return the first matching oncall if a match is found, otherwise nil
-function util.matchoncalls(oncalls, args)
-  for _, callspecs in ipairs(oncalls) do
-    -- This lookup is done immediately on *args* passing into the stub
-    -- so pass *args* as both *args* and *argsref* without copying
-    -- either.
-    if matcharg(args, args, callspecs.vals) then
-      return callspecs
-    end
-  end
-  return nil
 end
 
 -----------------------------------------------
@@ -503,7 +392,7 @@ end
 -- @param level the level to use as the caller's source file
 -- @return number, the level of which to report an error
 function util.errorlevel(level)
-  local level = (level or 1) + 1 -- add one to get level of the caller
+  level = (level or 1) + 1 -- add one to get level of the caller
   local info = debug.getinfo(level)
   local source = (info or {}).source
   local file = source
@@ -512,48 +401,10 @@ function util.errorlevel(level)
     info = debug.getinfo(level)
     source = (info or {}).source
   end
-  if level > 1 then level = level - 1 end -- deduct call to errorlevel() itself
+  if level > 1 then
+    level = level - 1
+  end -- deduct call to errorlevel() itself
   return level
-end
-
------------------------------------------------
--- Extract modifier and namespace keys from list of tokens.
--- @param nspace the namespace from which to match tokens
--- @param tokens list of tokens to search for keys
--- @return table, list of keys that were extracted
-function util.extract_keys(nspace, tokens)
-  local namespace = require 'luassert.namespaces'
-
-  -- find valid keys by coalescing tokens as needed, starting from the end
-  local keys = {}
-  local key = nil
-  local i = #tokens
-  while i > 0 do
-    local token = tokens[i]
-    key = key and (token .. '_' .. key) or token
-
-    -- find longest matching key in the given namespace
-    local longkey = i > 1 and (tokens[i-1] .. '_' .. key) or nil
-    while i > 1 and longkey and namespace[nspace][longkey] do
-      key = longkey
-      i = i - 1
-      token = tokens[i]
-      longkey = (token .. '_' .. key)
-    end
-
-    if namespace.modifier[key] or namespace[nspace][key] then
-      table.insert(keys, 1, key)
-      key = nil
-    end
-    i = i - 1
-  end
-
-  -- if there's anything left we didn't recognize it
-  if key then
-    error("luassert: unknown modifier/" .. nspace .. ": '" .. key .."'", util.errorlevel(2))
-  end
-
-  return keys
 end
 
 -----------------------------------------------
