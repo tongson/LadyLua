@@ -6,6 +6,7 @@ require (
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e
 	github.com/cjoudrey/gluahttp v0.0.0-25003d9adfa9
 	github.com/cosmotek/loguago v0.0.0-76d2a8755751
+	github.com/microcosm-cc/bluemonday v1.0.5
 	github.com/rs/zerolog v1.21.0
 	github.com/segmentio/ksuid v1.0.3
 	github.com/tengattack/gluacrypto v0.0.0-8bf181b63bba

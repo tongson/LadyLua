@@ -93,6 +93,7 @@ Available options are:
 	L.PreloadModule("json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
 	L.PreloadModule("uid", uidLoader)
+	L.PreloadModule("html", htmlLoader)
 	{
 		zerolog.TimeFieldFormat = time.RFC3339
 		stdout := zerolog.New(os.Stdout)
