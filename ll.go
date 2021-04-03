@@ -88,6 +88,44 @@ Available options are:
 		L.Push(exec)
 		L.PCall(0, lua.MultRet, nil)
 	}
+	{
+		tableSrc, _ := luaSrc.ReadFile("lua/table.lua")
+		table, err := L.LoadString(string(tableSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.Push(table)
+		L.PCall(0, lua.MultRet, nil)
+	}
+	{
+		lstringSrc, _ := luaSrc.ReadFile("lua/string.lua")
+		lstring, err := L.LoadString(string(lstringSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.Push(lstring)
+		L.PCall(0, lua.MultRet, nil)
+	}
+	{
+		L.SetGlobal("fmt", L.NewTable())
+		lfmtSrc, _ := luaSrc.ReadFile("lua/fmt.lua")
+		lfmt, err := L.LoadString(string(lfmtSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.Push(lfmt)
+		L.PCall(0, lua.MultRet, nil)
+	}
+	{
+		L.SetGlobal("util", L.NewTable())
+		lutilSrc, _ := luaSrc.ReadFile("lua/util.lua")
+		lutil, err := L.LoadString(string(lutilSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.Push(lutil)
+		L.PCall(0, lua.MultRet, nil)
+	}
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
