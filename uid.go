@@ -12,11 +12,11 @@ func uidNew(L *lua.LState) int {
 
 func uidLoader(L *lua.LState) int {
 	t := L.NewTable()
-	L.SetFuncs(t, api)
+	L.SetFuncs(t, uidApi)
 	L.Push(t)
 	return 1
 }
 
-var api = map[string]lua.LGFunction{
+var uidApi = map[string]lua.LGFunction{
 	"new": uidNew,
 }
