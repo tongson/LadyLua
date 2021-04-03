@@ -1,6 +1,6 @@
 local F = string.format
 
-fmt.printf = function(str, ...)
+fmt.print = function(str, ...)
   local stdout = io.stdout
   stdout:write(F(str, ...))
   return stdout:flush()
