@@ -105,7 +105,7 @@ table.len = function(t, maxn)
   return n
 end
 
-table.count = function(t, i)
+local count = function(t, i)
   local n = 0
   for _, v in pairs(t) do
     if i == v then
@@ -114,11 +114,12 @@ table.count = function(t, i)
   end
   return n
 end
+table.count = count
 
 table.unique = function(t)
   local nt = {}
   for _, v in pairs(t) do
-    if table.count(nt, v) == 0 then
+    if count(nt, v) == 0 then
       nt[#nt+1] = v
     end
   end
