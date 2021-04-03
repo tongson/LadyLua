@@ -1,6 +1,16 @@
 local type, pcall, setmetatable, error = type, pcall, setmetatable, error
 local date = os.date
 local F = string.format
+local len = string.len
+local sub = string.sub
+local gsub = string.gsub
+local tostring = tostring
+local lower = string.lower
+local tonumber = tonumber
+local ceil = math.ceil
+local min = math.min
+local write = io.write
+local char = string.char
 
 local ring = {}
 function ring.new(max_size)
@@ -14,7 +24,7 @@ end
 function ring:concat(c)
   local s = ""
   for n=1, #self do
-    s = string.format("%s%s%s", s, tostring(self[n]), c)
+    s = F("%s%s%s", s, tostring(self[n]), c)
   end
   return s
 end
@@ -44,27 +54,28 @@ function ring:iterator()
   end
 end
 
-local splitpath = function(path)
-  local l = string.len(path)
-  local c = string.sub(path, l, l)
+util.ring = ring
+util.splitpath = function(path)
+  local l = len(path)
+  local c = sub(path, l, l)
   while l > 0 and c ~= "/" do
     l = l - 1
-    c = string.sub(path, l, l)
+    c = sub(path, l, l)
   end
   if l == 0 then
     return '', path
   else
-    return string.sub(path, 1, l - 1), string.sub(path, l + 1)
+    return sub(path, 1, l - 1), sub(path, l + 1)
   end
 end
 
-local template = function(s, v)
-  return (string.gsub(s, "%${[%s]-([^}%G]+)[%s]-}", v))
+util.template = function(s, v)
+  return (gsub(s, "%${[%s]-([^}%G]+)[%s]-}", v))
 end
 
-local truthy = function(s)
+util.truthy = function(s)
   local _
-  _, s = pcall(string.lower, s)
+  _, s = pcall(lower, s)
   if s == "yes" or s == "true" or s == "on" or s == "1" then
     return true
   else
@@ -72,9 +83,9 @@ local truthy = function(s)
   end
 end
 
-local falsy = function(s)
+util.falsy = function(s)
   local _
-  _, s = pcall(string.lower, s)
+  _, s = pcall(lower, s)
   if s == "no" or s == "false" or s == "off" or s == "0" then
     return true
   else
@@ -82,13 +93,13 @@ local falsy = function(s)
   end
 end
 
-local escape_quotes = function(str)
-  str = string.gsub(str, [["]], [[\"]])
-  str = string.gsub(str, [[']], [[\']])
+util.escape_quotes = function(str)
+  str = gsub(str, [["]], [[\"]])
+  str = gsub(str, [[']], [[\']])
   return str
 end
 
-local month = function(n)
+util.month = function(n)
   n = tostring(n)
   if n[1] == '0' then
     n = n[2]
@@ -111,13 +122,13 @@ local month = function(n)
   return t[n]
 end
 
-local return_if = function(bool, value)
+util.return_if = function(bool, value)
   if bool then
     return (value)
   end
 end
 
-local return_if_not = function(bool, value)
+util.return_if_not = function(bool, value)
   if bool == false or bool == nil then
     return value
   end
@@ -126,43 +137,43 @@ end
 -- From: http://lua-users.org/wiki/HexDump
 -- [first] begin dump at 16 byte-aligned offset containing 'first' byte
 -- [last] end dump at 16 byte-aligned offset containing 'last' byte
-local hexdump = function(buf, first, last)
+util.hexdump = function(buf, first, last)
   local function align(n)
-    return math.ceil(n/16) * 16
+    return ceil(n/16) * 16
   end
-  for i=(align((first or 1)-16)+1),align(math.min(last or #buf,#buf)) do
+  for i=(align((first or 1)-16)+1),align(min(last or #buf,#buf)) do
     if (i-1) % 16 == 0 then
-      io.write(F('%08X  ', i-1))
+      write(F('%08X  ', i-1))
     end
     io.write( i > #buf and '   ' or F('%02X ', buf:byte(i)) )
     if i %  8 == 0 then
-      io.write(' ')
+      write(' ')
     end
     if i % 16 == 0 then
-      io.write( buf:sub(i-16+1, i):gsub('%c','.'), '\n' )
+      write( buf:sub(i-16+1, i):gsub('%c','.'), '\n' )
     end
   end
 end
 
-local escape_sql = function(v)
+util.escape_sql = function(v)
   local vt = type(v)
   if "string" == vt then
     local s = "'" .. (v:gsub("'", "''")) .. "'"
     return (s:gsub('.', {
-      [string.char(0)] = "",
-      [string.char(9)] = "",
-      [string.char(10)] = "",
-      [string.char(11)] = "",
-      [string.char(12)] = "",
-      [string.char(13)] = "",
-      [string.char(14)] = "",
+      [char(0)] = "",
+      [char(9)] = "",
+      [char(10)] = "",
+      [char(11)] = "",
+      [char(12)] = "",
+      [char(13)] = "",
+      [char(14)] = "",
     }))
   elseif "boolean" == vt then
     return v and "TRUE" or "FALSE"
   end
 end
 
-local assert_f = function(fn)
+util.assert_f = function(fn)
   return function(ok, ...)
     if ok then
       return ok, ...
@@ -175,7 +186,7 @@ local assert_f = function(fn)
   end
 end
 
-local try_f = function(fn)
+util.try_f = function(fn)
   return function(ok, ...)
     if ok then
       return ok, ...
@@ -187,33 +198,15 @@ local try_f = function(fn)
   end
 end
 
-local hm = function()
+util.hm = function()
   return date("%H:%M")
 end
 
-local ymd = function()
+util.ymd = function()
   return date("%Y-%m-%d")
 end
 
-local timestamp = function()
+util.timestamp = function()
   return date("%Y-%m-%d %H:%M:%S %Z%z")
 end
 
-return {
-  hm = hm,
-  ymd = ymd,
-  timestamp = timestamp,
-  assert_f = assert_f,
-  try_f = try_f,
-  month = month,
-  truthy = truthy,
-  falsy = falsy,
-  return_if = return_if,
-  return_if_not = return_if_not,
-  splitpath = splitpath,
-  escape_sql = escape_sql,
-  ring = ring,
-  hexdump = hexdump,
-  escape_quotes = escape_quotes,
-  template = template,
-}
