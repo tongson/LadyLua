@@ -116,16 +116,6 @@ Available options are:
 		L.Push(lfmt)
 		L.PCall(0, lua.MultRet, nil)
 	}
-	{
-		L.SetGlobal("util", L.NewTable())
-		lutilSrc, _ := luaSrc.ReadFile("lua/util.lua")
-		lutil, err := L.LoadString(string(lutilSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.Push(lutil)
-		L.PCall(0, lua.MultRet, nil)
-	}
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
@@ -142,6 +132,14 @@ Available options are:
 		L.PreloadModule("stderr", stderrLog.Loader)
 	}
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
+	{ // util
+		lutilSrc, _ := luaSrc.ReadFile("lua/util.lua")
+		lutil, err := L.LoadString(string(lutilSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.SetField(preload, "util", lutil)
+	}
 	{ // u-test
 		utestSrc, _ := luaSrc.ReadFile("lua/u-test.lua")
 		utest, err := L.LoadString(string(utestSrc))
