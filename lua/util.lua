@@ -55,7 +55,7 @@ function ring:iterator()
 end
 
 util.ring = ring
-util.splitpath = function(path)
+util.path_split = function(path)
   local l = len(path)
   local c = sub(path, l, l)
   while l > 0 and c ~= "/" do
