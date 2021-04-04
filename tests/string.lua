@@ -45,7 +45,7 @@ end
 if not_main then
   return function()
     --#
-    --# === *string.append*(_String_, _String_)
+    --# === *string.append*(_String_, _String_) -> _String_
     --# Append newline plus argument #2 string to argument #1 string.
     --#
     --# === Arguments
@@ -62,7 +62,7 @@ if not_main then
     --# |===
     T['string.append'] = string_append
     --#
-    --# === *string.line_to_list*(_String_)
+    --# === *string.line_to_list*(_String_) -> _Table_
     --# Create a new table(list) where each line of argument #1 is a value in the list.
     --#
     --# === Arguments
@@ -78,7 +78,7 @@ if not_main then
     --# |===
     T['string.line_to_list'] = string_line_to_list
     --#
-    --# === *string.word_to_list*(_String_)
+    --# === *string.word_to_list*(_String_) -> _Table_
     --# Create a new table(list) where each word of argument #1 is a value in the list.
     --#
     --# === Arguments
@@ -94,7 +94,7 @@ if not_main then
     --# |===
     T['string.word_to_list'] = string_word_to_list
     --#
-    --# === *string.to_list*(_String_)
+    --# === *string.to_list*(_String_) -> _Table_
     --# Create a new table(list) where each non-space(%S) character of argument #1 is a value in the list.
     --#
     --# === Arguments
