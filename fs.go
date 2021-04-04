@@ -35,3 +35,17 @@ func fsRead(L *lua.LState) int {
 	L.Push(lua.LString(FileRead(f)))
 	return 1
 }
+
+func fsWrite(L *lua.LState) int {
+	f := L.CheckString(1)
+	s := L.CheckString(2)
+	err := StringToFile(f, s)
+	if err != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString(err.Error()))
+		return 2
+	} else {
+		L.Push(lua.LTrue)
+		return 1
+	}
+}

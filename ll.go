@@ -75,6 +75,7 @@ Available options are:
 	L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
 	L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
 	L.SetField(nsFs, "read", L.NewFunction(fsRead))
+	L.SetField(nsFs, "write", L.NewFunction(fsWrite))
 	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
 	L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
 	L.SetGlobal("exec", L.NewTable())
