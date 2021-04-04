@@ -15,11 +15,17 @@ table.find = function(tbl, str, plain)
   return false
 end
 
-table.to_map = function(tbl, def)
+table.to_map = function(tbl, def, holes)
   def = def or true
   local t = {}
-  for n = 1, #tbl do
-    t[tbl[n]] = def
+  if not holes then
+    for n = 1, #tbl do
+      t[tbl[n]] = def
+    end
+  else
+    for _, v in next, tbl do
+      t[v] = def
+    end
   end
   return t
 end
