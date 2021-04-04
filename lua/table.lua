@@ -122,7 +122,7 @@ end
 local count = function(t, i)
   local n = 0
   for _, v in next, t do
-    if i == v then
+    if i == v and not(v==nil) then
       n = n + 1
     end
   end
@@ -132,9 +132,11 @@ table.count = count
 
 table.unique = function(t)
   local nt = {}
+  local n = 0
   for _, v in next, t do
     if count(nt, v) == 0 then
-      nt[#nt+1] = v
+      n = n+1
+      nt[n] = v
     end
   end
   return nt
