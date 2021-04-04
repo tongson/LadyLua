@@ -9,7 +9,7 @@ return function()
     T.is_string(s)
     T.equal(string.find(s, 'root', 1, true), 1)
     local ne = fs.read'/sdfsfdsd'
-    T.equal(#ne, 0)
+    T.is_false(ne)
   end
   T['fs.write'] = function()
     T.is_function(fs.write)

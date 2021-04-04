@@ -2,6 +2,8 @@ package main
 
 import (
 	"github.com/yuin/gopher-lua"
+	"io"
+	"os"
 )
 
 func fsIsdir(L *lua.LState) int {
@@ -27,9 +29,30 @@ func fsIsfile(L *lua.LState) int {
 }
 
 func fsRead(L *lua.LState) int {
-	f := L.CheckString(1)
-	L.Push(lua.LString(FileRead(f)))
-	return 1
+	path := L.CheckString(1)
+	isFile := StatPath("file")
+	if isFile(path) {
+		file, err := os.Open(path)
+		defer func() {
+			_ = file.Close()
+		}()
+		if err != nil {
+			L.Push(lua.LNil)
+			L.Push(lua.LString(err.Error()))
+			return 2
+		}
+		str, err := io.ReadAll(file)
+		if err != nil {
+			L.Push(lua.LNil)
+			L.Push(lua.LString(err.Error()))
+			return 2
+		}
+		L.Push(lua.LString(string(str)))
+		return 1
+	} else {
+		L.Push(lua.LFalse)
+		return 1
+	}
 }
 
 func fsWrite(L *lua.LState) int {
