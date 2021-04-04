@@ -121,7 +121,7 @@ end
 
 local count = function(t, i)
   local n = 0
-  for _, v in pairs(t) do
+  for _, v in next, t do
     if i == v then
       n = n + 1
     end
@@ -132,7 +132,7 @@ table.count = count
 
 table.unique = function(t)
   local nt = {}
-  for _, v in pairs(t) do
+  for _, v in next, t do
     if count(nt, v) == 0 then
       nt[#nt+1] = v
     end
