@@ -107,12 +107,12 @@ table.auto = autotable
 table.len = function(t, maxn)
   local n = 0
   if maxn then
-    for _ in pairs(t) do
+    for _ in next, t do
       n = n + 1
       if n >= maxn then break end
     end
   else
-    for _ in pairs(t) do
+    for _ in next, t do
       n = n + 1
     end
   end
