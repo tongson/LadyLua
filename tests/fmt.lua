@@ -7,7 +7,7 @@ if pcall(debug.getlocal, 4, 1) then
     local T = require 'test'
     --# === *fmt.print*(_S_, _..._) -> _S_
     --# Print formatted string to io.stdout.
-    --# <br/>
+    --# +
     --# === Arguments
     --# [width="72%"]
     --# |===
