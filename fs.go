@@ -4,10 +4,6 @@ import (
 	"github.com/yuin/gopher-lua"
 )
 
-//var exportFs = map[string]lua.LGFunction{
-//    "isdir": fsIsdir,
-//}
-
 func fsIsdir(L *lua.LState) int {
 	dir := L.CheckString(1)
 	is := StatPath("directory")
