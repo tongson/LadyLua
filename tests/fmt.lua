@@ -57,8 +57,8 @@ if pcall(debug.getlocal, 4, 1) then
     --# === Returns
     --# [width="72%"]
     --# |===
-    --# |nil| nil|
-    --# |string| Error message|
+    --# |nil| nil
+    --# |string| Error message
     --# |===
     T['fmt.error'] = function()
       T.is_function(fmt.warn)
