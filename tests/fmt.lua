@@ -26,7 +26,7 @@ if not_main then
     --# [width="72%"]
     --# |===
     --# |string| Format string
-    --# |varargs| Values for the format string
+    --# |...| Values for the format string
     --# |===
     T['fmt.print'] = function()
       T.is_function(fmt.print)
@@ -39,7 +39,7 @@ if not_main then
     --# [width="72%"]
     --# |===
     --# |string| Format string
-    --# |varargs| Values for the format string
+    --# |...| Values for the format string
     --# |===
     T['fmt.warn'] = function()
       T.is_function(fmt.warn)
@@ -52,7 +52,7 @@ if not_main then
     --# [width="72%"]
     --# |===
     --# |string| Format string
-    --# |varargs| Values for the format string
+    --# |...| Values for the format string
     --# |===
     --#
     --# === Returns
@@ -75,13 +75,13 @@ if not_main then
     --# [width="72%"]
     --# |===
     --# |string| Format string
-    --# |varargs| Values for the format string
+    --# |...| Values for the format string
     --# |===
     T['fmt.panic'] = function()
       T.is_function(fmt.panic)
     end
     --#
-    --# === *fmt.assert*(_Value_, _..._)
+    --# === *fmt.assert*(_Value_, _String_, _..._)
     --# Print formatted string to io.stderr and exit immediately with code 1 if argument #1 is falsy(nil or false).
     --#
     --# === Arguments
@@ -89,7 +89,7 @@ if not_main then
     --# |===
     --# |value| Any Lua type that can return nil or false
     --# |string| Format string
-    --# |varargs| Values for the format string
+    --# |...| Values for the format string
     --# |===
     T['fmt.assert'] = function()
       T.is_function(fmt.assert)
