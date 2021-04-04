@@ -1,3 +1,4 @@
+local not_main = pcall(debug.getlocal, 4, 1)
 local fmt_print = function()
   local x = 'prints to STDOUT'
   fmt.print('%s\n', x)
@@ -14,7 +15,7 @@ local fmt_panic = function()
   local x = 'prints to STDERR and exit with code 1'
   fmt.panic('%s\n', x)
 end
-if pcall(debug.getlocal, 4, 1) then
+if not_main then
   return function()
     local T = require 'test'
     --#
@@ -94,7 +95,7 @@ if pcall(debug.getlocal, 4, 1) then
       T.is_function(fmt.assert)
     end
   end
-else
+else -- main
   fmt_print()
   fmt_warn()
   fmt_assert()
