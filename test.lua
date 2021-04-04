@@ -10,9 +10,11 @@ local errstr = function(tested, str, ...)
   end
   return true
 end
-
 T.register_assert('error', errstr)
 
+T['built-in global => table'] = dofile 'tests/table.lua'
+T['built-in global => string'] = dofile 'tests/string.lua'
+T['built-in global => fmt'] = dofile 'tests/fmt.lua'
 T["module => html"] = dofile 'tests/html.lua'
 T["module => uid"] = dofile 'tests/uid.lua'
 T["module => tengattack/gluacrypto"] = dofile 'tests/crypto.lua'
