@@ -1,0 +1,61 @@
+
+=== *string.append*(_String_, _String_)
+Append newline plus argument #2 string to argument #1 string.
+
+=== Arguments
+[width="72%"]
+|===
+|string| Original string
+|string| String to append
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string| New string
+|===
+
+=== *string.line_to_list*(_String_)
+Create a new table(list) where each line of argument #1 is a value in the list.
+
+=== Arguments
+[width="72%"]
+|===
+|string| Source string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table| New table
+|===
+
+=== *string.word_to_list*(_String_)
+Create a new table(list) where each word of argument #1 is a value in the list.
+
+=== Arguments
+[width="72%"]
+|===
+|string| Source string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table| New table
+|===
+
+=== *string.to_list*(_String_)
+Create a new table(list) where each non-space(%S) character of argument #1 is a value in the list.
+
+=== Arguments
+[width="72%"]
+|===
+|string| Source string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table| New table
+|===

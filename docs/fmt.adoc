@@ -6,7 +6,7 @@ Print formatted string to io.stdout.
 [width="72%"]
 |===
 |string| Format string
-|varargs| Values for the format string
+|...| Values for the format string
 |===
 
 === *fmt.warn*(_String_, _..._)
@@ -16,7 +16,7 @@ Print formatted string to io.stderr.
 [width="72%"]
 |===
 |string| Format string
-|varargs| Values for the format string
+|...| Values for the format string
 |===
 
 === *fmt.error*(_String_, _..._) -> _Nil_, _String_
@@ -26,14 +26,14 @@ Shortcut for following the Lua convention of returning `nil` and `string` during
 [width="72%"]
 |===
 |string| Format string
-|varargs| Values for the format string
+|...| Values for the format string
 |===
 
 === Returns
 [width="72%"]
 |===
-|nil| nil|
-|string| Error message|
+|nil| nil
+|string| Error message
 |===
 
 === *fmt.panic*(_String_, _..._)
@@ -43,10 +43,10 @@ Print formatted string to io.stderr and exit immediately with code 1.
 [width="72%"]
 |===
 |string| Format string
-|varargs| Values for the format string
+|...| Values for the format string
 |===
 
-=== *fmt.assert*(_Value_, _..._)
+=== *fmt.assert*(_Value_, _String_, _..._)
 Print formatted string to io.stderr and exit immediately with code 1 if argument #1 is falsy(nil or false).
 
 === Arguments
@@ -54,5 +54,5 @@ Print formatted string to io.stderr and exit immediately with code 1 if argument
 |===
 |value| Any Lua type that can return nil or false
 |string| Format string
-|varargs| Values for the format string
+|...| Values for the format string
 |===
