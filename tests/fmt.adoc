@@ -1,5 +1,6 @@
 === *fmt.print*(_S_, _..._) -> _S_
 Print formatted string to io.stdout.
+.
 === Arguments
 [width="72%"]
 |===
