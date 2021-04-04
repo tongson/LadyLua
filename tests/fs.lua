@@ -11,6 +11,14 @@ return function()
     local ne = fs.read'/sdfsfdsd'
     T.equal(#ne, 0)
   end
+  T['fs.write'] = function()
+    T.is_function(fs.write)
+    local s = 'write this'
+    T.is_true(fs.write('/tmp/fs.write', s))
+    local w = fs.read('/tmp/fs.write')
+    T.equal(string.find(s, 'this', 1, true), 7)
+    os.remove('/tmp/fs.write')
+  end
   T['fs.isdir'] = function()
     T.is_function(fs.isdir)
     T.is_true(fs.isdir('/etc'))
