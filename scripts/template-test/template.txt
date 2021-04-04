@@ -1,0 +1,32 @@
+local not_main = pcall(debug.getlocal, 4, 1)
+local T = require 'test'
+local ??_?? = function()
+  T.is_function(??.??)
+  local x = "one"
+  local y = "two"
+  local z = ??.??(x, y)
+  T.equal(z, "one\ntwo")
+end
+if not_main then
+  return function()
+    --#
+    --# === *??.??*(_String_, _String_)
+    --# ??
+    --#
+    --# === Arguments
+    --# [width="72%"]
+    --# |===
+    --# |??| ??
+    --# |??| ??
+    --# |===
+    --#
+    --# === Returns
+    --# [width="72%"]
+    --# |===
+    --# |??| ??
+    --# |===
+    T['??.??'] = ??_??
+  end
+else
+  T['??.??'] = ??_??
+end
