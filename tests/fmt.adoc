@@ -1,9 +1,9 @@
- === *fmt.print*(_S_, _..._) -> _S_
- Print formatted string to io.stdout.
- .
- === Arguments
- [width="72%"]
- |===
- |string| Format string
- |varargs| Values for the format string
- |===
+=== *fmt.print*(_S_, _..._) -> _S_
+Print formatted string to io.stdout.
+<br/>
+=== Arguments
+[width="72%"]
+|===
+|string| Format string
+|varargs| Values for the format string
+|===
