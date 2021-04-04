@@ -41,14 +41,14 @@ func fsRead(L *lua.LState) int {
 			L.Push(lua.LString(err.Error()))
 			return 2
 		}
-		str, err := io.ReadAll(file)
-		if err != nil {
+		if str, err := io.ReadAll(file); err != nil {
 			L.Push(lua.LNil)
 			L.Push(lua.LString(err.Error()))
 			return 2
+		} else {
+			L.Push(lua.LString(string(str)))
+			return 1
 		}
-		L.Push(lua.LString(string(str)))
-		return 1
 	} else {
 		L.Push(lua.LFalse)
 		return 1
