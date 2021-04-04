@@ -1,0 +1,1 @@
+grep -F "function(" "lua/${1}.lua"
