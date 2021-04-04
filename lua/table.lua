@@ -58,7 +58,8 @@ table.filter = function(tbl, patt, plain)
   return tbl
 end
 
-table.insert_if = function(bool, list, pos, value)
+table.insert_if = function(bool, list, value, pos)
+  pos = pos or -1
   if bool then
     if type(value) == "table" then
       for n, i in ipairs(value) do
