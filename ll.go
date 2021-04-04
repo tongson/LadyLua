@@ -59,7 +59,9 @@ Available options are:
 			fmt.Println(err.Error())
 			os.Exit(1)
 		}
-		pprof.StartCPUProfile(f)
+		if err := pprof.StartCPUProfile(f); err != nil {
+			Panic(err.Error())
+		}
 		defer pprof.StopCPUProfile()
 	}
 	if len(opt_e) == 0 && !opt_i && !opt_v && flag.NArg() == 0 {
