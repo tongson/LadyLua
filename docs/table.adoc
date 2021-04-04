@@ -1,0 +1,133 @@
+
+=== *table.unique*(_Table_, _Any_) -> _Table_
+Remove duplicate values(argument #2) from table(argument #1).
+
+Returns a new table(list). The keys from a map are discarded.
+
+=== Arguments
+[width="72%"]
+|===
+|table |Table
+|any |Any value except tables
+|===
+
+=== *table.count*(_Table_, _Any_) -> _Number_
+Count the number of values(argument #2) in table(argument #1).
+
+=== Arguments
+[width="72%"]
+|===
+|table |Table
+|any |Any value except tables
+|===
+
+=== Returns
+[width="72%"]
+|===
+|number| Count
+|===
+
+=== *table.len*(_Table_) -> _Number_
+Count the number of non-nil values in a table(map or list).
+
+=== Arguments
+[width="72%"]
+|===
+|table| Table
+|===
+
+=== Returns
+[width="72%"]
+|===
+|number| Count
+|===
+=== *table.auto*([_Table_])
+Create or convert optional table(#1) into Perl-style[1] automagic tables (also called autovivication). An automagic table creates subtables on demand.
+
+=== Arguments
+[width="72%"]
+|===
+|table| Optional
+|===
+
+=== *table.insert_if*(_Any_, _Table_, _Any_[, _Number_])
+Insert value(#3) into list(#2) at position(#4) if argument #1 is not false or nil.
+
+Position argument is optional, it defaults to -1 which is at the end of the list. Wraps `table.insert`.
+
+=== Arguments
+[width="72%"]
+|===
+|any |Any value
+|table| List
+|any |Any value to insert, can be a table
+|number |Table position to insert into
+|===
+
+
+=== *table.filter*(_Table_, _String_[, _Boolean_])
+Remove values from a sequence(list without holes).
+
+The second argument is a Lua pattern. The last argument is an optional boolean valu. If `true` turns on plain pattern matching. Wraps `string.find`.
+
+=== Arguments
+[width="72%"]
+|===
+|table| Map
+|===
+
+
+=== *table.to_list*(_Table_) -> _Table_
+Convert a table(map) to a list.
+
+The keys from the map are used as values in the new table(list). The values from the map are discarded.
+
+=== Arguments
+[width="72%"]
+|===
+|table| Map
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table| New table(list)
+|===
+
+=== *table.to_map*(_Table_[, _Any_][, _Boolean_]) -> _Table_
+Convert a table(list) to a map.
+
+The values from the original list are used as keys in the new table(map). The optional second argument will be the value for each key. It defaults to boolean `true`. The optional third argument when set to `true` allows a list with holes(nil values) in it.
+
+=== Arguments
+[width="72%"]
+|===
+|table| List
+|any| Optional, defaults to `true`
+|boolean| Optional, if `true`, allow holes in the list
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table| New table(map)
+|===
+
+=== *table.find*(_Table_, _String_[, _Boolean_]) -> _Boolean_
+For each value in a table look for the Lua pattern (argument #2).
+
+Immediately return `true` if a match is found. The third argument turns on plain string matching. This wraps `string.find`.
+
+=== Arguments
+[width="72%"]
+|===
+|table| List or map to traverse
+|string: Lua string pattern
+|boolean| (Optional)
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean| `true` is pattern matched, `false` otherwise
+|===
