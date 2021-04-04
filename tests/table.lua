@@ -95,6 +95,7 @@ local table_len = function()
   local r2 = table.len(t, 3)
   T.is_number(r1)
   T.is_number(r2)
+  T.equal(#t, 5)
   T.equal(r1, 4)
   T.equal(r2, 3)
 end
