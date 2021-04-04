@@ -58,16 +58,24 @@ table.filter = function(tbl, patt, plain)
   return tbl
 end
 
-table.insert_if = function(bool, list, value, pos)
-  pos = pos or -1
+table.insert_if = function(list, bool, value, pos)
+  local len = #list
+  local fin = len+1
+  pos = pos or fin
   if bool then
     if type(value) == "table" then
-      for n, i in ipairs(value) do
-        local p = n - 1
-        insert(list, pos + p, i)
+      local p = pos-1
+      if pos == fin then
+        for n, i in ipairs(value) do
+          insert(list, len+n, i)
+        end
+      else
+        for n, i in ipairs(value) do
+          insert(list, p+n, i)
+        end
       end
     else
-      if pos == -1 then
+      if pos == fin then
         insert(list, value)
       else
         insert(list, pos, value)
