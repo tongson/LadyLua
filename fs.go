@@ -29,3 +29,9 @@ func fsIsfile(L *lua.LState) int {
 	}
 	return 1
 }
+
+func fsRead(L *lua.LState) int {
+	f := L.CheckString(1)
+	L.Push(lua.LString(FileRead(f)))
+	return 1
+}

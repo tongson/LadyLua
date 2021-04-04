@@ -3,6 +3,14 @@ return function()
   T['fs'] = function()
     T.is_table(fs)
   end
+  T['fs.read'] = function()
+    T.is_function(fs.read)
+    local s = fs.read'/etc/passwd'
+    T.is_string(s)
+    T.equal(string.find(s, 'root', 1, true), 1)
+    local ne = fs.read'/sdfsfdsd'
+    T.equal(#ne, 0)
+  end
   T['fs.isdir'] = function()
     T.is_function(fs.isdir)
     T.is_true(fs.isdir('/etc'))
