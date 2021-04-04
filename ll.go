@@ -90,7 +90,9 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(exec)
-		L.PCall(0, lua.MultRet, nil)
+		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+			Bug(epc.Error())
+		}
 	}
 	{
 		tableSrc, _ := luaSrc.ReadFile("lua/table.lua")
@@ -99,7 +101,10 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(table)
-		L.PCall(0, lua.MultRet, nil)
+		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+			Bug(epc.Error())
+		}
+
 	}
 	{
 		lstringSrc, _ := luaSrc.ReadFile("lua/string.lua")
@@ -108,7 +113,10 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(lstring)
-		L.PCall(0, lua.MultRet, nil)
+		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+			Bug(epc.Error())
+		}
+
 	}
 	{
 		L.SetGlobal("fmt", L.NewTable())
@@ -118,7 +126,9 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(lfmt)
-		L.PCall(0, lua.MultRet, nil)
+		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+			Bug(epc.Error())
+		}
 	}
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
