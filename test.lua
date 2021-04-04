@@ -13,6 +13,7 @@ end
 
 T.register_assert('error', errstr)
 
+T['built-in global => fmt'] = dofile 'tests/fmt.lua'
 T["module => html"] = dofile 'tests/html.lua'
 T["module => uid"] = dofile 'tests/uid.lua'
 T["module => tengattack/gluacrypto"] = dofile 'tests/crypto.lua'
