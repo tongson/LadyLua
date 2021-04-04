@@ -1,5 +1,21 @@
 local not_main = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
+--#
+--# === *string.append*(_String_, _String_) -> _String_
+--# Append newline plus argument #2 string to argument #1 string.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Original string
+--# |string| String to append
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |string| New string
+--# |===
 local string_append = function()
   T.is_function(string.append)
   local x = "one"
@@ -7,6 +23,21 @@ local string_append = function()
   local z = string.append(x, y)
   T.equal(z, "one\ntwo")
 end
+--#
+--# === *string.line_to_list*(_String_) -> _Table_
+--# Create a new table(list) where each line of argument #1 is a value in the list.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Source string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |table| New table
+--# |===
 local string_line_to_list = function()
   T.is_function(string.line_to_list)
   local x = [[
@@ -18,6 +49,21 @@ local string_line_to_list = function()
   T.equal(z[1], '    line 1')
   T.equal(z[2], '    line 2')
 end
+--#
+--# === *string.word_to_list*(_String_) -> _Table_
+--# Create a new table(list) where each word of argument #1 is a value in the list.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Source string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |table| New table
+--# |===
 local string_word_to_list = function()
   T.is_function(string.word_to_list)
   local x = [[one two three
@@ -29,6 +75,21 @@ local string_word_to_list = function()
   T.equal(y[3], 'three')
   T.equal(y[4], 'four')
 end
+--#
+--# === *string.to_list*(_String_) -> _Table_
+--# Create a new table(list) where each non-space(%S) character of argument #1 is a value in the list.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Source string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |table| New table
+--# |===
 local string_to_list = function()
   T.is_function(string.to_list)
   local x = [[five2342 s2324
@@ -44,70 +105,9 @@ local string_to_list = function()
 end
 if not_main then
   return function()
-    --#
-    --# === *string.append*(_String_, _String_) -> _String_
-    --# Append newline plus argument #2 string to argument #1 string.
-    --#
-    --# === Arguments
-    --# [width="72%"]
-    --# |===
-    --# |string| Original string
-    --# |string| String to append
-    --# |===
-    --#
-    --# === Returns
-    --# [width="72%"]
-    --# |===
-    --# |string| New string
-    --# |===
     T['string.append'] = string_append
-    --#
-    --# === *string.line_to_list*(_String_) -> _Table_
-    --# Create a new table(list) where each line of argument #1 is a value in the list.
-    --#
-    --# === Arguments
-    --# [width="72%"]
-    --# |===
-    --# |string| Source string
-    --# |===
-    --#
-    --# === Returns
-    --# [width="72%"]
-    --# |===
-    --# |table| New table
-    --# |===
     T['string.line_to_list'] = string_line_to_list
-    --#
-    --# === *string.word_to_list*(_String_) -> _Table_
-    --# Create a new table(list) where each word of argument #1 is a value in the list.
-    --#
-    --# === Arguments
-    --# [width="72%"]
-    --# |===
-    --# |string| Source string
-    --# |===
-    --#
-    --# === Returns
-    --# [width="72%"]
-    --# |===
-    --# |table| New table
-    --# |===
     T['string.word_to_list'] = string_word_to_list
-    --#
-    --# === *string.to_list*(_String_) -> _Table_
-    --# Create a new table(list) where each non-space(%S) character of argument #1 is a value in the list.
-    --#
-    --# === Arguments
-    --# [width="72%"]
-    --# |===
-    --# |string| Source string
-    --# |===
-    --#
-    --# === Returns
-    --# [width="72%"]
-    --# |===
-    --# |table| New table
-    --# |===
     T['string.to_list'] = string_to_list
   end
 else
