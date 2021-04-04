@@ -102,7 +102,7 @@ autotable = function(t)
   end
   return t
 end
-table.autotable = autotable
+table.auto = autotable
 
 table.len = function(t, maxn)
   local n = 0
