@@ -10,10 +10,9 @@ table.find = function(tbl, str, plain)
     tval = gsub(tval, '[%c]', '')
     if find(tval, str, 1, plain) then
       return true
-    else
-      return false
     end
   end
+  return false
 end
 
 table.to_map = function(tbl, def)
