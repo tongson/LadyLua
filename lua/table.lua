@@ -16,7 +16,7 @@ table.find = function(tbl, str, plain)
   end
 end
 
-table.to_hash = function(tbl, def)
+table.to_map = function(tbl, def)
   def = def or true
   local t = {}
   for n = 1, #tbl do
@@ -25,7 +25,7 @@ table.to_hash = function(tbl, def)
   return t
 end
 
-table.to_array = function(tbl)
+table.to_list = function(tbl)
   local t = {}
   for k, _ in pairs(tbl) do
     t[#t+1] = k
