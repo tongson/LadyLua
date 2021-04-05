@@ -1,0 +1,2 @@
+$HOME/bin/gosec.v2.7.0 -exclude-dir external .
+$HOME/bin/staticcheck.2020.2.3 exec.go  fs.go  global.go  html.go  lib.go  ll.go  os.go  uid.go
