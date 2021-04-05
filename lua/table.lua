@@ -12,7 +12,7 @@ table.find = function(tbl, str, plain)
       return true
     end
   end
-  return false
+  return nil, 'Value not found.'
 end
 
 table.to_map = function(tbl, def, holes)
