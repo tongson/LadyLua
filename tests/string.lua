@@ -88,6 +88,7 @@ end
 --# local n = '1# 2! 3.'
 --# local nt = n:word_to_list()
 --# -- nt will contain { "1", "2", "3" }
+--# ----
 local string_word_to_list = function()
   T.is_function(string.word_to_list)
   local x = [[one. #two three
@@ -116,9 +117,11 @@ end
 --# |===
 --#
 --# === Example
+--# ----
 --# local z = 'one\ttwo'
 --# local zt = z:to_list()
 --# -- zt will contain {"one", "two"}
+--# ----
 local string_to_list = function()
   T.is_function(string.to_list)
   local x = [[five2342 s2324

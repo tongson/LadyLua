@@ -66,6 +66,7 @@ Create a new table(list) where each alphanumeric sequence of argument #1 is a va
 local n = '1# 2! 3.'
 local nt = n:word_to_list()
 -- nt will contain { "1", "2", "3" }
+----
 
 === *string.to_list*(_String_) -> _Table_
 Create a new table(list) where each non-space(%S) character of argument #1 is a value in the list.
@@ -83,6 +84,8 @@ Create a new table(list) where each non-space(%S) character of argument #1 is a 
 |===
 
 === Example
+----
 local z = 'one\ttwo'
 local zt = z:to_list()
 -- zt will contain {"one", "two"}
+----
