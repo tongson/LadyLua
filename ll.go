@@ -199,6 +199,7 @@ Available options are:
 			L.RawSet(argtb, lua.LNumber(i), lua.LString(flag.Arg(i)))
 		}
 		L.SetGlobal("arg", argtb)
+		/* #nosec G304 */
 		if opt_dt || opt_dc {
 			file, err := os.Open(script)
 			if err != nil {
