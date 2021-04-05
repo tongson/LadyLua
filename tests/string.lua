@@ -1,7 +1,7 @@
 local not_main = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
 --#
---# === *string.append*(_String_, _String_) -> _String_
+--# == *string.append*(_String_, _String_) -> _String_
 --# Append newline plus argument #2 string to argument #1 string.
 --#
 --# === Arguments
@@ -33,7 +33,7 @@ local string_append = function()
   T.equal(a, z)
 end
 --#
---# === *string.line_to_list*(_String_) -> _Table_
+--# == *string.line_to_list*(_String_) -> _Table_
 --# Create a new table(list) where each line of argument #1 is a value in the list.
 --#
 --# === Arguments
@@ -68,7 +68,7 @@ local string_line_to_list = function()
   T.equal(z[2], '    line 2')
 end
 --#
---# === *string.word_to_list*(_String_) -> _Table_
+--# == *string.word_to_list*(_String_) -> _Table_
 --# Create a new table(list) where each alphanumeric sequence of argument #1 is a value in the list.
 --#
 --# === Arguments
@@ -101,7 +101,7 @@ local string_word_to_list = function()
   T.equal(y[4], 'four')
 end
 --#
---# === *string.to_list*(_String_) -> _Table_
+--# == *string.to_list*(_String_) -> _Table_
 --# Create a new table(list) where each non-space(%S) character of argument #1 is a value in the list.
 --#
 --# === Arguments
