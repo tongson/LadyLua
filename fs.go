@@ -11,10 +11,12 @@ func fsIsdir(L *lua.LState) int {
 	is := StatPath("directory")
 	if is(dir) {
 		L.Push(lua.LTrue)
+		return 1
 	} else {
-		L.Push(lua.LFalse)
+		L.Push(lua.LNil)
+		L.Push(lua.LString("Not a directory."))
+		return 2
 	}
-	return 1
 }
 
 func fsIsfile(L *lua.LState) int {
@@ -22,15 +24,18 @@ func fsIsfile(L *lua.LState) int {
 	is := StatPath("")
 	if is(f) {
 		L.Push(lua.LTrue)
+		return 1
 	} else {
-		L.Push(lua.LFalse)
+		L.Push(lua.LNil)
+		L.Push(lua.LString("Not a file."))
+		return 2
 	}
-	return 1
 }
 
 func fsRead(L *lua.LState) int {
 	path := L.CheckString(1)
 	isFile := StatPath("file")
+	/* #nosec G304 */
 	if isFile(path) {
 		file, err := os.Open(path)
 		defer func() {
@@ -50,8 +55,9 @@ func fsRead(L *lua.LState) int {
 			return 1
 		}
 	} else {
-		L.Push(lua.LFalse)
-		return 1
+		L.Push(lua.LNil)
+		L.Push(lua.LString("Not a file or file does not exist."))
+		return 2
 	}
 }
 
