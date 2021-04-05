@@ -1,7 +1,7 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
 --#
---# === *fmt.print*(_String_, _..._)
+--# == *fmt.print*(_String_, _..._)
 --# Print formatted string to io.stdout.
 --#
 --# === Arguments
@@ -18,7 +18,7 @@ local fmt_print = function()
   end
 end
 --#
---# === *fmt.warn*(_String_, _..._)
+--# == *fmt.warn*(_String_, _..._)
 --# Print formatted string to io.stderr.
 --#
 --# === Arguments
@@ -35,7 +35,7 @@ local fmt_warn = function()
   end
 end
 --#
---# === *fmt.error*(_String_, _..._) -> _Nil_, _String_
+--# == *fmt.error*(_String_, _..._) -> _Nil_, _String_
 --# Shortcut for following the Lua convention of returning `nil` and `string` during error conditions.
 --#
 --# === Arguments
@@ -65,7 +65,7 @@ local fmt_assert = function()
   end
 end
 --#
---# === *fmt.panic*(_String_, _..._)
+--# == *fmt.panic*(_String_, _..._)
 --# Print formatted string to io.stderr and exit immediately with code 1.
 --#
 --# === Arguments
@@ -82,7 +82,7 @@ local fmt_panic = function()
   end
 end
 --#
---# === *fmt.assert*(_Value_, _String_, _..._)
+--# == *fmt.assert*(_Value_, _String_, _..._)
 --# Print formatted string to io.stderr and exit immediately with code 1 if argument #1 is falsy(nil or false).
 --#
 --# === Arguments
