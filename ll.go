@@ -183,7 +183,7 @@ Available options are:
 	}
 
 	if opt_v || opt_i {
-		fmt.Println(fmt.Sprintf("ll 0.1.0\n%s", lua.PackageCopyRight))
+		fmt.Printf("ll 0.1.0\n%s\n", lua.PackageCopyRight)
 	}
 
 	if len(opt_l) > 0 {
