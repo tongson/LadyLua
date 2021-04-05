@@ -290,7 +290,9 @@ local table_find = function()
     'two',
   }
   T.is_true(table.find(t, 'one', true))
-  T.is_false(table.find(t, 'x', true))
+  local r, e = table.find(t, 'x', true)
+  T.is_nil(r)
+  T.is_string(e)
 end
 if included then
   return function()
