@@ -1,5 +1,5 @@
 
-=== *fmt.print*(_String_, _..._)
+== *fmt.print*(_String_, _..._)
 Print formatted string to io.stdout.
 
 === Arguments
@@ -9,7 +9,7 @@ Print formatted string to io.stdout.
 |...| Values for the format string
 |===
 
-=== *fmt.warn*(_String_, _..._)
+== *fmt.warn*(_String_, _..._)
 Print formatted string to io.stderr.
 
 === Arguments
@@ -19,7 +19,7 @@ Print formatted string to io.stderr.
 |...| Values for the format string
 |===
 
-=== *fmt.error*(_String_, _..._) -> _Nil_, _String_
+== *fmt.error*(_String_, _..._) -> _Nil_, _String_
 Shortcut for following the Lua convention of returning `nil` and `string` during error conditions.
 
 === Arguments
@@ -36,7 +36,7 @@ Shortcut for following the Lua convention of returning `nil` and `string` during
 |string| Error message
 |===
 
-=== *fmt.panic*(_String_, _..._)
+== *fmt.panic*(_String_, _..._)
 Print formatted string to io.stderr and exit immediately with code 1.
 
 === Arguments
@@ -46,7 +46,7 @@ Print formatted string to io.stderr and exit immediately with code 1.
 |...| Values for the format string
 |===
 
-=== *fmt.assert*(_Value_, _String_, _..._)
+== *fmt.assert*(_Value_, _String_, _..._)
 Print formatted string to io.stderr and exit immediately with code 1 if argument #1 is falsy(nil or false).
 
 === Arguments
