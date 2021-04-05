@@ -1,7 +1,7 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
 --#
---# === *??.??*(_String_, _String_)
+--# == *??.??*(_String_, _String_)
 --# ??
 --#
 --# === Arguments
