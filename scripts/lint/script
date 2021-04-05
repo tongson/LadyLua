@@ -1,2 +1,3 @@
 $HOME/bin/gosec.v2.7.0 -exclude-dir external .
 $HOME/bin/staticcheck.2020.2.3 exec.go  fs.go  global.go  html.go  lib.go  ll.go  os.go  uid.go
+$HOME/bin/selene.0.11.0 lua/exec.lua lua/fmt.lua lua/table.lua lua/string.lua
