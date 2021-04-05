@@ -146,10 +146,11 @@ func InsertStr(a []string, b string, i int) []string {
 // Prefix string `s` with pipes "|".
 // Used to "prettify" command line output.
 // Returns new string.
-func PipeStr(str string) string {
+func PipeStr(prefix string, str string) string {
 	str = strings.Replace(str, "\n", "\n | ", -1)
 	str = " | \n | " + str
-	return str + "\n | "
+	return strings.Replace(str, " |", fmt.Sprintf("%s |", prefix), -1)
+
 }
 
 // Writes the string `s` to the file `path`.
