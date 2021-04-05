@@ -1,0 +1,23 @@
+[selene]
+base = "lua51"
+name = "ll"
+
+[fmt]
+property = true
+writable = "new-fields"
+
+[fs]
+property = true
+writable = "new-fields"
+
+[exec]
+property = true
+writable = "new-fields"
+
+[string]
+property = true
+writable = "new-fields"
+
+[table]
+property = true
+writable = "new-fields"
