@@ -281,7 +281,7 @@ end
 --# === Returns
 --# [width="72%"]
 --# |===
---# |boolean| `true` is pattern matched, `false` otherwise
+--# |boolean| `true` is pattern matched, `nil` and an error message otherwise
 --# |===
 local table_find = function()
   T.is_function(table.find)
