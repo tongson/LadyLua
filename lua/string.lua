@@ -11,7 +11,9 @@ string.line_to_list = function(str)
     return tbl
   end
   for ln in gmatch(str, "([^\n]*)\n*") do
-    tbl[#tbl + 1] = ln
+    if #ln > 0 then
+      tbl[#tbl + 1] = ln
+    end
   end
   return tbl
 end
