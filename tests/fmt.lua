@@ -1,7 +1,6 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
 --# = fmt
---#
 --# :toc:
 --# :toc-placement!:
 --#
