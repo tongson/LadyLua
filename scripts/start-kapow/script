@@ -1,9 +1,10 @@
+VERSION="0.7.0"
 test -f /usr/lib/systemd/system/systemd-networkd.service ||
 { printf "Missing systemd-networkd service.\n"; exit 1; }
 systemctl disable --now systemd-networkd.service || :
 systemctl enable --now systemd-networkd.service || :
 systemctl restart systemd-networkd.service
-test -x /var/lib/kapow/bin/kapow.v0.7.0 ||
+test -x "/var/lib/kapow/bin/kapow.v${VERSION}" ||
 { printf "Missing kapow executable.\n"; exit 1; }
 test -f /var/cache/kapow/srv/index.pow ||
 { printf "Missing kapow index.pow.\n"; exit 1; }
@@ -48,6 +49,8 @@ LogsDirectory=kapow
 CacheDirectory=kapow
 InaccessiblePaths=/usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
 WorkingDirectory=/var/cache/kapow
-ExecStart=/var/lib/kapow/bin/kapow.v0.7.0 server --bind 0.0.0.69:60080 --control-bind 0.0.0.69:60081 --data-bind 0.0.0.69:60082 src/index.pow
+ExecStart=/var/lib/kapow/bin/kapow.v__VERSION__ server --bind 0.0.0.69:60080 --control-bind 0.0.0.69:60081 --data-bind 0.0.0.69:60082 src/index.pow
 EOS
+sed -i "s|__VERSION__|${VERSION}|" /etc/systemd/system/kapow.service
+systemctl daemon-reload
 systemctl enable --now kapow.service
