@@ -1,13 +1,13 @@
 VERSION="0.7.0"
 test -f /usr/lib/systemd/system/systemd-networkd.service ||
-{ printf "Missing systemd-networkd service.\n"; exit 1; }
+{ printf >&2 "Missing systemd-networkd service.\n"; exit 1; }
 systemctl disable --now systemd-networkd.service 2>&- || :
 systemctl enable --now systemd-networkd.service 2>&- || :
 systemctl restart systemd-networkd.service 2>&-
 test -x "/var/lib/kapow/bin/kapow.v${VERSION}" ||
-{ printf "Missing kapow executable.\n"; exit 1; }
+{ printf >&2 "Missing kapow executable.\n"; exit 1; }
 test -f /var/cache/kapow/srv/index.pow ||
-{ printf "Missing kapow index.pow.\n"; exit 1; }
+{ printf >&2 "Missing kapow index.pow.\n"; exit 1; }
 systemctl disable --now kapow.service || :
 cat > "/etc/systemd/system/kapow.service" <<-'EOS'
 [Unit]
