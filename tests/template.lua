@@ -29,6 +29,7 @@
 --# |function| (_Table_) -> _String_
 --# |===
 --#
+--# :note-caption: :information_source:
 --# [NOTE]
 --# ====
 --# Documentation and tests from etlua project page.

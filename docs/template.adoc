@@ -29,6 +29,7 @@ Compiles and renders the template in a single call. If you are concerned about h
 |function| (_Table_) -> _String_
 |===
 
+:note-caption: :information_source:
 [NOTE]
 ====
 Documentation and tests from etlua project page.
