@@ -1,7 +1,7 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
 --#
---# === *fs.read*(_String_) -> _String_
+--# == *fs.read*(_String_) -> _String_
 --# Read specified file.
 --#
 --# Returns `nil` and an error message when an error is encountered.
@@ -27,7 +27,7 @@ local fs_read = function()
   T.is_string(se)
 end
 --#
---# === *fs.write*(_String_, _String_) -> _Boolean_
+--# == *fs.write*(_String_, _String_) -> _Boolean_
 --# Write string(#2) to file(#1).
 --#
 --# Returns boolean `true` if successful.
@@ -54,7 +54,7 @@ local fs_write = function()
   os.remove('/tmp/fs.write')
 end
 --#
---# === *fs.isdir*(_String_) -> _Boolean_
+--# == *fs.isdir*(_String_) -> _Boolean_
 --# Check if specified path is a directory.
 --#
 --# Returns boolean `true` if it is a directory.
@@ -79,7 +79,7 @@ local fs_isdir = function()
   T.is_string(se)
 end
 --#
---# === *fs.isfile*(_String_) -> _Boolean_
+--# == *fs.isfile*(_String_) -> _Boolean_
 --# Check if specified path is a file.
 --#
 --# Returns boolean `true` if it is a file, `false` otherwise.
@@ -104,7 +104,7 @@ local fs_isfile = function()
   T.is_string(se)
 end
 --#
---# === *fs.mkdir*(_String_) -> _Boolean_
+--# == *fs.mkdir*(_String_) -> _Boolean_
 --# Create directory.
 --#
 --# Returns boolean `true` if successful.
@@ -128,7 +128,7 @@ local fs_mkdir = function()
   T.is_true(fs.rmdir('/tmp/fs.mkdir'))
 end
 --#
---# === *fs.rmdir*(_String_) -> _Boolean_
+--# == *fs.rmdir*(_String_) -> _Boolean_
 --# Remove directory.
 --#
 --# Returns boolean `true` if successful.
@@ -153,7 +153,7 @@ local fs_rmdir = function()
   T.is_nil(fs.isdir('/tmp/fs.rmdir'))
 end
 --#
---# === *fs.chdir*(_String_) -> _Boolean_
+--# == *fs.chdir*(_String_) -> _Boolean_
 --# Change current working directory. This changes the CWD for the whole script.
 --#
 --# Returns boolean `true` if successful.
@@ -179,7 +179,7 @@ local fs_chdir = function()
   T.is_nil(fs.isdir('fs.chdir'))
 end
 --#
---# === *fs.currentdir*() -> _String_
+--# == *fs.currentdir*() -> _String_
 --# Show the current working directory.
 --#
 --# Returns the full path of the current directory.
@@ -200,7 +200,7 @@ local fs_currentdir = function()
   T.is_nil(fs.isdir('/tmp/fs.currentdir'))
 end
 --#
---# === *fs.attributes*(_String_) -> _Table_
+--# == *fs.attributes*(_String_) -> _Table_
 --# Get the attributes of specified path.
 --#
 --# Returns a table(map) of the file system attributes.
@@ -238,7 +238,7 @@ local fs_attributes = function()
   T.is_nil(fs.attributes('/invalid'))
 end
 --#
---# === *fs.symlinkattributes*(_String_) -> _Table_
+--# == *fs.symlinkattributes*(_String_) -> _Table_
 --# Get the attributes of a symlink, not the path it refers to.
 --#
 --# Returns a table(map) of the file system attributes.
@@ -257,7 +257,7 @@ local fs_symlinkattributes = function()
   T.is_nil(fs.symlinkattributes('/invalid'))
 end
 --#
---# === *fs.link*(_String_, _String_, [,_Boolean_]) -> _Boolean_
+--# == *fs.link*(_String_, _String_, [,_Boolean_]) -> _Boolean_
 --# Create a file system link.
 --#
 --# First argument is the target path. Second is the new link.
@@ -281,7 +281,7 @@ local fs_link = function()
   os.remove('/tmp/fs.link')
 end
 --#
---# === *fs.dir*(_String_) -> _Function_
+--# == *fs.dir*(_String_) -> _Function_
 --# Return an iterator that walks the specified path.
 --#
 --# Returns an `iterator` if no errors encountered.
@@ -306,7 +306,7 @@ local fs_dir = function()
   T.is_true(fs.rmdir('/tmp/fs.dir'))
 end
 --#
---# === *fs.touch*(_String_[, _Number_][, _Number_]) -> _Boolean_
+--# == *fs.touch*(_String_[, _Number_][, _Number_]) -> _Boolean_
 --# Sets access and modification times of an specified path. The first argument is the path to change, the second argument is the access time, and the third argument is the modification time. If the modification time is omitted, the access time provided is used. If both arguments are omitted, the current time is used.
 --#
 --# Returns `true` if successful.
