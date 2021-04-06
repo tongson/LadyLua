@@ -31,5 +31,6 @@ Compiles and renders the template in a single call. If you are concerned about h
 
 [NOTE]
 ====
+Documentation and tests from etlua project page.
 Check github.com/leafo/etlua for information on the `Parser` raw API.
 ====
