@@ -1,0 +1,53 @@
+test -f /usr/lib/systemd/system/systemd-networkd.service ||
+{ printf "Missing systemd-networkd service.\n"; exit 1; }
+systemctl disable --now systemd-networkd.service || :
+systemctl enable --now systemd-networkd.service || :
+systemctl restart systemd-networkd.service
+test -x /var/lib/kapow/bin/kapow.v0.7.0 ||
+{ printf "Missing kapow executable.\n"; exit 1; }
+test -f /var/cache/kapow/srv/index.pow ||
+{ printf "Missing kapow index.pow.\n"; exit 1; }
+systemctl disable --now kapow.service || :
+cat > "/etc/systemd/system/kapow.service" <<-'EOS'
+[Unit]
+Description=kapow
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Restart=always
+RestartSec=5
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+LockPersonality=yes
+NoNewPrivileges=yes
+RemoveIPC=yes
+DevicePolicy=closed
+PrivateTmp=yes
+PrivateNetwork=false
+PrivateDevices=true
+ProtectKernelModules=yes
+ProtectSystem=full
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelLogs=yes
+ProtectClock=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+#CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+#AmbientCapabilities=CAP_NET_BIND_SERVICE
+RestrictAddressFamilies=AF_INET
+SystemCallFilter=~bpf process_vm_writev process_vm_readv perf_event_open kcmp lookup_dcookie move_pages swapon swapoff userfaultfd unshare
+SystemCallFilter=~@cpu-emulation @debug @module @obsolete @raw-io @clock @swap @reboot
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+DynamicUser=yes
+StateDirectory=kapow
+LogsDirectory=kapow
+CacheDirectory=kapow
+InaccessiblePaths=/usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
+WorkingDirectory=/var/cache/kapow
+ExecStart=/var/lib/kapow/bin/kapow.v0.7.0 server --bind 0.0.0.69:60080 --control-bind 0.0.0.69:60081 --data-bind 0.0.0.69:60082 src/index.pow
+EOS
+systemctl enable --now kapow.service

@@ -1,0 +1,10 @@
+[Match]
+Name=kapow
+
+[Network]
+Address=0.0.0.69/32
+LinkLocalAddressing=no
+IPv6AcceptRA=no
+
+[Link]
+MTUBytes=65536
