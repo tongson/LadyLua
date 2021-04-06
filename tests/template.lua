@@ -1,5 +1,5 @@
 --#
---# *template.compile*(_String_) -> _Function_
+--# == *template.compile*(_String_) -> _Function_
 --# Compiles the template into a function, the returned function can be called to render the template. The function takes one argument: a table to use as the environment within the template. `_G` is used to look up a variable if it can't be found in the environment.
 --#
 --# === Arguments
@@ -14,7 +14,7 @@
 --# |function| (_Table_) -> _String_
 --# |===
 --#
---# *template.render*(_String_, _Table_) -> _String_
+--# == *template.render*(_String_, _Table_) -> _String_
 --# Compiles and renders the template in a single call. If you are concerned about high performance this should be avoided in favor of `compile` if it's possible to cache the compiled template.
 --#
 --# === Arguments
@@ -28,6 +28,11 @@
 --# |===
 --# |function| (_Table_) -> _String_
 --# |===
+--#
+--# [NOTE]
+--# ====
+--# Check github.com/leafo/etlua for information on the `Parser` raw API.
+--# ====
 return function()
   local T = require 'test'
   local template = require 'template'
