@@ -1,3 +1,5 @@
+= fmt
+
 :toc:
 :toc-placement!:
 
