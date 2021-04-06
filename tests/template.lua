@@ -31,6 +31,7 @@
 --#
 --# [NOTE]
 --# ====
+--# Documentation and tests from etlua project page.
 --# Check github.com/leafo/etlua for information on the `Parser` raw API.
 --# ====
 return function()
