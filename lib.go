@@ -31,7 +31,7 @@ func (a RunArgs) Run() (bool, string, string) {
 	var r bool = true
 	/* #nosec G204 */
 	cmd := exec.Command(a.Exe, a.Args...)
-	if len(a.Dir) > 0 {
+	if a.Dir != "" {
 		cmd.Dir = a.Dir
 	}
 	if a.Env != nil || len(a.Env) > 0 {
@@ -147,10 +147,9 @@ func InsertStr(a []string, b string, i int) []string {
 // Used to "prettify" command line output.
 // Returns new string.
 func PipeStr(prefix string, str string) string {
-	str = strings.Replace(str, "\n", "\n | ", -1)
-	str = " | \n | " + str
-	return strings.Replace(str, " |", fmt.Sprintf("%s |", prefix), -1)
-
+	replacement := fmt.Sprintf("\n %s > ", prefix)
+	str = strings.Replace(str, "\n", replacement, -1)
+	return fmt.Sprintf(" %s >\n %s > %s", prefix, prefix, str)
 }
 
 // Writes the string `s` to the file `path`.
