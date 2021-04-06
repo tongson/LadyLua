@@ -1,5 +1,11 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
+--# :toc:
+--# :toc-placement!:
+--#
+--# Format string variants that wraps `string.format`.
+--#
+--# toc::[]
 --#
 --# == *fmt.print*(_String_, _..._)
 --# Print formatted string to io.stdout.
