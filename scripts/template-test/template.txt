@@ -1,5 +1,12 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
+--# = ??
+--# :toc:
+--# :toc-placement!:
+--#
+--# ???/
+--#
+--# toc::[]
 --#
 --# == *??.??*(_String_, _String_)
 --# ??
