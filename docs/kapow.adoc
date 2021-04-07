@@ -1,0 +1,131 @@
+= kapow
+:toc:
+:toc-placement!:
+
+For interfacing with the Kapow(github.com/BBVA/kapow) data point.
+
+toc::[]
+
+== *kapow.get*(_String_) -> _String_
+Fetch a Kapow resource.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Example: `/request/path`
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Data from resource
+|===
+
+== *kapow.set*(__String_, _String_) -> _Boolean_
+Set a Kapow resource.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Example: `/response/body`
+|string |Data for resource
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.ok*(_String_) -> _Boolean_
+HTTP 200, all is good.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Body to accompany the HTTP 200
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.fail*(_String_) -> _Boolean_
+HTTP 500, the ship sunk.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Body to accompany the HTTP 500
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.warn*(_String_) -> _Boolean_
+HTTP 202, something's wrong.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Body to accompany the HTTP 202
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.forbid*(_String_) -> _Boolean_
+HTTP 403, forbidden.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Body to accompany the HTTP 403
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.not_allowed*() -> _Boolean_
+HTTP 405, detects hackers.
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.no_content*() -> _Boolean_
+HTTP 204, from /dev/null.
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.redirect*(_String_) -> _Boolean_
+Perform redirect to argument #1.
+
+=== Arguments
+[width="72%"]
+|===
+|string |URL
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
