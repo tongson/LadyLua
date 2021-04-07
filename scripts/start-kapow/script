@@ -59,7 +59,7 @@ StateDirectory=kapow
 LogsDirectory=kapow
 CacheDirectory=kapow
 InaccessiblePaths=/usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
-WorkingDirectory=/var/cache/kapow
+WorkingDirectory=/var/lib/kapow
 ExecStart=/var/lib/kapow/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
 EOS
 
