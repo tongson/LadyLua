@@ -9,5 +9,5 @@ return function()
   if #r < 1 then
     r = '__DEFAULT'
   end
-  return WB[MD][r]
+  return WB[MD][r]()
 end
