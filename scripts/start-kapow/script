@@ -8,6 +8,8 @@ test -f /usr/lib/systemd/system/systemd-networkd.service ||
 systemctl disable --now systemd-networkd.service 2>&- || :
 systemctl enable --now systemd-networkd.service 2>&- || :
 systemctl restart systemd-networkd.service 2>&-
+test -x "/var/lib/kapow/bin/ll" ||
+{ printf >&2 "Missing ll executable.\n"; exit 1; }
 test -x "/var/lib/kapow/bin/kapow.v${VERSION}" ||
 { printf >&2 "Missing kapow executable.\n"; exit 1; }
 test -f /var/cache/kapow/srv/index.pow ||
