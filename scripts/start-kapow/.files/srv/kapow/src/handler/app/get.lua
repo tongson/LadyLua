@@ -1,5 +1,6 @@
 
 local Kapow = require 'kapow'
+local Set = Kapow.set
 local Ok = Kapow.ok
 local Warn = Kapow.warn
 local Fail = Kapow.fail
@@ -9,7 +10,10 @@ local Not_Allowed = Kapow.not_allowed
 local No_Content = Kapow.no_content
 
 local default = function()
-  return Ok('hello')
+  local r = Set('/response/status', '418')
+  local b = Set('/response/body', 'kapow.set')
+  assert(r)
+  assert(b)
 end
 local ok = function()
   return Ok('Sending OK(200).')
