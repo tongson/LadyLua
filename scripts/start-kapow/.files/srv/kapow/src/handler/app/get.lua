@@ -25,7 +25,7 @@ local fail = function()
   return Fail('kapow.fail')
 end
 local redirect = function()
-  return Redirect('http://0.0.0.69:60080')
+  return Redirect('http://0.0.0.69:60080/')
 end
 local forbid = function()
   return Forbid('kapow.forbid')
