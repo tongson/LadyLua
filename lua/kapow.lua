@@ -54,7 +54,7 @@ end
 local redirect = function(b)
   local s = H.put(F('%s/handlers/%s/response/status', D, I), { body = '303' })
   if b then
-    b = H.put(F('%s/handlers/%s/headers/Location', D, I), { body = b })
+    b = H.put(F('%s/handlers/%s/response/headers/Location', D, I), { body = b })
     b = (b.status_code == 200)
   else
     b = true
