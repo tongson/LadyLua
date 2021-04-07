@@ -1,0 +1,12 @@
+
+local Kapow = require 'kapow'
+local Get = Kapow.get
+local Ok = Kapow.ok
+
+local default = function()
+  return Ok('hello')
+end
+
+return {
+  __DEFAULT = default;
+}
