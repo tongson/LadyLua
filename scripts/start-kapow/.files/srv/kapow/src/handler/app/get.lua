@@ -19,10 +19,10 @@ local ok = function()
   return Ok('kapow.ok')
 end
 local warn = function()
-  return Warn('kapow.warn.')
+  return Warn('kapow.warn')
 end
 local fail = function()
-  return Fail('kapow.fail.')
+  return Fail('kapow.fail')
 end
 local redirect = function()
   return Redirect('http://0.0.0.69:60080')
