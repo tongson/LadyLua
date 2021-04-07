@@ -58,5 +58,9 @@ WorkingDirectory=/var/cache/kapow
 ExecStart=/var/lib/kapow/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
 EOS
 sed -i "s|__VERSION__|${VERSION}|" /etc/systemd/system/kapow.service
+sed -i "s|__BIND__|${BIND}|" /etc/systemd/system/kapow.service
+sed -i "s|__CONTROL__|${CONTROL}|" /etc/systemd/system/kapow.service
+sed -i "s|__DATA__|${DATA}|" /etc/systemd/system/kapow.service
+sed -i "s|__POW__|${POW}|" /etc/systemd/system/kapow.service
 systemctl daemon-reload
 systemctl enable --now kapow.service
