@@ -12,7 +12,7 @@ test -x "/var/lib/kapow/bin/ll" ||
 { printf >&2 "Missing ll executable.\n"; exit 1; }
 test -x "/var/lib/kapow/bin/kapow.v${VERSION}" ||
 { printf >&2 "Missing kapow executable.\n"; exit 1; }
-test -f /var/cache/kapow/srv/index.pow ||
+test -f "/var/cache/kapow/${POW}" ||
 { printf >&2 "Missing kapow index.pow.\n"; exit 1; }
 systemctl disable --now kapow.service || :
 cat > "/etc/systemd/system/kapow.service" <<-'EOS'
