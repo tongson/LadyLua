@@ -146,6 +146,14 @@ Available options are:
 		L.PreloadModule("stderr", stderrLog.Loader)
 	}
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
+	{ // kapow
+		kapowSrc, _ := luaSrc.ReadFile("lua/kapow.lua")
+		kapow, err := L.LoadString(string(kapowSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.SetField(preload, "kapow", kapow)
+	}
 	{ // util
 		lutilSrc, _ := luaSrc.ReadFile("lua/util.lua")
 		lutil, err := L.LoadString(string(lutilSrc))
