@@ -9,7 +9,7 @@ Kapow.env = {
 Kapow('route', 'add', '/', '--control-url', control, '-e', Exe, '-c', Lua)
 Kapow('route', 'add', '/', '--control-url', control, '-X', 'POST', '-e', Exe, '-c', Lua)
 local routes = function(r)
-  Kapow('route', 'add', '/'..r, '--control-url', control, '-e', Exe, '-c', Lua..' '..r)
+  Kapow('route', 'add', '/'..r, '--control-url', control, '-e', Exe, '-c', Lua)
 end
 local r = {
   'ok',
