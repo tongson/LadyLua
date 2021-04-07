@@ -2,6 +2,7 @@ VERSION="0.7.0"
 BIND="0.0.0.69:60080"
 CONTROL="0.0.0.69:60081"
 DATA="0.0.0.69:60082"
+ROOT="/srv/kapow"
 POW="src/index.pow"
 
 test -f /usr/lib/systemd/system/systemd-networkd.service ||
@@ -11,15 +12,15 @@ systemctl disable --now systemd-networkd.service 2>&- || :
 systemctl enable --now systemd-networkd.service 2>&- || :
 systemctl restart systemd-networkd.service 2>&-
 
-test -x "/srv/kapow/bin/ll" ||
+test -x "${ROOT}/bin/ll" ||
 { printf >&2 "Missing ll executable.\n"; exit 1; }
 
-test -x "/srv/kapow/bin/kapow.v${VERSION}" ||
+test -x "${ROOT}/bin/kapow.v${VERSION}" ||
 { printf >&2 "Missing kapow executable.\n"; exit 1; }
 
-test -f "/srv/kapow/${POW}" ||
-{ printf >&2 "Missing kapow index.pow.\n"; exit 1; }
-chmod +x "/srv/kapow/${POW}"
+test -f "${ROOT}/${POW}" ||
+{ printf >&2 "Missing ${ROOT}/${POW}.\n"; exit 1; }
+chmod +x "${ROOT}/${POW}"
 
 systemctl disable --now kapow.service || :
 cat > "/etc/systemd/system/kapow.service" <<-'EOS'
@@ -60,11 +61,11 @@ DynamicUser=yes
 StateDirectory=kapow
 LogsDirectory=kapow
 CacheDirectory=kapow
-TemporaryFileSystem=/srv:ro
-BindReadOnlyPaths=/srv/kapow
 InaccessiblePaths=/usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
-WorkingDirectory=/srv/kapow
-ExecStart=/srv/kapow/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
+TemporaryFileSystem=/srv:ro
+BindReadOnlyPaths=__ROOT__
+WorkingDirectory=__ROOT__
+ExecStart=__ROOT__/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
 EOS
 
 sed -i "s|__VERSION__|${VERSION}|" /etc/systemd/system/kapow.service
@@ -72,6 +73,7 @@ sed -i "s|__BIND__|${BIND}|" /etc/systemd/system/kapow.service
 sed -i "s|__CONTROL__|${CONTROL}|" /etc/systemd/system/kapow.service
 sed -i "s|__DATA__|${DATA}|" /etc/systemd/system/kapow.service
 sed -i "s|__POW__|${POW}|" /etc/systemd/system/kapow.service
+sed -i "s|__ROOT__|${ROOT}|g" /etc/systemd/system/kapow.service
 
 systemctl daemon-reload
 systemctl enable --now kapow.service
