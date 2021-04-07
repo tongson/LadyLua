@@ -11,7 +11,15 @@ local get = function(s)
     return nil, 'Kapow data URL returned non-200 code.'
   end
 end
-local set = function(s, b)
+local set = function(r, d)
+  local s = H.put(F('%s/handlers/%s%s', D, I, r), { body = d })
+  if s.status_code == 200 then
+    return true
+  else
+    return nil, 'Kapow data URL returned non-200 code.'
+  end
+end
+local xset = function(s, b)
   s = H.put(F('%s/handlers/%s/response/status', D, I), { body = s })
   if b then
     b = H.put(F('%s/handlers/%s/response/body', D, I), { body = b })
@@ -26,22 +34,22 @@ local set = function(s, b)
   end
 end
 local ok = function(b)
-  return set('200', b)
+  return xset('200', b)
 end
 local warn = function(b)
-  return set('202', b)
+  return xset('202', b)
 end
 local fail = function(b)
-  return set('500', b)
+  return xset('500', b)
 end
 local forbid = function(b)
-  return set('403', b)
+  return xset('403', b)
 end
 local not_allowed = function()
-  return set('405')
+  return xset('405')
 end
 local no_content = function()
-  return set('204')
+  return xset('204')
 end
 local redirect = function(b)
   local s = H.put(F('%s/handlers/%s/response/status', D, I), { body = '303' })
