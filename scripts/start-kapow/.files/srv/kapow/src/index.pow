@@ -19,6 +19,7 @@ local r = {
   'forbid',
   'not_allowed',
   'no_content',
+  'binary',
 }
 for n=1, #r do
   routes(r[n])

@@ -36,6 +36,9 @@ end
 local no_content = function()
   return No_Content()
 end
+local binary = function()
+  return Ok(fs.read('/srv/kapow/bin/ll'))
+end
 return {
   __DEFAULT = default;
   ok = ok;
@@ -45,4 +48,5 @@ return {
   forbid = forbid;
   not_allowed = not_allowed;
   no_content = no_content;
+  binary = binary;
 }
