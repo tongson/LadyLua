@@ -1,9 +1,0 @@
-#!/bin/sh -efu
-LC_ALL=C
-_D="/var/lib/kapow"
-_KAPOW="${_D}/bin/kapow.v0.7.0"
-_EXE="${_D}/bin/ll"
-_USER="kapow"
-mkdir -p "/var/log/${_USER}"
-$_KAPOW route add -e "${_EXE}" -c "${_D}/src/index.lua" /
-$_KAPOW route add -X POST -e "${_EXE}" -c "${_D}/src/index.lua" /

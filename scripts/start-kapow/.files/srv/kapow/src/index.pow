@@ -1,0 +1,10 @@
+#!/srv/kapow/bin/ll
+local Exe = '/srv/kapow/bin/ll'
+local Lua = '/srv/kapow/src/index.lua'
+local Kapow = exec.ctx'/srv/kapow/bin/kapow.v0.7.0'
+Kapow.env = {
+     'KAPOW_DATA_URL="http://0.0.0.69:60082"',
+  'KAPOW_CONTROL_URL="http://0.0.0.69:60081"',
+}
+Kapow('route', 'add', '/',  '-e', Exe, '-c', Lua)
+Kapow('route', 'add', '/', '-X', 'POST', '-e', Exe, '-c', Lua)

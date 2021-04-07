@@ -11,14 +11,15 @@ systemctl disable --now systemd-networkd.service 2>&- || :
 systemctl enable --now systemd-networkd.service 2>&- || :
 systemctl restart systemd-networkd.service 2>&-
 
-test -x "/var/lib/kapow/bin/ll" ||
+test -x "/srv/kapow/bin/ll" ||
 { printf >&2 "Missing ll executable.\n"; exit 1; }
 
-test -x "/var/lib/kapow/bin/kapow.v${VERSION}" ||
+test -x "/srv/kapow/bin/kapow.v${VERSION}" ||
 { printf >&2 "Missing kapow executable.\n"; exit 1; }
 
-test -f "/var/lib/kapow/${POW}" ||
+test -f "/srv/kapow/${POW}" ||
 { printf >&2 "Missing kapow index.pow.\n"; exit 1; }
+chmod +x "/srv/kapow/${POW}"
 
 cat > "/etc/systemd/system/kapow.service" <<-'EOS'
 [Unit]
@@ -58,9 +59,9 @@ DynamicUser=yes
 StateDirectory=kapow
 LogsDirectory=kapow
 CacheDirectory=kapow
-InaccessiblePaths=/srv /usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
-WorkingDirectory=/var/lib/kapow
-ExecStart=/var/lib/kapow/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
+InaccessiblePaths=/usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
+WorkingDirectory=/srv/kapow
+ExecStart=/srv/kapow/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
 EOS
 
 sed -i "s|__VERSION__|${VERSION}|" /etc/systemd/system/kapow.service
