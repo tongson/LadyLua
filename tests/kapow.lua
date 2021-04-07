@@ -31,7 +31,7 @@ local kapow_get = function()
   -- Exercised by Kapow app at 0.0.0.69:60080.
 end
 --#
---# == *kapow.set*(__String_, _String_) -> _Boolean_
+--# == *kapow.set*(_String_, _String_) -> _Boolean_
 --# Set a Kapow resource.
 --#
 --# === Arguments
@@ -81,7 +81,7 @@ local kapow_ok= function()
 end
 --#
 --# == *kapow.fail*(_String_) -> _Boolean_
---# HTTP 500, the ship sunk.
+--# HTTP 500, the ship sank.
 --#
 --# === Arguments
 --# [width="72%"]

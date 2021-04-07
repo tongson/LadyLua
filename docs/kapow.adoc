@@ -21,7 +21,7 @@ Fetch a Kapow resource.
 |string |Data from resource
 |===
 
-== *kapow.set*(__String_, _String_) -> _Boolean_
+== *kapow.set*(_String_, _String_) -> _Boolean_
 Set a Kapow resource.
 
 === Arguments
@@ -53,7 +53,7 @@ HTTP 200, all is good.
 |===
 
 == *kapow.fail*(_String_) -> _Boolean_
-HTTP 500, the ship sunk.
+HTTP 500, the ship sank.
 
 === Arguments
 [width="72%"]
