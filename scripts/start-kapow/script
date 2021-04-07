@@ -2,7 +2,7 @@ VERSION="0.7.0"
 BIND="0.0.0.69:60080"
 CONTROL="0.0.0.69:60081"
 DATA="0.0.0.69:60082"
-POW=src/index.pow"
+POW="src/index.pow"
 
 test -f /usr/lib/systemd/system/systemd-networkd.service ||
 { printf >&2 "Missing systemd-networkd service.\n"; exit 1; }
