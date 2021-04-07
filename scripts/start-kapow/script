@@ -3,18 +3,23 @@ BIND="0.0.0.69:60080"
 CONTROL="0.0.0.69:60081"
 DATA="0.0.0.69:60082"
 POW=src/index.pow"
+
 test -f /usr/lib/systemd/system/systemd-networkd.service ||
 { printf >&2 "Missing systemd-networkd service.\n"; exit 1; }
+
 systemctl disable --now systemd-networkd.service 2>&- || :
 systemctl enable --now systemd-networkd.service 2>&- || :
 systemctl restart systemd-networkd.service 2>&-
+
 test -x "/var/lib/kapow/bin/ll" ||
 { printf >&2 "Missing ll executable.\n"; exit 1; }
+
 test -x "/var/lib/kapow/bin/kapow.v${VERSION}" ||
 { printf >&2 "Missing kapow executable.\n"; exit 1; }
+
 test -f "/var/cache/kapow/${POW}" ||
 { printf >&2 "Missing kapow index.pow.\n"; exit 1; }
-systemctl disable --now kapow.service || :
+
 cat > "/etc/systemd/system/kapow.service" <<-'EOS'
 [Unit]
 Description=kapow
@@ -57,10 +62,13 @@ InaccessiblePaths=/usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
 WorkingDirectory=/var/cache/kapow
 ExecStart=/var/lib/kapow/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
 EOS
+
 sed -i "s|__VERSION__|${VERSION}|" /etc/systemd/system/kapow.service
 sed -i "s|__BIND__|${BIND}|" /etc/systemd/system/kapow.service
 sed -i "s|__CONTROL__|${CONTROL}|" /etc/systemd/system/kapow.service
 sed -i "s|__DATA__|${DATA}|" /etc/systemd/system/kapow.service
 sed -i "s|__POW__|${POW}|" /etc/systemd/system/kapow.service
+
+systemctl disable --now kapow.service || :
 systemctl daemon-reload
 systemctl enable --now kapow.service
