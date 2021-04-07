@@ -8,3 +8,18 @@ Kapow.env = {
 }
 Kapow('route', 'add', '/', '--control-url', control, '-e', Exe, '-c', Lua)
 Kapow('route', 'add', '/', '--control-url', control, '-X', 'POST', '-e', Exe, '-c', Lua)
+local routes = function(r)
+  Kapow('route', 'add', '/'..r, '--control-url', control, '-e', Exe, '-c', Lua..' '..r)
+end
+local r = {
+  'ok',
+  'warn',
+  'fail',
+  'redirect',
+  'forbid',
+  'not_allowed',
+  'no_content',
+}
+for n=1, #r do
+  routes(r[n])
+end

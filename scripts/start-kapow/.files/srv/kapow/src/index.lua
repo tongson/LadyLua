@@ -1,2 +1,2 @@
 dofile '/srv/kapow/src/config.lua'
-require('handler')()
+require('handler')(arg[1])
