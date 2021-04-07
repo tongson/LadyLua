@@ -65,7 +65,7 @@ InaccessiblePaths=/usr /bin /proc /sys /sbin /opt /lib64 /lib /boot
 TemporaryFileSystem=/srv:ro
 BindReadOnlyPaths=__ROOT__
 WorkingDirectory=__ROOT__
-ExecStart=__ROOT__/bin/kapow.v__VERSION__ server --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
+ExecStart=__ROOT__/bin/kapow.v__VERSION__ server --debug --bind __BIND__ --control-bind __CONTROL__ --data-bind __DATA__ __POW__
 EOS
 
 sed -i "s|__VERSION__|${VERSION}|" /etc/systemd/system/kapow.service

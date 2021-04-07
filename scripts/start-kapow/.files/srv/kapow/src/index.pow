@@ -2,9 +2,9 @@
 local Exe = '/srv/kapow/bin/ll'
 local Lua = '/srv/kapow/src/index.lua'
 local Kapow = exec.ctx'/srv/kapow/bin/kapow.v0.7.0'
+local control = 'https://0.0.0.69:60081'
 Kapow.env = {
-     'KAPOW_DATA_URL="http://0.0.0.69:60082"',
-  'KAPOW_CONTROL_URL="http://0.0.0.69:60081"',
+  'KAPOW_DATA_URL="http://0.0.0.69:60082"',
 }
-Kapow('route', 'add', '/',  '-e', Exe, '-c', Lua)
-Kapow('route', 'add', '/', '-X', 'POST', '-e', Exe, '-c', Lua)
+Kapow('route', 'add', '/', '--control-url', control, '-e', Exe, '-c', Lua)
+Kapow('route', 'add', '/', '--control-url', control, '-X', 'POST', '-e', Exe, '-c', Lua)
