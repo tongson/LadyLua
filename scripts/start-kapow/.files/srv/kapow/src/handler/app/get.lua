@@ -16,19 +16,19 @@ local default = function()
   assert(b)
 end
 local ok = function()
-  return Ok('Sending OK(200).')
+  return Ok('kapow.ok')
 end
 local warn = function()
-  return Warn('Sending WARN(202).')
+  return Warn('kapow.warn.')
 end
 local fail = function()
-  return Fail('Sending FAIL(500).')
+  return Fail('kapow.fail.')
 end
 local redirect = function()
   return Redirect('http://0.0.0.69:60080')
 end
 local forbid = function()
-  return Forbid('Sending FORBID(403).')
+  return Forbid('kapow.forbid')
 end
 local not_allowed = function()
   return Not_Allowed()
