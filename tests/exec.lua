@@ -75,14 +75,14 @@ end
 --# |===
 --#
 --# === Returns
---# [options="headers",width="72%"]
+--# [options="header",width="72%"]
 --# |===
 --# |Type |Description
 --# |function| A function that can be called and set values; the function also returns the same values as `exec.command`
 --# |===
 --#
 --# === Map
---# [options="headers",width="72%"]
+--# [options="header",width="72%"]
 --# |===
 --# |Value |Description
 --# |env |Environment
@@ -144,18 +144,24 @@ end
 --# A quick way run programs if you only need to set arguments.
 --#
 --# === Arguments
---# [options="headers",width="72%"]
+--# [options="header",width="72%"]
 --# |===
 --# |Type |Description
 --# |string |Executable
 --# |===
 --#
 --# === Returns
---# [options="headers",width="72%"]
+--# [options="header",width="72%"]
 --# |===
 --# |Type |Description
 --# |function| A function that can be called; the function also returns the same values as `exec.command`
 --# |===
+--#
+--# === Example
+--# ----
+--# local rm = exec.run 'rm'
+--# rm'/tmp/test'
+--# ----
 local exec_run = function()
   T.is_true(fs.mkdir(D))
   local t = exec.run.touch(F)
