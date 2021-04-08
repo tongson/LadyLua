@@ -1,5 +1,14 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
+--# = fs
+--# :toc:
+--# :toc-placement!:
+--#
+--# Filesystem operations implementing the `lfs` Lua module.
+--#
+--# Loaded in the global namespace. No need to `require()`.
+--#
+--# toc::[]
 --#
 --# == *fs.read*(_String_) -> _String_
 --# Read specified file.
