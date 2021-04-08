@@ -1,3 +1,12 @@
+--# = template
+--# :toc:
+--# :toc-placement!:
+--#
+--# Embedded Lua templating. This is etlua(github.com/leafo/etlua). +
+--#
+--# Not in the global namespace. Load with `require('template')`.
+--#
+--# toc::[]
 --#
 --# == *template.compile*(_String_) -> _Function_
 --# Compiles the template into a function, the returned function can be called to render the template. The function takes one argument: a table to use as the environment within the template. `_G` is used to look up a variable if it can't be found in the environment.
