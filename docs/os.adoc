@@ -1,0 +1,16 @@
+= os
+:toc:
+:toc-placement!:
+
+Extensions to the `os` namespace.
+
+toc::[]
+
+== *os.hostname*() -> _String_
+Get current hostname.
+
+=== Returns
+[width="72%"]
+|===
+|string |Hostname
+|===
