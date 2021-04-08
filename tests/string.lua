@@ -1,5 +1,12 @@
 local not_main = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
+--# = string
+--# :toc:
+--# :toc-placement!:
+--#
+--# Functions added to the global `string` namespace.
+--#
+--# toc::[]
 --#
 --# == *string.append*(_String_, _String_) -> _String_
 --# Append newline plus argument #2 string to argument #1 string.
