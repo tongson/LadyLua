@@ -41,6 +41,12 @@ If it says *N* in the *Global* field, you need to `require()` it.
 == Documentation and Testing
 Tests are in the `tests` directory. We are using `u-test`. Within the test code is the documentation in AsciiDoc. Check the `scripts/docs` directory for the command line to generate the tests.
 
+== Statistics and numbers
+|=======================
+|Tests |105/105
+|Static executable bytes |7061504
+|=======================
+
 == Benchmark
 Wonder how it compares to PUC-Rio Lua 5.1.5 and LuaJIT2?
 
