@@ -1,0 +1,144 @@
+= http
+:toc:
+:toc-placement!:
+
+Perform HTTP requests from Lua.
+
+toc::[]
+
+=== Common Options Map
+[options="header",width="88%"]
+|===
+|Name |Type | Description
+|query |String | URL encoded query params
+|cookies |Table | Additional cookies to send with the request
+|headers |Table | Additional headers to send with the request
+|timeout |Number/String |Request timeout. Number of seconds or String such as "1h"
+|auth |Table |Username and password for HTTP basic auth. Table keys are *user* for username, *pass* for passwod. `auth={user="user", pass="pass"}`
+|===
+
+=== Additional Options for HTTP POST, PUT, PATCH
+[options="header",width="88%"]
+|===
+|body |String |Request body
+|===
+
+=== Common Response Map
+[options="header",width="88%"]
+|===
+Name | Type | Description |
+body | String | The HTTP response body
+body_size | Number | The size of the HTTP response body in bytes
+headers | Table | The HTTP response headers |
+cookies | Table | The cookies sent by the server in the HTTP response
+status_code | Number | The HTTP response status code
+url | String | The final URL the request ended pointing to after redirects
+|===
+
+== *http.get*(_String_, _Table_) -> _Table_
+HTTP GET.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |URL
+|table |Options, see map above
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Response, see map above
+|===
+
+== *http.head*(_String_, _Table_) -> _Table_
+HTTP HEAD.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |URL
+|table |Options, see map above
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Response, see map above
+|===
+
+== *http.delete*(_String_, _Table_) -> _Table_
+HTTP DELETE.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |URL
+|table |Options, see map above
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Response, see map above
+|===
+
+== *http.patch*(_String_, _Table_) -> _Table_
+HTTP PATCH.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |URL
+|table |Options, see map above
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Response, see map above
+|===
+
+== *http.put*(_String_, _Table_) -> _Table_
+HTTP PUT.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |URL
+|table |Options, see map above
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Response, see map above
+|===
+
+== *http.post*(_String_, _Table_) -> _Table_
+HTTP POST.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |URL
+|table |Options, see map above
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Response, see map above
+|===
