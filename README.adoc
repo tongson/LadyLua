@@ -16,6 +16,13 @@ toc::[]
 == Why?
 Lua is a good language but no one wants to use it for general-purpose scripting. Complaints are 1-based indexing and missing libraries. The latter is a valid concern. The 5.2+ split also does not help. I was convinced that GopherLua would be a good base for a kitchen-sink interpreter. Writing wrappers for the vast selection of Go packages would be a breeze.
 
+== Compiled-in modules
+[options="header",width="88%"]
+|===
+|Module |Global |License
+|fmt    |Y      |MIT
+|===
+
 == Documentation and Testing
 Tests are in the `tests` directory. We are using `u-test`. Within the test code is the documentation in AsciiDoc. Check the `scripts/docs` directory for the command line to generate the tests.
 
