@@ -1,0 +1,103 @@
+= crypto
+:toc:
+:toc-placement!:
+
+Cryptography operations and base64 encoding/decoding.
+
+toc::[]
+
+== *crypto.base64_encode*(_String_) -> _String_
+Encode data to base64.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Data to encode
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Encoded base64 string
+|===
+
+== *crypto.base64_decode*(_String_) -> _String_
+Decode base64 string.
+
+=== Arguments
+[width="72%"]
+|===
+|string |String to decode
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Decoded data
+|===
+
+== *crypto.crc32*(_String_, _Boolean_) -> _String_
+Perform CRC32 on data.
+
+=== Arguments
+[width="72%"]
+|===
+|string |String to check
+|boolean|If `true`, returns raw bytes instead of the default hex encoding string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Checksum
+|===
+
+== *crypto.sha256*(_String_, _Boolean_) -> _String_
+Compute the SHA256 hash code from data.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Data
+|boolean|If `true`, returns raw bytes instead of the default hex encoding string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Hash code
+|===
+
+== *crypto.sha512*(_String_, _Boolean_) -> _String_
+Compute the SHA512 hash code from data.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Data
+|boolean|If `true`, returns raw bytes instead of the default hex encoding string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Hash code
+|===
+
+== *crypto.hmac*(_String_, _String_, _String_, _Boolean_) -> _String_
+Data integrity and authenticity code computation.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Hash function, example: `sha256`
+|string |Message
+|string |Secret key
+|boolean|If `true`, returns raw bytes instead of the default hex encoding string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Code
+|===
