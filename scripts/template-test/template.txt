@@ -12,15 +12,17 @@ local T = require 'test'
 --# ??
 --#
 --# === Arguments
---# [width="72%"]
+--# [options="header",width="72%"]
 --# |===
+--# |Type |Description
 --# |??| ??
 --# |??| ??
 --# |===
 --#
 --# === Returns
---# [width="72%"]
+--# [options="header",width="72%"]
 --# |===
+--# |Type |Description
 --# |??| ??
 --# |===
 local ??_?? = function()
