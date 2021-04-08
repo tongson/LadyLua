@@ -1,8 +1,7 @@
-= ??
+= uid
 :toc:
 :toc-placement!:
 
-???/
 Generate unique IDs. This is a https://github.com/segmentio/ksuid[ksuid] wrapper.
 
 toc::[]

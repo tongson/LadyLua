@@ -1,10 +1,9 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
---# = ??
+--# = uid
 --# :toc:
 --# :toc-placement!:
 --#
---# ???/
 --# Generate unique IDs. This is a https://github.com/segmentio/ksuid[ksuid] wrapper.
 --#
 --# toc::[]
