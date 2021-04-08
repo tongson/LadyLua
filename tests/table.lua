@@ -1,5 +1,12 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
+--# = table
+--# :toc:
+--# :toc-placement!:
+--#
+--# Functions added to the global `table` namespace.
+--#
+--# toc::[]
 --#
 --# === *table.unique*(_Table_, _Any_) -> _Table_
 --# Remove duplicate values(argument #2) from table(argument #1).

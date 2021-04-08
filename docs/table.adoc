@@ -1,3 +1,10 @@
+= table
+:toc:
+:toc-placement!:
+
+Functions added to the global `table` namespace.
+
+toc::[]
 
 === *table.unique*(_Table_, _Any_) -> _Table_
 Remove duplicate values(argument #2) from table(argument #1).
@@ -129,5 +136,5 @@ Immediately return `true` if a match is found. The third argument turns on plain
 === Returns
 [width="72%"]
 |===
-|boolean| `true` is pattern matched, `false` otherwise
+|boolean| `true` is pattern matched, `nil` and an error message otherwise
 |===
