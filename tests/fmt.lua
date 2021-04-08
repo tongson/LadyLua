@@ -4,7 +4,9 @@ local T = require 'test'
 --# :toc:
 --# :toc-placement!:
 --#
---# Format string variants that wraps `string.format`.
+--# Format string variants that wraps `string.format`. +
+--#
+--# Loaded in the global namespace. No need to `require()`.
 --#
 --# toc::[]
 --#
