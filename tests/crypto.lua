@@ -49,7 +49,7 @@ local crypto_base64_decode = function()
   T.equal(C.base64_decode('QUFB'), 'AAA')
 end
 --#
---# == *crypto.crc32*(_String_, _Boolean_) -> _String_
+--# == *crypto.crc32*(_String_[, _Boolean_]) -> _String_
 --# Perform CRC32 on data.
 --#
 --# === Arguments
@@ -69,7 +69,7 @@ local crypto_crc32 = function()
   T.equal(C.crc32('QUFB'), '067393bf')
 end
 --#
---# == *crypto.sha256*(_String_, _Boolean_) -> _String_
+--# == *crypto.sha256*(_String_[, _Boolean_]) -> _String_
 --# Compute the SHA256 hash code from data.
 --#
 --# === Arguments
@@ -90,7 +90,7 @@ local crypto_sha256 = function()
   T.equal(C.sha256('ZZZ'), expected)
 end
 --#
---# == *crypto.sha512*(_String_, _Boolean_) -> _String_
+--# == *crypto.sha512*(_String_[, _Boolean_]) -> _String_
 --# Compute the SHA512 hash code from data.
 --#
 --# === Arguments
@@ -111,7 +111,7 @@ local crypto_sha512 = function()
   T.equal(C.sha512('ZZZ'), e)
 end
 --#
---# == *crypto.hmac*(_String_, _String_, _String_, _Boolean_) -> _String_
+--# == *crypto.hmac*(_String_, _String_, _String_[, _Boolean_]) -> _String_
 --# Data integrity and authenticity code computation.
 --#
 --# === Arguments

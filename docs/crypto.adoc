@@ -38,7 +38,7 @@ Decode base64 string.
 |string |Decoded data
 |===
 
-== *crypto.crc32*(_String_, _Boolean_) -> _String_
+== *crypto.crc32*(_String_[, _Boolean_]) -> _String_
 Perform CRC32 on data.
 
 === Arguments
@@ -54,7 +54,7 @@ Perform CRC32 on data.
 |string |Checksum
 |===
 
-== *crypto.sha256*(_String_, _Boolean_) -> _String_
+== *crypto.sha256*(_String_[, _Boolean_]) -> _String_
 Compute the SHA256 hash code from data.
 
 === Arguments
@@ -70,7 +70,7 @@ Compute the SHA256 hash code from data.
 |string |Hash code
 |===
 
-== *crypto.sha512*(_String_, _Boolean_) -> _String_
+== *crypto.sha512*(_String_[, _Boolean_]) -> _String_
 Compute the SHA512 hash code from data.
 
 === Arguments
@@ -86,7 +86,7 @@ Compute the SHA512 hash code from data.
 |string |Hash code
 |===
 
-== *crypto.hmac*(_String_, _String_, _String_, _Boolean_) -> _String_
+== *crypto.hmac*(_String_, _String_, _String_[, _Boolean_]) -> _String_
 Data integrity and authenticity code computation.
 
 === Arguments
