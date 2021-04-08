@@ -8,6 +8,15 @@ local T = require 'test'
 --#
 --# Loaded in the global namespace. No need to `require()`.
 --#
+--# .Extensions to lfs
+--# [width="72%"]
+--# |===
+--# |fs.read
+--# |fs.write
+--# |fs.isfile
+--# |fs.isdir
+--# |===
+--#
 --# toc::[]
 --#
 --# == *fs.read*(_String_) -> _String_
