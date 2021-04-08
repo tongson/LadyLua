@@ -67,6 +67,48 @@ local crypto_crc32 = function()
   T.equal(C.crc32('QUFB'), '067393bf')
 end
 --#
+--# == *crypto.sha256*(_String_, _Boolean_) -> _String_
+--# Compute the SHA256 hash code from data.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string |Data
+--# |boolean|If `true`, returns raw bytes instead of the default hex encoding string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |string |Hash code
+--# |===
+local crypto_sha256 = function()
+  T.is_function(C.sha256)
+  local expected = '71f3e86c42376ed1c9583f0117fad889f5139926594992b3f573e17939cb038f'
+  T.equal(C.sha256('ZZZ'), expected)
+end
+--#
+--# == *crypto.sha512*(_String_, _Boolean_) -> _String_
+--# Compute the SHA512 hash code from data.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string |Data
+--# |boolean|If `true`, returns raw bytes instead of the default hex encoding string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |string |Hash code
+--# |===
+local crypto_sha512 = function()
+  T.is_function(C.sha512)
+  local e = '534a31a32f5a4baa41d893121d09e4caf537d749c1ef199322c1daea54da1147ac90ad12aa236358a78a78c9b1a0d6989ba892d131416a4155957e11e0ea9caa'
+  T.equal(C.sha512('ZZZ'), e)
+end
+--#
 --# == *crypto.hmac*(_String_, _String_, _String_, _Boolean_) -> _String_
 --# Data integrity and authenticity code computation.
 --#
@@ -93,11 +135,15 @@ if included then
     T['crypto.base64_encode'] = crypto_base64_encode
     T['crypto.base64_decode'] = crypto_base64_decode
     T['crypto.crc32'] = crypto_crc32
+    T['crypto.sha256'] = crypto_sha256
+    T['crypto.sha512'] = crypto_sha512
     T['crypto.hmac'] = crypto_hmac
   end
 else
   T['crypto.base64_encode'] = crypto_base64_encode
   T['crypto.base64_decode'] = crypto_base64_decode
   T['crypto.crc32'] = crypto_crc32
+  T['crypto.sha256'] = crypto_sha256
+  T['crypto.sha512'] = crypto_sha512
   T['crypto.hmac'] = crypto_hmac
 end
