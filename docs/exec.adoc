@@ -10,7 +10,7 @@ toc::[]
 Execute a program. Base function of the the other functions in this module.
 
 === Arguments
-[options="headers",width="72%"]
+[options="header",width="72%"]
 |===
 |Type |Description
 |string |Executable
@@ -21,7 +21,7 @@ Execute a program. Base function of the the other functions in this module.
 |===
 
 === Returns
-[options="headers",width="72%"]
+[options="header",width="72%"]
 |===
 |Type |Description
 |boolean |`true` if no errors encountered, `false` otherwise
@@ -33,7 +33,7 @@ Execute a program. Base function of the the other functions in this module.
 Execute program under a context.
 
 === Arguments
-[options="headers",width="72%"]
+[options="header",width="72%"]
 |===
 |Type |Description
 |string |Executable
@@ -62,7 +62,7 @@ ls.env = {'LC_ALL=C'}
 local r, o = ls('/tmp')
 ----
 
-== *exec.run(_String_) -> _Function_
+== *exec.run*(_String_) -> _Function_
 A quick way run programs if you only need to set arguments.
 
 === Arguments

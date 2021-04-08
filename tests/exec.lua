@@ -14,7 +14,7 @@ local F = '/tmp/exec.command/file'
 --# Execute a program. Base function of the the other functions in this module.
 --#
 --# === Arguments
---# [options="headers",width="72%"]
+--# [options="header",width="72%"]
 --# |===
 --# |Type |Description
 --# |string |Executable
@@ -25,7 +25,7 @@ local F = '/tmp/exec.command/file'
 --# |===
 --#
 --# === Returns
---# [options="headers",width="72%"]
+--# [options="header",width="72%"]
 --# |===
 --# |Type |Description
 --# |boolean |`true` if no errors encountered, `false` otherwise
@@ -68,7 +68,7 @@ end
 --# Execute program under a context.
 --#
 --# === Arguments
---# [options="headers",width="72%"]
+--# [options="header",width="72%"]
 --# |===
 --# |Type |Description
 --# |string |Executable
@@ -140,7 +140,7 @@ local exec_ctx__STDIN = function()
   T.is_number(s)
 end
 --#
---# == *exec.run(_String_) -> _Function_
+--# == *exec.run*(_String_) -> _Function_
 --# A quick way run programs if you only need to set arguments.
 --#
 --# === Arguments
