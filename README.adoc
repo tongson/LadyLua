@@ -24,6 +24,7 @@ Lua is a good language but no one wants to use it for general-purpose scripting.
 |crypto      |N      |gluacrypto       |MIT
 |fmt         |Y      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
+|kapow       |N      |                 |MIT
 |template    |N      |etlua            |MIT
 |===
 
