@@ -5,7 +5,9 @@ local C = require 'crypto'
 --# :toc:
 --# :toc-placement!:
 --#
---# Cryptography operations and base64 encoding/decoding.
+--# Cryptography operations and base64 encoding/decoding. +
+--#
+--# Not in the global namespace. Load with `require('crypto')`.
 --#
 --# toc::[]
 --#
