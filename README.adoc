@@ -2,7 +2,7 @@
 :toc:
 :toc-placement!:
 
-Single executable(static) batteries included Lua 5.1 interpreter. A fat GopherLua amalgamation of modules in Go and Lua.
+Single static executable, batteries-included, Lua 5.1 interpreter. A fat GopherLua amalgamation of modules in Go and Lua.
 
 toc::[]
 
