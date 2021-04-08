@@ -22,10 +22,15 @@ Lua is a good language but no one wants to use it for general-purpose scripting.
 |===
 |Module      |Global |Source           |License
 |crypto      |N      |gluacrypto       |MIT
+|exec        |Y      |                 |MIT
 |fmt         |Y      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
+|html        |N      |                 |MIT
+|http        |N      |gluahttp         |MIT
+|json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
 |template    |N      |etlua            |MIT
+|uid         |N      |                 |MIT
 |===
 
 If it says *N* in the *Global* field, you need to `require()` it.
