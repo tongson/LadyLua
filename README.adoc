@@ -36,8 +36,16 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |uid         |N      |                 |MIT
 |===
 
+:note-caption: :information_source:
+[NOTE]
+====
 If it says *N* in the *Global* field, you need to `require()` it.
+====
+
+[NOTE]
+====
 Check the `docs` directory for more information about these modules.
+====
 
 == Documentation and Testing
 Tests are in the `tests` directory. We are using `u-test`. Within the test code is the documentation in AsciiDoc. Check the `scripts/docs` directory for the command line to generate the tests.
