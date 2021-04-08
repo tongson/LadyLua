@@ -31,10 +31,10 @@ local json = require 'json'
 --# === Common Response Map
 --# [options="header",width="88%"]
 --# |===
---# |Name        | Type   | Description |
+--# |Name        | Type   | Description
 --# |body        | String | The HTTP response body
 --# |body_size   | Number | The size of the HTTP response body in bytes
---# |headers     | Table  | The HTTP response headers |
+--# |headers     | Table  | The HTTP response headers
 --# |cookies     | Table  | The cookies sent by the server in the HTTP response
 --# |status_code | Number | The HTTP response status code
 --# |url         | String | The final URL the request ended pointing to after redirects
