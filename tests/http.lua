@@ -6,7 +6,7 @@ local json = require 'json'
 --# :toc:
 --# :toc-placement!:
 --#
---# Perform HTTP requests from Lua.
+--# Perform HTTP requests from Lua. From https://github.com/cjoudrey/gluahttp[gluahttp].
 --#
 --# toc::[]
 --#
