@@ -8,7 +8,9 @@ local URL = 'http://0.0.0.69:60080/'
 --# :toc:
 --# :toc-placement!:
 --#
---# For interfacing with the Kapow(github.com/BBVA/kapow) data point.
+--# For interfacing with the Kapow(github.com/BBVA/kapow) data point. +
+--#
+--# Not in the global namespace. Load with `require('kapow')`.
 --#
 --# toc::[]
 --#
