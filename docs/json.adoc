@@ -1,0 +1,41 @@
+= json
+:toc:
+:toc-placement!:
+
+JSON encoding and decoding of Lua values.
+
+toc::[]
+
+== *json.encode*(_Any_) -> _String_
+Encode value to JSON.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|any |Any value
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON representation
+|===
+
+== *json.decode*(_String_) -> _Any_
+Decode JSON to Lua value
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON string
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|any |Lua value
+|===
