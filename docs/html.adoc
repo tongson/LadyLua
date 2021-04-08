@@ -1,0 +1,24 @@
+= html
+:toc:
+:toc-placement!:
+
+Utilities for HTML output.
+
+toc::[]
+
+== *html.sanitize*(_String_) -> _String_
+Wrapper to https://github.com/microcosm-cc/bluemonday[bluemonday] for sanitizing HTML.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |HTML
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Cleaned HTML
+|===
