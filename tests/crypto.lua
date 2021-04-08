@@ -47,6 +47,26 @@ local crypto_base64_decode = function()
   T.equal(C.base64_decode('QUFB'), 'AAA')
 end
 --#
+--# == *crypto.crc32*(_String_, _Boolean_) -> _String_
+--# Perform CRC32 on data.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string |String to check
+--# |boolean|If `true`, returns raw bytes instead of the default hex encoding string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |string |Checksum
+--# |===
+local crypto_crc32 = function()
+  T.is_function(C.crc32)
+  T.equal(C.crc32('QUFB'), '067393bf')
+end
+--#
 --# == *crypto.hmac*(_String_, _String_, _String_, _Boolean_) -> _String_
 --# Data integrity and authenticity code computation.
 --#
@@ -72,10 +92,12 @@ if included then
   return function()
     T['crypto.base64_encode'] = crypto_base64_encode
     T['crypto.base64_decode'] = crypto_base64_decode
+    T['crypto.crc32'] = crypto_crc32
     T['crypto.hmac'] = crypto_hmac
   end
 else
   T['crypto.base64_encode'] = crypto_base64_encode
   T['crypto.base64_decode'] = crypto_base64_decode
+  T['crypto.crc32'] = crypto_crc32
   T['crypto.hmac'] = crypto_hmac
 end
