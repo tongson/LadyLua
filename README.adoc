@@ -1,4 +1,4 @@
-= ll
+= LadyLua
 :toc:
 :toc-placement!:
 
