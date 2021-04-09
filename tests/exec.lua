@@ -142,7 +142,7 @@ end
 --#
 --# == *exec.cmd*(_String_) -> _Function_
 --# Execute program under a context. Difference with `exec.ctx` is this takes two additional settings; `errexit` and `error`. When `errexit` is set to `true`, the programs exits immediately when an error is encountered. The `error` setting takes a string to show when `errexit` is triggered. +
---# The returned function's also accepts a format string for building the argument.
+--# The returned function's also accepts a format string OR a table(list) for building the argument.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
@@ -182,12 +182,28 @@ local exec_cmd = function()
   local touch = exec.cmd('/bin/touch')
   local one = '/tmp/exec.command/one'
   local two = '/tmp/exec.command/two'
-  local t = touch(string.format('%s %s', one, two))
+  local t = touch('%s %s', one, two)
   T.is_true(t)
   T.is_true(fs.isfile(one))
   T.is_true(fs.isfile(two))
   local rm = exec.cmd('/usr/bin/rm')
-  local r = rm(string.format('%s %s', one, two))
+  local r = rm('%s %s', one, two)
+  T.is_true(r)
+  T.is_nil(fs.isfile(one))
+  T.is_nil(fs.isfile(two))
+  T.is_true(fs.rmdir(D))
+end
+local exec_cmd_list = function()
+  T.is_true(fs.mkdir(D))
+  local touch = exec.cmd('/bin/touch')
+  local one = '/tmp/exec.command/one'
+  local two = '/tmp/exec.command/two'
+  local t = touch{ one, two }
+  T.is_true(t)
+  T.is_true(fs.isfile(one))
+  T.is_true(fs.isfile(two))
+  local rm = exec.cmd('/usr/bin/rm')
+  local r = rm{ one, two}
   T.is_true(r)
   T.is_nil(fs.isfile(one))
   T.is_nil(fs.isfile(two))
@@ -237,6 +253,7 @@ if included then
     T['exec.ctx env'] = exec_ctx__ENV
     T['exec.ctx stdin'] = exec_ctx__STDIN
     T['exec.cmd'] = exec_cmd
+    T['exec.cmd list'] = exec_cmd_list
     T['exec.run'] = exec_run
   end
 else
@@ -249,5 +266,6 @@ else
   T['exec.ctx env'] = exec_ctx__ENV
   T['exec.ctx stdin'] = exec_ctx__STDIN
   T['exec.cmd'] = exec_cmd
+  T['exec.cmd list'] = exec_cmd_list
   T['exec.run'] = exec_run
 end
