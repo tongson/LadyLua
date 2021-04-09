@@ -1,4 +1,4 @@
-#!/srv/kapow/bin/ll
+#!/usr/bin/ll
 local Exe = '/srv/kapow/bin/ll'
 local Lua = '/srv/kapow/src/index.lua'
 local Kapow = exec.cmd'/srv/kapow/bin/kapow.v0.7.0'
