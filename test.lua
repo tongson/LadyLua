@@ -12,16 +12,16 @@ local errstr = function(tested, str, ...)
 end
 T.register_assert('error', errstr)
 
-T['build-in => os.hostname'] = dofile 'tests/os.lua'
+T['built-in => os.hostname'] = dofile 'tests/os.lua'
 T['built-in => table'] = dofile 'tests/table.lua'
 T['built-in => string'] = dofile 'tests/string.lua'
 T['built-in => fmt'] = dofile 'tests/fmt.lua'
 T['built-in => exec'] = dofile 'tests/exec.lua'
 T['module => kapow'] = dofile 'tests/kapow.lua'
-T["module => html"] = dofile 'tests/html.lua'
-T["module => uid"] = dofile 'tests/uid.lua'
-T["module => tengattack/gluacrypto"] = dofile 'tests/crypto.lua'
-T["module => leafo/etlua"] = dofile 'tests/template.lua'
+T['module => html'] = dofile 'tests/html.lua'
+T['module => uid'] = dofile 'tests/uid.lua'
+T['module => tengattack/gluacrypto'] = dofile 'tests/crypto.lua'
+T['module => leafo/etlua'] = dofile 'tests/template.lua'
 T['json'] = dofile 'tests/json.lua'
 T['http'] = dofile 'tests/http.lua'
 T["global => pi"] = function()
