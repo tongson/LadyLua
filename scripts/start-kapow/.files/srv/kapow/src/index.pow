@@ -1,15 +1,16 @@
 #!/srv/kapow/bin/ll
 local Exe = '/srv/kapow/bin/ll'
 local Lua = '/srv/kapow/src/index.lua'
-local Kapow = exec.ctx'/srv/kapow/bin/kapow.v0.7.0'
-local control = 'https://0.0.0.69:60081'
+local Kapow = exec.cmd'/srv/kapow/bin/kapow.v0.7.0'
+local Control = 'https://0.0.0.69:60081'
+Kapow.errexit = true
 Kapow.env = {
   'KAPOW_DATA_URL="http://0.0.0.69:60082"',
 }
-Kapow('route', 'add', '/', '--control-url', control, '-e', Exe, '-c', Lua)
-Kapow('route', 'add', '/', '--control-url', control, '-X', 'POST', '-e', Exe, '-c', Lua)
+Kapow('route add / --control-url %s -e %s -c %s', Control, Exe, Lua)
+Kapow('route add / --control-url %s -X POST -e %s -c %s', Control, Exe, Lua)
 local routes = function(r)
-  Kapow('route', 'add', '/'..r, '--control-url', control, '-e', Exe, '-c', Lua)
+  Kapow('route add /%s --control-url %s -e %s -c %s', r, Control, Exe, Lua)
 end
 local r = {
   'ok',
