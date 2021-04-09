@@ -2,17 +2,30 @@ exec.ctx = function(exe)
   local set = {}
   return setmetatable(set, {__call = function(_, ...)
     local args = {}
-    local n = select("#", ...)
-    if n == 1 then
-      for k in string.gmatch(..., "%S+") do
-        args[#args+1] = k
-      end
-    elseif n > 1 then
+    if select("#", ...) > 0 then
       for _, k in ipairs({...}) do
         args[#args+1] = k
       end
     end
     return exec.command(exe, args, set.env, set.cwd, set.stdin)
+  end})
+end
+
+exec.cmd = function(exe)
+  local set = {}
+  return setmetatable(set, {__call = function(_, ergs)
+    local args = {}
+    if ergs then
+      for k in string.gmatch(ergs, "%S+") do
+        args[#args+1] = k
+      end
+    end
+    local r, so, st = exec.command(exe, args, set.env, set.cwd, set.stdin)
+    if set.errexit == true and r == nil then
+      return fmt.panic('exec.cmd: `%s` execution failed. Exiting.\n', exe)
+    else
+      return true, so, st
+    end
   end})
 end
 
