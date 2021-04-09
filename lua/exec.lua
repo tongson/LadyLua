@@ -23,7 +23,8 @@ exec.cmd = function(exe)
     end
     local r, so, st = exec.command(exe, args, set.env, set.cwd, set.stdin)
     if set.errexit == true and r == nil then
-      return fmt.panic('exec.cmd: `%s` execution failed. Exiting.\n', exe)
+      local err = set.error or 'execution failed'
+      return fmt.panic('exec.cmd.`%s`: %s. Exiting.\n', exe, err)
     else
       return true, so, st
     end
