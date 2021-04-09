@@ -57,7 +57,7 @@ Besides general purpose scripting, a more specific use for me right now is using
 
 == Statistics and numbers
 |=======================
-|Tests |114/114
+|Tests |116/116
 |Static executable bytes |7061504
 |=======================
 
