@@ -25,12 +25,13 @@ exec.cmd = function(exe)
     if a and type(a) == 'table' then
       args = a
     end
-    local r, so, st = exec.command(exe, args, set.env, set.cwd, set.stdin)
+    local r, so, se = exec.command(exe, args, set.env, set.cwd, set.stdin)
     if set.errexit == true and r == nil then
       local err = set.error or 'execution failed'
-      return fmt.panic('exec.cmd.`%s`: %s. Exiting.\n', exe, err)
+      return fmt.panic('exec.cmd: `%s`=>  "%s"\nstdout=>\n  %s\nstderr=>\n  %s\n',
+        exe, err, so, se)
     else
-      return true, so, st
+      return true, so, se
     end
   end})
 end
