@@ -141,7 +141,7 @@ local exec_ctx__STDIN = function()
 end
 --#
 --# == *exec.cmd*(_String_) -> _Function_
---# Execute program under a context. Different with `exec.ctx` is this takes `errexit` setting. When set to `true`, the programs exits immediately when an error is encountered. The returned function's also accepts a string format for building the argument.
+--# Execute program under a context. Different with `exec.ctx` is this takes `errexit` setting. When set to `true`, the programs exits immediately when an error is encountered. The returned function's also accepts a format string for building the argument.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
