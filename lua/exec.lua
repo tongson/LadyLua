@@ -13,9 +13,10 @@ end
 
 exec.cmd = function(exe)
   local set = {}
-  return setmetatable(set, {__call = function(_, ergs)
+  return setmetatable(set, {__call = function(_, a, ...)
     local args = {}
-    if ergs then
+    if a then
+      local ergs = string.format(a, ...)
       for k in string.gmatch(ergs, "%S+") do
         args[#args+1] = k
       end

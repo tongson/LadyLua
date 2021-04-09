@@ -141,7 +141,7 @@ local exec_ctx__STDIN = function()
 end
 --#
 --# == *exec.cmd*(_String_) -> _Function_
---# Execute program under a context. Different with `exec.ctx` is this takes `errexit` setting. When set to `true`, the programs exits immediately when an error is encountered. The returned function's argument is also a single string that is space delimited.
+--# Execute program under a context. Different with `exec.ctx` is this takes `errexit` setting. When set to `true`, the programs exits immediately when an error is encountered. The returned function's also accepts a string format for building the argument.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
@@ -171,7 +171,9 @@ end
 --# ----
 --# local ls = exec.cmd'/bin/ls'
 --# ls.env = {'LC_ALL=C'}
---# local r, o = ls('/tmp /dev')
+--# local tmp = '/tmp'
+--# local dev = '/dev'
+--# local r, o = ls('%s %s', tmp, dev)
 --# ----
 local exec_cmd = function()
   T.is_true(fs.mkdir(D))
