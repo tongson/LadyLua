@@ -56,10 +56,10 @@ Check the `docs` directory for more information about these modules.
 == Documentation and Testing
 Tests are in the `tests` directory. We are using `u-test`. Within the test code is the documentation in AsciiDoc. Generated docs are in the `docs` directory. Check the `scripts/docs` directory for the command line to generate the docs.
 
-== Ideas
+== Uses
 Besides general purpose scripting, a more specific use for me right now is using Lua for writing web apps. You can write it dynamic style like PHP but instead you have Lua. Another idea is hooking Go packages that interface with DevOps things. Instead of YAML you can program DevOps tools in Lua.
 
-== SAMPLE: shell script converted to Lua
+=== SAMPLE: shell script converted to Lua
 Check this https://github.com/tongson/LadyLua/commit/0a1949060627fbee309e5549f0d00d0299ace3de?branch=0a1949060627fbee309e5549f0d00d0299ace3de&diff=split[diff] to get a feel of the conversion from a shell script to Lua.
 
 == Statistics and numbers
@@ -68,7 +68,7 @@ Check this https://github.com/tongson/LadyLua/commit/0a1949060627fbee309e5549f0d
 |Static executable bytes |7061504
 |=======================
 
-== Benchmark
+=== Benchmark
 Wonder how it compares to PUC-Rio Lua 5.1.5 and LuaJIT2?
 
 Here's a benchmark for object access time. Check the `bench/` directory for the code. The results are from the default 100M runs. GopherLua is fast enough for unconvoluted work. It also demonstrates that LuaJIT is too smart for these benchmarks.
