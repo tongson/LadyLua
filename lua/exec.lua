@@ -14,12 +14,16 @@ end
 exec.cmd = function(exe)
   local set = {}
   return setmetatable(set, {__call = function(_, a, ...)
-    local args = {}
-    if a then
+    local args
+    if a and type(a) == 'string' then
       local ergs = string.format(a, ...)
+      args = {}
       for k in string.gmatch(ergs, "%S+") do
         args[#args+1] = k
       end
+    end
+    if a and type(a) == 'table' then
+      args = a
     end
     local r, so, st = exec.command(exe, args, set.env, set.cwd, set.stdin)
     if set.errexit == true and r == nil then
