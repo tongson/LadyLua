@@ -17,7 +17,7 @@ systemctl 'enable --now systemd-networkd.service'
 systemctl 'restart systemd-networkd.service'
 
 test.error = 'Missing ll executable.'
-test('-x /usr/bin/ll')
+test('-x %s/bin/ll', env.ROOT)
 
 test.error = 'Missing kapow executable.'
 test('-x %s/bin/kapow.v%s', env.ROOT, env.VERSION)
