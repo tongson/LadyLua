@@ -59,7 +59,41 @@ Execute program under a context.
 ----
 local ls = exec.ctx'/bin/ls'
 ls.env = {'LC_ALL=C'}
-local r, o = ls('/tmp')
+local r, o = ls('/tmp', '/dev')
+----
+
+== *exec.cmd*(_String_) -> _Function_
+Execute program under a context. Different with `exec.ctx` is this takes `errexit` setting. When set to `true`, the programs exits immediately when an error is encountered. The returned function's argument is also a single string that is space delimited.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Executable
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|function| A function that can be called and set values; the function also returns the same values as `exec.command`
+|===
+
+=== Map
+[options="header",width="72%"]
+|===
+|Value |Description
+|env |Environment
+|cwd |Working directory
+|stdin |STDIN
+|errexit |Exit immediately when an error is encountered
+|===
+
+=== Example
+----
+local ls = exec.cmd'/bin/ls'
+ls.env = {'LC_ALL=C'}
+local r, o = ls('/tmp /dev')
 ----
 
 == *exec.run*(_String_) -> _Function_

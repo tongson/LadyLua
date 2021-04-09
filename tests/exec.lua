@@ -94,7 +94,7 @@ end
 --# ----
 --# local ls = exec.ctx'/bin/ls'
 --# ls.env = {'LC_ALL=C'}
---# local r, o = ls('/tmp')
+--# local r, o = ls('/tmp', '/dev')
 --# ----
 local exec_ctx__SIMPLE = function()
   T.is_true(fs.mkdir(D))
@@ -140,6 +140,56 @@ local exec_ctx__STDIN = function()
   T.is_number(s)
 end
 --#
+--# == *exec.cmd*(_String_) -> _Function_
+--# Execute program under a context. Different with `exec.ctx` is this takes `errexit` setting. When set to `true`, the programs exits immediately when an error is encountered. The returned function's argument is also a single string that is space delimited.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Executable
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |function| A function that can be called and set values; the function also returns the same values as `exec.command`
+--# |===
+--#
+--# === Map
+--# [options="header",width="72%"]
+--# |===
+--# |Value |Description
+--# |env |Environment
+--# |cwd |Working directory
+--# |stdin |STDIN
+--# |errexit |Exit immediately when an error is encountered
+--# |===
+--#
+--# === Example
+--# ----
+--# local ls = exec.cmd'/bin/ls'
+--# ls.env = {'LC_ALL=C'}
+--# local r, o = ls('/tmp /dev')
+--# ----
+local exec_cmd = function()
+  T.is_true(fs.mkdir(D))
+  local touch = exec.cmd('/bin/touch')
+  local one = '/tmp/exec.command/one'
+  local two = '/tmp/exec.command/two'
+  local t = touch(string.format('%s %s', one, two))
+  T.is_true(t)
+  T.is_true(fs.isfile(one))
+  T.is_true(fs.isfile(two))
+  local rm = exec.cmd('/usr/bin/rm')
+  local r = rm(string.format('%s %s', one, two))
+  T.is_true(r)
+  T.is_nil(fs.isfile(one))
+  T.is_nil(fs.isfile(two))
+  T.is_true(fs.rmdir(D))
+end
+--#
 --# == *exec.run*(_String_) -> _Function_
 --# A quick way run programs if you only need to set arguments.
 --#
@@ -182,6 +232,7 @@ if included then
     T['exec.ctx cwd'] = exec_ctx__CWD
     T['exec.ctx env'] = exec_ctx__ENV
     T['exec.ctx stdin'] = exec_ctx__STDIN
+    T['exec.cmd'] = exec_cmd
     T['exec.run'] = exec_run
   end
 else
@@ -193,5 +244,6 @@ else
   T['exec.ctx cwd'] = exec_ctx__CWD
   T['exec.ctx env'] = exec_ctx__ENV
   T['exec.ctx stdin'] = exec_ctx__STDIN
+  T['exec.cmd'] = exec_cmd
   T['exec.run'] = exec_run
 end
