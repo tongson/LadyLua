@@ -4,9 +4,9 @@
 
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
-Current release: _0.3.0 Veggie Expediter_ +
-Next release: _0.4.0 Flying Squiggly_
-* exec.cmd
+Current release: *0.3.0 Veggie Expediter* +
+Next release: *0.4.0 Flying Squiggly* +
++ exec.cmd
 
 toc::[]
 
