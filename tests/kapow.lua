@@ -53,6 +53,8 @@ local kapow_set = function()
   local r = http.get(URL..'/')
   T.equal(r.status_code, 418)
   T.equal(r.body, 'kapow.set')
+end
+local kapow_set_binary = function()
   local b = http.get(URL..'/binary')
   local bin = fs.read('/srv/kapow/bin/ll')
   T.equal(#bin, b.body_size)
@@ -199,6 +201,7 @@ if included then
   return function()
     T['kapow.get'] = kapow_get
     T['kapow.set'] = kapow_set
+    T['kapow.set binary'] = kapow_set_binary
     T['kapow.ok'] = kapow_ok
     T['kapow.fail'] = kapow_fail
     T['kapow.warn'] = kapow_warn
@@ -210,6 +213,7 @@ if included then
 else
   T['kapow.get'] = kapow_get
   T['kapow.set'] = kapow_set
+  T['kapow.set binary'] = kapow_set_binary
   T['kapow.ok'] = kapow_ok
   T['kapow.fail'] = kapow_fail
   T['kapow.warn'] = kapow_warn
