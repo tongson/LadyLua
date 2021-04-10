@@ -40,8 +40,12 @@ exec.cmd = function(exe)
     if set.errexit == true and r == nil then
       local err = set.error or 'execution failed'
       local header = format('exec.cmd: `%s` => "%s"', exe, err)
-      fmt.print('%s', pretty_prefix(header, 'stdout', so))
-      return fmt.panic('%s', pretty_prefix(header, 'stderr', se))
+      if len(so)<1 and len(se)<1 then
+        return fmt.panic('%s\n', header)
+      else
+        fmt.print('%s', pretty_prefix(header, 'stdout', so))
+        return fmt.panic('%s', pretty_prefix(header, 'stderr', se))
+      end
     else
       return r, so, se
     end
