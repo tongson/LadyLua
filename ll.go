@@ -21,6 +21,8 @@ import (
 
 //go:embed lua/*
 var luaSrc embed.FS
+const versionNumber = "0.4.0"
+const codeName = "\"Flying Squiggly\""
 
 func main() {
 	runtime.MemProfileRate = 0
@@ -191,7 +193,7 @@ Available options are:
 	}
 
 	if opt_v || opt_i {
-		fmt.Printf("ll 0.3.0\n%s\n", lua.PackageCopyRight)
+		fmt.Printf("ll %s %s\n%s\n", versionNumber, codeName, lua.PackageCopyRight)
 	}
 
 	if len(opt_l) > 0 {
