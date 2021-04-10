@@ -12,13 +12,15 @@ exec.ctx = function(exe)
 end
 
 exec.cmd = function(exe)
+  local format, len, gsub, gmatch =
+    string.format, string.len, string.gsub, string.gmatch
   local set = {}
   return setmetatable(set, {__call = function(_, a, ...)
     local args
     if a and type(a) == 'string' then
-      local ergs = string.format(a, ...)
+      local ergs = format(a, ...)
       args = {}
-      for k in string.gmatch(ergs, "%S+") do
+      for k in gmatch(ergs, "%S+") do
         args[#args+1] = k
       end
     end
@@ -27,17 +29,17 @@ exec.cmd = function(exe)
     end
     local r, so, se = exec.command(exe, args, set.env, set.cwd, set.stdin)
     local pretty_prefix = function(header, prefix, str)
-      if string.len(str) > 0 then
-        local replacement = string.format('\n %s > ', prefix)
-        str = string.gsub(str, "\n", replacement)
-        return string.format("%s\n %s >\n %s > %s\n", header, prefix, prefix, str)
+      if len(str) > 0 then
+        local replacement = format('\n %s > ', prefix)
+        str = gsub(str, "\n", replacement)
+        return format("%s\n %s >\n %s > %s\n", header, prefix, prefix, str)
       else
         return ""
       end
     end
     if set.errexit == true and r == nil then
       local err = set.error or 'execution failed'
-      local header = string.format('exec.cmd: `%s` => "%s"', exe, err)
+      local header = format('exec.cmd: `%s` => "%s"', exe, err)
       fmt.print('%s', pretty_prefix(header, 'stdout', so))
       return fmt.panic('%s', pretty_prefix(header, 'stderr', se))
     else
