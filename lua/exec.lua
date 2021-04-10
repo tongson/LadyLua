@@ -41,7 +41,7 @@ exec.cmd = function(exe)
       fmt.print('%s', pretty_prefix(header, 'stdout', so))
       return fmt.panic('%s', pretty_prefix(header, 'stderr', se))
     else
-      return true, so, se
+      return r, so, se
     end
   end})
 end
