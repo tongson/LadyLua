@@ -65,11 +65,7 @@ func rdbDel(L *lua.LState) int {
 	rdb := ud.Value.(*redis.Client)
 	key := L.CheckString(2)
 	n, err := rdb.Del(ctx, key).Result()
-	if err == redis.Nil {
-		L.Push(lua.LNil)
-		L.Push(lua.LString("redis.del: Key does not exist."))
-		return 2
-	} else if err != nil {
+	if err != nil {
 		L.Push(lua.LNil)
 		L.Push(lua.LString("redis.del: Error deleting key."))
 		return 2
