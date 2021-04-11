@@ -180,7 +180,7 @@ Available options are:
 		L.SetField(preload, "util", lutil)
 	}
 	{ // u-test
-		utestSrc, _ := luaSrc.ReadFile("lua/u-test.lua")
+		utestSrc, _ := luaSrc.ReadFile("lua/test.lua")
 		utest, err := L.LoadString(string(utestSrc))
 		if err != nil {
 			Bug(err.Error())
@@ -196,7 +196,7 @@ Available options are:
 		L.SetField(preload, "inspect", inspect)
 	}
 	{ // etlua
-		etluaSrc, _ := luaSrc.ReadFile("lua/etlua.lua")
+		etluaSrc, _ := luaSrc.ReadFile("lua/template.lua")
 		etlua, err := L.LoadString(string(etluaSrc))
 		if err != nil {
 			Bug(err.Error())
