@@ -208,7 +208,7 @@ Available options are:
 
 	if opt_v || opt_i {
 		elapsed := time.Since(start)
-		fmt.Printf("ll %s %s\nElapsed: %s\n%s\n", versionNumber, codeName, elapsed, lua.PackageCopyRight)
+		fmt.Printf("ll %s %s\n%s\nElapsed: %s\n", versionNumber, codeName, lua.PackageCopyRight, elapsed)
 	}
 
 	if len(opt_l) > 0 {
