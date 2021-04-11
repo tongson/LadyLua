@@ -69,6 +69,14 @@ Check this https://github.com/tongson/LadyLua/commit/0a1949060627fbee309e5549f0d
 |Static executable bytes |7061504
 |=======================
 
+=== Startup time
+Compiling-in modules into LadyLua adds a bit to startup time. Compares vanilla GopherLua glua interpreter and current LadyLua ll interpreter.
+
+|======
+|GopherLua |313.073µs
+|LadyLua |15.328407ms
+|======
+
 === Benchmark
 Wonder how it compares to PUC-Rio Lua 5.1.5 and LuaJIT2?
 
