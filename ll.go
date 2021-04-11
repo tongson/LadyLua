@@ -95,7 +95,7 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(exec)
-		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+		if epc := L.PCall(0, 0, nil); epc != nil {
 			Bug(epc.Error())
 		}
 	}
@@ -106,7 +106,7 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(table)
-		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+		if epc := L.PCall(0, 0, nil); epc != nil {
 			Bug(epc.Error())
 		}
 
@@ -118,7 +118,7 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(lstring)
-		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+		if epc := L.PCall(0, 0, nil); epc != nil {
 			Bug(epc.Error())
 		}
 
@@ -131,7 +131,7 @@ Available options are:
 			Bug(err.Error())
 		}
 		L.Push(lfmt)
-		if epc := L.PCall(0, lua.MultRet, nil); epc != nil {
+		if epc := L.PCall(0, 0, nil); epc != nil {
 			Bug(epc.Error())
 		}
 	}
