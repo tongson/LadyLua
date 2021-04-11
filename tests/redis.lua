@@ -166,16 +166,15 @@ local redis_incr = function()
   r.close()
 end
 --#
---# == *redis.hset*(_String_, _String_, _String_) -> _Boolean_
---# Sets field in the hash stored at key to value. If key does not exist, a new key holding a hash is created. If field already exists in the hash, it is overwritten.
+--# == *redis.hset*(_String_, _Table_) -> _Boolean_
+--# Sets field in the hash stored at key to value from a table(map). If key does not exist, a new key holding a hash is created. If field already exists in the hash, it is overwritten.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
 --# |string |Key
---# |string |Field
---# |string |Value
+--# |table |Map of fields and values
 --# |===
 --#
 --# === Returns
