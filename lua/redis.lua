@@ -26,6 +26,9 @@ local loader = function()
         exp = exp or 0
         return redis.set(client, key, value, exp)
       end,
+      close = function()
+        return redis.close(client)
+      end,
     }
   end
   return redis

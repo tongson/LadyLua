@@ -138,6 +138,20 @@ func rdbHGet(L *lua.LState) int {
 	}
 }
 
+func rdbClose(L *lua.LState) int {
+	ud := L.CheckUserData(1)
+	rdb := ud.Value.(*redis.Client)
+	err := rdb.Close()
+	if err != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.close: Error closing connection."))
+		return 2
+	} else {
+		L.Push(lua.LTrue)
+		return 1
+	}
+}
+
 func redisLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, redisApi)
@@ -153,4 +167,5 @@ var redisApi = map[string]lua.LGFunction{
 	"incr":   rdbIncr,
 	"hset":   rdbHSet,
 	"hget":   rdbHGet,
+	"close":  rdbClose,
 }
