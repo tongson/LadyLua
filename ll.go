@@ -22,6 +22,7 @@ import (
 //go:embed lua/*
 var luaSrc embed.FS
 var start time.Time
+
 const versionNumber = "0.4.0"
 const codeName = "\"Flying Squiggly\""
 
