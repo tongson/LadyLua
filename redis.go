@@ -28,9 +28,14 @@ func rdbSet(L *lua.LState) int {
 	ud := L.CheckUserData(1)
 	rdb := ud.Value.(*redis.Client)
 	key := L.CheckString(2)
-	value := L.CheckString(3)
+	v := L.CheckAny(3)
 	expiration := time.Duration(L.CheckNumber(4))
-	err := rdb.Set(ctx, key, value, expiration).Err()
+	var err error
+  if strv, ok := v.(lua.LString); ok {
+	  err = rdb.Set(ctx, key, string(strv), expiration).Err()
+  } else if intv, ok := v.(lua.LNumber); ok {
+	  err = rdb.Set(ctx, key, int(intv), expiration).Err()
+  }
 	if err != nil {
 		L.Push(lua.LNil)
 		L.Push(lua.LString("redis.set: Unable to set key."))
@@ -80,11 +85,7 @@ func rdbIncr(L *lua.LState) int {
 	rdb := ud.Value.(*redis.Client)
 	key := L.CheckString(2)
 	n, err := rdb.Incr(ctx, key).Result()
-	if err == redis.Nil {
-		L.Push(lua.LNil)
-		L.Push(lua.LString("redis.incr: Key does not exist."))
-		return 2
-	} else if err != nil {
+	if err != nil {
 		L.Push(lua.LNil)
 		L.Push(lua.LString("redis.incr: Error incrementing key."))
 		return 2
