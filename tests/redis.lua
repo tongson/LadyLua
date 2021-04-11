@@ -47,7 +47,7 @@ end
 --# ...
 --# ----
 --#
---# == *redis.close*()
+--# == *close*()
 --# Close redis client connection.
 local redis_new = function()
   T.is_function(redis.new)
@@ -56,7 +56,7 @@ local redis_new = function()
   r.close()
 end
 --#
---# == *redis.del*(_String_) -> _Number_
+--# == *del*(_String_) -> _Number_
 --# Removes the specified keys. A key is ignored if it does not exist.
 --#
 --# === Arguments
@@ -81,7 +81,7 @@ local redis_del = function()
   r.close()
 end
 --#
---# == *redis.set*(_String_, _String_) -> _Boolean_
+--# == *set*(_String_, _String_) -> _Boolean_
 --# Set key to hold the string value. If key already holds a value, it is overwritten, regardless of its type. Any previous time to live associated with the key is discarded on successful SET operation.
 --#
 --# === Arguments
@@ -108,7 +108,7 @@ local redis_set = function()
   r.close()
 end
 --#
---# == *redis.get*(_String_, _String_) -> _String_
+--# == *get*(_String_, _String_) -> _String_
 --# Get the value of key.
 --#
 --# === Arguments
@@ -137,7 +137,7 @@ local redis_get = function()
   r.close()
 end
 --#
---# == *redis.incr*(_String) -> _Number_
+--# == *incr*(_String) -> _Number_
 --# Increments the number stored at key by one. If the key does not exist, it is set to 0 before performing the operation.
 --#
 --# === Arguments
@@ -155,7 +155,7 @@ end
 --# |===
 local redis_incr = function()
   local r = redis.new()
-  T.is_function(r.get)
+  T.is_function(r.incr)
   --r.del('ll_incr1')
   --r.del('ll_dummy')
   local sr1 = r.set('ll_incr1', '1')
@@ -171,7 +171,7 @@ local redis_incr = function()
   r.close()
 end
 --#
---# == *redis.hset*(_String_, _Table_) -> _Boolean_
+--# == *hset*(_String_, _Table_) -> _Boolean_
 --# Sets field in the hash stored at key to value from a table(map). If key does not exist, a new key holding a hash is created. If field already exists in the hash, it is overwritten.
 --#
 --# === Arguments
@@ -199,7 +199,7 @@ local redis_hset = function()
   r.close()
 end
 --#
---# == *redis.hget*(_String_, _String_) -> _String_
+--# == *hget*(_String_, _String_) -> _String_
 --# Returns the value associated with field in the hash stored at key.
 --#
 --# === Arguments
@@ -233,7 +233,7 @@ local redis_hget = function()
   r.close()
 end
 --#
---# == *redis.hdel*(_String_, _String_) -> _Number_
+--# == *hdel*(_String_, _String_) -> _Number_
 --# Removes the specified fields from the hash stored at key. Specified fields that do not exist within this hash are ignored. If key does not exist, it is treated as an empty hash and this command returns 0.
 --#
 --# === Arguments
@@ -273,22 +273,22 @@ if included then
   return function()
     T['redis internal functions'] = redis_functions
     T['redis.new'] = redis_new
-    T['redis.del'] = redis_del
-    T['redis.set'] = redis_set
-    T['redis.get'] = redis_get
-    T['redis.incr'] = redis_incr
-    T['redis.hset'] = redis_hset
-    T['redis.hget'] = redis_hget
-    T['redis.hdel'] = redis_hdel
+    T['del'] = redis_del
+    T['set'] = redis_set
+    T['get'] = redis_get
+    T['incr'] = redis_incr
+    T['hset'] = redis_hset
+    T['hget'] = redis_hget
+    T['hdel'] = redis_hdel
   end
 else
   T['redis internal functions'] = redis_functions
   T['redis.new'] = redis_new
-  T['redis.del'] = redis_del
-  T['redis.set'] = redis_set
-  T['redis.get'] = redis_get
-  T['redis.incr'] = redis_incr
-  T['redis.hset'] = redis_hset
-  T['redis.hget'] = redis_hget
-  T['redis.hdel'] = redis_hdel
+  T['del'] = redis_del
+  T['set'] = redis_set
+  T['get'] = redis_get
+  T['incr'] = redis_incr
+  T['hset'] = redis_hset
+  T['hget'] = redis_hget
+  T['hdel'] = redis_hdel
 end
