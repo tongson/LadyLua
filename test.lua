@@ -23,8 +23,8 @@ T['module => html'] = dofile 'tests/html.lua'
 T['module => uid'] = dofile 'tests/uid.lua'
 T['module => tengattack/gluacrypto'] = dofile 'tests/crypto.lua'
 T['module => leafo/etlua'] = dofile 'tests/template.lua'
-T['json'] = dofile 'tests/json.lua'
-T['http'] = dofile 'tests/http.lua'
+T['module => layeh/gopher-json'] = dofile 'tests/json.lua'
+T['module => cjoudrey/gluahttp'] = dofile 'tests/http.lua'
 T["global => pi"] = function()
   T.is_function(pi)
   T.is_number(pi(300))
