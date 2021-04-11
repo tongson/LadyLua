@@ -18,11 +18,24 @@ local id = function(u, t)
     end
   end
 end
-local template = function(i)
-  local unit = [==[
-]==]
+local start = function(name, unit, id)
+  local systemctl = exec.cmd 'systemctl'
+  systemctl('disable --now %s.service', name)
+  local fname = string.format('/etc/systemd/system/%s.service', name)
+  local funit, changed = string.gsub(unit, '__ID__', id)
+  if changed == 0 then
+    return nil, 'No ID interpolated.'
+  end
+  if not fs.write(fname, funit) then
+    return nil, 'Unable to write unit.'
+  end
+  systemctl.errexit = true
+  systemctl('enable --now %s.service', name)
+end
+
 end
 return {
   pull = pull;
   id = id;
+  start = start;
 }
