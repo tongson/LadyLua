@@ -6,8 +6,8 @@ Single static executable, batteries-included, Lua 5.1 interpreter. A fat https:/
 
 Current release: *0.3.0 Veggie Expediter* +
 Next release: *0.4.0 Flying Squiggly* +
-+ exec.cmd
-+ redis
++ exec.cmd +
++ redis +
 
 toc::[]
 
