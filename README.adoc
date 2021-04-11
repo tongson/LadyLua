@@ -77,6 +77,14 @@ Compiling-in modules into LadyLua adds a bit to startup time. Compares vanilla G
 |LadyLua |15.328407ms
 |======
 
+=== Bloat
+Significant modules that adds bloat to the interpreter.
+
+|======
+|http |3MiB+
+|redis |800KiB
+|======
+
 === Benchmark
 Wonder how it compares to PUC-Rio Lua 5.1.5 and LuaJIT2?
 
