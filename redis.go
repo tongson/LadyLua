@@ -28,14 +28,9 @@ func rdbSet(L *lua.LState) int {
 	ud := L.CheckUserData(1)
 	rdb := ud.Value.(*redis.Client)
 	key := L.CheckString(2)
-	v := L.CheckAny(3)
+	value := L.CheckString(3)
 	expiration := time.Duration(L.CheckNumber(4))
-	var err error
-  if strv, ok := v.(lua.LString); ok {
-	  err = rdb.Set(ctx, key, string(strv), expiration).Err()
-  } else if intv, ok := v.(lua.LNumber); ok {
-	  err = rdb.Set(ctx, key, int(intv), expiration).Err()
-  }
+	err := rdb.Set(ctx, key, value, expiration).Err()
 	if err != nil {
 		L.Push(lua.LNil)
 		L.Push(lua.LString("redis.set: Unable to set key."))
