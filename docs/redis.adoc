@@ -1,0 +1,156 @@
+= redis
+:toc:
+:toc-placement!:
+
+Access Redis and run Redis commands.
+
+toc::[]
+
+== *redis.new*([_String_][, _String_][, _Number_]) -> _Table_
+Create a new Redis client connection.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Address and port of Redis, default: 127.0.0.1:6379
+|string |Password, default: ""
+|number |Database, default: 0
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Object that you can index into to perform commands
+|===
+
+=== Example
+----
+local redis = require 'redis'
+local rdb = redis.new()
+...
+----
+
+== *redis.del*(_String_) -> _Number_
+Removes the specified keys. A key is ignored if it does not exist.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|Number |The number of keys that were removed, 1 if successful, 0 otherwise
+|===
+
+== *redis.set*(_String_, _String_) -> _Boolean_
+Set key to hold the string value. If key already holds a value, it is overwritten, regardless of its type. Any previous time to live associated with the key is discarded on successful SET operation.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|string |Value
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |If successful, `true`
+|===
+
+== *redis.get*(_String_, _String_) -> _String_
+Get the value of key.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Value
+|===
+
+== *redis.incr*(_String) -> _Number_
+Increments the number stored at key by one. If the key does not exist, it is set to 0 before performing the operation.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Value of key after the increment
+|===
+
+== *redis.hset*(_String_, _Table_) -> _Boolean_
+Sets field in the hash stored at key to value from a table(map). If key does not exist, a new key holding a hash is created. If field already exists in the hash, it is overwritten.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|table |Map of fields and values
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |If successful, `true`
+|===
+
+== *redis.hget*(_String_, _String_) -> _String_
+Returns the value associated with field in the hash stored at key.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|string |Field
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Value
+|===
+
+== *redis.hdel*(_String_, _String_) -> _Number_
+Removes the specified fields from the hash stored at key. Specified fields that do not exist within this hash are ignored. If key does not exist, it is treated as an empty hash and this command returns 0.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|string |Field
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Fields deleted
+|===
