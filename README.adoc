@@ -78,7 +78,7 @@ Compiling-in modules into LadyLua adds a bit to startup time. Compares vanilla G
 |======
 
 === Bloat tracker
-Modules that adds significant bloat to the interpreter. If you don't need these maybe you can trim them from your fork.
+Modules that adds significant bloat to the interpreter. If you don't need these maybe you can trim them from your fork. Just estimates though. The later added modules may have dependencies shared with earlier modules.
 
 |======
 |http |3-4MiB
