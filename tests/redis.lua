@@ -165,6 +165,35 @@ local redis_incr = function()
   T.equal(r.del('ll_dummy'), 1)
   r.close()
 end
+--#
+--# == *redis.hset*(_String_, _String_, _String_) -> _Boolean_
+--# Sets field in the hash stored at key to value. If key does not exist, a new key holding a hash is created. If field already exists in the hash, it is overwritten.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Key
+--# |string |Field
+--# |string |Value
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |boolean |If successful, `true`
+--# |===
+local redis_hset = function()
+  local r = redis.new()
+  T.is_function(r.hset)
+  local t = { field = 'dummy' }
+  local sr, ss = r.hset('ll_hset', t)
+  T.is_nil(ss)
+  T.is_true(sr)
+  T.equal(r.del('ll_hset'), 1)
+  r.close()
+end
 if included then
   return function()
     T['redis internal functions'] = redis_functions
@@ -173,6 +202,7 @@ if included then
     T['redis.set'] = redis_set
     T['redis.get'] = redis_get
     T['redis.incr'] = redis_incr
+    T['redis.hset'] = redis_hset
   end
 else
   T['redis internal functions'] = redis_functions
@@ -181,4 +211,5 @@ else
   T['redis.set'] = redis_set
   T['redis.get'] = redis_get
   T['redis.incr'] = redis_incr
+  T['redis.hset'] = redis_hset
 end
