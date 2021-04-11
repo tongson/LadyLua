@@ -193,6 +193,40 @@ local redis_hset = function()
   T.equal(r.del('ll_hset'), 1)
   r.close()
 end
+--#
+--# == *redis.hget*(_String_, _String_) -> _String_
+--# Returns the value associated with field in the hash stored at key.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Key
+--# |string |Field
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Value
+--# |===
+local redis_hget = function()
+  local r = redis.new()
+  T.is_function(r.hget)
+  local t = {
+    field = 'dummy',
+    another = 'useless',
+  }
+  local sr, ss = r.hset('ll_hget', t)
+  T.is_nil(ss)
+  T.is_true(sr)
+  local gr, gs = r.hget('ll_hget', 'another')
+  T.is_nil(gs)
+  T.equal(gr, 'useless')
+  T.equal(r.del('ll_hget'), 1)
+  r.close()
+end
 if included then
   return function()
     T['redis internal functions'] = redis_functions
@@ -202,6 +236,7 @@ if included then
     T['redis.get'] = redis_get
     T['redis.incr'] = redis_incr
     T['redis.hset'] = redis_hset
+    T['redis.hget'] = redis_hget
   end
 else
   T['redis internal functions'] = redis_functions
@@ -211,4 +246,5 @@ else
   T['redis.get'] = redis_get
   T['redis.incr'] = redis_incr
   T['redis.hset'] = redis_hset
+  T['redis.hget'] = redis_hget
 end
