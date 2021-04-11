@@ -7,7 +7,7 @@ Access Redis and run Redis commands.
 toc::[]
 
 == *redis.new*([_String_][, _String_][, _Number_]) -> _Table_
-Create a new Redis client connection.
+Create a new Redis client connection. The return value is an object for performing redis commands.
 
 === Arguments
 [options="header",width="72%"]
@@ -29,8 +29,12 @@ Create a new Redis client connection.
 ----
 local redis = require 'redis'
 local rdb = redis.new()
+rdb.get('key')
 ...
 ----
+
+== *redis.close*()
+Close redis client connection.
 
 == *redis.del*(_String_) -> _Number_
 Removes the specified keys. A key is ignored if it does not exist.

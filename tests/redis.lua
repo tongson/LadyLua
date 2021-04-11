@@ -21,7 +21,7 @@ end
 --# toc::[]
 --#
 --# == *redis.new*([_String_][, _String_][, _Number_]) -> _Table_
---# Create a new Redis client connection.
+--# Create a new Redis client connection. The return value is an object for performing redis commands.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
@@ -43,8 +43,12 @@ end
 --# ----
 --# local redis = require 'redis'
 --# local rdb = redis.new()
+--# rdb.get('key')
 --# ...
 --# ----
+--#
+--# == *redis.close*()
+--# Close redis client connection.
 local redis_new = function()
   T.is_function(redis.new)
   local r = redis.new('127.0.0.1:6379', '', 0)
