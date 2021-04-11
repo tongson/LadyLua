@@ -118,7 +118,7 @@ func rdbHGet(L *lua.LState) int {
 	v, err := rdb.HGet(ctx, key, field).Result()
 	if err == redis.Nil {
 		L.Push(lua.LNil)
-		L.Push(lua.LString("redis.hget: Key does not exist."))
+		L.Push(lua.LString("redis.hget: Field does not exist."))
 		return 2
 	} else if err != nil {
 		L.Push(lua.LNil)
@@ -126,6 +126,22 @@ func rdbHGet(L *lua.LState) int {
 		return 2
 	} else {
 		L.Push(lua.LString(v))
+		return 1
+	}
+}
+
+func rdbHDel(L *lua.LState) int {
+	ud := L.CheckUserData(1)
+	rdb := ud.Value.(*redis.Client)
+	key := L.CheckString(2)
+	field := L.CheckString(3)
+	n, err := rdb.HDel(ctx, key, field).Result()
+	if err != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.del: Error deleting key."))
+		return 2
+	} else {
+		L.Push(lua.LNumber(n))
 		return 1
 	}
 }
@@ -159,5 +175,6 @@ var redisApi = map[string]lua.LGFunction{
 	"incr":   rdbIncr,
 	"hset":   rdbHSet,
 	"hget":   rdbHGet,
+	"hdel":   rdbHDel,
 	"close":  rdbClose,
 }

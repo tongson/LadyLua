@@ -10,6 +10,7 @@ local redis_functions = function()
   T.is_function(redis.incr)
   T.is_function(redis.hset)
   T.is_function(redis.hget)
+  T.is_function(redis.hdel)
 end
 --# = redis
 --# :toc:
@@ -227,6 +228,43 @@ local redis_hget = function()
   T.equal(r.del('ll_hget'), 1)
   r.close()
 end
+--#
+--# == *redis.hdel*(_String_, _String_) -> _Number_
+--# Removes the specified fields from the hash stored at key. Specified fields that do not exist within this hash are ignored. If key does not exist, it is treated as an empty hash and this command returns 0.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Key
+--# |string |Field
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number |Fields deleted
+--# |===
+local redis_hdel = function()
+  local r = redis.new()
+  T.is_function(r.hdel)
+  local t = {
+    field = 'dummy',
+    another = 'useless',
+  }
+  local sr, ss = r.hset('ll_hdel', t)
+  T.is_nil(ss)
+  T.is_true(sr)
+  local gr, gs = r.hdel('ll_hdel', 'another')
+  T.is_nil(gs)
+  T.equal(gr, 1)
+  local dr, ds = r.hget('ll_hdel', 'another')
+  T.is_nil(dr)
+  T.equal(ds, 'redis.hget: Field does not exist.')
+  T.equal(r.del('ll_hdel'), 1)
+  r.close()
+end
 if included then
   return function()
     T['redis internal functions'] = redis_functions
@@ -237,6 +275,7 @@ if included then
     T['redis.incr'] = redis_incr
     T['redis.hset'] = redis_hset
     T['redis.hget'] = redis_hget
+    T['redis.hdel'] = redis_hdel
   end
 else
   T['redis internal functions'] = redis_functions
@@ -247,4 +286,5 @@ else
   T['redis.incr'] = redis_incr
   T['redis.hset'] = redis_hset
   T['redis.hget'] = redis_hget
+  T['redis.hdel'] = redis_hdel
 end

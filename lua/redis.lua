@@ -13,6 +13,9 @@ local loader = function()
       hget = function(key, field)
         return redis.hget(client, key, field)
       end,
+      hdel = function(key, field)
+        return redis.hdel(client, key, field)
+      end,
       get = function(key)
         return redis.get(client, key)
       end,
