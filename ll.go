@@ -148,6 +148,18 @@ Available options are:
 		L.PreloadModule("stderr", stderrLog.Loader)
 	}
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
+	{ //redis
+		L.PreloadModule("redis", redisLoader)
+		redisSrc, _ := luaSrc.ReadFile("lua/redis.lua")
+		redis, err := L.LoadString(string(redisSrc))
+		if err != nil {
+			Bug(err.Error())
+		}
+		L.Push(redis)
+		if epc := L.PCall(0, 0, nil); epc != nil {
+			Bug(epc.Error())
+		}
+	}
 	{ // kapow
 		kapowSrc, _ := luaSrc.ReadFile("lua/kapow.lua")
 		kapow, err := L.LoadString(string(kapowSrc))
