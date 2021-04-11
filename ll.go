@@ -21,10 +21,12 @@ import (
 
 //go:embed lua/*
 var luaSrc embed.FS
+var start time.Time
 const versionNumber = "0.4.0"
 const codeName = "\"Flying Squiggly\""
 
 func main() {
+	start = time.Now()
 	runtime.MemProfileRate = 0
 	os.Exit(mainAux())
 }
@@ -205,7 +207,8 @@ Available options are:
 	}
 
 	if opt_v || opt_i {
-		fmt.Printf("ll %s %s\n%s\n", versionNumber, codeName, lua.PackageCopyRight)
+		elapsed := time.Since(start)
+		fmt.Printf("ll %s %s\nElapsed: %s\n%s\n", versionNumber, codeName, elapsed, lua.PackageCopyRight)
 	}
 
 	if len(opt_l) > 0 {
