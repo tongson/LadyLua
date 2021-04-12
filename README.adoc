@@ -8,6 +8,7 @@ Current release: *0.3.0 Veggie Expediter* +
 Next release: *0.4.0 Flying Squiggly* +
 + exec.cmd +
 + redis +
++ password +
 
 toc::[]
 
