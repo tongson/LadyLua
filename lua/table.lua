@@ -5,7 +5,13 @@ local gsub = string.gsub
 local find = string.find
 local insert = table.insert
 
-table.find = function(tbl, str, plain)
+table.find = function(tbl, str, pattern)
+  local plain
+  if pattern then
+    plain = nil
+  else
+    plain = true
+  end
   for _, tval in next, tbl do
     tval = gsub(tval, '[%c]', '')
     if find(tval, str, 1, plain) then

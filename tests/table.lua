@@ -273,22 +273,22 @@ local table_to_map = function()
 end
 --#
 --# === *table.find*(_Table_, _String_[, _Boolean_]) -> _Boolean_
---# For each value in a table look for the Lua pattern (argument #2).
+--# For each value in a table look for a fixed string (argument #2). The optional third argument turns *on* Lua pattern matching.
 --#
---# Immediately return `true` if a match is found. The third argument turns on plain string matching. This wraps `string.find`.
+--# Immediately return `true` if a match is found.
 --#
 --# === Arguments
 --# [width="72%"]
 --# |===
 --# |table| List or map to traverse
---# |string: Lua string pattern
---# |boolean| (Optional)
+--# |string| Fixed string or pattern
+--# |boolean| Optional, turn on pattern matching
 --# |===
 --#
 --# === Returns
 --# [width="72%"]
 --# |===
---# |boolean| `true` is pattern matched, `nil` and an error message otherwise
+--# |boolean| `true` if string is found, `nil` and an error message, otherwise
 --# |===
 local table_find = function()
   T.is_function(table.find)
@@ -296,10 +296,11 @@ local table_find = function()
     'one',
     'two',
   }
-  T.is_true(table.find(t, 'one', true))
-  local r, e = table.find(t, 'x', true)
+  T.is_true(table.find(t, 'one'))
+  local r, e = table.find(t, 'x')
   T.is_nil(r)
   T.is_string(e)
+  T.is_true(table.find(t, '^o.*', true))
 end
 if included then
   return function()
