@@ -1,9 +1,18 @@
 package.path = '/__ll/modules/?.lua'
 local podman = require 'podman'
-local url = 'docker://docker.io/library/mariadb'
-local tag = '10.5'
-local id = podman.id(url, tag)
-if not id then
-  podman.pull(url, tag)
-  id = podman.id(url, tag)
+
+local UNIT = [==[
+
+]==]
+local NAME = 'mariadb'
+local URL  = 'docker://docker.io/library/mariadb'
+local TAG  = '10.5'
+local always_update = false
+
+local id = podman.id(URL, TAG)
+if not id or always_update then
+  podman.pull(URL, TAG)
+  id = podman.id(URL, TAG)
 end
+podman.start(NAME, UNIT, id)
+
