@@ -39,6 +39,9 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |inspect     |N      |inspect          |MIT
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
+|mysql       |N      |gluasql          |MIT
+|password    |N      |                 |MIT
+|redis       |N      |                 |MIT
 |template    |N      |etlua            |MIT
 |test        |N      |u-test           |MIT
 |uid         |N      |                 |MIT
