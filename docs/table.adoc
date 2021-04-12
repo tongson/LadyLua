@@ -75,14 +75,16 @@ Position argument is optional, it defaults to -1 which is at the end of the list
 === *table.filter*(_Table_, _String_[, _Boolean_])
 Remove values from a sequence(list without holes).
 
-The second argument is a Lua pattern. The last argument is an optional boolean valu. If `true` turns on plain pattern matching. Wraps `string.find`.
+The second argument is a fixed string. The optional third argument turns *on* Lua pattern matching.
+
 
 === Arguments
 [width="72%"]
 |===
-|table| Map
+|table |List
+|string |Fixed string to filter
+|boolean |Optional, if `true`, turn on pattern matching
 |===
-
 
 === *table.to_list*(_Table_) -> _Table_
 Convert a table(map) to a list.
@@ -121,20 +123,20 @@ The values from the original list are used as keys in the new table(map). The op
 |===
 
 === *table.find*(_Table_, _String_[, _Boolean_]) -> _Boolean_
-For each value in a table look for the Lua pattern (argument #2).
+For each value in a table look for a fixed string (argument #2). The optional third argument turns *on* Lua pattern matching.
 
-Immediately return `true` if a match is found. The third argument turns on plain string matching. This wraps `string.find`.
+Immediately return `true` if a match is found.
 
 === Arguments
 [width="72%"]
 |===
 |table| List or map to traverse
-|string: Lua string pattern
-|boolean| (Optional)
+|string| Fixed string or pattern
+|boolean| Optional, turn on pattern matching
 |===
 
 === Returns
 [width="72%"]
 |===
-|boolean| `true` is pattern matched, `nil` and an error message otherwise
+|boolean| `true` if string is found, `nil` and an error message, otherwise
 |===
