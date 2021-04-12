@@ -180,14 +180,16 @@ end
 --# === *table.filter*(_Table_, _String_[, _Boolean_])
 --# Remove values from a sequence(list without holes).
 --#
---# The second argument is a Lua pattern. The last argument is an optional boolean valu. If `true` turns on plain pattern matching. Wraps `string.find`.
+--# The second argument is a fixed string. The optional third argument turns *on* Lua pattern matching.
+--#
 --#
 --# === Arguments
 --# [width="72%"]
 --# |===
---# |table| Map
+--# |table |List
+--# |string |Fixed string to filter
+--# |boolean |Optional, if `true`, turn on pattern matching
 --# |===
---#
 local table_filter = function()
   T.is_function(table.filter)
   local t = {
