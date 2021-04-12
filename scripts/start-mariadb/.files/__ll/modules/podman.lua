@@ -5,10 +5,14 @@ local panic = function(ret, msg, tbl)
     os.exit(1)
   end
 end
-local podman = exec.cmd 'podman'
+local podman = exec.ctx 'podman'
 
 local pull = function(u, t)
-  local r, so, se = podman('pull --tls-verify %s:%s', u, t)
+  local r, so, se = podman{
+    'pull';
+    '--tls-verify';
+    string.format('%s:%s', u, t);
+  }
   panic(r, 'unable to pull image', {
     what = 'podman';
     command = 'pull';
@@ -20,7 +24,11 @@ local pull = function(u, t)
 end
 local id = function(u, t)
   local json = require 'json'
-  local r, so, se = podman('images --format json')
+  local r, so, se = podman{
+    'images';
+    '--format';
+    'json';
+  }
   panic(r, 'unable to list images', {
     what = 'podman';
     command = 'images';
@@ -39,8 +47,12 @@ local id = function(u, t)
   end
 end
 local start = function(name, unit, cpus, iid)
-  local systemctl = exec.cmd 'systemctl'
-  systemctl('disable --now %s.service', name)
+  local systemctl = exec.ctx 'systemctl'
+  systemctl{
+    'disable';
+    '--now';
+    string.format('%s.service', name);
+  }
   local fname = string.format('/etc/systemd/system/%s.service', name)
   local changed
   unit, changed = string.gsub(unit, '__ID__', iid)
@@ -59,7 +71,11 @@ local start = function(name, unit, cpus, iid)
     what = 'fs.write';
     file = fname;
   })
-  local r, so, se = systemctl('enable --now %s.service', name)
+  local r, so, se = systemctl{
+    'enable';
+    '--now';
+    string.format('%s.service', name);
+  }
   panic(r, 'unable to start service', {
     what = 'systemctl';
     command = 'enable';
