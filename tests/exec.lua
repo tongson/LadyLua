@@ -94,16 +94,16 @@ end
 --# ----
 --# local ls = exec.ctx'/bin/ls'
 --# ls.env = {'LC_ALL=C'}
---# local r, o = ls('/tmp', '/dev')
+--# local r, o = ls{'/tmp', '/dev'}
 --# ----
 local exec_ctx__SIMPLE = function()
   T.is_true(fs.mkdir(D))
   local touch = exec.ctx('/bin/touch')
-  local t = touch(F)
+  local t = touch{F}
   T.is_true(t)
   T.is_true(fs.isfile(F))
   local rm = exec.ctx('/usr/bin/rm')
-  local r = rm(F)
+  local r = rm{F}
   T.is_true(r)
   T.is_nil(fs.isfile(F))
   T.is_true(fs.rmdir(D))
@@ -114,11 +114,11 @@ local exec_ctx__CWD = function()
   local d = '/tmp/exec.command'
   local touch = exec.ctx('/bin/touch')
   touch.cwd = D
-  local t = touch'file'
+  local t = touch{'file'}
   T.is_true(t)
   T.is_true(fs.isfile(F))
   local rm = exec.ctx('/usr/bin/rm')
-  local r = rm(F)
+  local r = rm{F}
   T.is_true(r)
   T.is_nil(fs.isfile(F))
   T.is_true(fs.rmdir(D))
@@ -134,7 +134,7 @@ end
 local exec_ctx__STDIN = function()
   local sed = exec.ctx('/usr/bin/sed')
   sed.stdin = 'ss'
-  local r, o = sed('s|ss|gg|')
+  local r, o = sed{'s|ss|gg|'}
   T.is_true(r)
   local s = string.find(o, 'gg', 1, true)
   T.is_number(s)

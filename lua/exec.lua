@@ -1,12 +1,7 @@
 exec.ctx = function(exe)
   local set = {}
-  return setmetatable(set, {__call = function(_, ...)
-    local args = {}
-    if select("#", ...) > 0 then
-      for _, k in ipairs({...}) do
-        args[#args+1] = k
-      end
-    end
+  return setmetatable(set, {__call = function(_, args)
+    args = args or {}
     return exec.command(exe, args, set.env, set.cwd, set.stdin)
   end})
 end
