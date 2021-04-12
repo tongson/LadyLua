@@ -30,7 +30,7 @@ Execute a program. Base function of the the other functions in this module.
 |===
 
 == *exec.ctx*(_String_) -> _Function_
-Execute program under a context.
+Execute program under a context. The returned function takes a table(list) for arguments.
 
 === Arguments
 [options="header",width="72%"]
@@ -59,7 +59,7 @@ Execute program under a context.
 ----
 local ls = exec.ctx'/bin/ls'
 ls.env = {'LC_ALL=C'}
-local r, o = ls('/tmp', '/dev')
+local r, o = ls{'/tmp', '/dev'}
 ----
 
 == *exec.cmd*(_String_) -> _Function_

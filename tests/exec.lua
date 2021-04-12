@@ -65,7 +65,7 @@ local exec_command__STDIN = function()
 end
 --#
 --# == *exec.ctx*(_String_) -> _Function_
---# Execute program under a context.
+--# Execute program under a context. The returned function takes a table(list) for arguments.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
