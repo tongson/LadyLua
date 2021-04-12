@@ -85,10 +85,7 @@ util.path_apply = function(fn, dir)
   for n=#t, 2, -1 do
     m = F('/%s', t[n])
     f = f..m
-    local ret, str = fn(f)
-    if not ret then
-      return nil, str
-    end
+    fn(f)
   end
   return true
 end
