@@ -71,6 +71,28 @@ util.path_split = function(path)
   end
 end
 
+util.path_apply = function(fn, dir)
+  local t = {}
+  local f, m
+  while util.path_split(dir) do
+    dir, f = util.path_split(dir)
+    t[#t+1] = f
+    if dir == nil then
+      break
+    end
+  end
+  f = ''
+  for n=#t, 2, -1 do
+    m = F('/%s', t[n])
+    f = f..m
+    local ret, str = fn(f)
+    if not ret then
+      return nil, str
+    end
+  end
+  return true
+end
+
 util.template = function(s, v)
   return (gsub(s, "%${[%s]-([^}%G]+)[%s]-}", v))
 end
