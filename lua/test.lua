@@ -28,7 +28,7 @@ local function trace(start_frame)
         if not info then break end
         if info.what == "C" then
             print(frame - start_frame, "??????")
-        elseif info.what == "main" then
+        elseif (info.what == "Lua" or info.what == "main") and info.source ~= "<string>" then
             print(frame - start_frame, info.source .. ":" .. info.currentline .. " ")
         end
         frame = frame + 1
