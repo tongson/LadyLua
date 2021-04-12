@@ -9,7 +9,6 @@ local password = require 'password'
 --#
 --# toc::[]
 --#
---# == *??.??*(_String_, _String_)
 --# == *password.generate*(_Number_, _Number_, _Number_, _Boolean_, _Boolean_) -> _String_
 --# Generate password.
 --#
