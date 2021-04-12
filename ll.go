@@ -9,6 +9,7 @@ import (
 	"github.com/cosmotek/loguago"
 	"github.com/rs/zerolog"
 	gluacrypto "github.com/tengattack/gluacrypto/crypto"
+	mysql "github.com/tengattack/gluasql/mysql"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
 	ljson "layeh.com/gopher-json"
@@ -142,6 +143,7 @@ Available options are:
 	L.PreloadModule("uid", uidLoader)
 	L.PreloadModule("html", htmlLoader)
 	L.PreloadModule("password", passwordLoader)
+	L.PreloadModule("mysql", mysql.Loader)
 	{ // Saves less than 200KiB if removed
 		zerolog.TimeFieldFormat = time.RFC3339
 		stdout := zerolog.New(os.Stdout)

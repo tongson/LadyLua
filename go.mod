@@ -7,11 +7,14 @@ require (
 	github.com/cjoudrey/gluahttp v0.0.0-25003d9adfa9
 	github.com/cosmotek/loguago v0.0.0-76d2a8755751
 	github.com/go-redis/redis/v8 v8.8.0
+	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/junhsieh/goexamples v0.0.0-20190721045834-1c67ae74caa6 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.5
 	github.com/rs/zerolog v1.21.0
 	github.com/segmentio/ksuid v1.0.3
 	github.com/sethvargo/go-password v0.2.0
 	github.com/tengattack/gluacrypto v0.0.0-8bf181b63bba
+	github.com/tengattack/gluasql v0.0.0-2e5ed630c4cf
 	github.com/yuin/gopher-lua v0.0.0-20200816102855-ee81675732da
 	layeh.com/gopher-json v0.0.0-552bb3c4c3bf
 	layeh.com/gopher-lfs v0.0.0-d5fb28581d14
@@ -26,3 +29,5 @@ replace github.com/cjoudrey/gluahttp => ./external/gluahttp
 replace github.com/tengattack/gluacrypto => ./external/gluacrypto
 
 replace github.com/cosmotek/loguago => ./external/loguago
+
+replace github.com/tengattack/gluasql => ./external/gluasql
