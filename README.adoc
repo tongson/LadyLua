@@ -71,7 +71,7 @@ Check this https://github.com/tongson/LadyLua/commit/0a1949060627fbee309e5549f0d
 
 == Statistics and numbers
 |=======================
-|Tests |117/117
+|Tests |134/134
 |Static executable bytes |7061504
 |=======================
 
