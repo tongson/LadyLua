@@ -141,6 +141,7 @@ Available options are:
 	L.PreloadModule("crypto", gluacrypto.Loader)
 	L.PreloadModule("uid", uidLoader)
 	L.PreloadModule("html", htmlLoader)
+	L.PreloadModule("password", passwordLoader)
 	{ // Saves less than 200KiB if removed
 		zerolog.TimeFieldFormat = time.RFC3339
 		stdout := zerolog.New(os.Stdout)

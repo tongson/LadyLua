@@ -10,6 +10,7 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.5
 	github.com/rs/zerolog v1.21.0
 	github.com/segmentio/ksuid v1.0.3
+	github.com/sethvargo/go-password v0.2.0
 	github.com/tengattack/gluacrypto v0.0.0-8bf181b63bba
 	github.com/yuin/gopher-lua v0.0.0-20200816102855-ee81675732da
 	layeh.com/gopher-json v0.0.0-552bb3c4c3bf
