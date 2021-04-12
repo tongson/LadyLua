@@ -69,9 +69,12 @@ local start = function(name, unit, cpus, iid)
   })
 end
 local generate_password_file = function(path)
+  if fs.isfile(path) then
+    return nil
+  end
   local password = require 'password'
   local util = require 'util'
-  local p = password.generate(16, 2, 2, true, false)
+  local p = password.generate(16, 2, 0, true, false)
   if p == nil or string.len(p) == 0 then
     panic(nil, 'unable to generate password', {
       what = 'password.generate'
