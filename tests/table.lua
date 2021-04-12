@@ -198,6 +198,13 @@ local table_filter = function()
   table.filter(t, 'two')
   T.equal(t[2], 'xxx')
   T.is_nil(t[3])
+  local n = {
+    'nine',
+    'ten',
+  }
+  table.filter(n, '^t.*', true)
+  T.equal(#n, 1)
+  T.equal(n[1], 'nine')
 end
 --#
 --# === *table.to_list*(_Table_) -> _Table_

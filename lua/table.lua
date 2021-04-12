@@ -42,8 +42,11 @@ table.to_list = function(tbl)
   return t
 end
 
-table.filter = function(tbl, patt, plain)
-  plain = plain or nil
+table.filter = function(tbl, patt, pattern)
+  local plain = true
+  if pattern then
+    plain = nil
+  end
   local s, c = #tbl, 0
   for n = 1, s do
     if find(tbl[n], patt, 1, plain) then
