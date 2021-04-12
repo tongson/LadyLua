@@ -66,7 +66,7 @@ local function test_pretty_name(suite_name, test_name)
     else
         return suite_name .. "." .. test_name
     end
-end
+end-
 
 -- PUBLIC API -----------------------------------------------------------------
 local api = { test_suite_name = "__root", skip = false }
@@ -79,7 +79,9 @@ end
 
 api.equal = function (l, r)
     if l ~= r then
-        fail(tostring(l) .. " ~= " .. tostring(r))
+        l = l or ""
+        r = r or ""
+        fail(tostring(l) .. " ≠ " .. tostring(r))
     end
 end
 
