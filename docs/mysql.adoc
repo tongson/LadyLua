@@ -1,0 +1,78 @@
+= mysql
+:toc:
+:toc-placement!:
+
+Access MySQL or MariaDB databases.
+
+toc::[]
+
+== *mysql.escape*(_String_) -> _String_
+Escape a query.
+
+== *mysql.new*
+Initialize mysql instance.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|object |Instance of mysql that you can index into
+|===
+
+== *close*
+Close mysql instance.
+
+== *set_timeout*(_Number_)
+Set timeout.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Timeout in ms
+|===
+
+== *set_keepalive*(_Number_, _Number_)
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Timeout in ms
+|number |Max idle connections(poolSize)
+|===
+
+== *connect*(_Table_)
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |See map below
+|===
+
+=== Map
+[options="header",width="72%"]
+|===
+|host |
+|port |
+|database |
+|user |
+|password |
+|===
+
+== *query*(_String_[, ...]) -> _Table_
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |SQL query
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Query results, empty table if no results
+|===
