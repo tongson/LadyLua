@@ -6,11 +6,9 @@ local find = string.find
 local insert = table.insert
 
 table.find = function(tbl, str, pattern)
-  local plain
+  local plain = true
   if pattern then
     plain = nil
-  else
-    plain = true
   end
   for _, tval in next, tbl do
     tval = gsub(tval, '[%c]', '')
