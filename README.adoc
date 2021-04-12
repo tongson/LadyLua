@@ -72,7 +72,7 @@ Check this https://github.com/tongson/LadyLua/commit/0a1949060627fbee309e5549f0d
 == Statistics and numbers
 |=======================
 |Tests |134/134
-|Static executable bytes |7061504
+|Static executable bytes |8257536
 |=======================
 
 === Startup time
