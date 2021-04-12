@@ -28,8 +28,8 @@ local function trace(start_frame)
         if not info then break end
         if info.what == "C" then
             print(frame - start_frame, "??????")
-        else
-            print(frame - start_frame, info.short_src .. ":" .. info.currentline .. " ")
+        elseif info.what == "main" then
+            print(frame - start_frame, info.source .. ":" .. info.currentline .. " ")
         end
         frame = frame + 1
     end
@@ -44,7 +44,7 @@ end
 local function fail(msg, start_frame)
     failed = true
     print("Fail: " .. msg)
-    trace(start_frame or 4)
+    trace(start_frame or 2)
 end
 
 local function stringize_var_arg(...)
