@@ -82,7 +82,7 @@ util.path_apply = function(fn, dir)
     end
   end
   f = ''
-  for n=#t, 2, -1 do
+  for n=#t, 1, -1 do
     m = F('/%s', t[n])
     f = f..m
     fn(f)
