@@ -65,7 +65,7 @@ util.path_split = function(path)
     c = sub(path, l, l)
   end
   if l == 0 then
-    return '', path
+    return nil, path
   else
     return sub(path, 1, l - 1), sub(path, l + 1)
   end
