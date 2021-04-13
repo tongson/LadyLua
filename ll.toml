@@ -156,7 +156,7 @@ required = true
 type = "number"
 required = false
 [[table.auto.args]]
-type = "any"
+type = "table"
 required = false
 [[table.len.args]]
 type = "table"
