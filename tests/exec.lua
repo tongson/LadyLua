@@ -43,8 +43,6 @@ local exec_command__SIMPLE = function()
 end
 local exec_command__CWD = function()
   T.is_true(fs.mkdir(D))
-  local a = {'/tmp/exec.command/file'}
-  local d = '/tmp/exec.command'
   T.is_true(exec.command('/bin/touch', {'file'}, nil, D))
   T.is_true(fs.isfile(F))
   T.is_true(exec.command('/usr/bin/rm', {F}))
@@ -52,13 +50,13 @@ local exec_command__CWD = function()
   T.is_true(fs.rmdir(D))
 end
 local exec_command__ENV = function()
-  local r, o, e = exec.command('/usr/bin/env', nil, {'EXEC=ok'})
+  local r, o = exec.command('/usr/bin/env', nil, {'EXEC=ok'})
   T.is_true(r)
   local s = string.find(o, 'EXEC=ok', 1, true)
   T.is_number(s)
 end
 local exec_command__STDIN = function()
-  local r, o, e = exec.command('/usr/bin/sed', {'s|ss|gg|'}, nil, nil, 'ss')
+  local r, o = exec.command('/usr/bin/sed', {'s|ss|gg|'}, nil, nil, 'ss')
   T.is_true(r)
   local s = string.find(o, 'gg', 1, true)
   T.is_number(s)
@@ -110,8 +108,6 @@ local exec_ctx__SIMPLE = function()
 end
 local exec_ctx__CWD = function()
   T.is_true(fs.mkdir(D))
-  local a = {'/tmp/exec.command/file'}
-  local d = '/tmp/exec.command'
   local touch = exec.ctx('/bin/touch')
   touch.cwd = D
   local t = touch{'file'}
