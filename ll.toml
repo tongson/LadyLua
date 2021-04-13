@@ -94,10 +94,24 @@ required = true
 property = true
 writable = "new-fields"
 
+[[string.to_list.args]]
+type = "string"
+required = true
+[[string.word_to_list.args]]
+type = "string"
+required = true
+[[string.line_to_list.args]]
+type = "string"
+required = true
+[[string.append.args]]
+type = "string"
+required = true
+[[string.append.args]]
+type = "string"
+required = true
 
-[string]
-property = true
-writable = "new-fields"
+
+
 
 [table]
 property = true
