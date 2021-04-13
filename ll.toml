@@ -50,9 +50,8 @@ required = true
 [[fs.symlinkattributes.args]]
 type = "string"
 required = true
-[[fs.currentdir.args]]
-type = "any"
-required = false
+[fs.currentdir]
+args = []
 [[fs.link.args]]
 type = "string"
 required = true
