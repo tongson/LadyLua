@@ -68,6 +68,12 @@ Besides general purpose scripting, a more specific use for me right now is using
 === SAMPLE: shell script converted to Lua
 Check this https://github.com/tongson/LadyLua/commit/0a1949060627fbee309e5549f0d00d0299ace3de?branch=0a1949060627fbee309e5549f0d00d0299ace3de&diff=split[diff] to get a feel of the conversion from a shell script to Lua.
 
+== FAQ
+
+=== Why not base off Lua 5.2+?
+
+Sticking with 5.1 gets you a _finished_ language. For general purpose scripting, the 5.2+ feature are not really useful. You also have access to a significant collection of plain Lua modules. Excellent tools from the Roblox side like Selene and Stylua still works with 5.1.
+
 == Statistics and numbers
 |=======================
 |Tests |134/134
