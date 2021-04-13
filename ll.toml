@@ -69,10 +69,31 @@ required = true
 type = "string"
 required = true
 
-
-[exec]
+[[exec.command.args]]
+type = "string"
+required = true
+[[exec.command.args]]
+type = "table"
+required = false
+[[exec.command.args]]
+type = "table"
+required = false
+[[exec.command.args]]
+type = "string"
+required = false
+[[exec.command.args]]
+type = "string"
+required = false
+[[exec.ctx.args]]
+type = "string"
+required = true
+[[exec.cmd.args]]
+type = "string"
+required = true
+[exec.run]
 property = true
 writable = "new-fields"
+
 
 [string]
 property = true
