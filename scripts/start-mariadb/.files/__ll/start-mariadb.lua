@@ -1,4 +1,3 @@
-package.path = '/__ll/modules/?.lua'
 require('podman'){
   NAME = 'mariadb';
   URL  = 'docker://docker.io/library/mariadb';
@@ -6,6 +5,6 @@ require('podman'){
   CPUS = '1';
   UNIT = require 'systemd.mariadb';
   DIR  = '/srv/podman/mariadb';
-  always_update = false;
+  always_update      = false;
   overwrite_password = false;
 }

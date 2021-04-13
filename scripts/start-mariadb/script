@@ -1,1 +1,2 @@
-/usr/bin/ll /__ll/start-mariadb.lua
+cd /__ll/modules
+/usr/bin/ll ../start-mariadb.lua
