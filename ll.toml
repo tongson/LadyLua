@@ -2,9 +2,27 @@
 base = "lua51"
 name = "ll"
 
-[fmt]
-property = true
-writable = "new-fields"
+[[fmt.print.args]]
+type = "..."
+required = true
+
+[[fmt.assert.args]]
+type = "..."
+required = true
+
+[[fmt.panic.args]]
+type = "..."
+required = true
+
+[[fmt.warn.args]]
+type = "..."
+required = true
+
+[[fmt.error.args]]
+type = "..."
+required = true
+
+
 
 [fs]
 property = true
