@@ -68,6 +68,22 @@ Besides general purpose scripting, a more specific use for me right now is using
 === SAMPLE: shell script converted to Lua
 Check this https://github.com/tongson/LadyLua/commit/0a1949060627fbee309e5549f0d00d0299ace3de?branch=0a1949060627fbee309e5549f0d00d0299ace3de&diff=split[diff] to get a feel of the conversion from a shell script to Lua.
 
+=== Declarative scripting
+Using metatables you can hide the plumbing and present a declarative interface. The following snippet can be found under the `scripts` directory. It is used to run the MariaDB container under systemd for testing the in-tree `mysql` module.
+
+----
+require('podman'){
+  NAME = 'mariadb';
+  URL  = 'docker://docker.io/library/mariadb';
+  TAG  = '10.5';
+  CPUS = '1';
+  UNIT = require 'systemd.mariadb';
+  DIR  = '/srv/podman/mariadb';
+  always_update      = false;
+  overwrite_password = false;
+}
+----
+
 == FAQ
 
 === Why not base off Lua 5.2+?
