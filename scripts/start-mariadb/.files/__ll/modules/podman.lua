@@ -8,7 +8,7 @@ end
 local M = {}
 local stdout = require 'stdout'
 local podman = exec.ctx 'podman'
-local start = function(name, unit, cpus, iid)
+local start = function(name, unit, cpus, iid, dir)
   local systemctl = exec.ctx 'systemctl'
   systemctl{
     'disable';
@@ -22,6 +22,12 @@ local start = function(name, unit, cpus, iid)
     what = 'string.gsub';
     changed = false;
     to = iid;
+  })
+  unit, changed = string.gsub(unit, '__DIR__', dir)
+  panic((changed == 5), 'unable to interpolate directory path', {
+    what = 'string.gsub';
+    changed = false;
+    to = dir;
   })
   unit, changed = string.gsub(unit, '__CPUS__', cpus)
   panic((changed == 1), 'unable to interpolate cpuset-cpus', {
@@ -46,7 +52,8 @@ local start = function(name, unit, cpus, iid)
     stderr = se;
   })
 end
-local generate_password_file = function(path)
+local generate_password_file = function(d)
+  local path = d..'/password'
   if fs.isfile(path) then
     return nil
   end
@@ -116,7 +123,7 @@ setmetatable(M, {
       TAG  = 'Image tag.';
       CPUS = 'Argument to podman --cpuset-cpus.';
       UNIT = 'systemd unit template.';
-      FILE = 'Password file.';
+      DIR  = 'Bind directory path.';
       always_update = 'Boolean flag, if `true` always pull the image.';
     }
     M.env = {}
@@ -147,13 +154,13 @@ setmetatable(M, {
       end
     end;
     generate_password = function(self)
-      generate_password_file(self.env.FILE)
+      generate_password_file(self.env.DIR)
       stdout.info('Wrote password file', {
-        file = self.env.FILE;
+        file = self.env.DIR..'/password';
       })
     end;
     start_unit = function(self)
-      start(self.env.NAME, self.env.UNIT, self.env.CPUS, self.reg.id)
+      start(self.env.NAME, self.env.UNIT, self.env.CPUS, self.reg.id, self.env.DIR)
       stdout.info('Started systemd unit', {
         name = self.env.NAME;
       })

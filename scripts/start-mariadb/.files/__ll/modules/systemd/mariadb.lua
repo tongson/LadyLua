@@ -29,9 +29,9 @@ SystemCallFilter=~@cpu-emulation @debug @module @obsolete @keyring @clock @raw-i
 LimitMEMLOCK=infinity
 LimitNOFILE=infinity
 LimitNPROC=infinity
-ExecStartPre=-/usr/bin/mkdir -p /srv/podman/mariadb/data
-ExecStartPre=-/usr/bin/chown -R 999:999 /srv/podman/mariadb/data
-ExecStartPre=-/usr/bin/chmod 0600 /srv/podman/mariadb/password
+ExecStartPre=-/usr/bin/mkdir -p __DIR__/data
+ExecStartPre=-/usr/bin/chown -R 999:999 __DIR__/data
+ExecStartPre=-/usr/bin/chmod 0600 __DIR__/password
 ExecStartPre=-/usr/bin/podman stop -i mariadb
 ExecStartPre=-/usr/bin/podman rm -i -v -f mariadb
 ExecStop=/usr/bin/podman stop -t 12 mariadb
@@ -49,8 +49,8 @@ ExecStart=/usr/bin/podman run --name mariadb \
 --ulimit nproc=65536:65536 \
 --memory 0 \
 --cpuset-cpus __CPUS__ \
--v /srv/podman/mariadb/data:/var/lib/mysql:rw \
--v /srv/podman/mariadb/password:/etc/mysql/password \
+-v __DIR__/data:/var/lib/mysql:rw \
+-v __DIR__/password:/etc/mysql/password \
 __ID__ --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci --wait_timeout=28800 --log-warnings=0 --port=3306
 
 [Install]

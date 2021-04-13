@@ -1,15 +1,14 @@
 package.path = '/__ll/modules/?.lua'
-
+local podman = require 'podman'
 local env = {
   NAME = 'mariadb';
   URL  = 'docker://docker.io/library/mariadb';
   TAG  = '10.5';
   CPUS = '1';
   UNIT = require 'systemd.mariadb';
-  FILE = '/srv/podman/mariadb/password';
+  DIR  = '/srv/podman/mariadb';
   always_update = false;
 }
-local podman = require 'podman'
 podman(env)
 podman:pull_image()
 podman:generate_password()
