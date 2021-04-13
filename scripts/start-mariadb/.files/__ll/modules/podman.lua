@@ -6,6 +6,7 @@ local panic = function(ret, msg, tbl)
   end
 end
 local M = {}
+local stdout = require 'stdout'
 local podman = exec.ctx 'podman'
 local start = function(name, unit, cpus, iid)
   local systemctl = exec.ctx 'systemctl'
@@ -133,14 +134,27 @@ setmetatable(M, {
     pull_image = function(self)
       if not self.id or self.always_update then
         pull(self.URL, self.TAG)
+        stdout.info('Pulled image', {
+          url = self.URL;
+          tag = self.TAG;
+        })
         self.id = id(self.URL, self.TAG)
+        stdout.info('Got image ID', {
+          id = self.id;
+        })
       end
     end;
     generate_password = function(self)
       generate_password_file(self.FILE)
+      stdout.info('Wrote password file', {
+        file = self.FILE;
+      })
     end;
     start_unit = function(self)
       start(self.NAME, self.UNIT, self.CPUS, self.id)
+      stdout.info('Started systemd unit', {
+        name = self.NAME;
+      })
     end;
   }
 })
