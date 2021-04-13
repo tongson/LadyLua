@@ -119,41 +119,43 @@ setmetatable(M, {
       FILE = 'Password file.';
       always_update = 'Boolean flag, if `true` always pull the image.';
     }
+    M.env = {}
+    M.reg = {}
     for k in next, e do
       if not env[k] then
         panic(nil, 'Invalid key', {
             key = k;
         })
       else
-        M[k] = e[k]
+        M.env[k] = e[k]
       end
     end
-    M.id = id(e.URL, e.TAG)
+    M.reg.id = id(e.URL, e.TAG)
   end;
   __index = {
     pull_image = function(self)
-      if not self.id or self.always_update then
-        pull(self.URL, self.TAG)
+      if not self.reg.id or self.env.always_update then
+        pull(self.env.URL, self.env.TAG)
         stdout.info('Pulled image', {
-          url = self.URL;
-          tag = self.TAG;
+          url = self.env.URL;
+          tag = self.env.TAG;
         })
-        self.id = id(self.URL, self.TAG)
+        self.reg.id = id(self.env.URL, self.env.TAG)
         stdout.info('Got image ID', {
-          id = self.id;
+          id = self.reg.id;
         })
       end
     end;
     generate_password = function(self)
-      generate_password_file(self.FILE)
+      generate_password_file(self.env.FILE)
       stdout.info('Wrote password file', {
-        file = self.FILE;
+        file = self.env.FILE;
       })
     end;
     start_unit = function(self)
-      start(self.NAME, self.UNIT, self.CPUS, self.id)
+      start(self.env.NAME, self.env.UNIT, self.env.CPUS, self.reg.id)
       stdout.info('Started systemd unit', {
-        name = self.NAME;
+        name = self.env.NAME;
       })
     end;
   }
