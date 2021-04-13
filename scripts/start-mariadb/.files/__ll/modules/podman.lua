@@ -5,47 +5,8 @@ local panic = function(ret, msg, tbl)
     os.exit(1)
   end
 end
+local M = {}
 local podman = exec.ctx 'podman'
-
-local pull = function(u, t)
-  local r, so, se = podman{
-    'pull';
-    '--tls-verify';
-    string.format('%s:%s', u, t);
-  }
-  panic(r, 'unable to pull image', {
-    what = 'podman';
-    command = 'pull';
-    url = u;
-    tag = t;
-    stdout = so;
-    stderr = se;
-  })
-end
-local id = function(u, t)
-  local json = require 'json'
-  local r, so, se = podman{
-    'images';
-    '--format';
-    'json';
-  }
-  panic(r, 'unable to list images', {
-    what = 'podman';
-    command = 'images';
-    stdout = so;
-    stderr = se;
-  })
-  local j = json.decode(so)
-  u = string.gsub(u, 'docker://', '')
-  local name = string.format('%s:%s', u, t)
-  for i=1, #j do
-    if table.find(j[i].Names, name) then
-      return j[i].Id
-    else
-      return nil, 'Container image not found.'
-    end
-  end
-end
 local start = function(name, unit, cpus, iid)
   local systemctl = exec.ctx 'systemctl'
   systemctl{
@@ -107,9 +68,80 @@ local generate_password_file = function(path)
     path = path;
   })
 end
-return {
-  pull = pull;
-  id = id;
-  start = start;
-  generate_password_file = generate_password_file;
-}
+local id = function(u, t)
+  local json = require 'json'
+  local r, so, se = podman{
+    'images';
+    '--format';
+    'json';
+  }
+  panic(r, 'unable to list images', {
+    what = 'podman';
+    command = 'images';
+    stdout = so;
+    stderr = se;
+  })
+  local j = json.decode(so)
+  u = string.gsub(u, 'docker://', '')
+  local name = string.format('%s:%s', u, t)
+  for i=1, #j do
+    if table.find(j[i].Names, name) then
+      return j[i].Id
+    else
+      return nil, 'Container image not found.'
+    end
+  end
+end
+local pull = function(u, t)
+  local r, so, se = podman{
+    'pull';
+    '--tls-verify';
+    string.format('%s:%s', u, t);
+  }
+  panic(r, 'unable to pull image', {
+    what = 'podman';
+    command = 'pull';
+    url = u;
+    tag = t;
+    stdout = so;
+    stderr = se;
+  })
+end
+setmetatable(M, {
+  __call = function(_, e)
+    local env = {
+      NAME = 'Unit name.';
+      URL  = 'Image URL.';
+      TAG  = 'Image tag.';
+      CPUS = 'Argument to podman --cpuset-cpus.';
+      UNIT = 'systemd unit template.';
+      FILE = 'Password file.';
+      always_update = 'Boolean flag, if `true` always pull the image.';
+    }
+    for k in next, e do
+      if not env[k] then
+        panic(nil, 'Invalid key', {
+            key = k;
+        })
+      else
+        M[k] = e[k]
+      end
+    end
+    M.id = id(e.URL, e.TAG)
+  end;
+  __index = {
+    pull_image = function(self)
+      if not self.id or self.always_update then
+        pull(self.URL, self.TAG)
+        self.id = id(self.URL, self.TAG)
+      end
+    end;
+    generate_password = function(self)
+      generate_password_file(self.FILE)
+    end;
+    start_unit = function(self)
+      start(self.NAME, self.UNIT, self.CPUS, self.id)
+    end;
+  }
+})
+return M

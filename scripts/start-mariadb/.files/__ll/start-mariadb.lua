@@ -1,5 +1,4 @@
 package.path = '/__ll/modules/?.lua'
-local podman = require 'podman'
 
 local UNIT = [==[
 [Unit]
@@ -59,16 +58,17 @@ __ID__ --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci --w
 [Install]
 WantedBy=multi-user.target
 ]==]
-local NAME = 'mariadb'
-local URL  = 'docker://docker.io/library/mariadb'
-local TAG  = '10.5'
-local CPUS = '1'
-local always_update = false
-
-local id = podman.id(URL, TAG)
-if not id or always_update then
-  podman.pull(URL, TAG)
-  id = podman.id(URL, TAG)
-end
-podman.generate_password_file('/srv/podman/mariadb/password')
-podman.start(NAME, UNIT, CPUS, id)
+local env = {
+  NAME = 'mariadb';
+  URL  = 'docker://docker.io/library/mariadb';
+  TAG  = '10.5';
+  CPUS = '1';
+  UNIT = UNIT;
+  FILE = '/srv/podman/mariadb/password';
+  always_update = false;
+}
+local podman = require 'podman'
+podman(env)
+podman:pull_image()
+podman:generate_password()
+podman:start_unit()
