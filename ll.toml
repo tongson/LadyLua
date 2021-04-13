@@ -2,25 +2,23 @@
 base = "lua51"
 name = "ll"
 
+
 [[fmt.print.args]]
 type = "..."
 required = true
-
 [[fmt.assert.args]]
 type = "..."
 required = true
-
 [[fmt.panic.args]]
 type = "..."
 required = true
-
 [[fmt.warn.args]]
 type = "..."
 required = true
-
 [[fmt.error.args]]
 type = "..."
 required = true
+
 
 [[fs.write.args]]
 type = "string"
