@@ -52,11 +52,7 @@ local start = function(name, unit, cpus, iid, dir)
     stderr = se;
   })
 end
-local generate_password_file = function(d)
-  local path = d..'/password'
-  if fs.isfile(path) then
-    return nil
-  end
+local generate_password_file = function(path)
   local password = require 'password'
   local util = require 'util'
   local p = password.generate(16, 2, 0, true, false)
@@ -125,6 +121,7 @@ setmetatable(M, {
       UNIT = 'systemd unit template.';
       DIR  = 'Bind directory path.';
       always_update = 'Boolean flag, if `true` always pull the image.';
+      overwrite_password = 'Boolean flag, if `true` always overwrite password file.';
     }
     M.env = {}
     M.reg = {}
@@ -137,34 +134,32 @@ setmetatable(M, {
         M.env[k] = e[k]
       end
     end
-    M.reg.id = id(e.URL, e.TAG)
-  end;
-  __index = {
-    pull_image = function(self)
-      if not self.reg.id or self.env.always_update then
-        pull(self.env.URL, self.env.TAG)
-        stdout.info('Pulled image', {
-          url = self.env.URL;
-          tag = self.env.TAG;
-        })
-        self.reg.id = id(self.env.URL, self.env.TAG)
-        stdout.info('Got image ID', {
-          id = self.reg.id;
-        })
-      end
-    end;
-    generate_password = function(self)
-      generate_password_file(self.env.DIR)
+    -- pull
+    M.reg.id = id(M.env.URL, M.env.TAG)
+    if M.env.always_update or not M.reg.id then
+      pull(M.env.URL, M.env.TAG)
+      stdout.info('Pulled image', {
+        url = M.env.URL;
+        tag = M.env.TAG;
+      })
+      M.reg.id = id(M.env.URL, M.env.TAG)
+      stdout.info('Got image ID', {
+        id = M.reg.id;
+      })
+    end
+    -- password
+    local path = M.env.DIR..'/password'
+    if M.env.overwrite_password or not fs.isfile(path) then
+      generate_password_file(path)
       stdout.info('Wrote password file', {
-        file = self.env.DIR..'/password';
+        file = path;
       })
-    end;
-    start_unit = function(self)
-      start(self.env.NAME, self.env.UNIT, self.env.CPUS, self.reg.id, self.env.DIR)
-      stdout.info('Started systemd unit', {
-        name = self.env.NAME;
-      })
-    end;
-  }
+    end
+    -- start
+    start(M.env.NAME, M.env.UNIT, M.env.CPUS, M.reg.id, M.env.DIR)
+    stdout.info('Started systemd unit', {
+      name = M.env.NAME;
+    })
+  end;
 })
 return M
