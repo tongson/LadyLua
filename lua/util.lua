@@ -16,219 +16,219 @@ local char = string.char
 
 local ring = {}
 function ring.new(max_size)
-	local hist = { __index = ring }
-	setmetatable(hist, hist)
-	hist.max_size = max_size
-	hist.size = 0
-	hist.cursor = 1
-	return hist
+  local hist = { __index = ring }
+  setmetatable(hist, hist)
+  hist.max_size = max_size
+  hist.size = 0
+  hist.cursor = 1
+  return hist
 end
 function ring:concat(c)
-	local s = ''
-	for n = 1, #self do
-		s = F('%s%s%s', s, tostring(self[n]), c)
-	end
-	return s
+  local s = ""
+  for n=1, #self do
+    s = F("%s%s%s", s, tostring(self[n]), c)
+  end
+  return s
 end
 function ring:table()
-	local t = {}
-	for n = 1, #self do
-		t[n] = tostring(self[n])
-	end
-	return t
+  local t = {}
+  for n=1, #self do
+    t[n] = tostring(self[n])
+  end
+  return t
 end
 function ring:push(value)
-	if self.size < self.max_size then
-		table.insert(self, value)
-		self.size = self.size + 1
-	else
-		self[self.cursor] = value
-		self.cursor = self.cursor % self.max_size + 1
-	end
+  if self.size < self.max_size then
+    table.insert(self, value)
+    self.size = self.size + 1
+  else
+    self[self.cursor] = value
+    self.cursor = self.cursor % self.max_size + 1
+  end
 end
 function ring:iterator()
-	local i = 0
-	return function()
-		i = i + 1
-		if i <= self.size then
-			return self[(self.cursor - i - 1) % self.size + 1]
-		end
-	end
+  local i = 0
+  return function()
+    i = i + 1
+    if i <= self.size then
+      return self[(self.cursor - i - 1) % self.size + 1]
+    end
+  end
 end
 
 util.ring = ring
 util.path_split = function(path)
-	local l = len(path)
-	local c = sub(path, l, l)
-	while l > 0 and c ~= '/' do
-		l = l - 1
-		c = sub(path, l, l)
-	end
-	if l == 0 then
-		return nil, path
-	else
-		return sub(path, 1, l - 1), sub(path, l + 1)
-	end
+  local l = len(path)
+  local c = sub(path, l, l)
+  while l > 0 and c ~= "/" do
+    l = l - 1
+    c = sub(path, l, l)
+  end
+  if l == 0 then
+    return nil, path
+  else
+    return sub(path, 1, l - 1), sub(path, l + 1)
+  end
 end
 
 util.path_apply = function(fn, dir)
-	local t = {}
-	local f, m
-	while util.path_split(dir) do
-		dir, f = util.path_split(dir)
-		t[#t + 1] = f
-		if dir == nil then
-			break
-		end
-	end
-	f = ''
-	for n = #t, 1, -1 do
-		m = F('/%s', t[n])
-		f = f .. m
-		fn(f)
-	end
-	return true
+  local t = {}
+  local f, m
+  while util.path_split(dir) do
+    dir, f = util.path_split(dir)
+    t[#t+1] = f
+    if dir == nil then
+      break
+    end
+  end
+  f = ''
+  for n=#t, 1, -1 do
+    m = F('/%s', t[n])
+    f = f..m
+    fn(f)
+  end
+  return true
 end
 
 util.template = function(s, v)
-	return (gsub(s, '%${[%s]-([^}%G]+)[%s]-}', v))
+  return (gsub(s, "%${[%s]-([^}%G]+)[%s]-}", v))
 end
 
 util.truthy = function(s)
-	local _
-	_, s = pcall(lower, s)
-	if s == 'yes' or s == 'true' or s == 'on' or s == '1' then
-		return true
-	else
-		return false
-	end
+  local _
+  _, s = pcall(lower, s)
+  if s == "yes" or s == "true" or s == "on" or s == "1" then
+    return true
+  else
+    return false
+  end
 end
 
 util.falsy = function(s)
-	local _
-	_, s = pcall(lower, s)
-	if s == 'no' or s == 'false' or s == 'off' or s == '0' then
-		return true
-	else
-		return false
-	end
+  local _
+  _, s = pcall(lower, s)
+  if s == "no" or s == "false" or s == "off" or s == "0" then
+    return true
+  else
+    return false
+  end
 end
 
 util.escape_quotes = function(str)
-	str = gsub(str, [["]], [[\"]])
-	str = gsub(str, [[']], [[\']])
-	return str
+  str = gsub(str, [["]], [[\"]])
+  str = gsub(str, [[']], [[\']])
+  return str
 end
 
 util.month = function(n)
-	n = tostring(n)
-	if n[1] == '0' then
-		n = n[2]
-	end
-	n = tonumber(n)
-	local t = {
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec',
-	}
-	return t[n]
+  n = tostring(n)
+  if n[1] == '0' then
+    n = n[2]
+  end
+  n = tonumber(n)
+  local t = {
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  }
+  return t[n]
 end
 
 util.return_if = function(bool, value)
-	if bool then
-		return value
-	end
+  if bool then
+    return (value)
+  end
 end
 
 util.return_if_not = function(bool, value)
-	if bool == false or bool == nil then
-		return value
-	end
+  if bool == false or bool == nil then
+    return value
+  end
 end
 
 -- From: http://lua-users.org/wiki/HexDump
 -- [first] begin dump at 16 byte-aligned offset containing 'first' byte
 -- [last] end dump at 16 byte-aligned offset containing 'last' byte
 util.hexdump = function(buf, first, last)
-	local function align(n)
-		return ceil(n / 16) * 16
-	end
-	for i = (align((first or 1) - 16) + 1), align(min(last or #buf, #buf)) do
-		if (i - 1) % 16 == 0 then
-			write(F('%08X  ', i - 1))
-		end
-		io.write(i > #buf and '   ' or F('%02X ', buf:byte(i)))
-		if i % 8 == 0 then
-			write(' ')
-		end
-		if i % 16 == 0 then
-			write(buf:sub(i - 16 + 1, i):gsub('%c', '.'), '\n')
-		end
-	end
+  local function align(n)
+    return ceil(n/16) * 16
+  end
+  for i=(align((first or 1)-16)+1),align(min(last or #buf,#buf)) do
+    if (i-1) % 16 == 0 then
+      write(F('%08X  ', i-1))
+    end
+    io.write( i > #buf and '   ' or F('%02X ', buf:byte(i)) )
+    if i %  8 == 0 then
+      write(' ')
+    end
+    if i % 16 == 0 then
+      write( buf:sub(i-16+1, i):gsub('%c','.'), '\n' )
+    end
+  end
 end
 
 util.escape_sql = function(v)
-	local vt = type(v)
-	if 'string' == vt then
-		local s = "'" .. (v:gsub("'", "''")) .. "'"
-		return (s:gsub('.', {
-			[char(0)] = '',
-			[char(9)] = '',
-			[char(10)] = '',
-			[char(11)] = '',
-			[char(12)] = '',
-			[char(13)] = '',
-			[char(14)] = '',
-		}))
-	elseif 'boolean' == vt then
-		return v and 'TRUE' or 'FALSE'
-	end
+  local vt = type(v)
+  if "string" == vt then
+    local s = "'" .. (v:gsub("'", "''")) .. "'"
+    return (s:gsub('.', {
+      [char(0)] = "",
+      [char(9)] = "",
+      [char(10)] = "",
+      [char(11)] = "",
+      [char(12)] = "",
+      [char(13)] = "",
+      [char(14)] = "",
+    }))
+  elseif "boolean" == vt then
+    return v and "TRUE" or "FALSE"
+  end
 end
 
 util.assert_f = function(fn)
-	return function(ok, ...)
-		if ok then
-			return ok, ...
-		else
-			if fn then
-				fn(...)
-			end
-			error((...), 0)
-		end
-	end
+  return function(ok, ...)
+    if ok then
+      return ok, ...
+    else
+      if fn then
+        fn(...)
+      end
+      error((...), 0)
+    end
+  end
 end
 
 util.try_f = function(fn)
-	return function(ok, ...)
-		if ok then
-			return ok, ...
-		else
-			if fn then
-				return fn(...)
-			end
-		end
-	end
+  return function(ok, ...)
+    if ok then
+      return ok, ...
+    else
+      if fn then
+        return fn(...)
+      end
+    end
+  end
 end
 
 util.hm = function()
-	return date('%H:%M')
+  return date("%H:%M")
 end
 
 util.ymd = function()
-	return date('%Y-%m-%d')
+  return date("%Y-%m-%d")
 end
 
 util.timestamp = function()
-	return date('%Y-%m-%d %H:%M:%S %Z%z')
+  return date("%Y-%m-%d %H:%M:%S %Z%z")
 end
 
 local arglist_mt = {}
@@ -236,88 +236,79 @@ local arglist_mt = {}
 -- have pack/unpack both respect the 'n' field
 local _unpack = unpack
 local unpack = function(t, i, j)
-	return _unpack(t, i or 1, j or t.n or #t)
+  return _unpack(t, i or 1, j or t.n or #t)
 end
 local pack = function(...)
-	return { n = select('#', ...), ... }
+  return { n = select("#", ...), ... }
 end
 util.pack = pack
 util.unpack = unpack
 
-function util.deepcompare(t1, t2, ignore_mt, cycles, thresh1, thresh2)
-	local ty1 = type(t1)
-	local ty2 = type(t2)
-	-- non-table types can be directly compared
-	if ty1 ~= 'table' or ty2 ~= 'table' then
-		return t1 == t2
-	end
-	local mt1 = debug.getmetatable(t1)
-	local mt2 = debug.getmetatable(t2)
-	-- would equality be determined by metatable __eq?
-	if mt1 and mt1 == mt2 and mt1.__eq then
-		-- then use that unless asked not to
-		if not ignore_mt then
-			return t1 == t2
-		end
-	else -- we can skip the deep comparison below if t1 and t2 share identity
-		if rawequal(t1, t2) then
-			return true
-		end
-	end
 
-	-- handle recursive tables
-	cycles = cycles or { {}, {} }
-	thresh1, thresh2 = (thresh1 or 1), (thresh2 or 1)
-	cycles[1][t1] = (cycles[1][t1] or 0)
-	cycles[2][t2] = (cycles[2][t2] or 0)
-	if cycles[1][t1] == 1 or cycles[2][t2] == 1 then
-		thresh1 = cycles[1][t1] + 1
-		thresh2 = cycles[2][t2] + 1
-	end
-	if cycles[1][t1] > thresh1 and cycles[2][t2] > thresh2 then
-		return true
-	end
+function util.deepcompare(t1,t2,ignore_mt,cycles,thresh1,thresh2)
+  local ty1 = type(t1)
+  local ty2 = type(t2)
+  -- non-table types can be directly compared
+  if ty1 ~= 'table' or ty2 ~= 'table' then return t1 == t2 end
+  local mt1 = debug.getmetatable(t1)
+  local mt2 = debug.getmetatable(t2)
+  -- would equality be determined by metatable __eq?
+  if mt1 and mt1 == mt2 and mt1.__eq then
+    -- then use that unless asked not to
+    if not ignore_mt then return t1 == t2 end
+  else -- we can skip the deep comparison below if t1 and t2 share identity
+    if rawequal(t1, t2) then return true end
+  end
 
-	cycles[1][t1] = cycles[1][t1] + 1
-	cycles[2][t2] = cycles[2][t2] + 1
+  -- handle recursive tables
+  cycles = cycles or {{},{}}
+  thresh1, thresh2 = (thresh1 or 1), (thresh2 or 1)
+  cycles[1][t1] = (cycles[1][t1] or 0)
+  cycles[2][t2] = (cycles[2][t2] or 0)
+  if cycles[1][t1] == 1 or cycles[2][t2] == 1 then
+    thresh1 = cycles[1][t1] + 1
+    thresh2 = cycles[2][t2] + 1
+  end
+  if cycles[1][t1] > thresh1 and cycles[2][t2] > thresh2 then
+    return true
+  end
 
-	for k1, v1 in next, t1 do
-		local v2 = t2[k1]
-		if v2 == nil then
-			return false, { k1 }
-		end
+  cycles[1][t1] = cycles[1][t1] + 1
+  cycles[2][t2] = cycles[2][t2] + 1
 
-		local same, crumbs = util.deepcompare(v1, v2, nil, cycles, thresh1, thresh2)
-		if not same then
-			crumbs = crumbs or {}
-			table.insert(crumbs, k1)
-			return false, crumbs
-		end
-	end
-	for k2, _ in next, t2 do
-		-- only check whether each element has a t1 counterpart, actual comparison
-		-- has been done in first loop above
-		if t1[k2] == nil then
-			return false, { k2 }
-		end
-	end
+  for k1,v1 in next, t1 do
+    local v2 = t2[k1]
+    if v2 == nil then
+      return false, {k1}
+    end
 
-	cycles[1][t1] = cycles[1][t1] - 1
-	cycles[2][t2] = cycles[2][t2] - 1
+    local same, crumbs = util.deepcompare(v1,v2,nil,cycles,thresh1,thresh2)
+    if not same then
+      crumbs = crumbs or {}
+      table.insert(crumbs, k1)
+      return false, crumbs
+    end
+  end
+  for k2,_ in next, t2 do
+    -- only check whether each element has a t1 counterpart, actual comparison
+    -- has been done in first loop above
+    if t1[k2] == nil then return false, {k2} end
+  end
 
-	return true
+  cycles[1][t1] = cycles[1][t1] - 1
+  cycles[2][t2] = cycles[2][t2] - 1
+
+  return true
 end
 
 function util.shallowcopy(t)
-	if type(t) ~= 'table' then
-		return t
-	end
-	local copy = {}
-	setmetatable(copy, getmetatable(t))
-	for k, v in next, t do
-		copy[k] = v
-	end
-	return copy
+  if type(t) ~= "table" then return t end
+  local copy = {}
+  setmetatable(copy, getmetatable(t))
+  for k,v in next, t do
+    copy[k] = v
+  end
+  return copy
 end
 
 -----------------------------------------------
@@ -325,10 +316,10 @@ end
 -- @param arglist the table to clear of arguments or return values and their count
 -- @return No return values
 function util.cleararglist(arglist)
-	for idx = arglist.n, 1, -1 do
-		util.tremove(arglist, idx)
-	end
-	arglist.n = nil
+  for idx = arglist.n, 1, -1 do
+    util.tremove(arglist, idx)
+  end
+  arglist.n = nil
 end
 
 -----------------------------------------------
@@ -340,31 +331,31 @@ end
 -- @param val value to insert
 -- @return No return values
 function util.tinsert(...)
-	-- check optional POS value
-	local args = { ... }
-	local c = select('#', ...)
-	local t = args[1]
-	local pos = args[2]
-	local val = args[3]
-	if c < 3 then
-		val = pos
-		pos = nil
-	end
-	-- set length indicator n if not present (+1)
-	t.n = (t.n or #t) + 1
-	if not pos then
-		pos = t.n
-	elseif pos > t.n then
-		-- out of our range
-		t[pos] = val
-		t.n = pos
-	end
-	-- shift everything up 1 pos
-	for i = t.n, pos + 1, -1 do
-		t[i] = t[i - 1]
-	end
-	-- add element to be inserted
-	t[pos] = val
+  -- check optional POS value
+  local args = {...}
+  local c = select('#',...)
+  local t = args[1]
+  local pos = args[2]
+  local val = args[3]
+  if c < 3 then
+    val = pos
+    pos = nil
+  end
+  -- set length indicator n if not present (+1)
+  t.n = (t.n or #t) + 1
+  if not pos then
+    pos = t.n
+  elseif pos > t.n then
+    -- out of our range
+    t[pos] = val
+    t.n = pos
+  end
+  -- shift everything up 1 pos
+  for i = t.n, pos + 1, -1 do
+    t[i]=t[i-1]
+  end
+  -- add element to be inserted
+  t[pos] = val
 end
 -----------------------------------------------
 -- table.remove() replacement that respects nil values.
@@ -374,25 +365,25 @@ end
 -- @param pos (optional) position in table to remove
 -- @return No return values
 function util.tremove(t, pos)
-	-- set length indicator n if not present (+1)
-	t.n = t.n or #t
-	if not pos then
-		pos = t.n
-	elseif pos > t.n then
-		local removed = t[pos]
-		-- out of our range
-		t[pos] = nil
-		return removed
-	end
-	local removed = t[pos]
-	-- shift everything up 1 pos
-	for i = pos, t.n do
-		t[i] = t[i + 1]
-	end
-	-- set size, clean last
-	t[t.n] = nil
-	t.n = t.n - 1
-	return removed
+  -- set length indicator n if not present (+1)
+  t.n = t.n or #t
+  if not pos then
+    pos = t.n
+  elseif pos > t.n then
+    local removed = t[pos]
+    -- out of our range
+    t[pos] = nil
+    return removed
+  end
+  local removed = t[pos]
+  -- shift everything up 1 pos
+  for i = pos, t.n do
+    t[i]=t[i+1]
+  end
+  -- set size, clean last
+  t[t.n] = nil
+  t.n = t.n - 1
+  return removed
 end
 
 -----------------------------------------------
@@ -402,8 +393,7 @@ end
 -- @param object element to inspect on being callable or not
 -- @return boolean, true if the object is callable
 function util.callable(object)
-	return type(object) == 'function'
-		or type((debug.getmetatable(object) or {}).__call) == 'function'
+  return type(object) == "function" or type((debug.getmetatable(object) or {}).__call) == "function"
 end
 -----------------------------------------------
 -- Checks an element has tostring.
@@ -412,8 +402,7 @@ end
 -- @param object element to inspect on having tostring or not
 -- @return boolean, true if the object has tostring
 function util.hastostring(object)
-	return type(object) == 'string'
-		or type((debug.getmetatable(object) or {}).__tostring) == 'function'
+  return type(object) == "string" or type((debug.getmetatable(object) or {}).__tostring) == "function"
 end
 
 -----------------------------------------------
@@ -422,34 +411,34 @@ end
 -- @param level the level to use as the caller's source file
 -- @return number, the level of which to report an error
 function util.errorlevel(level)
-	level = (level or 1) + 1 -- add one to get level of the caller
-	local info = debug.getinfo(level)
-	local source = (info or {}).source
-	local file = source
-	while file and (file == source or source == '=(tail call)') do
-		level = level + 1
-		info = debug.getinfo(level)
-		source = (info or {}).source
-	end
-	if level > 1 then
-		level = level - 1
-	end -- deduct call to errorlevel() itself
-	return level
+  level = (level or 1) + 1 -- add one to get level of the caller
+  local info = debug.getinfo(level)
+  local source = (info or {}).source
+  local file = source
+  while file and (file == source or source == "=(tail call)") do
+    level = level + 1
+    info = debug.getinfo(level)
+    source = (info or {}).source
+  end
+  if level > 1 then
+    level = level - 1
+  end -- deduct call to errorlevel() itself
+  return level
 end
 
 -----------------------------------------------
 -- store argument list for return values of a function in a table.
 -- The table will get a metatable to identify it as an arglist
 function util.make_arglist(...)
-	local arglist = { ... }
-	arglist.n = select('#', ...) -- add values count for trailing nils
-	return setmetatable(arglist, arglist_mt)
+  local arglist = { ... }
+  arglist.n = select('#', ...) -- add values count for trailing nils
+  return setmetatable(arglist, arglist_mt)
 end
 
 -----------------------------------------------
 -- check a table to be an arglist type.
 function util.is_arglist(object)
-	return getmetatable(object) == arglist_mt
+  return getmetatable(object) == arglist_mt
 end
 
 return util
