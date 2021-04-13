@@ -110,9 +110,78 @@ required = true
 type = "string"
 required = true
 
+[[table.find.args]]
+type = "table"
+required = true
+[[table.find.args]]
+type = "string"
+required = true
+[[table.find.args]]
+type = "bool"
+required = false
+[[table.filter.args]]
+type = "table"
+required = true
+[[table.filter.args]]
+type = "string"
+required = true
+[[table.filter.args]]
+type = "bool"
+required = false
+[[table.to_map.args]]
+type = "table"
+required = true
+[[table.to_map.args]]
+type = "any"
+required = false
+[[table.to_map.args]]
+type = "bool"
+required = false
+[[table.to_list.args]]
+type = "table"
+required = true
+[[table.insert_if.args]]
+type = "table"
+required = true
+[[table.insert_if.args]]
+type = "any"
+required = true
+[[table.insert_if.args]]
+type = "any"
+required = true
+[[table.insert_if.args]]
+type = "number"
+required = false
+[[table.auto.args]]
+type = "any"
+required = false
+[[table.len.args]]
+type = "table"
+required = true
+[[table.len.args]]
+type = "number"
+required = false
+[[table.count.args]]
+type = "table"
+required = true
+[[table.count.args]]
+type = "any"
+required = true
+[[table.unique.args]]
+type = "table"
+required = true
 
 
 
-[table]
-property = true
-writable = "new-fields"
+
+
+
+
+
+
+
+
+
+
+
+
