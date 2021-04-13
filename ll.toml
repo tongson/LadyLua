@@ -24,7 +24,7 @@ required = true
 type = "string"
 required = true
 [[fs.write.args]]
-type = "number"
+type = "string"
 required = true
 [[fs.read.args]]
 type = "string"
