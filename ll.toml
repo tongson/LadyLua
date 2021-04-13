@@ -22,11 +22,55 @@ required = true
 type = "..."
 required = true
 
+[[fs.write.args]]
+type = "string"
+required = true
+[[fs.write.args]]
+type = "number"
+required = true
+[[fs.read.args]]
+type = "string"
+required = true
+[[fs.isdir.args]]
+type = "string"
+required = true
+[[fs.isfile.args]]
+type = "string"
+required = true
+[[fs.mkdir.args]]
+type = "string"
+required = true
+[[fs.rmdir.args]]
+type = "string"
+required = true
+[[fs.chdir.args]]
+type = "string"
+required = true
+[[fs.attributes.args]]
+type = "string"
+required = true
+[[fs.symlinkattributes.args]]
+type = "string"
+required = true
+[[fs.currentdir.args]]
+type = "any"
+required = false
+[[fs.link.args]]
+type = "string"
+required = true
+[[fs.link.args]]
+type = "string"
+required = true
+[[fs.link.args]]
+type = "bool"
+required = false
+[[fs.dir.args]]
+type = "string"
+required = true
+[[fs.touch.args]]
+type = "string"
+required = true
 
-
-[fs]
-property = true
-writable = "new-fields"
 
 [exec]
 property = true
