@@ -66,13 +66,6 @@ local fmt_error = function()
   T.is_nil(x)
   T.equal(y, 'message')
 end
-local fmt_assert = function()
-  T.is_function(fmt.assert)
-  local x = 'prints to STDERR when argument #1 is falsy'
-  if not included then
-    fmt.assert(false, '%s\n', x)
-  end
-end
 --#
 --# == *fmt.panic*(_String_, _..._)
 --# Print formatted string to io.stderr and exit immediately with code 1.
@@ -103,6 +96,10 @@ end
 --# |===
 local fmt_assert = function()
   T.is_function(fmt.assert)
+  local x = 'prints to STDERR when argument #1 is falsy'
+  if not included then
+    fmt.assert(false, '%s\n', x)
+  end
 end
 if included then
   return function()
