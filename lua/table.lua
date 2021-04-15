@@ -11,12 +11,12 @@ table.find = function(tbl, str, pattern)
 		plain = nil
 	end
 	for _, tval in next, tbl do
-		tval = gsub(tval, '[%c]', '')
+		tval = gsub(tval, "[%c]", "")
 		if find(tval, str, 1, plain) then
 			return true
 		end
 	end
-	return nil, 'Value not found.'
+	return nil, "Value not found."
 end
 
 table.to_map = function(tbl, def, holes)
@@ -70,7 +70,7 @@ table.insert_if = function(list, bool, value, pos)
 	local fin = len + 1
 	pos = pos or fin
 	if bool then
-		if type(value) == 'table' then
+		if type(value) == "table" then
 			local p = pos - 1
 			if pos == fin then
 				for n, i in ipairs(value) do
@@ -104,7 +104,7 @@ autotable = function(t)
 	if meta then
 		assert(
 			not meta.__index or meta.__index == auto_meta.__index,
-			'__index already set'
+			"__index already set"
 		)
 		meta.__index = auto_meta.__index
 	else

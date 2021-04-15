@@ -1,9 +1,9 @@
-local redis = require('redis')
-package.loaded['redis'] = nil
+local redis = require("redis")
+package.loaded["redis"] = nil
 local loader = function()
 	redis.new = function(addr, password, db)
-		addr = addr or '127.0.0.1:6379'
-		password = password or ''
+		addr = addr or "127.0.0.1:6379"
+		password = password or ""
 		db = db or 0
 		local client = redis.client(addr, password, db)
 		return {
@@ -36,4 +36,4 @@ local loader = function()
 	end
 	return redis
 end
-package.preload['redis'] = loader
+package.preload["redis"] = loader
