@@ -1,4 +1,4 @@
-quote_style = "AutoPreferSingle"
+quote_style = "AutoPreferDouble"
 indent_width = 2
 indent_type = "Tabs"
 column_width = 90
