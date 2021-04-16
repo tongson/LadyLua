@@ -33,3 +33,12 @@ string.to_list = function(str)
 	end
 	return t
 end
+
+string.to_map = function(str, def)
+	def = def or true
+	local t = {}
+	for s in gmatch(str, "%S+") do
+		t[s] = def
+	end
+	return t
+end

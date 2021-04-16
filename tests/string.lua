@@ -142,16 +142,47 @@ local string_to_list = function()
   T.equal(z[4], string.char(2)..string.char(21))
   T.equal(z[5], 'six')
 end
+--#
+--# == *string.to_map*(_String_, _Value_) -> _Table_
+--# Create a new table(map) where each non-space(%S) character of argument #1 is a key in the map. The second argument is any value to assign to each key, defaults to boolean `true`.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Source string
+--# |any |Value
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |table| New table
+--# |===
+local string_to_map = function()
+  T.is_function(string.to_map)
+  local x = [[five2342 s2324
+    sdfs %s%s six]]
+  local y = string.format(x, string.char(2), string.char(21))
+  local z = y:to_map()
+  T.is_table(z)
+  T.equal(z['five2342'], true)
+  T.equal(z['s2324'], true)
+  T.equal(z['sdfs'], true)
+  T.equal(z[string.char(2)..string.char(21)], true)
+  T.equal(z['six'], true)
+end
 if not_main then
   return function()
     T['string.append'] = string_append
     T['string.line_to_list'] = string_line_to_list
     T['string.word_to_list'] = string_word_to_list
     T['string.to_list'] = string_to_list
+    T['string.to_map'] = string_to_map
   end
 else
   T['string.append'] = string_append
   T['string.line_to_list'] = string_line_to_list
   T['string.word_to_list'] = string_word_to_list
   T['string.to_list'] = string_to_list
+  T['string.to_map'] = string_to_map
 end

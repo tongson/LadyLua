@@ -96,3 +96,19 @@ local z = 'one\ttwo'
 local zt = z:to_list()
 -- zt will contain {"one", "two"}
 ----
+
+== *string.to_map*(_String_, _Value_) -> _Table_
+Create a new table(map) where each non-space(%S) character of argument #1 is a key in the map. The second argument is any value to assign to each key, defaults to boolean `true`.
+
+=== Arguments
+[width="72%"]
+|===
+|string| Source string
+|any |Value
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table| New table
+|===
