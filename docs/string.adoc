@@ -29,30 +29,6 @@ local x = s:append'two'
 assert(x=='one\ntwo')
 ----
 
-== *string.line_to_list*(_String_) -> _Table_
-Create a new table(list) where each line of argument #1 is a value in the list.
-
-=== Arguments
-[width="72%"]
-|===
-|string| Source string
-|===
-
-=== Returns
-[width="72%"]
-|===
-|table| New table
-|===
-
-=== Example
-----
-local s = [[five
-six
-seven]]
-local t = s:line_to_list()
--- t will contain { "five", "six", "seven" }
-----
-
 == *string.word_to_list*(_String_) -> _Table_
 Create a new table(list) where each alphanumeric sequence of argument #1 is a value in the list.
 

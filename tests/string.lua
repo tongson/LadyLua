@@ -40,41 +40,6 @@ local string_append = function()
   T.equal(a, z)
 end
 --#
---# == *string.line_to_list*(_String_) -> _Table_
---# Create a new table(list) where each line of argument #1 is a value in the list.
---#
---# === Arguments
---# [width="72%"]
---# |===
---# |string| Source string
---# |===
---#
---# === Returns
---# [width="72%"]
---# |===
---# |table| New table
---# |===
---#
---# === Example
---# ----
---# local s = [[five
---# six
---# seven]]
---# local t = s:line_to_list()
---# -- t will contain { "five", "six", "seven" }
---# ----
-local string_line_to_list = function()
-  T.is_function(string.line_to_list)
-  local x = [[
-    line 1
-    line 2
-  ]]
-  local z = x:line_to_list()
-  T.is_table(z)
-  T.equal(z[1], '    line 1')
-  T.equal(z[2], '    line 2')
-end
---#
 --# == *string.word_to_list*(_String_) -> _Table_
 --# Create a new table(list) where each alphanumeric sequence of argument #1 is a value in the list.
 --#
@@ -174,14 +139,12 @@ end
 if not_main then
   return function()
     T['string.append'] = string_append
-    T['string.line_to_list'] = string_line_to_list
     T['string.word_to_list'] = string_word_to_list
     T['string.to_list'] = string_to_list
     T['string.to_map'] = string_to_map
   end
 else
   T['string.append'] = string_append
-  T['string.line_to_list'] = string_line_to_list
   T['string.word_to_list'] = string_word_to_list
   T['string.to_list'] = string_to_list
   T['string.to_map'] = string_to_map
