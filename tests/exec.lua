@@ -10,7 +10,7 @@ local F = '/tmp/exec.command/file'
 --#
 --# toc::[]
 --#
---# == *exec.command*(_String_[, _Table_][, _Table_][, _Table_][, _String_][, _String_]) -> _Boolean_, _String_, _String_
+--# == *exec.command*(_String_[, _Table_][, _Table_][, _Table_][, _String_][, _String_]) -> _Boolean_, _String_, _String_, _String_
 --# Execute a program. Base function of the the other functions in this module.
 --#
 --# === Arguments
@@ -31,6 +31,7 @@ local F = '/tmp/exec.command/file'
 --# |boolean |`true` if no errors encountered, `false` otherwise
 --# |string  |STDOUT output from program
 --# |string  |STDERR output from program
+--# |string  |Error from Go
 --# |===
 local exec_command__SIMPLE = function()
   T.is_function(exec.command)
@@ -118,6 +119,17 @@ local exec_ctx__CWD = function()
   T.is_true(r)
   T.is_nil(fs.isfile(F))
   T.is_true(fs.rmdir(D))
+end
+local exec_ctx__CWD_error = function()
+	local ls = exec.ctx('ls')
+	ls.cwd = '/sdfsfsfd'
+	local r, so, se, e = ls({'/'})
+	T.equal(e:find('no such file or directory', 1, true), 18)
+end
+local exec_ctx__exit_code = function()
+  local ls = exec.ctx('ls')
+	local r, so, se, e = ls({'/sdfshhdgf'})
+	T.equal(e:find('exit status 2', 1, true), 1)
 end
 local exec_ctx__ENV = function()
   local env = exec.ctx'/usr/bin/env'
@@ -246,6 +258,8 @@ if included then
     T['exec.command stdin'] = exec_command__STDIN
     T['exec.ctx simple'] = exec_ctx__SIMPLE
     T['exec.ctx cwd'] = exec_ctx__CWD
+    T['exec.ctx cwd'] = exec_ctx__CWD_error
+    T['exec.ctx cwd'] = exec_ctx__exit_code
     T['exec.ctx env'] = exec_ctx__ENV
     T['exec.ctx stdin'] = exec_ctx__STDIN
     T['exec.cmd'] = exec_cmd
@@ -259,6 +273,8 @@ else
   T['exec.command stdin'] = exec_command__STDIN
   T['exec.ctx simple'] = exec_ctx__SIMPLE
   T['exec.ctx cwd'] = exec_ctx__CWD
+	T['exec.ctx cwd'] = exec_ctx__CWD_error
+	T['exec.ctx cwd'] = exec_ctx__exit_code
   T['exec.ctx env'] = exec_ctx__ENV
   T['exec.ctx stdin'] = exec_ctx__STDIN
   T['exec.cmd'] = exec_cmd
