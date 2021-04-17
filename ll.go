@@ -1,7 +1,6 @@
 package main
 
 import (
-	"embed"
 	"flag"
 	"fmt"
 	"github.com/chzyer/readline"
@@ -20,8 +19,6 @@ import (
 	"time"
 )
 
-//go:embed lua/*
-var luaSrc embed.FS
 var start time.Time
 
 const versionNumber = "0.4.0"
@@ -89,53 +86,6 @@ Available options are:
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
 	L.SetField(nsExec, "command", L.NewFunction(execCommand))
-	{
-		execSrc, _ := luaSrc.ReadFile("lua/exec.lua")
-		exec, err := L.LoadString(string(execSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.Push(exec)
-		if epc := L.PCall(0, 0, nil); epc != nil {
-			Bug(epc.Error())
-		}
-	}
-	{
-		tableSrc, _ := luaSrc.ReadFile("lua/table.lua")
-		table, err := L.LoadString(string(tableSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.Push(table)
-		if epc := L.PCall(0, 0, nil); epc != nil {
-			Bug(epc.Error())
-		}
-
-	}
-	{
-		lstringSrc, _ := luaSrc.ReadFile("lua/string.lua")
-		lstring, err := L.LoadString(string(lstringSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.Push(lstring)
-		if epc := L.PCall(0, 0, nil); epc != nil {
-			Bug(epc.Error())
-		}
-
-	}
-	{
-		L.SetGlobal("fmt", L.NewTable())
-		lfmtSrc, _ := luaSrc.ReadFile("lua/fmt.lua")
-		lfmt, err := L.LoadString(string(lfmtSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.Push(lfmt)
-		if epc := L.PCall(0, 0, nil); epc != nil {
-			Bug(epc.Error())
-		}
-	}
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
@@ -154,58 +104,19 @@ Available options are:
 		L.PreloadModule("stderr", stderrLog.Loader)
 	}
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
-	{ //redis
-		L.PreloadModule("redis", redisLoader)
-		redisSrc, _ := luaSrc.ReadFile("lua/redis.lua")
-		redis, err := L.LoadString(string(redisSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.Push(redis)
-		if epc := L.PCall(0, 0, nil); epc != nil {
-			Bug(epc.Error())
-		}
-	}
-	{ // kapow
-		kapowSrc, _ := luaSrc.ReadFile("lua/kapow.lua")
-		kapow, err := L.LoadString(string(kapowSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.SetField(preload, "kapow", kapow)
-	}
-	{ // util
-		lutilSrc, _ := luaSrc.ReadFile("lua/util.lua")
-		lutil, err := L.LoadString(string(lutilSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.SetField(preload, "util", lutil)
-	}
-	{ // u-test
-		utestSrc, _ := luaSrc.ReadFile("lua/test.lua")
-		utest, err := L.LoadString(string(utestSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.SetField(preload, "test", utest)
-	}
-	{ // inspect
-		inspectSrc, _ := luaSrc.ReadFile("lua/inspect.lua")
-		inspect, err := L.LoadString(string(inspectSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.SetField(preload, "inspect", inspect)
-	}
-	{ // etlua
-		etluaSrc, _ := luaSrc.ReadFile("lua/template.lua")
-		etlua, err := L.LoadString(string(etluaSrc))
-		if err != nil {
-			Bug(err.Error())
-		}
-		L.SetField(preload, "template", etlua)
-	}
+	PatchLoader(L, "exec")
+	PatchLoader(L, "table")
+	PatchLoader(L, "string")
+	GlobalLoader(L, "fmt")
+	L.PreloadModule("redis", redisLoader)
+	PatchLoader(L, "redis")
+	L.SetField(preload, "kapow", LuaLoader(L, "kapow"))
+	L.SetField(preload, "util", LuaLoader(L, "util"))
+	L.SetField(preload, "test", LuaLoader(L, "test"))
+	L.SetField(preload, "inspect", LuaLoader(L, "inspect"))
+	L.SetField(preload, "template", LuaLoader(L, "template"))
+	L.SetField(preload, "buildah", LuaLoader(L, "buildah"))
+
 	if opt_m > 0 {
 		L.SetMx(opt_m)
 	}
