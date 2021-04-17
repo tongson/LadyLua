@@ -89,12 +89,13 @@ local id = function(u, t)
   u = string.gsub(u, 'docker://', '')
   local name = string.format('%s:%s', u, t)
   for i=1, #j do
-    if table.find(j[i].Names, name) then
-      return j[i].Id
-    else
-      return nil, 'Container image not found.'
-    end
-  end
+		for _, v in ipairs(j[i].Names) do
+			if v == name then
+        return j[i].Id
+			end
+		end
+	end
+  return nil, 'Container image not found.'
 end
 local pull = function(u, t)
   local r, so, se = podman{
