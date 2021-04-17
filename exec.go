@@ -25,7 +25,7 @@ func execCommand(L *lua.LState) int {
 		})
 	}
 	cmd := RunArgs{Exe: exe, Args: targ, Env: tenv, Dir: cwd, Stdin: []byte(sin)}
-	ret, stdout, stderr := cmd.Run()
+	ret, stdout, stderr, err := cmd.Run()
 
 	if ret {
 		L.Push(lua.LTrue)
@@ -34,5 +34,6 @@ func execCommand(L *lua.LState) int {
 	}
 	L.Push(lua.LString(stdout))
 	L.Push(lua.LString(stderr))
-	return 3
+	L.Push(lua.LString(err))
+	return 4
 }

@@ -27,7 +27,8 @@ type panicT struct {
 // The first return value is a boolean, true indicates success, false otherwise.
 // Second value is the standard output of the command.
 // Third value is the standard error of the command.
-func (a RunArgs) Run() (bool, string, string) {
+// Fourth value is error string from Run.
+func (a RunArgs) Run() (bool, string, string, string) {
 	var r bool = true
 	/* #nosec G204 */
 	cmd := exec.Command(a.Exe, a.Args...)
@@ -42,14 +43,15 @@ func (a RunArgs) Run() (bool, string, string) {
 	}
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
+	var errorStr string
 	cmd.Stdout = &stdout
 	cmd.Stderr = &stderr
 	err := cmd.Run()
 	if err != nil {
 		r = false
+		errorStr = err.Error()
 	}
-	outStr, errStr := stdout.String(), stderr.String()
-	return r, outStr, errStr
+	return r, stdout.String(), stderr.String(), errorStr
 }
 
 // Returns a function for simple directory or file check.
