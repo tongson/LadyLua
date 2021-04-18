@@ -1,0 +1,24 @@
+= lz4
+:toc:
+:toc-placement!:
+
+LZ4 compression and decompression.
+
+toc::[]
+
+== *lz4.compress*(_String_) -> _String_
+Compress data.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Data
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Compressed binary data
+|===
