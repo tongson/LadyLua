@@ -1,6 +1,6 @@
 local included = pcall(debug.getlocal, 4, 1)
-local T = require 'test'
-local password = require 'password'
+local T = require("test")
+local password = require("password")
 --# = password
 --# :toc:
 --# :toc-placement!:
@@ -30,21 +30,21 @@ local password = require 'password'
 --# |string |Password
 --# |===
 local password_generate = function()
-  T.is_function(password.generate)
-  local p = password.generate(5, 1, 1, true, true)
-  T.is_string(p)
-  T.equal(string.len(p), 5)
-  local n = string.find(p, '%d')
-  T.is_true((n > 0))
-  local s = string.find(p, '%p')
-  T.is_true((s > 0))
-  local u = string.find(p, '%u')
-  T.is_nil(u)
+	T.is_function(password.generate)
+	local p = password.generate(5, 1, 1, true, true)
+	T.is_string(p)
+	T.equal(string.len(p), 5)
+	local n = string.find(p, "%d")
+	T.is_true((n > 0))
+	local s = string.find(p, "%p")
+	T.is_true((s > 0))
+	local u = string.find(p, "%u")
+	T.is_nil(u)
 end
 if included then
-  return function()
-    T['password.generate'] = password_generate
-  end
+	return function()
+		T["password.generate"] = password_generate
+	end
 else
-  T['password.generate'] = password_generate
+	T["password.generate"] = password_generate
 end

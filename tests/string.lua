@@ -1,5 +1,5 @@
 local not_main = pcall(debug.getlocal, 4, 1)
-local T = require 'test'
+local T = require("test")
 --# = string
 --# :toc:
 --# :toc-placement!:
@@ -31,13 +31,13 @@ local T = require 'test'
 --# assert(x=='one\ntwo')
 --# ----
 local string_append = function()
-  T.is_function(string.append)
-  local x = "one"
-  local y = "two"
-  local z = string.append(x, y)
-  T.equal(z, 'one\ntwo')
-  local a = x:append(y)
-  T.equal(a, z)
+	T.is_function(string.append)
+	local x = "one"
+	local y = "two"
+	local z = string.append(x, y)
+	T.equal(z, "one\ntwo")
+	local a = x:append(y)
+	T.equal(a, z)
 end
 --#
 --# == *string.word_to_list*(_String_) -> _Table_
@@ -62,15 +62,15 @@ end
 --# -- nt will contain { "1", "2", "3" }
 --# ----
 local string_word_to_list = function()
-  T.is_function(string.word_to_list)
-  local x = [[one. #two three
+	T.is_function(string.word_to_list)
+	local x = [[one. #two three
     four]]
-  local y = string.word_to_list(x)
-  T.is_table(y)
-  T.equal(y[1], 'one')
-  T.equal(y[2], 'two')
-  T.equal(y[3], 'three')
-  T.equal(y[4], 'four')
+	local y = string.word_to_list(x)
+	T.is_table(y)
+	T.equal(y[1], "one")
+	T.equal(y[2], "two")
+	T.equal(y[3], "three")
+	T.equal(y[4], "four")
 end
 --#
 --# == *string.to_list*(_String_) -> _Table_
@@ -95,17 +95,17 @@ end
 --# -- zt will contain {"one", "two"}
 --# ----
 local string_to_list = function()
-  T.is_function(string.to_list)
-  local x = [[five2342 s2324
+	T.is_function(string.to_list)
+	local x = [[five2342 s2324
     sdfs %s%s six]]
-  local y = string.format(x, string.char(2), string.char(21))
-  local z = string.to_list(y)
-  T.is_table(z)
-  T.equal(z[1], 'five2342')
-  T.equal(z[2], 's2324')
-  T.equal(z[3], 'sdfs')
-  T.equal(z[4], string.char(2)..string.char(21))
-  T.equal(z[5], 'six')
+	local y = string.format(x, string.char(2), string.char(21))
+	local z = string.to_list(y)
+	T.is_table(z)
+	T.equal(z[1], "five2342")
+	T.equal(z[2], "s2324")
+	T.equal(z[3], "sdfs")
+	T.equal(z[4], string.char(2) .. string.char(21))
+	T.equal(z[5], "six")
 end
 --#
 --# == *string.to_map*(_String_, _Value_) -> _Table_
@@ -124,28 +124,28 @@ end
 --# |table| New table
 --# |===
 local string_to_map = function()
-  T.is_function(string.to_map)
-  local x = [[five2342 s2324
+	T.is_function(string.to_map)
+	local x = [[five2342 s2324
     sdfs %s%s six]]
-  local y = string.format(x, string.char(2), string.char(21))
-  local z = y:to_map()
-  T.is_table(z)
-  T.equal(z['five2342'], true)
-  T.equal(z['s2324'], true)
-  T.equal(z['sdfs'], true)
-  T.equal(z[string.char(2)..string.char(21)], true)
-  T.equal(z['six'], true)
+	local y = string.format(x, string.char(2), string.char(21))
+	local z = y:to_map()
+	T.is_table(z)
+	T.equal(z["five2342"], true)
+	T.equal(z["s2324"], true)
+	T.equal(z["sdfs"], true)
+	T.equal(z[string.char(2) .. string.char(21)], true)
+	T.equal(z["six"], true)
 end
 if not_main then
-  return function()
-    T['string.append'] = string_append
-    T['string.word_to_list'] = string_word_to_list
-    T['string.to_list'] = string_to_list
-    T['string.to_map'] = string_to_map
-  end
+	return function()
+		T["string.append"] = string_append
+		T["string.word_to_list"] = string_word_to_list
+		T["string.to_list"] = string_to_list
+		T["string.to_map"] = string_to_map
+	end
 else
-  T['string.append'] = string_append
-  T['string.word_to_list'] = string_word_to_list
-  T['string.to_list'] = string_to_list
-  T['string.to_map'] = string_to_map
+	T["string.append"] = string_append
+	T["string.word_to_list"] = string_word_to_list
+	T["string.to_list"] = string_to_list
+	T["string.to_map"] = string_to_map
 end

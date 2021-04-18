@@ -1,5 +1,5 @@
 local included = pcall(debug.getlocal, 4, 1)
-local T = require 'test'
+local T = require("test")
 --# = fs
 --# :toc:
 --# :toc-placement!:
@@ -36,13 +36,13 @@ local T = require 'test'
 --# |string| Contents of file
 --# |===
 local fs_read = function()
-  T.is_function(fs.read)
-  local s = fs.read'/etc/passwd'
-  T.is_string(s)
-  T.equal(string.find(s, 'root', 1, true), 1)
-  local ne, se = fs.read'/sdfsfdsd'
-  T.is_nil(ne)
-  T.is_string(se)
+	T.is_function(fs.read)
+	local s = fs.read("/etc/passwd")
+	T.is_string(s)
+	T.equal(string.find(s, "root", 1, true), 1)
+	local ne, se = fs.read("/sdfsfdsd")
+	T.is_nil(ne)
+	T.is_string(se)
 end
 --#
 --# == *fs.write*(_String_, _String_) -> _Boolean_
@@ -64,12 +64,12 @@ end
 --# |boolean| `true` if successful
 --# |===
 local fs_write = function()
-  T.is_function(fs.write)
-  local s = 'write this'
-  T.is_true(fs.write('/tmp/fs.write', s))
-  local w = fs.read('/tmp/fs.write')
-  T.equal(string.find(w, 'this', 1, true), 7)
-  os.remove('/tmp/fs.write')
+	T.is_function(fs.write)
+	local s = "write this"
+	T.is_true(fs.write("/tmp/fs.write", s))
+	local w = fs.read("/tmp/fs.write")
+	T.equal(string.find(w, "this", 1, true), 7)
+	os.remove("/tmp/fs.write")
 end
 --#
 --# == *fs.isdir*(_String_) -> _Boolean_
@@ -90,11 +90,11 @@ end
 --# |boolean| `true` if path is a directory
 --# |===
 local fs_isdir = function()
-  T.is_function(fs.isdir)
-  T.is_true(fs.isdir('/etc'))
-  local re, se = fs.isdir('/dev/null')
-  T.is_nil(re)
-  T.is_string(se)
+	T.is_function(fs.isdir)
+	T.is_true(fs.isdir("/etc"))
+	local re, se = fs.isdir("/dev/null")
+	T.is_nil(re)
+	T.is_string(se)
 end
 --#
 --# == *fs.isfile*(_String_) -> _Boolean_
@@ -115,11 +115,11 @@ end
 --# |boolean| `true` if path is a file
 --# |===
 local fs_isfile = function()
-  T.is_function(fs.isfile)
-  T.is_true(fs.isfile('/etc/passwd'))
-  local re, se = fs.isfile('/dev')
-  T.is_nil(re)
-  T.is_string(se)
+	T.is_function(fs.isfile)
+	T.is_true(fs.isfile("/etc/passwd"))
+	local re, se = fs.isfile("/dev")
+	T.is_nil(re)
+	T.is_string(se)
 end
 --#
 --# == *fs.mkdir*(_String_) -> _Boolean_
@@ -140,10 +140,10 @@ end
 --# |boolean| `true` if successful
 --# |===
 local fs_mkdir = function()
-  T.is_function(fs.mkdir)
-  T.is_true(fs.mkdir('/tmp/fs.mkdir'))
-  T.is_true(fs.isdir('/tmp/fs.mkdir'))
-  T.is_true(fs.rmdir('/tmp/fs.mkdir'))
+	T.is_function(fs.mkdir)
+	T.is_true(fs.mkdir("/tmp/fs.mkdir"))
+	T.is_true(fs.isdir("/tmp/fs.mkdir"))
+	T.is_true(fs.rmdir("/tmp/fs.mkdir"))
 end
 --#
 --# == *fs.rmdir*(_String_) -> _Boolean_
@@ -164,11 +164,11 @@ end
 --# |boolean| `true` if successful
 --# |===
 local fs_rmdir = function()
-  T.is_function(fs.rmdir)
-  T.is_true(fs.mkdir('/tmp/fs.rmdir'))
-  T.is_true(fs.isdir('/tmp/fs.rmdir'))
-  T.is_true(fs.rmdir('/tmp/fs.rmdir'))
-  T.is_nil(fs.isdir('/tmp/fs.rmdir'))
+	T.is_function(fs.rmdir)
+	T.is_true(fs.mkdir("/tmp/fs.rmdir"))
+	T.is_true(fs.isdir("/tmp/fs.rmdir"))
+	T.is_true(fs.rmdir("/tmp/fs.rmdir"))
+	T.is_nil(fs.isdir("/tmp/fs.rmdir"))
 end
 --#
 --# == *fs.chdir*(_String_) -> _Boolean_
@@ -189,12 +189,12 @@ end
 --# |boolean| `true` if successful
 --# |===
 local fs_chdir = function()
-  T.is_function(fs.chdir)
-  T.is_true(fs.mkdir('/tmp/fs.chdir'))
-  T.is_true(fs.chdir('/tmp'))
-  T.is_true(fs.isdir('fs.chdir'))
-  T.is_true(fs.rmdir('fs.chdir'))
-  T.is_nil(fs.isdir('fs.chdir'))
+	T.is_function(fs.chdir)
+	T.is_true(fs.mkdir("/tmp/fs.chdir"))
+	T.is_true(fs.chdir("/tmp"))
+	T.is_true(fs.isdir("fs.chdir"))
+	T.is_true(fs.rmdir("fs.chdir"))
+	T.is_nil(fs.isdir("fs.chdir"))
 end
 --#
 --# == *fs.currentdir*() -> _String_
@@ -209,13 +209,13 @@ end
 --# |string |Current directory path
 --# |===
 local fs_currentdir = function()
-  T.is_function(fs.currentdir)
-  T.is_true(fs.mkdir('/tmp/fs.currentdir'))
-  T.is_true(fs.chdir('/tmp/fs.currentdir'))
-  T.equal(fs.currentdir(), '/tmp/fs.currentdir')
-  T.is_true(fs.chdir('/tmp'))
-  T.is_true(fs.rmdir('fs.currentdir'))
-  T.is_nil(fs.isdir('/tmp/fs.currentdir'))
+	T.is_function(fs.currentdir)
+	T.is_true(fs.mkdir("/tmp/fs.currentdir"))
+	T.is_true(fs.chdir("/tmp/fs.currentdir"))
+	T.equal(fs.currentdir(), "/tmp/fs.currentdir")
+	T.is_true(fs.chdir("/tmp"))
+	T.is_true(fs.rmdir("fs.currentdir"))
+	T.is_nil(fs.isdir("/tmp/fs.currentdir"))
 end
 --#
 --# == *fs.attributes*(_String_) -> _Table_
@@ -249,11 +249,11 @@ end
 --# |blksize |Optimal FS blocksize
 --# |===
 local fs_attributes = function()
-  T.is_function(fs.attributes)
-  local a = fs.attributes('/etc/passwd')
-  T.is_number(a.ino)
-  T.equal('file', a.mode)
-  T.is_nil(fs.attributes('/invalid'))
+	T.is_function(fs.attributes)
+	local a = fs.attributes("/etc/passwd")
+	T.is_number(a.ino)
+	T.equal("file", a.mode)
+	T.is_nil(fs.attributes("/invalid"))
 end
 --#
 --# == *fs.symlinkattributes*(_String_) -> _Table_
@@ -268,11 +268,11 @@ end
 --# |table |Map of attributes, see `fs.attributes` map
 --# |===
 local fs_symlinkattributes = function()
-  T.is_function(fs.symlinkattributes)
-  local a = fs.symlinkattributes('/dev/fd')
-  T.is_number(a.ino)
-  T.equal('link', a.mode)
-  T.is_nil(fs.symlinkattributes('/invalid'))
+	T.is_function(fs.symlinkattributes)
+	local a = fs.symlinkattributes("/dev/fd")
+	T.is_number(a.ino)
+	T.equal("link", a.mode)
+	T.is_nil(fs.symlinkattributes("/invalid"))
 end
 --#
 --# == *fs.link*(_String_, _String_, [,_Boolean_]) -> _Boolean_
@@ -290,13 +290,13 @@ end
 --# |boolean | `true` if successful
 --# |===
 local fs_link = function()
-  T.is_function(fs.link)
-  -- Hardlinks shouldn't work in /tmp
-  T.is_nil(fs.link('/etc/passwd', '/tmp/fs.link'))
-  T.is_true(fs.link('/etc/passwd', '/tmp/fs.link', true))
-  local a = fs.symlinkattributes('/tmp/fs.link')
-  T.equal('link', a.mode)
-  os.remove('/tmp/fs.link')
+	T.is_function(fs.link)
+	-- Hardlinks shouldn't work in /tmp
+	T.is_nil(fs.link("/etc/passwd", "/tmp/fs.link"))
+	T.is_true(fs.link("/etc/passwd", "/tmp/fs.link", true))
+	local a = fs.symlinkattributes("/tmp/fs.link")
+	T.equal("link", a.mode)
+	os.remove("/tmp/fs.link")
 end
 --#
 --# == *fs.dir*(_String_) -> _Function_
@@ -311,17 +311,17 @@ end
 --# |function| An iterator
 --# |===
 local fs_dir = function()
-  T.is_function(fs.dir)
-  T.is_true(fs.mkdir('/tmp/fs.dir'))
-  T.is_true(fs.mkdir('/tmp/fs.dir/1'))
-  T.is_true(fs.mkdir('/tmp/fs.dir/two'))
-  for d, _ in fs.dir('/tmp/fs.dir') do
-    _ = string.find(d, '1', 1, true) or string.find(d, 'two', 1, true)
-    T.is_number(_)
-  end
-  T.is_true(fs.rmdir('/tmp/fs.dir/two'))
-  T.is_true(fs.rmdir('/tmp/fs.dir/1'))
-  T.is_true(fs.rmdir('/tmp/fs.dir'))
+	T.is_function(fs.dir)
+	T.is_true(fs.mkdir("/tmp/fs.dir"))
+	T.is_true(fs.mkdir("/tmp/fs.dir/1"))
+	T.is_true(fs.mkdir("/tmp/fs.dir/two"))
+	for d, _ in fs.dir("/tmp/fs.dir") do
+		_ = string.find(d, "1", 1, true) or string.find(d, "two", 1, true)
+		T.is_number(_)
+	end
+	T.is_true(fs.rmdir("/tmp/fs.dir/two"))
+	T.is_true(fs.rmdir("/tmp/fs.dir/1"))
+	T.is_true(fs.rmdir("/tmp/fs.dir"))
 end
 --#
 --# == *fs.touch*(_String_[, _Number_][, _Number_]) -> _Boolean_
@@ -336,39 +336,39 @@ end
 --# |function| An iterator
 --# |===
 local fs_touch = function()
-  T.is_function(fs.touch)
-  T.is_true(fs.mkdir('/tmp/fs.touch'))
-  T.is_true(fs.touch('/tmp/fs.touch'))
-  T.is_true(fs.rmdir('/tmp/fs.touch'))
+	T.is_function(fs.touch)
+	T.is_true(fs.mkdir("/tmp/fs.touch"))
+	T.is_true(fs.touch("/tmp/fs.touch"))
+	T.is_true(fs.rmdir("/tmp/fs.touch"))
 end
 if included then
-  return function()
-    T['fs.read'] = fs_read
-    T['fs.write'] = fs_write
-    T['fs.isdir'] = fs_isdir
-    T['fs.isfile'] = fs_isfile
-    T['fs.mkdir'] = fs_mkdir
-    T['fs.rmdir'] = fs_rmdir
-    T['fs.chdir'] = fs_chdir
-    T['fs.currentdir'] = fs_currentdir
-    T['fs.attributes'] = fs_attributes
-    T['fs.symlinkattributes'] = fs_symlinkattributes
-    T['fs.link'] = fs_link
-    T['fs.dir'] = fs_dir
-    T['fs.touch'] = fs_touch
-  end
+	return function()
+		T["fs.read"] = fs_read
+		T["fs.write"] = fs_write
+		T["fs.isdir"] = fs_isdir
+		T["fs.isfile"] = fs_isfile
+		T["fs.mkdir"] = fs_mkdir
+		T["fs.rmdir"] = fs_rmdir
+		T["fs.chdir"] = fs_chdir
+		T["fs.currentdir"] = fs_currentdir
+		T["fs.attributes"] = fs_attributes
+		T["fs.symlinkattributes"] = fs_symlinkattributes
+		T["fs.link"] = fs_link
+		T["fs.dir"] = fs_dir
+		T["fs.touch"] = fs_touch
+	end
 else
-  T['fs.read'] = fs_read
-  T['fs.write'] = fs_write
-  T['fs.isdir'] = fs_isdir
-  T['fs.isfile'] = fs_isfile
-  T['fs.mkdir'] = fs_mkdir
-  T['fs.rmdir'] = fs_rmdir
-  T['fs.chdir'] = fs_chdir
-  T['fs.currentdir'] = fs_currentdir
-  T['fs.attributes'] = fs_attributes
-  T['fs.symlinkattributes'] = fs_symlinkattributes
-  T['fs.link'] = fs_link
-  T['fs.dir'] = fs_dir
-  T['fs.touch'] = fs_touch
+	T["fs.read"] = fs_read
+	T["fs.write"] = fs_write
+	T["fs.isdir"] = fs_isdir
+	T["fs.isfile"] = fs_isfile
+	T["fs.mkdir"] = fs_mkdir
+	T["fs.rmdir"] = fs_rmdir
+	T["fs.chdir"] = fs_chdir
+	T["fs.currentdir"] = fs_currentdir
+	T["fs.attributes"] = fs_attributes
+	T["fs.symlinkattributes"] = fs_symlinkattributes
+	T["fs.link"] = fs_link
+	T["fs.dir"] = fs_dir
+	T["fs.touch"] = fs_touch
 end

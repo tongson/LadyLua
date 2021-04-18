@@ -1,5 +1,5 @@
 local included = pcall(debug.getlocal, 4, 1)
-local T = require 'test'
+local T = require("test")
 --# = os
 --# :toc:
 --# :toc-placement!:
@@ -17,13 +17,13 @@ local T = require 'test'
 --# |string |Hostname
 --# |===
 local os_hostname = function()
-  T.is_function(os.hostname)
-  T.is_string(os.hostname())
+	T.is_function(os.hostname)
+	T.is_string(os.hostname())
 end
 if included then
-  return function()
-    T["os.hostname"] = os_hostname
-  end
+	return function()
+		T["os.hostname"] = os_hostname
+	end
 else
-  T["os.hostname"] = os_hostname
+	T["os.hostname"] = os_hostname
 end
