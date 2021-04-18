@@ -101,7 +101,7 @@ Compiling-in modules into LadyLua adds a bit to startup time. Compares vanilla G
 
 |======
 |GopherLua |313.073µs
-|LadyLua |15.328407ms
+|LadyLua |17.086094ms
 |======
 
 === Bloat tracker
