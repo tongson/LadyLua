@@ -784,7 +784,7 @@ ENV.RUN = function(v)
 	B(v)
 end
 ENV.SCRIPT = function(s)
-	local script = [[chroot %s /bin/sh <<-"__58jvnv82_04fimmv"
+	local script = [[chroot %s /bin/sh <<-'__58jvnv82_04fimmv'
 %s
 __58jvnv82_04fimmv
 ]]
