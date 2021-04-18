@@ -31,7 +31,7 @@ local lz4_compress = function()
 	local data = "AAA111ZZZ"
 	local compressed = lz4.compress(data)
 	lz4c.stdin = compressed
-	local r, so, se, err = lz4c({ "-d", "-c" })
+	local r, so = lz4c({ "-d", "-c" })
 	T.is_true(r)
 	T.equal(so, data)
 end
