@@ -40,7 +40,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |inspect     |N      |inspect          |MIT
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
-|lz4         |N      |                 |MIT
+|lz4         |N      |                 |BSD3
 |mysql       |N      |gluasql          |MIT
 |password    |N      |                 |MIT
 |redis       |N      |                 |MIT
