@@ -738,6 +738,7 @@ local Json = require("json")
 ENV.FROM = function(base, cid, assets)
 	Assets = assets or fs.currentdir()
 	Name = cid or require("uid").new()
+	base = base or "scratch"
 	if not cid then
 		local B = Buildah("FROM")
 		B.cmd = {
@@ -757,13 +758,16 @@ ENV.FROM = function(base, cid, assets)
 		})
 	end
 end
-ENV.ADD = function(src, dest, og)
+ENV.ADD = function(src, dest, og, mo)
 	og = og or "root:root"
+	mo = mo or "0700"
 	local B = Buildah("ADD")
 	B.cmd = {
 		"add",
 		"--chown",
 		og,
+		"--chmod",
+		mo,
 		Name,
 		src,
 		dest,
@@ -788,14 +792,14 @@ ENV.SCRIPT = function(s)
 %s
 __58jvnv82_04fimmv
 ]]
-	local str = fs.read(Assets.."/"..s)
+	local str = fs.read(Assets .. "/" .. s)
 	local cwd = Mount()
 	local sh = exec.ctx("sh")
 	local r, so, se, err = sh({
 		"-c",
-		script:format(cwd, str)
+		script:format(cwd, str),
 	})
-  Unmount()
+	Unmount()
 	if r then
 		Ok("SCRIPT", {
 			script = s,
@@ -876,13 +880,20 @@ ENV.APK_ADD = function(v)
 	}
 	B(v)
 end
-ENV.COPY = function(src, dest, og)
+ENV.COPY = function(src, dest, og, mo)
+	if src:sub(1, 1) ~= "/" then
+		src = Assets .. "/" .. src
+	end
+	dest = dest or "/" .. src
 	og = og or "root:root"
+	mo = mo or "0700"
 	local B = Buildah("COPY")
 	B.cmd = {
 		"copy",
 		"--chown",
 		og,
+		"--chmod",
+		mo,
 		Name,
 		src,
 		dest,
@@ -916,7 +927,7 @@ ENV.MKDIR = function(d, mode)
 		})
 	end
 end
-ENV.CHMOD = function(mode, p)
+ENV.CHMOD = function(p, mode)
 	local chmod = exec.ctx("chmod")
 	chmod.cwd = Mount()
 	local r, so, se = chmod({
@@ -984,7 +995,7 @@ ENV.CONFIG = function(config)
 	end
 end
 ENV.ENTRYPOINT = function(...)
-	local entrypoint = Json.encode({...})
+	local entrypoint = Json.encode({ ... })
 	do
 		local B = Buildah("ENTRYPOINT(exe)")
 		B.cmd = {
@@ -1084,7 +1095,6 @@ rm -rf "%s"
 	local B = Buildah("DIR -> TAR")
 	B.cmd = {
 		"commit",
-		"--rm",
 		"--squash",
 		Name,
 		("dir:%s"):format(location),
@@ -1111,7 +1121,7 @@ rm -rf "%s"
 	end
 end
 ENV.PURGE = function(a, opts)
-	if a == "debian" or a == "dpkg" then
+	if a == "debian" or a == "dpkg" or a == "deb" then
 		local xargs = exec.ctx("xargs")
 		xargs.cwd = Mount()
 		xargs.stdin = stdin_dpkg

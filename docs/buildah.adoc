@@ -1,0 +1,273 @@
+= buildah
+:toc:
+:toc-placement!:
+
+A wrapper for https://github.com/containers/buildah[buildah(1)] commands. Create OCI containers in Lua instead of Dockerfile instructions or shell scripts. With buildah you have built-in layer squashing, daemon-less operation, and capability for regular(non-root) users to create containers among other things. This wrapper also has useful abstractions such as removing whole toolchains from the container's filesystem like Alpine apk-tools and Debian apt/dpkg.
+
+A DSL module for LadyLua.
+
+:note-caption: :information_source:
+[NOTE]
+====
+All instructions will signal an exit on error.
+====
+
+:note-caption: :information_source:
+[NOTE]
+====
+Requires buildah(1) and crun(1).
+====
+
+
+toc::[]
+
+== *FROM* ([_IMAGE_][, _ID_][, _ASSETS_])
+Creates a new working container, either from scratch, an image, or using an existing container as a starting point.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|No | string |Container image |scratch   |docker://docker.io/library/debian:buster-slim
+|No |string |A 27-character KSUID. If set, reuses the previously created container with specified ID  |Generated KSUID |1kk...
+|No |string |Assets directory |current directory "." |/home/ed/buildah
+|===
+
+
+== *ADD* (_SOURCE_, _DESTINATION_[, _CHOWN_][, _CHMOD_])
+Adds the contents of a file, URL, or directory to a destination path within the container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |File or URL | |sysctl.conf
+|Yes |string |Path | |/etc/sysctl.conf
+|No  |string |chown string, user and group ownership of destination |root:root |ed:ed
+|No  |string |chmod string, access permissions of destination |0700 |0644
+|===
+
+== *RUN* (_COMMAND_)
+Runs a specified command and arguments using the container's root filesystem as a root filesystem.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Command and arguments as one long string | |apk add vim
+|===
+
+== *SCRIPT* (_FILE_)
+Runs a shell script under the container's root filesystem. Require's a `/bin/sh` inside the container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Shell script, without a leading (/) it reads from the *ASSETS* directory set in `FROM()` | |find_suid.sh
+|===
+
+== *APT_GET* (_COMMAND_)
+Run Debian `apt-get` command and arguments.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |apt-get commands as one long string | |install tmux
+|===
+
+== *APT_PURGE* (_PACKAGE_)
+Run Debian `dpkg --purge` on specified package.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Debian package name | |tmux
+|===
+
+== *APK_UPGRADE* ()
+Run `/sbin/apk upgrade --no-cache --available --no-progress` inside an Alpine Linux container.
+
+No arguments.
+
+== *APK_ADD* (_PACKAGES_)
+Install packages inside an Alpine Linux container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Alpine packages as one long string | |strace
+|===
+
+== *COPY* (_SOURCE_, _DESTINATION_[, _CHOWN_][, _CHMOD_])
+Copy file to a destination path within the container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |File, without a leading (/) it attempts to copy from the *ASSETS* directory set in `FROM()` | |sysctl.conf
+|No |string |Path | Copies _SOURCE_ to the container's root(/) directory |/etc/sysctl.conf
+|No  |string |chown string, user and group ownership of destination |root:root |ed:ed
+|No  |string |chmod string, access permissions of destination |0700 |0644
+|===
+
+== *MKDIR* (_DIRECTORY_[, _MODE_])
+Creates directories and parent directories as needed within the container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Directory | | /home/ed/bin
+|No |string |Directory mode as in chmod(1) | |0700
+|===
+
+== *CHMOD* (_PATH_, _MODE_)
+Runs chmod(1) against the specified path.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Path | | /home/ed/bin
+|Yes |string |Mode | |0700
+|===
+
+== *RM* (_PATH_)
+Deletes specified path(string) or paths(list).
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string or table(list) |Path or paths | |See below
+|===
+
+=== Example
+
+----
+RM("/etc/sysctl.conf")
+paths = {
+  "/etc/sysctl.conf",
+  "/etc/hosts",
+}
+RM(paths)
+----
+
+
+
+== *CONFIG* (_MAP_)
+Apply configuration settings to container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |table(map) |Key-value settings | |See below
+|===
+
+=== Map
+[options="header"]
+|===
+|Key |Description |Example
+|annotation |Annotation | { "annotation": "someting", "another": "something" }
+|arch |Architecture |
+|author |Author |
+|cmd |Default command|
+|comment |Comment |
+|domainname |Domain name|
+|env |environment variable | [ "PATH=/usr/bin" ]
+|healthcheck |Health check command|
+|healthcheck-interval |Health check command interval |
+|healthcheck-retries |Health check command number of retries  |
+|healthcheck-start-period |Amount of time to wait after starting a container before a failed health check counts as a failure |
+|healthcheck-timeout |Maximum time to wait for health check command |
+|hostname |Host name |
+|label |Labels | { "io.buildah.version": "1.20.0" }
+|os |Operating system |
+|port |Ports to expose | []
+|shell |Shell |
+|stop-signal |Signal e.g. SIGTERM |
+|user |Default user |
+|volume |Volume |[]
+|workingdir |Default working directory |
+|===
+
+
+== *ENTRYPOINT* (_..._)
+Apply `--entrypoint`, `--cmd`, and `--stop-signal` in one instruction. A shortcut for common `CONFIG()` settings.
+
+`cmd` is set as `''` and `stop-signal` is `SIGTERM`.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |varargs |Sequence of executable arguments | | "/sbin/tini", "--", "/usr/local/bin/jenkins.sh"
+|===
+
+== *COMMIT* (_NAME_)
+Writes the container into local `containers-storage`. Finalizes and deletes the container being worked on.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Name and tag | | alpine:new
+|===
+
+== *ARCHIVE* (_PATH_)
+Create an OCI archive of the container. Finalizes and deletes the container being worked on.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Destination path for archive | | 
+|===
+
+== *DIR* (_PATH_)
+Writes contents of OCI image into directory. Finalizes and deletes the container being worked on.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Destination path | | 
+|===
+
+== *TAR* (_PATH_)
+Writes contents of container root directory to a TAR file.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Destination path | | 
+|===
+
+== *PURGE* (_OPTION_)
+Purges a set of files and directories from the container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string|See below | | 
+|===
+
+=== Option
+[options="header"]
+|===
+|String |Description
+|deb |apt and dpkg toolchain from Debian-based images
+|perl |Perl
+|apk |apk toolchain from Alpine Linux images
+|userland |common Linux userland 
+|===
+
+
