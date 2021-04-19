@@ -49,7 +49,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |test        |N      |u-test           |MIT
 |uid         |N      |                 |MIT
 |===
-* DSL module
+[*] DSL module
 
 :note-caption: :information_source:
 [NOTE]
