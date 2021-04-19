@@ -87,6 +87,9 @@ require('podman'){
 }
 ----
 
+=== DSL modules
+Instead of HCL or Dockerfile instructions you can possibly abstract subsystems with Lua. See the `buildah` module for an example of a DSL module.
+
 == FAQ
 
 === Why not base off Lua 5.2+?
