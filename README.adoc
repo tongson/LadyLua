@@ -31,6 +31,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 [options="header",width="88%"]
 |===
 |Module      |Global |Source           |License
+|buildah*    |N      |                 |MIT
 |crypto      |N      |gluacrypto       |MIT
 |exec        |Y      |                 |MIT
 |fmt         |Y      |                 |MIT
@@ -48,6 +49,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |test        |N      |u-test           |MIT
 |uid         |N      |                 |MIT
 |===
+* DSL module
 
 :note-caption: :information_source:
 [NOTE]
