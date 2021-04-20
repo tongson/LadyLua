@@ -2,7 +2,7 @@
 :toc:
 :toc-placement!:
 
-A wrapper for https://github.com/containers/buildah[buildah(1)] commands. Create OCI containers in Lua instead of Dockerfile instructions or shell scripts. With buildah you have built-in layer squashing, faster builds, daemon-less operation, and capability for regular(non-root) users to create containers among other things. This wrapper also has useful abstractions such as removing whole toolchains from the container's filesystem like Alpine apk-tools and Debian apt/dpkg.
+A wrapper for https://github.com/containers/buildah[buildah(1)] commands. Create OCI containers in Lua instead of Dockerfile, Containerfile instructions or shell scripts. With buildah you have built-in layer squashing, faster builds, daemon-less operation, and capability for regular(non-root) users to create containers among other things. This wrapper also has useful abstractions such as removing whole toolchains from the container's filesystem like Alpine apk-tools and Debian apt/dpkg.
 
 A DSL module for LadyLua.
 
@@ -58,8 +58,8 @@ Adds the contents of a file, URL, or directory to a destination path within the 
 |Required |Type |Description |Default |Example
 |Yes |string |File or URL | |sysctl.conf
 |Yes |string |Path | |/etc/sysctl.conf
-|No  |string |chown string, user and group ownership of destination |root:root |ed:ed
-|No  |string |chmod string, access permissions of destination |0700 |0644
+|No  |string |chown string, user and group ownership of destination | |ed:ed
+|No  |string |chmod string, access permissions of destination ||0644
 |===
 
 == *RUN* (_COMMAND_)
@@ -137,8 +137,8 @@ Copy file to a destination path within the container.
 |Required |Type |Description |Default |Example
 |Yes |string |File, without a leading (/) it attempts to copy from the *ASSETS* directory set in `FROM()` | |sysctl.conf
 |No |string |Path | Copies _SOURCE_ to the container's root(/) directory |/etc/sysctl.conf
-|No  |string |chown string, user and group ownership of destination |root:root |ed:ed
-|No  |string |chmod string, access permissions of destination |0700 |0644
+|No  |string |chown string, user and group ownership of destination ||ed:ed
+|No  |string |chmod string, access permissions of destination | |0644
 |===
 
 == *MKDIR* (_DIRECTORY_[, _MODE_])
@@ -229,9 +229,9 @@ CONFIG.ENV = "PATH=/usr/bin"
 ----
 
 == *ENTRYPOINT* (_..._)
-Apply `--entrypoint`, `--cmd`, and `--stop-signal` in one instruction. A shortcut for common `CONFIG()` settings.
+Apply `--entrypoint` and `--stop-signal` in one instruction.
 
-`cmd` is set as `''` and `stop-signal` is `SIGTERM`.
+`stop-signal` is `SIGTERM`.
 
 === Arguments
 [options="header"]

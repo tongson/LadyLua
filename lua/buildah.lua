@@ -621,6 +621,7 @@ local list_apk = {
 	"var/lib/apk",
 }
 local Concat = table.concat
+local Insert = table.insert
 local Unpack = unpack
 local Gmatch = string.gmatch
 local Ok = require("stdout").info
@@ -760,19 +761,21 @@ ENV.FROM = function(base, cid, assets)
 	end
 end
 ENV.ADD = function(src, dest, og, mo)
-	og = og or "root:root"
-	mo = mo or "0700"
 	local B = Buildah("ADD")
 	B.cmd = {
 		"add",
-		"--chown",
-		og,
-		"--chmod",
-		mo,
 		Name,
 		src,
 		dest,
 	}
+	if og then
+		Insert(B.cmd, 2, og)
+		Insert(B.cmd, 2, "--chown")
+	end
+	if mo then
+		Insert(B.cmd, 2, mo)
+		Insert(B.cmd, 2, "--chmod")
+	end
 	B.log = {
 		source = src,
 		destination = dest,
@@ -898,19 +901,21 @@ ENV.COPY = function(src, dest, og, mo)
 	if src:sub(1, 1) ~= "/" then
 		src = Assets .. "/" .. src
 	end
-	og = og or "root:root"
-	mo = mo or "0700"
 	local B = Buildah("COPY")
 	B.cmd = {
 		"copy",
-		"--chown",
-		og,
-		"--chmod",
-		mo,
 		Name,
 		src,
 		dest,
 	}
+	if og then
+		Insert(B.cmd, 2, og)
+		Insert(B.cmd, 2, "--chown")
+	end
+	if mo then
+		Insert(B.cmd, 2, mo)
+		Insert(B.cmd, 2, "--chmod")
+	end
 	B.log = {
 		source = src,
 		destination = dest,
@@ -918,15 +923,17 @@ ENV.COPY = function(src, dest, og, mo)
 	B()
 end
 ENV.MKDIR = function(d, mode)
-	mode = mode or "0700"
 	local mkdir = exec.ctx("mkdir")
 	mkdir.cwd = Mount()
-	local r, so, se = mkdir({
-		"-m",
-		mode,
+	local t = {
 		"-p",
 		Trim(d),
-	})
+	}
+	if mode then
+    Insert(t, 2, mode)
+		Insert(t, 2, "-m")
+	end
+  local r, so, se = mkdir(t)
 	Unmount()
 	if r then
 		Ok("MKDIR", {
@@ -1018,19 +1025,6 @@ ENV.ENTRYPOINT = function(...)
 		}
 		B.log = {
 			entrypoint = entrypoint,
-		}
-		B()
-	end
-	do
-		local B = Buildah("ENTRYPOINT(cmd)")
-		B.cmd = {
-			"config",
-			"--cmd",
-			[['']],
-			Name,
-		}
-		B.log = {
-			cmd = [['']],
 		}
 		B()
 	end
