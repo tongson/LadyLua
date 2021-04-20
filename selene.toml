@@ -1,1 +1,4 @@
 std = "ll"
+
+[rules]
+global_usage = "allow"
