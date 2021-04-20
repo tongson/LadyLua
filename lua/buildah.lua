@@ -870,28 +870,14 @@ ENV.APT_PURGE = function(p)
 	B.log = { package = p }
 	B()
 end
-ENV.APK_UPGRADE = function()
-	local B = Buildah("APK_UPGRADE")
+ENV.APK = function(v)
+	local B = Buildah("APK")
 	B.cmd = {
 		"run",
 		Name,
 		"--",
 		"/sbin/apk",
-		"upgrade",
-		"--no-cache",
-		"--available",
 		"--no-progress",
-	}
-	B()
-end
-ENV.APK_ADD = function(v)
-	local B = Buildah("APK_ADD")
-	B.cmd = {
-		"run",
-		Name,
-		"--",
-		"/sbin/apk",
-		"add",
 		"--no-cache",
 	}
 	B(v)
