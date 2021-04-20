@@ -992,21 +992,20 @@ ENV.RM = function(f)
 	Unmount()
 end
 ENV.CONFIG = setmetatable({}, { __newindex = function(_, k, v)
-		k = k:lower()
-		local B = Buildah("CONFIG")
-		B.cmd = {
-			"config",
-			("--%s"):format(k),
-			([[%s]]):format(v),
-			Name,
-		}
-		B.log = {
-			config = k,
-			value = v,
-		}
-		B()
-	end
-})
+	k = k:lower()
+	local B = Buildah("CONFIG")
+	B.cmd = {
+		"config",
+		("--%s"):format(k),
+		([[%s]]):format(v),
+		Name,
+	}
+	B.log = {
+		config = k,
+		value = v,
+	}
+	B()
+end})
 ENV.ENTRYPOINT = function(...)
 	local entrypoint = Json.encode({ ... })
 	do
@@ -1081,20 +1080,17 @@ ENV.COMMIT = function(cname)
 	}
 	B()
 end
-ENV.PUSH = function(cname)
-	Epilogue()
+ENV.PUSH = function(lc, cname)
 	local B = Buildah("PUSH")
 	B.cmd = {
 		"push",
-		"--quiet",
-		("--creds %s"):format(Creds),
-		"--rm",
-		"--squash",
-		Name,
+		"--creds",
+		("%s"):format(Creds),
+		lc,
 		("%s"):format(cname),
 	}
 	B.log = {
-		name = Name,
+		name = lc,
 		url = cname,
 	}
 	B()

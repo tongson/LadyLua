@@ -250,14 +250,15 @@ Writes the container into local `containers-storage`. Finalizes and deletes the 
 |Yes |string |Name and tag | | alpine:new
 |===
 
-== *PUSH* (_URL_)
-Push image to URL, usually a container repository. Finalizes and deletes the container being worked on. Credentials are taken from environment variables `BUILDAH_USER` and `BUILDAH_PASS`.
+== *PUSH* (_NAME_, _URL_)
+Push container image from containers-storage to URL, usually a container repository. Credentials are taken from environment variables `BUILDAH_USER` and `BUILDAH_PASS`.
 
 === Arguments
 [options="header"]
 |===
 |Required |Type |Description |Default |Example
-|Yes |string |URL | | docker://example.com/webapp:new
+|Yes |string |Name | | alpine:edge
+|Yes |string |URL | | docker://example.com/alpine:edge
 |===
 
 == *ARCHIVE* (_PATH_)
