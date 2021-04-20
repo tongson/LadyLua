@@ -2,9 +2,24 @@
 :toc:
 :toc-placement!:
 
-A wrapper for https://github.com/containers/buildah[buildah(1)] commands. Create OCI containers in Lua instead of Dockerfile instructions or shell scripts. With buildah you have built-in layer squashing, daemon-less operation, and capability for regular(non-root) users to create containers among other things. This wrapper also has useful abstractions such as removing whole toolchains from the container's filesystem like Alpine apk-tools and Debian apt/dpkg.
+A wrapper for https://github.com/containers/buildah[buildah(1)] commands. Create OCI containers in Lua instead of Dockerfile instructions or shell scripts. With buildah you have built-in layer squashing, faster builds, daemon-less operation, and capability for regular(non-root) users to create containers among other things. This wrapper also has useful abstractions such as removing whole toolchains from the container's filesystem like Alpine apk-tools and Debian apt/dpkg.
 
 A DSL module for LadyLua.
+
+.*Lint and formatting*
+You can use `selene` and `stylua` for linting and formatting your code. A selene configuration is bundled with https://github.com/tongson/buildah.lua[buildah.lua].
+
+.*Sample*
+Check the `sample` directory in the https://github.com/tongson/buildah.lua[repo] for a sample of a non-trivial Dockerfile converted to Lua.
+
+.*DSL*
+Besides the documented commands below, this DSL module also has a string interpolation extension.
+
+.Example:
+----
+JENKINS_HOME = "/var/jenkins_home"
+CONFIG.ENV = "JENKINS_HOME=%s" % JENKINS_HOME
+----
 
 :note-caption: :information_source:
 [NOTE]
@@ -58,7 +73,7 @@ Runs a specified command and arguments using the container's root filesystem as 
 |===
 
 == *SCRIPT* (_FILE_)
-Runs a shell script under the container's root filesystem. Require's a `/bin/sh` inside the container.
+Runs a shell script under the container's root filesystem.
 
 === Arguments
 [options="header"]
@@ -66,6 +81,17 @@ Runs a shell script under the container's root filesystem. Require's a `/bin/sh`
 |Required |Type |Description |Default |Example
 |Yes |string |Shell script, without a leading (/) it reads from the *ASSETS* directory set in `FROM()` | |find_suid.sh
 |===
+
+== *SH* (_COMMAND_)
+Runs a shell command under the container's root filesystem. Require's a `/bin/sh` inside the container.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |Command as one long string | |echo "something" | md5sum
+|===
+
 
 == *APT_GET* (_COMMAND_)
 Run Debian `apt-get` command and arguments.
@@ -163,40 +189,44 @@ RM(paths)
 == *CONFIG* (_MAP_)
 Apply configuration settings to container.
 
-=== Arguments
+=== Usage
 [options="header"]
 |===
-|Required |Type |Description |Default |Example
-|Yes |table(map) |Key-value settings | |See below
+|Required |Type |Description 
+|Yes | map |Key(string)-Value(string)
 |===
 
 === Map
 [options="header"]
 |===
 |Key |Description |Example
-|annotation |Annotation | { "annotation": "someting", "another": "something" }
-|arch |Architecture |
-|author |Author |
-|cmd |Default command|
-|comment |Comment |
-|domainname |Domain name|
-|env |environment variable | [ "PATH=/usr/bin" ]
+|ANNOTATION|Annotation |
+|ARCH|Architecture |
+|AUTHOR|Author |
+|CMD|Default command|
+|COMMENT|Comment |
+|DOMAINNAME|Domain name|
+|ENV|environment variable | 
 |healthcheck |Health check command|
 |healthcheck-interval |Health check command interval |
 |healthcheck-retries |Health check command number of retries  |
 |healthcheck-start-period |Amount of time to wait after starting a container before a failed health check counts as a failure |
 |healthcheck-timeout |Maximum time to wait for health check command |
-|hostname |Host name |
-|label |Labels | { "io.buildah.version": "1.20.0" }
-|os |Operating system |
-|port |Ports to expose | []
-|shell |Shell |
-|stop-signal |Signal e.g. SIGTERM |
-|user |Default user |
-|volume |Volume |[]
-|workingdir |Default working directory |
+|HOSTNAME|Host name |
+|LABEL|Labels |
+|OS|Operating system |
+|PORT|Ports to expose |
+|SHELL|Shell |
+|STOP-SIGNAL |Signal e.g. SIGTERM |
+|USER|Default user |
+|VOLUME|Volume |/home/e
+|WORKINGDIR|Default working directory |
 |===
 
+=== Example
+----
+CONFIG.ENV = "PATH=/usr/bin"
+----
 
 == *ENTRYPOINT* (_..._)
 Apply `--entrypoint`, `--cmd`, and `--stop-signal` in one instruction. A shortcut for common `CONFIG()` settings.
@@ -218,6 +248,16 @@ Writes the container into local `containers-storage`. Finalizes and deletes the 
 |===
 |Required |Type |Description |Default |Example
 |Yes |string |Name and tag | | alpine:new
+|===
+
+== *PUSH* (_URL_)
+Push image to URL, usually a container repository. Finalizes and deletes the container being worked on. Credentials are taken from environment variables `BUILDAH_USER` and `BUILDAH_PASS`.
+
+=== Arguments
+[options="header"]
+|===
+|Required |Type |Description |Default |Example
+|Yes |string |URL | | docker://example.com/webapp:new
 |===
 
 == *ARCHIVE* (_PATH_)

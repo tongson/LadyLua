@@ -621,6 +621,7 @@ local list_apk = {
 	"var/lib/apk",
 }
 local Concat = table.concat
+local Unpack = unpack
 local Gmatch = string.gmatch
 local Ok = require("stdout").info
 local Panic = function(msg, tbl)
@@ -675,7 +676,7 @@ local Name, Assets
 local Creds
 do
 	local ruser = os.getenv("BUILDAH_USER")
-	local rpass = os.getenv("BUILDAH_PASSWORD")
+	local rpass = os.getenv("BUILDAH_PASS")
 	if ruser and rpass then
 		Creds = ruser .. ":" .. rpass
 	end
@@ -787,6 +788,18 @@ ENV.RUN = function(v)
 	}
 	B(v)
 end
+ENV.SH = function(sc)
+	local B = Buildah("SH")
+	B.cmd = {
+		"run",
+		Name,
+		"--",
+		"/bin/sh",
+		"-c",
+		sc,
+	}
+	B()
+end
 ENV.SCRIPT = function(s)
 	local script = [[chroot %s /bin/sh <<-'__58jvnv82_04fimmv'
 %s
@@ -831,9 +844,9 @@ ENV.APT_GET = function(v)
 		"-o",
 		"Dpkg::Use-Pty=0",
 		"-o",
-		[[Dpkg::Options::='--force-confnew']],
+		[[Dpkg::Options::=--force-confnew]],
 		"-o",
-		[[DPkg::options::='--force-unsafe-io']],
+		[[DPkg::Options::=--force-unsafe-io]],
 	}
 	B(v)
 end
@@ -881,10 +894,10 @@ ENV.APK_ADD = function(v)
 	B(v)
 end
 ENV.COPY = function(src, dest, og, mo)
+	dest = dest or "/" .. src
 	if src:sub(1, 1) ~= "/" then
 		src = Assets .. "/" .. src
 	end
-	dest = dest or "/" .. src
 	og = og or "root:root"
 	mo = mo or "0700"
 	local B = Buildah("COPY")
@@ -978,13 +991,13 @@ ENV.RM = function(f)
 	end
 	Unmount()
 end
-ENV.CONFIG = function(config)
-	for k, v, B in pairs(config) do
-		B = Buildah("CONFIG")
+ENV.CONFIG = setmetatable({}, { __newindex = function(_, k, v)
+		k = k:lower()
+		local B = Buildah("CONFIG")
 		B.cmd = {
 			"config",
 			("--%s"):format(k),
-			([['%s']]):format(v),
+			([[%s]]):format(v),
 			Name,
 		}
 		B.log = {
@@ -993,7 +1006,7 @@ ENV.CONFIG = function(config)
 		}
 		B()
 	end
-end
+})
 ENV.ENTRYPOINT = function(...)
 	local entrypoint = Json.encode({ ... })
 	do
@@ -1065,6 +1078,24 @@ ENV.COMMIT = function(cname)
 	B.log = {
 		name = Name,
 		image = cname,
+	}
+	B()
+end
+ENV.PUSH = function(cname)
+	Epilogue()
+	local B = Buildah("PUSH")
+	B.cmd = {
+		"push",
+		"--quiet",
+		("--creds %s"):format(Creds),
+		"--rm",
+		"--squash",
+		Name,
+		("%s"):format(cname),
+	}
+	B.log = {
+		name = Name,
+		url = cname,
 	}
 	B()
 end
@@ -1183,6 +1214,15 @@ ENV.PURGE = function(a, opts)
 				stderr = se,
 			})
 		end
+	end
+end
+getmetatable("").__mod = function(a, b)
+	if not b then
+		return a
+	elseif type(b) == "table" then
+		return a:format(Unpack(b))
+	else
+		return a:format(b)
 	end
 end
 setfenv(3, ENV)
