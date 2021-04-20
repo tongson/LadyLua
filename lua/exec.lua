@@ -25,7 +25,7 @@ exec.cmd = function(exe)
 			if a and type(a) == "table" then
 				args = a
 			end
-			local r, so, se = exec.command(exe, args, set.env, set.cwd, set.stdin)
+			local r, so, se, cerr = exec.command(exe, args, set.env, set.cwd, set.stdin)
 			local pretty_prefix = function(header, prefix, str)
 				if len(str) > 0 then
 					local replacement = format("\n %s > ", prefix)
@@ -36,7 +36,7 @@ exec.cmd = function(exe)
 				end
 			end
 			if set.errexit == true and r == nil then
-				local err = set.error or "execution failed"
+				local err = cerr or set.error or "execution failed"
 				local header = format('exec.cmd: `%s` => "%s"', exe, err)
 				if len(so) < 1 and len(se) < 1 then
 					return fmt.panic("%s\n", header)
