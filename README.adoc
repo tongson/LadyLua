@@ -4,7 +4,11 @@
 
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
-Current release: *0.5.1 Failed Siesta* +
+Current release: *0.5.2 Yelling Petunia* +
++ buildah: Removed default cmd config in ENTRYPOINT() +
++ buildah: Removed default arguments from MKDIR(), COPY(), ADD() +
+
+*0.5.1 Failed Siesta* +
 + Fix buildah PUSH() +
 
 *0.5.0 Surplus Siesta* +
