@@ -4,7 +4,7 @@
 
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
-Current release: *0.5.3 Epidura Dollop* +
+Current release: *0.5.3 Epidural Dollop* +
 + buildah: Consolidate APK command +
 
 *0.5.2 Yelling Petunia* +
