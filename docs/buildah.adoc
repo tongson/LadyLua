@@ -120,7 +120,7 @@ Run APK command inside an Alpine Linux container.
 [options="header"]
 |===
 |Required |Type |Description |Default |Example
-|Yes |string |APK command as one long string | |APK("add tmux")
+|Yes |string |APK command as one long string | |add tmux
 |===
 
 == *COPY* (_SOURCE_, _DESTINATION_[, _CHOWN_][, _CHMOD_])
