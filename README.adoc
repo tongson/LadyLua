@@ -9,7 +9,7 @@ Current release: *0.5.0 Surplus Siesta* +
 + New module "lz4" +
 + Selene configuration +
 + Removed redundant string.line_to_list() +
-+ string.to_map() +
++ Added string.to_map() +
 + Add fourth return value for exec.command +
 
 toc::[]
