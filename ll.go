@@ -92,6 +92,7 @@ Available options are:
 	L.PreloadModule("password", passwordLoader)
 	L.PreloadModule("mysql", mysql.Loader)
 	L.PreloadModule("lz4", lz4Loader)
+	L.PreloadModule("telegram", telegramLoader)
 	{ // Saves less than 200KiB if removed
 		zerolog.TimeFieldFormat = time.RFC3339
 		stdout := zerolog.New(os.Stdout)
