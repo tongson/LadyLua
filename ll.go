@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"github.com/chzyer/readline"
 	"github.com/cjoudrey/gluahttp"
-	"github.com/cosmotek/loguago"
-	"github.com/rs/zerolog"
 	gluacrypto "github.com/tengattack/gluacrypto/crypto"
 	mysql "github.com/tengattack/gluasql/mysql"
 	"github.com/yuin/gopher-lua"
@@ -94,15 +92,7 @@ Available options are:
 	L.PreloadModule("lz4", lz4Loader)
 	L.PreloadModule("telegram", telegramLoader)
 	L.PreloadModule("pushover", pushoverLoader)
-	{ // Saves less than 200KiB if removed
-		zerolog.TimeFieldFormat = time.RFC3339
-		stdout := zerolog.New(os.Stdout)
-		stderr := zerolog.New(os.Stderr)
-		stdoutLog := loguago.NewLogger(stdout.With().Timestamp().Logger())
-		stderrLog := loguago.NewLogger(stderr.With().Timestamp().Logger())
-		L.PreloadModule("stdout", stdoutLog.Loader)
-		L.PreloadModule("stderr", stderrLog.Loader)
-	}
+	L.PreloadModule("logger", loggerLoader)
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
 	L.SetField(nsExec, "command", L.NewFunction(execCommand))
