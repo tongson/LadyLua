@@ -52,6 +52,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |inspect     |N      |inspect          |MIT
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
+|logger      |N      |                 |MIT
 |lz4         |N      |                 |BSD3
 |mysql       |N      |gluasql          |MIT
 |password    |N      |                 |MIT
@@ -111,8 +112,8 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 
 == Statistics and numbers
 |=======================
-|Tests |146/146
-|Static executable bytes |8470528
+|Tests |153/153
+|Static executable bytes |8474624
 |=======================
 
 === Startup time
