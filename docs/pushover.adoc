@@ -1,0 +1,30 @@
+= pushover
+:toc:
+:toc-placement!:
+
+Send Pushover messages via the API.
+
+toc::[]
+
+== *pushover.new*()
+
+Initialize object to access methods below. Requires a valid token in the environment variable `PUSHOVER_TOKEN`.
+
+== *:message*(_String_, _String_)
+
+Send a message to device.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string| Device ID
+|string| message
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string| Response from API
+|===
