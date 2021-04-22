@@ -620,14 +620,20 @@ local list_apk = {
 	"usr/share/apk",
 	"var/lib/apk",
 }
+local Notify = function()
+end
 local Concat = table.concat
 local Insert = table.insert
 local Unpack = unpack
 local Gmatch = string.gmatch
-local Ok = require("stdout").info
+local Ok = function(msg, tbl)
+	local stdout = require("logger").new("stdout")
+	stdout.info(msg, tbl)
+end
 local Panic = function(msg, tbl)
-	local stderr = require("stderr").error
+	local stderr = require("logger").new()
 	stderr(msg, tbl)
+	Notify(msg, tbl)
 	os.exit(1)
 end
 local Trim = function(s)
@@ -662,6 +668,15 @@ local Buildah = function(msg)
 				set.log.error = err
 				Panic(msg, set.log)
 			else
+				local final = {
+					COMMIT = true,
+					PUSH = true,
+					ARCHIVE = true,
+					DIR = true,
+				}
+				if final[msg] then
+					Notify(msg, set.log)
+				end
 				Ok(msg, set.log)
 			end
 		end,
@@ -737,6 +752,25 @@ local Epilogue = function()
 	Unmount()
 end
 local Json = require("json")
+ENV.NOTIFY = setmetatable({}, {
+	__newindex = function(_, k, v)
+		Notify = function(msg, tbl)
+			tbl.message = msg
+			local payload = Json.encode(tbl)
+			local key = k:upper()
+			if key == "TELEGRAM" then
+				local telegram = require("telegram")
+				local api = telegram.new()
+				api.channel(v, payload)
+			end
+			if key == "PUSHOVER" then
+				local pushover = require("pushover")
+				local api = pushover.new()
+				api.message(v, payload)
+			end
+		end
+	end,
+})
 ENV.FROM = function(base, cid, assets)
 	Assets = assets or fs.currentdir()
 	Name = cid or require("uid").new()
@@ -916,10 +950,10 @@ ENV.MKDIR = function(d, mode)
 		Trim(d),
 	}
 	if mode then
-    Insert(t, 2, mode)
+		Insert(t, 2, mode)
 		Insert(t, 2, "-m")
 	end
-  local r, so, se = mkdir(t)
+	local r, so, se = mkdir(t)
 	Unmount()
 	if r then
 		Ok("MKDIR", {
@@ -984,21 +1018,23 @@ ENV.RM = function(f)
 	end
 	Unmount()
 end
-ENV.CONFIG = setmetatable({}, { __newindex = function(_, k, v)
-	k = k:lower()
-	local B = Buildah("CONFIG")
-	B.cmd = {
-		"config",
-		("--%s"):format(k),
-		([[%s]]):format(v),
-		Name,
-	}
-	B.log = {
-		config = k,
-		value = v,
-	}
-	B()
-end})
+ENV.CONFIG = setmetatable({}, {
+	__newindex = function(_, k, v)
+		k = k:lower()
+		local B = Buildah("CONFIG")
+		B.cmd = {
+			"config",
+			("--%s"):format(k),
+			([[%s]]):format(v),
+			Name,
+		}
+		B.log = {
+			config = k,
+			value = v,
+		}
+		B()
+	end,
+})
 ENV.ENTRYPOINT = function(...)
 	local entrypoint = Json.encode({ ... })
 	do
