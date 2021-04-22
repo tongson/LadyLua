@@ -1,0 +1,38 @@
+= logger
+:toc:
+:toc-placement!:
+
+Structured logging to STDERR, STDOUT, or file.
+A https://github.com/rs/zerolog[zerolog] wrapper.
+
+toc::[]
+
+== *logger.new*()
+
+Initialize object to access methods below.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |`stdout`, `stderr`, or path to a file, default is `stderr`
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|userdata| Userdata with methods below
+|===
+
+== *:{info, debug, warn, error}* (_String_, _Table_)
+
+Log to specified log level.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string| message
+|table | key-value map
+|===
