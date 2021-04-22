@@ -10,6 +10,13 @@ toc::[]
 
 Initialize object to access methods below. Requires a valid BOT token in the environment variable `TELEGRAM_TOKEN`.
 
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|userdata| Userdata containing methods below
+|===
+
 == *:channel*(_String_, _String_)
 
 Post a channel message.

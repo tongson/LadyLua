@@ -13,6 +13,13 @@ local bot
 --# == *telegram.new*()
 --#
 --# Initialize object to access methods below. Requires a valid BOT token in the environment variable `TELEGRAM_TOKEN`.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |userdata| Userdata containing methods below
+--# |===
 local telegram_new = function()
 	T.is_function(telegram.new)
 	bot = telegram.new()
