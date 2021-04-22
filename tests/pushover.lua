@@ -13,6 +13,13 @@ local api
 --# == *pushover.new*()
 --#
 --# Initialize object to access methods below. Requires a valid token in the environment variable `PUSHOVER_TOKEN`.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |userdata| Userdata with methods below
+--# |===
 local pushover_new = function()
 	T.is_function(pushover.new)
 	api = pushover.new()
