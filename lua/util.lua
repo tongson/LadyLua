@@ -219,6 +219,30 @@ util.try_f = function(fn)
   end
 end
 
+util.sleep = function(s)
+	local time = os.time
+	local nt = time() + s
+	repeat
+	until time() > nt
+end
+
+util.retry_f = function(fn, t)
+	t = t or 3
+	return function(...)
+		local n, e = fn(...)
+		local r = 0
+		while not n do
+			if r == t then
+				break
+			end
+			r = r + 1
+			util.sleep(5)
+			n, e = fn(...)
+		end
+		return n, e
+	end
+end
+
 util.hm = function()
   return date("%H:%M")
 end
@@ -442,3 +466,4 @@ function util.is_arglist(object)
 end
 
 return util
+
