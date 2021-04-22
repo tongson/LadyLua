@@ -51,8 +51,6 @@ var pushoverExports = map[string]lua.LGFunction{
 func pushoverLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), pushoverExports)
 	L.Push(mod)
-	L.SetField(mod, "_DEBUG", lua.LBool(false))
-	L.SetField(mod, "_VERSION", lua.LString("0.0.0"))
 	pushoverRegister(L)
 	return 1
 }

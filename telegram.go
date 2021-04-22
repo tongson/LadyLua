@@ -69,8 +69,6 @@ var telegramExports = map[string]lua.LGFunction{
 func telegramLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), telegramExports)
 	L.Push(mod)
-	L.SetField(mod, "_DEBUG", lua.LBool(false))
-	L.SetField(mod, "_VERSION", lua.LString("0.0.0"))
 	telegramRegister(L)
 	return 1
 }
