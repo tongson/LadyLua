@@ -23,7 +23,7 @@ func telegramMessage(L *lua.LState) int {
 	bot := telegramCheck(L)
 	if bot == nil {
 		L.Push(lua.LNil)
-		L.Push(lua.LString("Initializing with Telegram token failed."))
+		L.Push(lua.LString("telegram.message: Initializing with Telegram token failed."))
 		return 2
 	}
 	i := L.CheckInt64(2)
@@ -42,7 +42,7 @@ func telegramChannelMessage(L *lua.LState) int {
 	bot := telegramCheck(L)
 	if bot == nil {
 		L.Push(lua.LNil)
-		L.Push(lua.LString("Initializing with Telegram token failed."))
+		L.Push(lua.LString("telegram.channel: Initializing with Telegram token failed."))
 		return 1
 	}
 	c := L.CheckString(2)
