@@ -23,7 +23,7 @@ func pushoverMessage(L *lua.LState) int {
 	p := pushoverCheck(L)
 	if p == nil {
 		L.Push(lua.LNil)
-		L.Push(lua.LString("Initializing with Pushover token failed."))
+		L.Push(lua.LString("pushover.message: Initializing with Pushover token failed."))
 		return 2
 	}
 	r := L.CheckString(2)
