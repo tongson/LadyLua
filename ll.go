@@ -92,6 +92,7 @@ Available options are:
 	L.PreloadModule("lz4", lz4Loader)
 	L.PreloadModule("telegram", telegramLoader)
 	L.PreloadModule("pushover", pushoverLoader)
+	L.PreloadModule("slack", slackLoader)
 	L.PreloadModule("logger", loggerLoader)
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
