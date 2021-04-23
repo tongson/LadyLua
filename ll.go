@@ -94,6 +94,7 @@ Available options are:
 	L.PreloadModule("pushover", pushoverLoader)
 	L.PreloadModule("slack", slackLoader)
 	L.PreloadModule("logger", loggerLoader)
+	L.PreloadModule("fsnotify", fsnLoader)
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
 	L.SetField(nsExec, "command", L.NewFunction(execCommand))
