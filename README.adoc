@@ -58,6 +58,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |password    |N      |                 |MIT
 |pushover    |N      |                 |MIT
 |redis       |N      |                 |MIT
+|slack       |N      |                 |MIT
 |telegram    |N      |                 |MIT
 |template    |N      |etlua            |MIT
 |test        |N      |u-test           |MIT
@@ -113,7 +114,7 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 == Statistics and numbers
 |=======================
 |Tests |153/153
-|Static executable bytes |8474624
+|Static executable bytes |8708096
 |=======================
 
 === Startup time
@@ -131,6 +132,7 @@ Modules that adds significant bloat to the interpreter. If you don't need these 
 |http |3-4MiB
 |redis |800KiB
 |mysql |500KiB
+|slack |230KiB
 |======
 
 === Benchmark
