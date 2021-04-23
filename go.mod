@@ -20,6 +20,7 @@ require (
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	github.com/tengattack/gluacrypto v0.0.0-8bf181b63bba
 	github.com/tengattack/gluasql v0.0.0-2e5ed630c4cf
+	github.com/yuin/gluamapper v0.0.0-20150323120927-d836955830e7
 	github.com/yuin/gopher-lua v0.0.0-20200816102855-ee81675732da
 	layeh.com/gopher-json v0.0.0-552bb3c4c3bf
 	layeh.com/gopher-lfs v0.0.0-d5fb28581d14
