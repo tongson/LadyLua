@@ -179,7 +179,28 @@ paths = {
 RM(paths)
 ----
 
+== *NOTIFY* (_MAP_)
+Send start and end instruction notification.
 
+=== Usage
+[options="header"]
+|===
+|Required |Type |Description 
+|Yes | map |Key(string)-Value(string)
+|===
+
+=== Map
+[options="header"]
+|===
+|Key |Description |Example
+|TELEGRAM|Send to Telegram channel, requires TELEGRAM_TOKEN environment variable| string: "-123123123"
+|PUSHOVER|Send to Pushover registered device, requires PUSHOVER_TOKEN environment variable| string: "a09mfg9349vmv"
+|===
+
+=== Example
+----
+NOTIFY.TELEGRAM = "-30390312"
+----
 
 == *CONFIG* (_MAP_)
 Apply configuration settings to container.

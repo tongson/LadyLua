@@ -620,6 +620,7 @@ local list_apk = {
 	"usr/share/apk",
 	"var/lib/apk",
 }
+local Notify_Toggle = {}
 local Notify = function()
 end
 local Concat = table.concat
@@ -628,11 +629,13 @@ local Unpack = unpack
 local Gmatch = string.gmatch
 local Ok = function(msg, tbl)
 	local stdout = require("logger").new("stdout")
-	stdout.info(msg, tbl)
+	tbl._ident = "buildah.lua"
+	stdout:info(msg, tbl)
 end
 local Panic = function(msg, tbl)
 	local stderr = require("logger").new()
-	stderr(msg, tbl)
+	tbl._ident = "buildah.lua"
+	stderr:error(msg, tbl)
 	Notify(msg, tbl)
 	os.exit(1)
 end
@@ -754,19 +757,41 @@ end
 local Json = require("json")
 ENV.NOTIFY = setmetatable({}, {
 	__newindex = function(_, k, v)
+		local key = k:upper()
+		Notify_Toggle[key] = v
 		Notify = function(msg, tbl)
+			local util = require("util")
 			tbl.message = msg
+			tbl.time = util.timestamp()
+			tbl._ident = "buildah.lua"
 			local payload = Json.encode(tbl)
-			local key = k:upper()
-			if key == "TELEGRAM" then
+			if Notify_Toggle.TELEGRAM then
 				local telegram = require("telegram")
 				local api = telegram.new()
-				api.channel(v, payload)
+				local send = util.retry_f(api.channel)
+				send(api, Notify_Toggle.TELEGRAM, payload)
 			end
-			if key == "PUSHOVER" then
+			if Notify_Toggle.PUSHOVER then
 				local pushover = require("pushover")
 				local api = pushover.new()
-				api.message(v, payload)
+				local send = util.retry_f(api.message)
+				send(api, Notify_Toggle.PUSHOVER, payload)
+			end
+			if Notify_Toggle.SLACK then
+				local slack = require("slack")
+				local attachment = {
+					Fallback = payload,
+					Color = "#2eb886",
+					AuthorName = tbl.name,
+					AuthorSubname = tbl.message,
+					AuthorLink = "https://github.com/tongson/buildah.lua",
+					AuthorIcon = "https://avatars2.githubusercontent.com/u/652790",
+					Text = "```"..payload.."```",
+					Footer = "buildah.lua",
+					FooterIcon = "https://platform.slack-edge.com/img/default_application_icon.png",
+				}
+				local send = util.retry_f(slack.attachment)
+				send(attachment)
 			end
 		end
 	end,
@@ -787,8 +812,10 @@ ENV.FROM = function(base, cid, assets)
 			image = base,
 			name = Name,
 		}
+		Notify("FROM", { base = base, name = Name })
 		B()
 	else
+		Notify("FROM", { base = "reusing", name = Name })
 		Ok("Reusing existing container", {
 			name = Name,
 		})
