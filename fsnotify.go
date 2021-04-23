@@ -105,7 +105,7 @@ func fsnWrite(L *lua.LState) int {
 	}
 }
 
-func fsnDelete(L *lua.LState) int {
+func fsnRemove(L *lua.LState) int {
 	var got bool
 	var ero string
 	watcher, err := fsnotify.NewWatcher()
@@ -124,7 +124,7 @@ func fsnDelete(L *lua.LState) int {
 				if !ok {
 					return
 				}
-				if event.Op&fsnotify.Delete == fsnotify.Delete {
+				if event.Op&fsnotify.Remove == fsnotify.Remove {
 					got = true
 					close(done)
 					return
