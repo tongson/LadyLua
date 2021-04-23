@@ -1,0 +1,58 @@
+= fsnotify
+:toc:
+:toc-placement!:
+
+Wait for filesystem create, delete, and write events.
+
+toc::[]
+
+== *fsnotify.create*(_String_) -> _Boolean_
+Wait for a create event on path.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Path to wait on
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if create event happened
+|===
+
+== *fsnotify.write*(_String_) -> _Boolean_
+Wait for a write event on path.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Path to wait on
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if write event happened
+|===
+
+== *fsnotify.delete*(_String_) -> _Boolean_
+Wait for a delete event on path.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Path to wait on
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if delete event happened
+|===
