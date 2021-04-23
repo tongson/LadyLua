@@ -1,5 +1,5 @@
 local included = pcall(debug.getlocal, 4, 1)
-local T = require 'test'
+local T = require("test")
 local slack = require("slack")
 --# = slack
 --# :toc:
@@ -9,8 +9,27 @@ local slack = require("slack")
 --#
 --# toc::[]
 --#
---# == *slack.webhook*(_Table_) -> _Boolean_
---# Send webhook containing values from the argument. Requires the string after the `https://hooks.slack.com/services/` URL in the `SLACK_WEBHOOK` environment variable.
+--# == *slack.message*(_String_) -> _Boolean_
+--# Send webhook text. Requires the string after the `https://hooks.slack.com/services/` URL in the `SLACK_WEBHOOK` environment variable.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Message
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |boolean| `true` if successful
+--# |===
+local slack_message = function()
+	T.is_function(slack.message)
+end
+--# == *slack.attachment*(_Table_) -> _Boolean_
+--# Send webhook attachment containing values from the argument. Requires the string after the `https://hooks.slack.com/services/` URL in the `SLACK_WEBHOOK` environment variable.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
@@ -25,13 +44,15 @@ local slack = require("slack")
 --# |Type |Description
 --# |boolean| `true` if successful
 --# |===
-local slack_webhook = function()
-  T.is_function(slack.webhook)
+local slack_attachment = function()
+	T.is_function(slack.attachment)
 end
 if included then
-  return function()
-    T["slack.webhook"] = slack_webhook
-  end
+	return function()
+		T["slack.message"] = slack_message
+		T["slack.attachment"] = slack_attachment
+	end
 else
-  T["slack.webhook"] = slack_webhook
+	T["slack.message"] = slack_message
+	T["slack.attachment"] = slack_attachment
 end
