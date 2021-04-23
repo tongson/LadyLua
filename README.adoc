@@ -47,7 +47,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |exec        |Y      |                 |MIT
 |fmt         |Y      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
-|fsnotify    |Y      |                 |MIT
+|fsnotify    |N      |                 |MIT
 |html        |N      |                 |MIT
 |http        |N      |gluahttp         |MIT
 |inspect     |N      |inspect          |MIT
