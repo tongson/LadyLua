@@ -74,7 +74,12 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |test        |N      |u-test           |MIT
 |uid         |N      |                 |MIT
 |===
-[*] DSL module
+
+:note-caption: :information_source:
+[NOTE]
+====
+* DSL modules are single Lua source that are loaded from the current working directory.
+====
 
 :note-caption: :information_source:
 [NOTE]
@@ -132,7 +137,7 @@ Compiling-in modules into LadyLua adds a bit to startup time. Compares vanilla G
 
 |======
 |GopherLua |313.073µs
-|LadyLua |18.061141ms
+|LadyLua |14.980909ms
 |======
 
 === Bloat tracker
