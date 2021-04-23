@@ -10,7 +10,7 @@ Current release: *0.6.0 Gummy Mastiff* +
 + New module: slack +
 + New module: logger +
 + New module: fsnotify +
-+ Converted redis module to object:method style +
++ redis: converted to object:method style +
 + buildah: New NOTIFY settings +
 
 *0.5.3 Epidural Dollop* +
