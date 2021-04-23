@@ -5,7 +5,7 @@ local fsnotify = require("fsnotify")
 --# :toc:
 --# :toc-placement!:
 --#
---# Wait for filesystem create, delete, and write events.
+--# Wait for filesystem create, delete, and write events. All functions block until the specified event is detected.
 --#
 --# toc::[]
 --#
