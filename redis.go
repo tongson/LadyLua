@@ -9,27 +9,31 @@ import (
 
 var ctx = context.Background()
 
-func rdbClient(L *lua.LState) int {
-	addr := L.CheckString(1)
-	pass := L.CheckString(2)
-	db := int(L.CheckNumber(3))
-	rdb := redis.NewClient(&redis.Options{
-		Addr:     addr,
-		Password: pass,
-		DB:       db,
-	})
-	client := L.NewUserData()
-	client.Value = rdb
-	L.Push(client)
-	return 1
+const (
+	REDIS_TYPE = "redis{client}"
+)
+
+var redisApi = map[string]lua.LGFunction{}
+
+func redisCheck(L *lua.LState) *redis.Client {
+	ud := L.CheckUserData(1)
+	if v, ok := ud.Value.(*redis.Client); ok {
+		return v
+	} else {
+		return nil
+	}
 }
 
-func rdbSet(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisSet(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.set: Invalid Redis client."))
+		return 2
+	}
 	key := L.CheckString(2)
 	value := L.CheckString(3)
-	expiration := time.Duration(L.CheckNumber(4))
+	expiration := time.Duration(L.OptNumber(4, 0))
 	err := rdb.Set(ctx, key, value, expiration).Err()
 	if err != nil {
 		L.Push(lua.LNil)
@@ -41,9 +45,13 @@ func rdbSet(L *lua.LState) int {
 	}
 }
 
-func rdbGet(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisGet(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.get: Invalid Redis client."))
+		return 2
+	}
 	key := L.CheckString(2)
 	value, err := rdb.Get(ctx, key).Result()
 	if err == redis.Nil {
@@ -60,9 +68,13 @@ func rdbGet(L *lua.LState) int {
 	}
 }
 
-func rdbDel(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisDel(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.del: Invalid Redis client."))
+		return 2
+	}
 	key := L.CheckString(2)
 	n, err := rdb.Del(ctx, key).Result()
 	if err != nil {
@@ -75,9 +87,13 @@ func rdbDel(L *lua.LState) int {
 	}
 }
 
-func rdbIncr(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisIncr(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.incr: Invalid Redis client."))
+		return 2
+	}
 	key := L.CheckString(2)
 	n, err := rdb.Incr(ctx, key).Result()
 	if err != nil {
@@ -90,9 +106,13 @@ func rdbIncr(L *lua.LState) int {
 	}
 }
 
-func rdbHSet(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisHSet(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.hset: Invalid Redis client."))
+		return 2
+	}
 	key := L.CheckString(2)
 	t := L.CheckTable(3)
 	fv := make(map[string]interface{})
@@ -110,9 +130,13 @@ func rdbHSet(L *lua.LState) int {
 	}
 }
 
-func rdbHGet(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisHGet(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.hget: Invalid Redis client."))
+		return 2
+	}
 	key := L.CheckString(2)
 	field := L.CheckString(3)
 	v, err := rdb.HGet(ctx, key, field).Result()
@@ -130,15 +154,19 @@ func rdbHGet(L *lua.LState) int {
 	}
 }
 
-func rdbHDel(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisHDel(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.hdel: Invalid Redis client."))
+		return 2
+	}
 	key := L.CheckString(2)
 	field := L.CheckString(3)
 	n, err := rdb.HDel(ctx, key, field).Result()
 	if err != nil {
 		L.Push(lua.LNil)
-		L.Push(lua.LString("redis.del: Error deleting key."))
+		L.Push(lua.LString("redis.hdel: Error deleting key."))
 		return 2
 	} else {
 		L.Push(lua.LNumber(n))
@@ -146,9 +174,13 @@ func rdbHDel(L *lua.LState) int {
 	}
 }
 
-func rdbClose(L *lua.LState) int {
-	ud := L.CheckUserData(1)
-	rdb := ud.Value.(*redis.Client)
+func redisClose(L *lua.LState) int {
+	rdb := redisCheck(L)
+	if rdb == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("redis.close: Invalid Redis client."))
+		return 2
+	}
 	err := rdb.Close()
 	if err != nil {
 		L.Push(lua.LNil)
@@ -160,21 +192,45 @@ func rdbClose(L *lua.LState) int {
 	}
 }
 
+var redisMethods = map[string]lua.LGFunction{
+	"set":   redisSet,
+	"get":   redisGet,
+	"del":   redisDel,
+	"incr":  redisIncr,
+	"hset":  redisHSet,
+	"hget":  redisHGet,
+	"hdel":  redisHDel,
+	"close": redisClose,
+}
+
+var redisExports = map[string]lua.LGFunction{
+	"client": redisClient,
+}
+
 func redisLoader(L *lua.LState) int {
-	t := L.NewTable()
-	L.SetFuncs(t, redisApi)
-	L.Push(t)
+	mod := L.SetFuncs(L.NewTable(), redisExports)
+	L.Push(mod)
+	redisRegister(L)
 	return 1
 }
 
-var redisApi = map[string]lua.LGFunction{
-	"client": rdbClient,
-	"set":    rdbSet,
-	"get":    rdbGet,
-	"del":    rdbDel,
-	"incr":   rdbIncr,
-	"hset":   rdbHSet,
-	"hget":   rdbHGet,
-	"hdel":   rdbHDel,
-	"close":  rdbClose,
+func redisRegister(L *lua.LState) {
+	mt := L.NewTypeMetatable(REDIS_TYPE)
+	L.SetField(mt, "__index", L.SetFuncs(L.NewTable(), redisMethods))
+}
+
+func redisClient(L *lua.LState) int {
+	addr := L.OptString(1, "127.0.0.1:6379")
+	pass := L.OptString(2, "")
+	db := int(L.OptNumber(3, 0))
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     addr,
+		Password: pass,
+		DB:       db,
+	})
+	ud := L.NewUserData()
+	ud.Value = rdb
+	L.SetMetatable(ud, L.GetTypeMetatable(REDIS_TYPE))
+	L.Push(ud)
+	return 1
 }

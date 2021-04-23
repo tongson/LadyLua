@@ -103,7 +103,6 @@ Available options are:
 	patchLoader(L, "string")
 	globalLoader(L, "fmt")
 	L.PreloadModule("redis", redisLoader)
-	patchLoader(L, "redis")
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	L.SetField(preload, "kapow", luaLoader(L, "kapow"))
 	L.SetField(preload, "util", luaLoader(L, "util"))
