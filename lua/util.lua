@@ -243,6 +243,16 @@ util.retry_f = function(fn, t)
 	end
 end
 
+util.trim_leading = function(s, l)
+	local n = 1
+	local c = sub(s, n, n)
+	while c == l do
+		n = n + 1
+		c = sub(s, n, n)
+	end
+	return sub(s, n)
+end
+
 util.hm = function()
   return date("%H:%M")
 end
