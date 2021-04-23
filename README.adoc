@@ -114,8 +114,8 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 
 == Statistics and numbers
 |=======================
-|Tests |153/153
-|Static executable bytes |8708096
+|Tests |152/152
+|Static executable bytes |8744960
 |=======================
 
 === Startup time
@@ -123,7 +123,7 @@ Compiling-in modules into LadyLua adds a bit to startup time. Compares vanilla G
 
 |======
 |GopherLua |313.073µs
-|LadyLua |18.086094ms
+|LadyLua |18.061141ms
 |======
 
 === Bloat tracker
