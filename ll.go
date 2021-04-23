@@ -19,8 +19,8 @@ import (
 
 var start time.Time
 
-const versionNumber = "0.6.0"
-const codeName = "\"Gummy Mastiff\""
+const versionNumber = "0.7.0"
+const codeName = "\"Negligent Clamshell\""
 
 func main() {
 	start = time.Now()
