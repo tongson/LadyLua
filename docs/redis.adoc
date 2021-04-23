@@ -6,7 +6,7 @@ Access Redis and run Redis commands.
 
 toc::[]
 
-== *redis.new*([_String_][, _String_][, _Number_]) -> _Table_
+== *redis.client*([_String_][, _String_][, _Number_]) -> _Userdata_
 Create a new Redis client connection. The return value is an object for performing redis commands.
 
 === Arguments
@@ -22,21 +22,21 @@ Create a new Redis client connection. The return value is an object for performi
 [options="header",width="72%"]
 |===
 |Type |Description
-|table |Object that you can index into to perform commands
+|userdata |Object that you can index into to perform commands
 |===
 
 === Example
 ----
 local redis = require 'redis'
-local rdb = redis.new()
-rdb.get('key')
+local rdb = redis.client()
+rdb:get('key')
 ...
 ----
 
-== *close*()
+== *:close*()
 Close redis client connection.
 
-== *del*(_String_) -> _Number_
+== *:del*(_String_) -> _Number_
 Removes the specified keys. A key is ignored if it does not exist.
 
 === Arguments
@@ -53,7 +53,7 @@ Removes the specified keys. A key is ignored if it does not exist.
 |Number |The number of keys that were removed, 1 if successful, 0 otherwise
 |===
 
-== *set*(_String_, _String_) -> _Boolean_
+== *:set*(_String_, _String_) -> _Boolean_
 Set key to hold the string value. If key already holds a value, it is overwritten, regardless of its type. Any previous time to live associated with the key is discarded on successful SET operation.
 
 === Arguments
@@ -71,7 +71,7 @@ Set key to hold the string value. If key already holds a value, it is overwritte
 |boolean |If successful, `true`
 |===
 
-== *get*(_String_, _String_) -> _String_
+== *:get*(_String_, _String_) -> _String_
 Get the value of key.
 
 === Arguments
@@ -88,7 +88,7 @@ Get the value of key.
 |string |Value
 |===
 
-== *incr*(_String) -> _Number_
+== *:incr*(_String) -> _Number_
 Increments the number stored at key by one. If the key does not exist, it is set to 0 before performing the operation.
 
 === Arguments
@@ -105,7 +105,7 @@ Increments the number stored at key by one. If the key does not exist, it is set
 |number |Value of key after the increment
 |===
 
-== *hset*(_String_, _Table_) -> _Boolean_
+== *:hset*(_String_, _Table_) -> _Boolean_
 Sets field in the hash stored at key to value from a table(map). If key does not exist, a new key holding a hash is created. If field already exists in the hash, it is overwritten.
 
 === Arguments
@@ -123,7 +123,7 @@ Sets field in the hash stored at key to value from a table(map). If key does not
 |boolean |If successful, `true`
 |===
 
-== *hget*(_String_, _String_) -> _String_
+== *:hget*(_String_, _String_) -> _String_
 Returns the value associated with field in the hash stored at key.
 
 === Arguments
