@@ -11,7 +11,7 @@ local api
 --#
 --# toc::[]
 --#
---# == *logger.new*()
+--# == *logger.new*() -> _Userdata_
 --#
 --# Initialize object to access methods below.
 --#
