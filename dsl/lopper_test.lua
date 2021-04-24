@@ -51,4 +51,12 @@ T["SCRIPT #3"] = function()
 	T.is_string("SHOULD EXECUTE THIS TEST")
 end
 NOTIFY("end SCRIPT test")
+
+NOTIFY("start interpolation test...")
+text = "%s" % "one"
+T["interpolation"] = function()
+	T.equal(text, "one")
+end
+NOTIFY("end interpolation test")
+
 T.summary()
