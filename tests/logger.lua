@@ -34,6 +34,23 @@ local logger_new = function()
 	T.is_userdata(api)
 end
 --#
+--# == *logger.time*() -> _String_
+--#
+--# Get same timestamp format used in logs.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string| Timestamp
+--# |===
+local logger_time = function()
+	T.is_function(logger.time)
+	local t = logger.time()
+	T.is_string(t)
+end
+
+--#
 --# == *:{info, debug, warn, error}* (_String_, _Table_)
 --#
 --# Log to specified log level.
@@ -73,6 +90,7 @@ end
 if included then
 	return function()
 		T["logger.new"] = logger_new
+		T["logger.time"] = logger_time
 		T[":info"] = logger_info
 		T[":debug"] = logger_debug
 		T[":warn"] = logger_warn
@@ -81,6 +99,7 @@ if included then
 	end
 else
 	T["logger.new"] = logger_new
+	T["logger.time"] = logger_time
 	T[":info"] = logger_info
 	T[":debug"] = logger_debug
 	T[":warn"] = logger_warn

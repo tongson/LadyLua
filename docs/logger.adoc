@@ -7,7 +7,7 @@ A https://github.com/rs/zerolog[zerolog] wrapper.
 
 toc::[]
 
-== *logger.new*()
+== *logger.new*() -> _Userdata_
 
 Initialize object to access methods below.
 
@@ -23,6 +23,17 @@ Initialize object to access methods below.
 |===
 |Type |Description
 |userdata| Userdata with methods below
+|===
+
+== *logger.time*() -> _String_
+
+Get same timestamp format used in logs.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string| Timestamp
 |===
 
 == *:{info, debug, warn, error}* (_String_, _Table_)
