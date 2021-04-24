@@ -79,7 +79,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 :note-caption: :information_source:
 [NOTE]
 ====
-* DSL modules are single Lua source that are loaded from the current working directory.
+[*] DSL modules are single Lua source that are loaded from the current working directory.
 ====
 
 :note-caption: :information_source:
