@@ -35,6 +35,23 @@ local lz4_compress = function()
 	T.is_true(r)
 	T.equal(so, data)
 end
+--#	
+--# == *lz4.decompress*(_String_) -> _String_
+--# Decompress lz4 data.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Compressed
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Decompressed data
+--# |===
 local lz4_decompress = function()
 	local crypto = require("crypto")
 	T.is_function(lz4.decompress)
