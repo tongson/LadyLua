@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"fmt"
 )
 
 var loggerFile *os.File
@@ -27,6 +28,14 @@ func loggerInit(logger zerolog.Logger) *loggerT {
 
 var loggerExports = map[string]lua.LGFunction{
 	"new": loggerNew,
+	"time": loggerTime,
+}
+
+func loggerTime(L *lua.LState) int {
+	p := fmt.Sprintf
+	t := time.Now()
+	L.Push(lua.LString(p(t.Format(time.RFC3339))))
+	return 1
 }
 
 func loggerCheck(L *lua.LState) *loggerT {
