@@ -66,6 +66,11 @@ T["interpolation #2"] = function()
 end
 NOTIFY("end interpolation test")
 
-
+NOTIFY("start env test...")
+dummy = require("lopper_dummy")
+T["environment does not cross"] = function()
+	T.is_nil(dummy.test())
+end
+NOTIFY("end env test")
 
 T.summary()
