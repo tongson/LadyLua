@@ -108,7 +108,6 @@ Available options are:
 	L.SetField(preload, "kapow", luaLoader(L, "kapow"))
 	L.SetField(preload, "util", luaLoader(L, "util"))
 	L.SetField(preload, "test", luaLoader(L, "test"))
-	L.SetField(preload, "inspect", luaLoader(L, "inspect"))
 	L.SetField(preload, "template", luaLoader(L, "template"))
 
 	if opt_m > 0 {

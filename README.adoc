@@ -65,7 +65,6 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |fsnotify    |N      |                 |MIT
 |html        |N      |                 |MIT
 |http        |N      |gluahttp         |MIT
-|inspect     |N      |inspect          |MIT
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
 |logger      |N      |                 |MIT
