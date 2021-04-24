@@ -36,6 +36,4 @@ replace github.com/cjoudrey/gluahttp => ./external/gluahttp
 
 replace github.com/tengattack/gluacrypto => ./external/gluacrypto
 
-replace github.com/cosmotek/loguago => ./external/loguago
-
 replace github.com/tengattack/gluasql => ./external/gluasql
