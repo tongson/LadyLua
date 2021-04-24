@@ -22,3 +22,20 @@ Compress data.
 |Type |Description
 |string |Compressed binary data
 |===
+
+== *lz4.decompress*(_String_) -> _String_
+Decompress lz4 data.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Compressed
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Decompressed data
+|===
