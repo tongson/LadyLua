@@ -73,4 +73,13 @@ T["environment does not cross"] = function()
 end
 NOTIFY("end env test")
 
+NOTIFY("start string metatable test...")
+dummy = require("lopper_dummy")
+T["string metatable is global"] = function()
+	T.equal(dummy.interpolation(), "yes")
+end
+NOTIFY("end string metatable test")
+
+
+
 T.summary()
