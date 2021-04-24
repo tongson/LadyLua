@@ -1,0 +1,113 @@
+= bitcask
+:toc:
+:toc-placement!:
+
+Wrapper to https://github.com/prologic/bitcask[Bitcask].
+
+toc::[]
+
+== *bitcask.open*(_String_) -> _Userdata_
+Open a database. Creates a new database if it does not exists.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Path for directory hierarchy
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|userdata |Database lock
+|===
+
+== *:put*(_String_, _String_) -> _Boolean_
+Write key-value to database.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|string |Value
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if succesful
+|===
+
+== *:get*(_String_) -> _String_
+Fetch value with matching key.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Value
+|===
+
+== *:has*(_String_) -> _Boolean_
+Returns true if the key exists in the database, false otherwise.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if found, `false` otherwise
+|===
+
+== *:delete*(_String_) -> _Boolean_
+Delete key and value from database.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Key
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if successful
+|===
+
+== *:sync*() -> _Boolean_
+Flush buffers to disk ensuring all data is written
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if successful
+|===
+
+== *:close*() -> _Boolean_
+Release database lock.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if successful
+|===
