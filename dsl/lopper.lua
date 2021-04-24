@@ -83,6 +83,36 @@ local Exec = function(exe, t)
 		end,
 	})
 end
+
+local Cmd = function(exe)
+	local set = {}
+	return setmetatable(set, {
+		__call = function(_, ...)
+			local msg = exe:upper()
+			local log = {}
+			local a = {}
+			if select("#", ...) == 1 then
+				if type(...) == "table" then
+					a = ...
+				else
+					Panic()
+				end
+			else
+				a = {...}
+			end
+			local r, so, se, err = exec.command(exe, a, set.env, set.cwd, set.stdin)
+			log.stdout = so
+			log.stderr = se
+			if not r and not set.IGNORE then
+				log.error = err
+				Panic(msg, log)
+			else
+				Ok(msg, log)
+			end
+		end,
+	})
+end
+
 local ENV = {}
 setmetatable(ENV, {
 	__index = function(_, value)
@@ -122,6 +152,10 @@ ENV.SCRIPT = setmetatable({}, {
 		})
 	end,
 })
+ENV.CMD = function(exe)
+	return Cmd(exe)
+end
+
 getmetatable("").__mod = function(a, b)
 	if not b then
 		return a
