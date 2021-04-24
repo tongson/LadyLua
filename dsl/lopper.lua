@@ -23,8 +23,8 @@ local Panic = function(msg, tbl)
 end
 local Notify_Function = function(msg, tbl, bool)
 	tbl = tbl or {}
-	if bool then
-		Ok(msg, tbl) --> will not execute during Panic.
+	if bool then   --> If called as NOTIFY()
+		Ok(msg, tbl) --> will not execute during Panic()
 	end
 	tbl._ident = DSL
 	tbl._ksuid = ID
