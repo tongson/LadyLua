@@ -51,7 +51,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 [options="header",width="88%"]
 |===
 |Module      |Global |Source           |License
-|buildah*    |N      |                 |MIT
+|buildah*    |       |                 |MIT
 |crypto      |N      |gluacrypto       |MIT
 |exec        |Y      |                 |MIT
 |fmt         |Y      |                 |MIT
@@ -63,6 +63,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
 |logger      |N      |                 |MIT
+|lopper*     |       |                 |MIT
 |lz4         |N      |                 |BSD3
 |mysql       |N      |gluasql          |MIT
 |password    |N      |                 |MIT
