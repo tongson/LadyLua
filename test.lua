@@ -40,11 +40,5 @@ end
 T["module => UIdalov/u-test"] = function()
   T.is_function(T.is_function)
 end
-T["module => kikito/inspect"] = function()
-  local inspect = require 'inspect'
-  local t = { 1, 2 }
-  T.is_function(inspect.inspect)
-  T.equal(inspect(t), '{ 1, 2 }')
-end
 T['built-in => fs'] = dofile 'tests/fs.lua'
 T.summary()
