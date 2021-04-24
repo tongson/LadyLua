@@ -79,6 +79,10 @@ local Exec = function(exe, t)
 				Panic(msg, log)
 			else
 				Ok(msg, log)
+				t.CWD = nil
+				t.STDIN = nil
+				t.ENV = nil
+				t.IGNORE = nil
 			end
 		end,
 	})
