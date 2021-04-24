@@ -54,9 +54,18 @@ NOTIFY("end SCRIPT test")
 
 NOTIFY("start interpolation test...")
 text = "%s" % "one"
-T["interpolation"] = function()
+T["interpolation #1"] = function()
 	T.equal(text, "one")
 end
 NOTIFY("end interpolation test")
+
+NOTIFY("start interpolation test...")
+text = "%s:%s" %  { "one", "two" }
+T["interpolation #2"] = function()
+	T.equal(text, "one:two")
+end
+NOTIFY("end interpolation test")
+
+
 
 T.summary()
