@@ -72,10 +72,10 @@ if included then
 	return function()
 		T["fsnotify.create"] = fsnotify_create
 		T["fsnotify.write"] = fsnotify_write
-		T["fsnotify.delete"] = fsnotify_delete
+		T["fsnotify.remove"] = fsnotify_remove
 	end
 else
 	T["fsnotify.create"] = fsnotify_create
 	T["fsnotify.write"] = fsnotify_write
-	T["fsnotify.delete"] = fsnotify_delete
+	T["fsnotify.remove"] = fsnotify_remove
 end
