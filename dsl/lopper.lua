@@ -18,13 +18,13 @@ local Panic = function(msg, tbl)
 	tbl._ident = DSL
 	tbl._ksuid = ID
 	stderr:error(msg, tbl)
-	Notify(msg, tbl) --> notification on failure! Last cry before dying.
+	Notify(msg, tbl)     --> notification on failure! Last cry before dying
 	os.exit(1)
 end
 local Notify_Function = function(msg, tbl, bool)
 	tbl = tbl or {}
-	if bool then   --> If called as NOTIFY()
-		Ok(msg, tbl) --> will not execute during Panic()
+	if bool then         --> If called as NOTIFY()
+		Ok(msg, tbl)       --> will not execute during Panic()
 	end
 	tbl._ident = DSL
 	tbl._ksuid = ID
