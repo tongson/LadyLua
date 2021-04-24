@@ -60,7 +60,7 @@ local Notify_Function = function(msg, tbl, bool)
 		send(attachment)
 	end
 end
-local Exec = function(exe, t)
+local Exec = function(exe, t)  --> Second argument is the metatable
 	local fn = exec.ctx(exe)
 	local msg = exe:upper()
 	local set = {}
@@ -135,7 +135,7 @@ ENV.NOTIFY = setmetatable({}, {
 })
 ENV.SH = setmetatable({}, {
 	__newindex = function(t, k, v)
-		rawset(t, k, v)
+		rawset(t, k, v)    --> Use the metatable to store settings
 	end,
 	__call = function(t, sc)
 		local sh = Exec("sh", t)
@@ -147,7 +147,7 @@ ENV.SH = setmetatable({}, {
 })
 ENV.SCRIPT = setmetatable({}, {
 	__newindex = function(t, k, v)
-		rawset(t, k, v)
+		rawset(t, k, v)    --> Use the metatable to store settings
 	end,
 	__call = function(t, sc)
 		local sh = Exec("sh", t)
