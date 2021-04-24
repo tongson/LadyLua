@@ -253,6 +253,16 @@ util.trim_leading = function(s, l)
 	return sub(s, n)
 end
 
+-- Add to target in place and return added items
+util.append_to_list = function(target, a)
+  local t = {}
+  for k in a:gmatch("%S+") do
+    target[#target + 1] = k
+    t[#t + 1] = k
+  end
+  return t
+end
+
 util.hm = function()
   return date("%H:%M")
 end
