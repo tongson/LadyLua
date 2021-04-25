@@ -9,6 +9,7 @@ Next release: *0.7.0 Negligent Clamshell* +
 + New function: logger.time() +
 + New DSL module: Lopper +
 + Removed inspect module +
++ New function: crypto.valid_hmac +
 
 Current release: *0.6.0 Gummy Mastiff* +
 + New module: telegram +
