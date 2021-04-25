@@ -13,7 +13,7 @@ var exports = map[string]lua.LGFunction{
 	"sha256":        sha256Fn,
 	"sha512":        sha512Fn,
 	"hmac":          hmacFn,
-	"valid_hmac":    validSha256Fn,
+	"valid_hmac":    validHmacFn,
 	"encrypt":       encryptFn,
 	"decrypt":       decryptFn,
 }

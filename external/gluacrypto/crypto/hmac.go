@@ -51,7 +51,7 @@ func hmacFn(L *lua.LState) int {
 	return 1
 }
 
-func validSha256Fn(L *lua.LState) int {
+func validHmacFn(L *lua.LState) int {
 	algorithm := L.CheckString(1)
 	message := L.CheckString(2)
 	key := L.CheckString(3)
