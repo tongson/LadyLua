@@ -135,7 +135,7 @@ local crypto_hmac = function()
 end
 --#
 --# == *crypto.valid_hmac*(_String_, _String_, _String_, _String_) -> _Boolean_
---# Compare SHA256 MACs in a way that avoids side-channel attacks.
+--# Compare MACs in a way that avoids side-channel attacks.
 --#
 --# === Arguments
 --# [width="72%"]
