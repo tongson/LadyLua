@@ -140,7 +140,7 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 
 == Statistics and numbers
 |=======================
-|Tests |168/168
+|Tests |171/171
 |Static executable bytes |9269248
 |=======================
 
