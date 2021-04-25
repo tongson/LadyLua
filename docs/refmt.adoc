@@ -1,0 +1,41 @@
+= refmt
+:toc:
+:toc-placement!:
+
+Convert between JSON and YAML.
+
+toc::[]
+
+== *refmt.yaml*(_String_) -> _String_
+Convert JSON to YAML.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |YAML
+|===
+
+== *refmt.json*(_String_) -> _String_
+Convert YAML to JSON.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |YAML
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON
+|===
