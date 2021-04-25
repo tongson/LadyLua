@@ -96,6 +96,7 @@ Available options are:
 	L.PreloadModule("logger", loggerLoader)
 	L.PreloadModule("fsnotify", fsnLoader)
 	L.PreloadModule("bitcask", bitcaskLoader)
+	L.PreloadModule("refmt", refmtLoader)
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
 	L.SetField(nsExec, "command", L.NewFunction(execCommand))
