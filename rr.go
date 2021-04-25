@@ -52,6 +52,7 @@ func rrRunFn(L *lua.LState) int {
 		L.Push(lua.LString(err.Error()))
 		return 2
 	}
+	hostname := lua.LVAsString(mt.RawGetH(lua.LString("hostname")))
 	isDir := StatPath("directory")
 	isFile := StatPath("file")
 	var sh strings.Builder
@@ -59,9 +60,8 @@ func rrRunFn(L *lua.LState) int {
 	tenv := L.NewTable()
 	namespace := L.CheckString(2)
 	script := L.CheckString(3)
-	hostname := L.OptString(4, "localhost")
-	arg := L.OptTable(5, targ)
-	env := L.OptTable(6, tenv)
+	arg := L.OptTable(4, targ)
+	env := L.OptTable(5, tenv)
 	if !isDir(namespace) {
 		L.Push(lua.LNil)
 		L.Push(lua.LString("rr: Namespace argument is not a directory."))
@@ -264,7 +264,7 @@ func rrLoader(L *lua.LState) int {
 }
 
 var rrMethods = map[string]lua.LGFunction{
-	"run": rrRunFn,
+	"run":  rrRunFn,
 	"done": rrEndFn,
 }
 
