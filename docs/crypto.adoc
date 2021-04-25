@@ -103,3 +103,21 @@ Data integrity and authenticity code computation.
 |===
 |string |Code
 |===
+
+== *crypto.valid_hmac*(_String_, _String_, _String_, _String_) -> _Boolean_
+Compare SHA256 MACs in a way that avoids side-channel attacks.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Hash function, example: `sha256`
+|string |Message
+|string |Secret key
+|string |Raw output from crypto.hmac()
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean |`true` if valid
+|===

@@ -133,6 +133,32 @@ local crypto_hmac = function()
 	local expected = "37e711dea769fa0bda063d4752ef54c3fc0f5940fda3d1683b5cd1873b421bdc"
 	T.equal(C.hmac("sha256", "AAA", "KEY"), expected)
 end
+--#
+--# == *crypto.valid_hmac*(_String_, _String_, _String_, _String_) -> _Boolean_
+--# Compare SHA256 MACs in a way that avoids side-channel attacks.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string |Hash function, example: `sha256`
+--# |string |Message
+--# |string |Secret key
+--# |string |Raw output from crypto.hmac()
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |boolean |`true` if valid
+--# |===
+local crypto_valid_hmac = function()
+  local mac = C.hmac("sha256", "AAA", "KEY", true)
+	local bool = C.valid_hmac("sha256", "AAA", "KEY", mac)
+	T.is_true(bool)
+	mac = C.hmac("sha256", "AA", "KEY", true)
+	bool = C.valid_hmac("sha256", "AAA", "KEY", mac)
+	T.is_false(bool)
+end
 if included then
 	return function()
 		T["crypto.base64_encode"] = crypto_base64_encode
@@ -141,6 +167,7 @@ if included then
 		T["crypto.sha256"] = crypto_sha256
 		T["crypto.sha512"] = crypto_sha512
 		T["crypto.hmac"] = crypto_hmac
+		T["crypto.valid_hmac"] = crypto_valid_hmac
 	end
 else
 	T["crypto.base64_encode"] = crypto_base64_encode
@@ -149,4 +176,5 @@ else
 	T["crypto.sha256"] = crypto_sha256
 	T["crypto.sha512"] = crypto_sha512
 	T["crypto.hmac"] = crypto_hmac
+  T["crypto.valid_hmac"] = crypto_valid_hmac
 end
