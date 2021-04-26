@@ -1,6 +1,6 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
---# = uid
+--# = ksuid
 --# :toc:
 --# :toc-placement!:
 --#
@@ -8,7 +8,7 @@ local T = require("test")
 --#
 --# toc::[]
 --#
---# == *uid.new*() -> _String_
+--# == *ksuid.new*() -> _String_
 --# Generate an ID.
 --#
 --# === Returns
@@ -17,8 +17,8 @@ local T = require("test")
 --# |Type |Description
 --# |string |ksuid string
 --# |===
-local uid_new = function()
-	local U = require("uid")
+local ksuid_new = function()
+	local U = require("ksuid")
 	T.is_function(U.new)
 	local s = U.new()
 	local n = U.new()
@@ -28,8 +28,8 @@ local uid_new = function()
 end
 if included then
 	return function()
-		T["uid.new"] = uid_new
+		T["ksuid.new"] = ksuid_new
 	end
 else
-	T["uid.new"] = uid_new
+	T["ksuid.new"] = ksuid_new
 end

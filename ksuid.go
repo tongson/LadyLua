@@ -5,18 +5,18 @@ import (
 	"github.com/yuin/gopher-lua"
 )
 
-func uidNew(L *lua.LState) int {
+func ksuidNew(L *lua.LState) int {
 	L.Push(lua.LString(ksuid.New().String()))
 	return 1
 }
 
-func uidLoader(L *lua.LState) int {
+func ksuidLoader(L *lua.LState) int {
 	t := L.NewTable()
-	L.SetFuncs(t, uidApi)
+	L.SetFuncs(t, ksuidApi)
 	L.Push(t)
 	return 1
 }
 
-var uidApi = map[string]lua.LGFunction{
-	"new": uidNew,
+var ksuidApi = map[string]lua.LGFunction{
+	"new": ksuidNew,
 }

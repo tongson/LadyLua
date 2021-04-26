@@ -85,7 +85,7 @@ Available options are:
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
-	L.PreloadModule("uid", uidLoader)
+	L.PreloadModule("ksuid", ksuidLoader)
 	L.PreloadModule("html", htmlLoader)
 	L.PreloadModule("password", passwordLoader)
 	L.PreloadModule("mysql", mysql.Loader)
