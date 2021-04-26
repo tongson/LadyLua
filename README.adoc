@@ -13,6 +13,7 @@ Next release: *0.7.0 Negligent Clamshell* +
 + DSL modules no longer embedded +
 + New module: refmt +
 + New module: rr +
++ Rename module uid to ksuid +
 
 Current release: *0.6.0 Gummy Mastiff* +
 + New module: telegram +
@@ -75,6 +76,7 @@ Check the `docs` directory for more information about these modules.
 |http        |N      |gluahttp         |MIT
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
+|ksuid       |N      |                 |MIT
 |logger      |N      |                 |MIT
 |lz4         |N      |                 |BSD3
 |mysql       |N      |gluasql          |MIT
@@ -87,7 +89,6 @@ Check the `docs` directory for more information about these modules.
 |telegram    |N      |                 |MIT
 |template    |N      |etlua            |MIT
 |test        |N      |u-test           |MIT
-|uid         |N      |                 |MIT
 |===
 
 :note-caption: :information_source:
