@@ -75,7 +75,7 @@ end
 --#
 --# == *:done*() -> _Boolean_
 --#
---# rr.ctx() may change the current directory. This method reverts the directory.
+--# `rr.ctx()` may change the current directory. This method reverts the directory.
 --#
 --# === Returns
 --# [options="header",width="72%"]
