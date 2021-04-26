@@ -70,6 +70,19 @@ util.path_split = function(path)
     return sub(path, 1, l - 1), sub(path, l + 1)
   end
 end
+util.split_at_char = function(str, char)
+  local l = str:len()
+  local c = str:sub(l, l)
+  while l > 0 and c ~= char do
+    l = l - 1
+    c = str:sub(l, l)
+  end
+  if l == 0 then
+    return nil, str
+  else
+    return str:sub(1, l - 1), str:sub(l + 1)
+  end
+end
 
 util.path_apply = function(fn, dir)
   local t = {}
