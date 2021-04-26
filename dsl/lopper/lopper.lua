@@ -1,5 +1,5 @@
 local DSL = "Lopper"
-local ID = require("uid").new()
+local ID = require("ksuid").new()
 local json = require("json")
 local util = require("util")
 local logger = require("logger")
