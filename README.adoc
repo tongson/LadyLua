@@ -80,6 +80,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |pushover    |N      |                 |MIT
 |redis       |N      |                 |MIT
 |refmt       |N      |                 |MIT
+|rr          |N      |                 |MIT
 |slack       |N      |                 |MIT
 |telegram    |N      |                 |MIT
 |template    |N      |etlua            |MIT
@@ -140,8 +141,8 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 
 == Statistics and numbers
 |=======================
-|Tests |171/171
-|Static executable bytes |9269248
+|Tests |175/175
+|Static executable bytes |9310208
 |=======================
 
 === Startup time
