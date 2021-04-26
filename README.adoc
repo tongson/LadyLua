@@ -62,7 +62,6 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 [options="header",width="88%"]
 |===
 |Module      |Global |Source           |License
-|buildah*    |       |                 |MIT
 |bitcask     |N      |                 |MIT
 |crypto      |N      |gluacrypto       |MIT
 |exec        |Y      |                 |MIT
@@ -74,7 +73,6 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
 |logger      |N      |                 |MIT
-|lopper*     |       |                 |MIT
 |lz4         |N      |                 |BSD3
 |mysql       |N      |gluasql          |MIT
 |password    |N      |                 |MIT
@@ -92,14 +90,18 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 :note-caption: :information_source:
 [NOTE]
 ====
-[*] DSL modules are single Lua source that are loaded from the current working directory.
-====
-
-:note-caption: :information_source:
-[NOTE]
-====
 If it says *N* in the *Global* field, you need to `require()` it.
 ====
+
+== DSL modules
+Lua modules are single file Lua source that are loaded from the current working directory.
+
+[options="header",width="50%"]
+|===
+|Module
+|buildah
+|lopper
+|===
 
 [NOTE]
 ====
