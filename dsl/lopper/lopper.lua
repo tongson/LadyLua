@@ -14,9 +14,30 @@ local Ok = function(msg, tbl)
 	stdout:info(msg, tbl)
 end
 local Panic = function(msg, tbl)
+	local trace = function()
+		local start_frame = 2
+		local frame = start_frame
+		local ln
+		local src
+		while true do
+			local info = debug.getinfo(frame, "Sl")
+			if not info then
+				break
+			end
+			if info.what == "main" and info.source ~= "<string>" then
+				ln = tostring(info.currentline)
+				src = info.source
+			end
+			frame = frame + 1
+		end
+		return src, ln
+	end
+	local src, ln = trace()
 	local stderr = logger.new()
 	tbl._ident = DSL
 	tbl._ksuid = ID
+	tbl._line_number = ln
+	tbl._source = src
 	stderr:error(msg, tbl)
 	Notify(msg, tbl)     --> notification on failure! Last cry before dying
 	os.exit(1)
