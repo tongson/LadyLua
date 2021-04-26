@@ -57,7 +57,10 @@ Lua is a good language but no one wants to use it for general-purpose scripting.
 == Reference
 Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.1 reference manual: https://www.lua.org/manual/5.1/manual.html[Lua 5.1 Manual]. Other resources are also useful just make sure they do not target 5.2+ versions. Search for PDFs of Lua 5.1 cheatsheets. The Learn in in 15 minutes series also has an entry for http://tylerneylon.com/a/learn-lua/[Lua].
 
-== Compiled-in modules
+== Modules
+Check the `docs` directory for more information about these modules.
+
+=== Compiled-in modules
 
 [options="header",width="88%"]
 |===
@@ -93,7 +96,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 If it says *N* in the *Global* field, you need to `require()` it.
 ====
 
-== DSL modules
+=== DSL modules
 Lua modules are single file Lua source that are loaded from the current working directory.
 
 [options="header",width="50%"]
@@ -102,11 +105,6 @@ Lua modules are single file Lua source that are loaded from the current working 
 |buildah
 |lopper
 |===
-
-[NOTE]
-====
-Check the `docs` directory for more information about these modules.
-====
 
 == Documentation and Testing
 Tests are in the `tests` directory. We are using `u-test`. Within the test code is the documentation in AsciiDoc. Generated docs are in the `docs` directory. Check the `scripts/docs` directory for the command line to generate the docs.
