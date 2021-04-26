@@ -1,0 +1,18 @@
+= uuid
+:toc:
+:toc-placement!:
+
+Generate random strings in UUID format.
+This is a https://github.com/hashicorp/go-uuid[go-uuid] wrapper.
+
+toc::[]
+
+== *uuid.new*() -> _String_
+Generate an ID.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |uuid string
+|===
