@@ -122,7 +122,6 @@ func rrRunFn(L *lua.LState) int {
 	sh.WriteString(strings.Join(arguments, " "))
 	sh.WriteString("\n" + FileRead(namespace+"/"+script+"/"+run))
 	modscript := sh.String()
-	//print debugging -- fmt.Println(modscript)
 	if hostname == "local" || hostname == "localhost" {
 		for _, d := range []string{
 			".files",
@@ -227,7 +226,7 @@ func rrRunFn(L *lua.LState) int {
 			L.Push(lua.LString(ero))
 			return 4
 		} else {
-			L.Push(lua.LTrue)
+			L.Push(lua.LString(modscript))
 			L.Push(lua.LString(stdout))
 			L.Push(lua.LString(stderr))
 			return 3
