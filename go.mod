@@ -16,6 +16,7 @@ require (
 	github.com/junhsieh/goexamples v0.0.0-20190721045834-1c67ae74caa6 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.5
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
+	github.com/oklog/ulid/v2 v2.0.2
 	github.com/pierrec/lz4 v2.6.0+incompatible
 	github.com/prologic/bitcask v0.3.10
 	github.com/rs/zerolog v1.21.0

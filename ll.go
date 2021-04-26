@@ -99,6 +99,7 @@ Available options are:
 	L.PreloadModule("refmt", refmtLoader)
 	L.PreloadModule("rr", rrLoader)
 	L.PreloadModule("uuid", uuidLoader)
+	L.PreloadModule("ulid", ulidLoader)
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
 	L.SetField(nsExec, "command", L.NewFunction(execCommand))
