@@ -49,8 +49,8 @@ local fsnotify_write = function()
 	T.is_function(fsnotify.write)
 end
 --#
---# == *fsnotify.delete*(_String_) -> _Boolean_
---# Wait for a delete event on path.
+--# == *fsnotify.remove*(_String_) -> _Boolean_
+--# Wait for a remove event on path.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
@@ -63,7 +63,7 @@ end
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
---# |boolean |`true` if delete event happened
+--# |boolean |`true` if remove event happened
 --# |===
 local fsnotify_remove = function()
 	T.is_function(fsnotify.remove)
