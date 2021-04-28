@@ -113,8 +113,6 @@ Available options are:
 	L.SetField(preload, "util", luaLoader(L, "util"))
 	L.SetField(preload, "test", luaLoader(L, "test"))
 	L.SetField(preload, "template", luaLoader(L, "template"))
-	L.SetField(preload, "buildah", dslLoader(L, "buildah"))
-	L.SetField(preload, "lopper", dslLoader(L, "lopper"))
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)
