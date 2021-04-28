@@ -627,14 +627,38 @@ local Concat = table.concat
 local Insert = table.insert
 local Unpack = unpack
 local Gmatch = string.gmatch
+local Setmetatable = setmetatable
+local Next = next
+local Logger = require("logger")
 local Ok = function(msg, tbl)
-	local stdout = require("logger").new("stdout")
+	local stdout = Logger.new("stdout")
 	tbl._ident = "buildah.lua"
 	stdout:info(msg, tbl)
 end
 local Panic = function(msg, tbl)
-	local stderr = require("logger").new()
+	local trace = function()
+		local start_frame = 2
+		local frame = start_frame
+		local ln
+		local src
+		while true do
+			local info = debug.getinfo(frame, "Sl")
+			if not info then
+				break
+			end
+			if info.what == "main" and info.source ~= "<string>" then
+				ln = tostring(info.currentline)
+				src = info.source
+			end
+			frame = frame + 1
+		end
+		return src, ln
+	end
+	local src, ln = trace()
+	local stderr = Logger.new()
 	tbl._ident = "buildah.lua"
+	tbl._source = src
+	tbl._line_number = ln
 	stderr:error(msg, tbl)
 	Notify(msg, tbl)
 	os.exit(1)
@@ -653,7 +677,7 @@ local buildah = exec.ctx("buildah")
 buildah.env = { USER = os.getenv("USER"), HOME = os.getenv("HOME") }
 local Buildah = function(msg)
 	local set = {}
-	return setmetatable(set, {
+	return Setmetatable(set, {
 		__call = function(_, a)
 			a = a or ""
 			set.log = set.log or {}
@@ -663,7 +687,7 @@ local Buildah = function(msg)
 				c[#c + 1] = k
 				t[#t + 1] = k
 			end
-			set.log.args = Concat(t, " ")
+			set.log.args = Next(t) and Concat(t, " ")
 			local r, so, se, err = buildah(c)
 			if not r then
 				set.log.stdout = so
@@ -686,7 +710,7 @@ local Buildah = function(msg)
 	})
 end
 local ENV = {}
-setmetatable(ENV, {
+Setmetatable(ENV, {
 	__index = function(_, value)
 		return rawget(_G, value) or Panic("Unknown command or variable", { string = value })
 	end,
@@ -755,14 +779,14 @@ local Epilogue = function()
 	Unmount()
 end
 local Json = require("json")
-ENV.NOTIFY = setmetatable({}, {
+ENV.NOTIFY = Setmetatable({}, {
 	__newindex = function(_, k, v)
 		local key = k:upper()
 		Notify_Toggle[key] = v
 		Notify = function(msg, tbl)
 			local util = require("util")
 			tbl.message = msg
-			tbl.time = util.timestamp()
+			tbl.time = Logger.time()
 			tbl._ident = "buildah.lua"
 			local payload = Json.encode(tbl)
 			if Notify_Toggle.TELEGRAM then
@@ -786,7 +810,7 @@ ENV.NOTIFY = setmetatable({}, {
 					AuthorSubname = tbl.message,
 					AuthorLink = "https://github.com/tongson/buildah.lua",
 					AuthorIcon = "https://avatars2.githubusercontent.com/u/652790",
-					Text = "```"..payload.."```",
+					Text = "```" .. payload .. "```",
 					Footer = "buildah.lua",
 					FooterIcon = "https://platform.slack-edge.com/img/default_application_icon.png",
 				}
@@ -796,11 +820,23 @@ ENV.NOTIFY = setmetatable({}, {
 		end
 	end,
 })
-ENV.FROM = function(base, cid, assets)
+ENV.FROM = function(base, cname, assets)
+	Name = cname or require("ksuid").new()
+	local found = function()
+		local _, so, _ = buildah({
+			"containers",
+			"--json",
+		})
+		local j = Json.decode(so)
+		for _, v in ipairs(j) do
+			if v.containername == Name then
+				return true
+			end
+		end
+	end
 	Assets = assets or fs.currentdir()
-	Name = cid or require("ksuid").new()
 	base = base or "scratch"
-	if not cid then
+	if not found() then
 		local B = Buildah("FROM")
 		B.cmd = {
 			"from",
@@ -822,6 +858,10 @@ ENV.FROM = function(base, cid, assets)
 	end
 end
 ENV.ADD = function(src, dest, og, mo)
+	if not Name then
+		Ok("ADD", { skip = true, name = false })
+		return
+	end
 	local B = Buildah("ADD")
 	B.cmd = {
 		"add",
@@ -844,6 +884,10 @@ ENV.ADD = function(src, dest, og, mo)
 	B()
 end
 ENV.RUN = function(v)
+	if not Name then
+		Ok("RUN", { skip = true, name = false })
+		return
+	end
 	local B = Buildah("RUN")
 	B.cmd = {
 		"run",
@@ -853,6 +897,10 @@ ENV.RUN = function(v)
 	B(v)
 end
 ENV.SH = function(sc)
+	if not Name then
+		Ok("SH", { skip = true, name = false })
+		return
+	end
 	local B = Buildah("SH")
 	B.cmd = {
 		"run",
@@ -864,7 +912,37 @@ ENV.SH = function(sc)
 	}
 	B()
 end
+ENV.RR = function(dir, a)
+	if not Name then
+		Ok("RR", { skip = true, name = false })
+		return
+	end
+	local sc = [[
+	cd __DIR__
+	rr __RERUN__
+	]]
+	sc = sc:gsub("__DIR__", dir)
+	sc = sc:gsub("__RERUN__", a)
+	local B = Buildah("RR")
+	B.cmd = {
+		"run",
+		Name,
+		"--",
+		"/bin/sh",
+		"-c",
+		sc,
+	}
+	B.log = {
+		directory = dir,
+		arguments = a,
+	}
+	B()
+end
 ENV.SCRIPT = function(s)
+	if not Name then
+		Ok("SCRIPT", { skip = true, name = false })
+		return
+	end
 	local script = [[chroot %s /bin/sh <<-'__58jvnv82_04fimmv'
 %s
 __58jvnv82_04fimmv
@@ -890,6 +968,10 @@ __58jvnv82_04fimmv
 	end
 end
 ENV.APT_GET = function(v)
+	if not Name then
+		Ok("APT_GET", { skip = true, name = false })
+		return
+	end
 	local B = Buildah("APT_GET")
 	B.cmd = {
 		"run",
@@ -915,6 +997,10 @@ ENV.APT_GET = function(v)
 	B(v)
 end
 ENV.APT_PURGE = function(p)
+	if not Name then
+		Ok("APT_PURGE", { skip = true, name = false })
+		return
+	end
 	local B = Buildah("APT_PURGE")
 	B.cmd = {
 		"run",
@@ -932,6 +1018,10 @@ ENV.APT_PURGE = function(p)
 	B()
 end
 ENV.APK = function(v)
+	if not Name then
+		Ok("APK", { skip = true, name = false })
+		return
+	end
 	local B = Buildah("APK")
 	B.cmd = {
 		"run",
@@ -944,11 +1034,15 @@ ENV.APK = function(v)
 	B(v)
 end
 ENV.COPY = function(src, dest, og, mo)
+	if not Name then
+		Ok("COPY", { skip = true, name = false })
+		return
+	end
 	dest = dest or "/" .. src
 	if src:sub(1, 1) ~= "/" then
 		src = Assets .. "/" .. src
 	end
-	local B = Buildah("COPY")
+	local B = Buildah("COPY/UPLOAD")
 	B.cmd = {
 		"copy",
 		Name,
@@ -969,7 +1063,12 @@ ENV.COPY = function(src, dest, og, mo)
 	}
 	B()
 end
+ENV.UPLOAD = ENV.COPY
 ENV.MKDIR = function(d, mode)
+	if not Name then
+		Ok("MKDIR", { skip = true, name = false })
+		return
+	end
 	local mkdir = exec.ctx("mkdir")
 	mkdir.cwd = Mount()
 	local t = {
@@ -995,6 +1094,10 @@ ENV.MKDIR = function(d, mode)
 	end
 end
 ENV.CHMOD = function(p, mode)
+	if not Name then
+		Ok("CHMOD", { skip = true, name = false })
+		return
+	end
 	local chmod = exec.ctx("chmod")
 	chmod.cwd = Mount()
 	local r, so, se = chmod({
@@ -1014,7 +1117,48 @@ ENV.CHMOD = function(p, mode)
 		})
 	end
 end
+ENV.DOWNLOAD = function(src, dest)
+	if not Name then
+		Ok("DOWNLOAD", { skip = true, name = false })
+		return
+	end
+	local cwd = fs.currentdir()
+	local rd
+	dest = dest or "."
+	if dest:sub(1, 1) == "/" then
+		rd = dest
+	else
+		rd = cwd .. "/" .. dest
+	end
+	local cp = exec.ctx("cp")
+	cp.cwd = Mount()
+	local r, so, se = cp({
+		"-R",
+		"-P",
+		"-n",
+		Trim(src),
+		rd,
+	})
+	Unmount()
+	if r then
+		Ok("DOWNLOAD", {
+			source = src,
+			destination = dest,
+		})
+	else
+		Panic("DOWNLOAD", {
+			source = src,
+			destination = dest,
+			stdout = so,
+			stderr = se,
+		})
+	end
+end
 ENV.RM = function(f)
+	if not Name then
+		Ok("RM", { skip = true, name = false })
+		return
+	end
 	local rm = exec.ctx("rm")
 	rm.cwd = Mount()
 	local frm = function(ff)
@@ -1045,7 +1189,7 @@ ENV.RM = function(f)
 	end
 	Unmount()
 end
-ENV.CONFIG = setmetatable({}, {
+ENV.CONFIG = Setmetatable({}, {
 	__newindex = function(_, k, v)
 		k = k:lower()
 		local B = Buildah("CONFIG")
@@ -1191,6 +1335,10 @@ rm -rf "%s"
 	end
 end
 ENV.PURGE = function(a, opts)
+	if not Name then
+		Ok("PURGE", { skip = true, name = false })
+		return
+	end
 	if a == "debian" or a == "dpkg" or a == "deb" then
 		local xargs = exec.ctx("xargs")
 		xargs.cwd = Mount()
