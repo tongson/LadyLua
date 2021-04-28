@@ -70,7 +70,6 @@ Check the `docs` directory for more information about these modules.
 |Module      |Global |Source           |License
 |bitcask     |N      |                 |MIT
 |crypto      |N      |gluacrypto       |MIT
-|dkjson      |N      |                 |MIT
 |exec        |Y      |                 |MIT
 |fmt         |Y      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
