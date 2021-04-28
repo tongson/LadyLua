@@ -80,6 +80,7 @@ Check the `docs` directory for more information about these modules.
 |kapow       |N      |                 |MIT
 |ksuid       |N      |                 |MIT
 |logger      |N      |                 |MIT
+|lunajson    |N      |                 |MIT
 |lz4         |N      |                 |BSD3
 |mysql       |N      |gluasql          |MIT
 |password    |N      |                 |MIT
