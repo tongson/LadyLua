@@ -242,17 +242,17 @@ end
 util.retry_f = function(fn, t)
 	t = t or 3
 	return function(...)
-		local n, e = fn(...)
+		local values = {fn(...)}
 		local r = 0
-		while not n do
+		while not values[1] do
 			if r == t then
 				break
 			end
 			r = r + 1
 			util.sleep(5)
-			n, e = fn(...)
+		      values = {fn(...)}
 		end
-		return n, e
+		return unpack(values)
 	end
 end
 
