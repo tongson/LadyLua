@@ -70,10 +70,10 @@ util.path_split = function(path)
     return sub(path, 1, l - 1), sub(path, l + 1)
   end
 end
-util.split_at_char = function(str, char)
+util.split_at_char = function(str, ch)
   local l = str:len()
   local c = str:sub(l, l)
-  while l > 0 and c ~= char do
+  while l > 0 and c ~= ch do
     l = l - 1
     c = str:sub(l, l)
   end
