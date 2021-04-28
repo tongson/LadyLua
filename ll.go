@@ -113,6 +113,7 @@ Available options are:
 	L.SetField(preload, "util", luaLoader(L, "util"))
 	L.SetField(preload, "test", luaLoader(L, "test"))
 	L.SetField(preload, "template", luaLoader(L, "template"))
+	L.SetField(preload, "lunajson", luaLoader(L, "lunajson"))
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)
