@@ -43,6 +43,31 @@ local Panic = function(msg, tbl)
 	Notify(msg, tbl)     --> notification on failure! Last cry before dying
 	os.exit(1)
 end
+local get_if_addr = function(interface)
+	local ip = exec.ctx("ip")
+	local ret, so, se = ip({"-j", "addr"})
+	if not ret then
+		Panic("ip command failed", {
+			command = "ip",
+			what = "Get_IP",
+			stdout = so,
+			stderr = se,
+		})
+	end
+	local j = json.decode(so)
+	for _, v in ipairs(j) do
+		if v.ifname == interface then
+			for _, vv in ipairs(v["addr_info"]) do
+				if vv.family == "inet" then
+					return vv["local"]
+				end
+			end
+		end
+	end
+	Panic("interface not found", {
+			what = "Get_IP",
+	})
+end
 local Notify_Function = function(msg, tbl, bool)
 	tbl = tbl or {}
 	if bool then         --> If called as NOTIFY()
@@ -181,6 +206,7 @@ ENV.SCRIPT = setmetatable({}, {
 ENV.CMD = function(exe)
 	return Cmd(exe)
 end
+ENV["get_if_addr"] = get_if_addr
 
 getmetatable("").__mod = function(a, b)
 	if not b then
