@@ -3,8 +3,51 @@ do
 	local gmatch = string.gmatch
 	local find = string.find
 	local sub = string.sub
+	local reverse = string.reverse
+	local gsub = string.gsub
 	local append = table.insert
 	local unpack = unpack
+	local escape = function(s)
+		return (gsub(s, "[%-%.%+%[%]%(%)%$%^%%%?%*]", "%%%1"))
+	end
+	local _strip = function(s, left, right, chrs)
+		if not chrs then
+			chrs = "%s"
+		else
+			chrs = "[" .. escape(chrs) .. "]"
+		end
+		local f = 1
+		local t
+		if left then
+			local i1, i2 = find(s, "^" .. chrs .. "*")
+			if i2 >= i1 then
+				f = i2 + 1
+			end
+		end
+		if right then
+			if #s < 200 then
+				local i1, i2 = find(s, chrs .. "*$", f)
+				if i2 >= i1 then
+					t = i1 - 1
+				end
+			else
+				local rs = reverse(s)
+				local i1, i2 = find(rs, "^" .. chrs .. "*")
+				if i2 >= i1 then
+					t = -i2
+				end
+			end
+		end
+		return sub(s, f, t)
+	end
+
+	string.trim_start = function(s, chrs)
+		return _strip(s, true, false, chrs)
+	end
+
+	string.trim_end = function(s, chrs)
+		return _strip(s, false, true, chrs)
+	end
 
 	string.split = function(s, re, plain, n)
 		local i1, ls = 1, {}

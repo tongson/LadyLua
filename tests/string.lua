@@ -8,6 +8,50 @@ local T = require("test")
 --#
 --# toc::[]
 --#
+--# == *string.trim_start*(_String_[, _String_]) -> _String_
+--# Trim characters to the left of input string(#1).
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Input string
+--# |string| Optional pattern, defaults to the space pattern `%s`
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |string |New string
+--# |===
+local string_trim_start = function()
+	T.is_function(string.trim_start)
+	local a = "  ssaa   "
+	T.equal(a:trim_start(), "ssaa   ")
+	local b = "///ssss///"
+	T.equal(b:trim_start("/"), "ssss///")
+end
+--# == *string.trim_end*(_String_[, _String_]) -> _String_
+--# Trim characters to the right of input string(#1).
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Input string
+--# |string| Optional pattern, defaults to the space pattern `%s`
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |string |New string
+--# |===
+local string_trim_end = function()
+	T.is_function(string.trim_end)
+	local a = "ssaa   "
+	T.equal(a:trim_end(), "ssaa")
+	local b = "ssss///"
+	T.equal(b:trim_end("/"), "ssss")
+end
 --# == *string.split*(_String_, _String_, _Boolean_, _Number_) -> _Table_
 --# Split string into a list(table) separated by a delimeter.
 --#
@@ -219,6 +263,8 @@ local string_to_map = function()
 end
 if not_main then
 	return function()
+		T["string.trim_start"] = string_trim_start
+		T["string.trim_end"] = string_trim_end
 		T["string.split"] = string_split
 		T["string.splitv"] = string_splitv
 		T["string.contains"] = string_contains
@@ -228,6 +274,8 @@ if not_main then
 		T["string.to_map"] = string_to_map
 	end
 else
+	T["string.trim_start"] = string_trim_start
+	T["string.trim_end"] = string_trim_end
 	T["string.split"] = string_split
 	T["string.splitv"] = string_splitv
 	T["string.contains"] = string_contains
