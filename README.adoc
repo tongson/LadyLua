@@ -16,6 +16,12 @@ Next release: *0.7.0 Negligent Clamshell* +
 + Rename module uid to ksuid +
 + New module: uuid +
 + New module: ulid +
++ New function string.split
++ New function string.splitv
++ New function string.trim_end
++ New function string.trim_start
++ New function string.contains
++ table.find is now recursive
 
 Current release: *0.6.0 Gummy Mastiff* +
 + New module: telegram +
