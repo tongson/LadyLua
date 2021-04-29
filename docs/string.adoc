@@ -6,6 +6,36 @@ Functions added to the global `string` namespace.
 
 toc::[]
 
+== *string.trim_start*(_String_[, _String_]) -> _String_
+Trim characters to the left of input string(#1).
+
+=== Arguments
+[width="72%"]
+|===
+|string| Input string
+|string| Optional pattern, defaults to the space pattern `%s`
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |New string
+|===
+== *string.trim_end*(_String_[, _String_]) -> _String_
+Trim characters to the right of input string(#1).
+
+=== Arguments
+[width="72%"]
+|===
+|string| Input string
+|string| Optional pattern, defaults to the space pattern `%s`
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |New string
+|===
 == *string.split*(_String_, _String_, _Boolean_, _Number_) -> _Table_
 Split string into a list(table) separated by a delimeter.
 
