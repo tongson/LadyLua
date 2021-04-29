@@ -6,6 +6,23 @@ Functions added to the global `string` namespace.
 
 toc::[]
 
+== *string.contains*(_String_, _String_) -> _Number_, _Number_
+Look for string(#2) in string(#1) without activating any pattern matching operations.
+A shortcut for `string.find(str, str, 1, true)`.
+
+=== Arguments
+[width="72%"]
+|===
+|string| String to search into
+|string| String to look for
+|===
+
+=== Returns
+[width="72%"]
+|===
+|number| Starting index where the string is found
+|number| Ending index where the string is found
+|===
 == *string.append*(_String_, _String_) -> _String_
 Append newline plus argument #2 string to argument #1 string.
 
