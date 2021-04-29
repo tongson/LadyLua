@@ -3,7 +3,7 @@ local kapow = require("kapow")
 local http = require("http")
 local crypto = require("crypto")
 local T = require("test")
-local URL = "http://0.0.0.69:60080/"
+local URL = "http://0.255.80.1:60080"
 --# = kapow
 --# :toc:
 --# :toc-placement!:
@@ -56,7 +56,7 @@ local kapow_set = function()
 end
 local kapow_set_binary = function()
 	local b = http.get(URL .. "/binary")
-	local bin = fs.read("/srv/kapow/bin/ll")
+	local bin = fs.read("/home/e/github/buildah.lua/containahs/kapow.v0.7.0")
 	T.equal(#bin, b.body_size)
 	local lc = crypto.sha512(bin)
 	local rt = crypto.sha512(b.body)
@@ -194,7 +194,7 @@ end
 local kapow_redirect = function()
 	T.is_function(kapow.redirect)
 	local r = http.get(URL .. "/redirect")
-	T.equal(r.url, URL)
+	T.equal(r.url, URL.."/")
 	T.equal(r.status_code, 418)
 end
 if included then
