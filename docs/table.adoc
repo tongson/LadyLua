@@ -122,7 +122,7 @@ The values from the original list are used as keys in the new table(map). The op
 |table| New table(map)
 |===
 
-=== *table.find*(_Table_, _String_[, _Boolean_]) -> _Boolean_
+=== *table.find*(_Table_, _String_[, _Boolean_]) -> _Boolean_, _String_
 For each value in a table look for a fixed string (argument #2). The optional third argument turns *on* Lua pattern matching.
 
 Immediately return `true` if a match is found.
@@ -139,4 +139,5 @@ Immediately return `true` if a match is found.
 [width="72%"]
 |===
 |boolean| `true` if string is found, `nil` and an error message, otherwise
+|string | Key of matching value if the type is string
 |===
