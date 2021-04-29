@@ -6,19 +6,33 @@ do
 	local find = string.find
 	local insert = table.insert
 
-	table.find = function(tbl, str, pattern)
+	local _find
+	_find = function(tbl, str, pattern)
 		local plain = true
 		if pattern then
 			plain = nil
 		end
-		for _, tval in next, tbl do
-			tval = gsub(tval, "[%c]", "")
-			if find(tval, str, 1, plain) then
-				return true
+		if type(tbl) == "table" then
+			for key, tval in pairs(tbl) do
+				if type(tval) == "string" then
+					if find(tval, str, 1, plain) then
+						return true, (type(key) == "string" and key)
+					end
+				else
+					if tval == str then
+						return true
+					end
+				end
+			end
+			for key, tval in pairs(tbl) do
+				if _find(tval, str, pattern) then
+					return true, (type(key) == "string" and key)
+				end
 			end
 		end
 		return nil, "Value not found."
 	end
+	table.find = _find
 
 	table.to_map = function(tbl, def, holes)
 		def = def or true
