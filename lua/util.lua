@@ -57,6 +57,74 @@ function ring:iterator()
 end
 
 util.ring = ring
+util.format_operator = function()
+	local format = string.format
+
+	local is_callable = function(obj)
+		return type(obj) == "function"
+			or getmetatable(obj)
+			and getmetatable(obj).__call
+			and true
+	end
+
+	local substitute = function(s, tbl)
+		local subst
+		if is_callable(tbl) then
+			subst = tbl
+		else
+			function subst(f)
+				local str = tbl[f]
+				if not str then
+					return f
+				else
+					return str
+				end
+			end
+		end
+		local res = gsub(s, "%${([%w_]+)}", subst)
+		return (gsub(res, "%$([%w_]+)", subst))
+	end
+
+	-- a more forgiving version of string.format, which applies
+	-- tostring() to any value with a %s format.
+	local formatx = function(fmt, ...)
+		local args = { ... }
+		local i = 1
+		for p in fmt:gmatch("%%.") do
+			if p == "%s" and type(args[i]) ~= "string" then
+				args[i] = tostring(args[i])
+			end
+			i = i + 1
+		end
+		return format(fmt, unpack(args))
+	end
+
+	local basic_subst = function(s, t)
+		return (s:gsub("%$([%w_]+)", t))
+	end
+
+	-- Note this goes further than the original, and will allow these cases:
+	-- 1. a single value
+	-- 2. a list of values
+	-- 3. a map of var=value pairs
+	-- 4. a function, as in gsub
+	-- For the second two cases, it uses $-variable substituion.
+	getmetatable("").__mod = function(a, b)
+		if b == nil then
+			return a
+		elseif type(b) == "table" and getmetatable(b) == nil then
+			if #b == 0 then -- assume a map-like table
+				return substitute(a, b, true)
+			else
+				return formatx(a, unpack(b))
+			end
+		elseif type(b) == "function" then
+			return basic_subst(a, b)
+		else
+			return formatx(a, b)
+		end
+	end
+end
 util.path_split = function(path)
   local l = len(path)
   local c = sub(path, l, l)
@@ -499,4 +567,3 @@ function util.is_arglist(object)
 end
 
 return util
-
