@@ -8,6 +8,62 @@ local T = require("test")
 --#
 --# toc::[]
 --#
+--# == *string.split*(_String_, _String_, _Boolean_, _Number_) -> _Table_
+--# Split string into a list(table) separated by a delimeter.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Input string
+--# |string| Optional delimeter, defaults to the space pattern `%s+`
+--# |boolean| If truthy, ignores Lua patterns
+--# |number| Maximum number of elements from input string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |table| List of elements
+--# |===
+local string_split = function()
+	T.is_function(string.split)
+	local a = "a b c"
+	local b = a:split()
+	T.equal(b[1], "a")
+	T.equal(b[2], "b")
+	T.equal(b[3], "c")
+	local x = "x/y/z"
+	local y = x:split("/")
+	T.equal(y[1], "x")
+	T.equal(y[2], "y")
+	T.equal(y[3], "z")
+end
+--#
+--# == *string.splitv*(_String_, _String_, _Boolean_, _Number_) -> _Table_
+--# Split string into a number of return values separated by a delimeter.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| Input string
+--# |string| Optional delimeter, defaults to the space pattern `%s+`
+--# |boolean| If truthy, ignores Lua patterns
+--# |number| Maximum number of elements from input string
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |...| Values
+--# |===
+local string_splitv = function()
+	T.is_function(string.splitv)
+	local x = "a b c"
+	local a, b, c = x:splitv()
+	T.equal(a, "a")
+	T.equal(b, "b")
+	T.equal(c, "c")
+end
 --# == *string.contains*(_String_, _String_) -> _Number_, _Number_
 --# Look for string(#2) in string(#1) without activating any pattern matching operations.
 --# A shortcut for `string.find(str, str, 1, true)`.
@@ -163,6 +219,8 @@ local string_to_map = function()
 end
 if not_main then
 	return function()
+		T["string.split"] = string_split
+		T["string.splitv"] = string_splitv
 		T["string.contains"] = string_contains
 		T["string.append"] = string_append
 		T["string.word_to_list"] = string_word_to_list
@@ -170,6 +228,8 @@ if not_main then
 		T["string.to_map"] = string_to_map
 	end
 else
+	T["string.split"] = string_split
+	T["string.splitv"] = string_splitv
 	T["string.contains"] = string_contains
 	T["string.append"] = string_append
 	T["string.word_to_list"] = string_word_to_list
