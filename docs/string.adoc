@@ -6,6 +6,41 @@ Functions added to the global `string` namespace.
 
 toc::[]
 
+== *string.split*(_String_, _String_, _Boolean_, _Number_) -> _Table_
+Split string into a list(table) separated by a delimeter.
+
+=== Arguments
+[width="72%"]
+|===
+|string| Input string
+|string| Optional delimeter, defaults to the space pattern `%s+`
+|boolean| If truthy, ignores Lua patterns
+|number| Maximum number of elements from input string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table| List of elements
+|===
+
+== *string.splitv*(_String_, _String_, _Boolean_, _Number_) -> _Table_
+Split string into a number of return values separated by a delimeter.
+
+=== Arguments
+[width="72%"]
+|===
+|string| Input string
+|string| Optional delimeter, defaults to the space pattern `%s+`
+|boolean| If truthy, ignores Lua patterns
+|number| Maximum number of elements from input string
+|===
+
+=== Returns
+[width="72%"]
+|===
+|...| Values
+|===
 == *string.contains*(_String_, _String_) -> _Number_, _Number_
 Look for string(#2) in string(#1) without activating any pattern matching operations.
 A shortcut for `string.find(str, str, 1, true)`.
