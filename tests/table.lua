@@ -319,7 +319,7 @@ local table_find = function()
 	}
 	local x, y = table.find(xt, "xyz")
 	T.is_true(x)
-	T.equal(y, "yt")
+	T.equal(y, "one")
 	local aa = {
 		ab = {
 			ac = {
@@ -329,7 +329,7 @@ local table_find = function()
 	}
 	local g, h = table.find(aa, 1)
 	T.is_true(g)
-	T.equal(h, "ab")
+	T.equal(h, "one")
 end
 if included then
 	return function()
