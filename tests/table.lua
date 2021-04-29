@@ -281,7 +281,7 @@ local table_to_map = function()
 	T.equal(zt.five, true)
 end
 --#
---# === *table.find*(_Table_, _String_[, _Boolean_]) -> _Boolean_
+--# === *table.find*(_Table_, _String_[, _Boolean_]) -> _Boolean_, _String_
 --# For each value in a table look for a fixed string (argument #2). The optional third argument turns *on* Lua pattern matching.
 --#
 --# Immediately return `true` if a match is found.
@@ -298,6 +298,7 @@ end
 --# [width="72%"]
 --# |===
 --# |boolean| `true` if string is found, `nil` and an error message, otherwise
+--# |string | Key of matching value if the type is string
 --# |===
 local table_find = function()
 	T.is_function(table.find)
@@ -308,8 +309,27 @@ local table_find = function()
 	T.is_true(table.find(t, "one"))
 	local r, e = table.find(t, "x")
 	T.is_nil(r)
-	T.is_string(e)
 	T.is_true(table.find(t, "^o.*", true))
+	local xt = {
+		yt = {
+			zt = {
+				one = "xyz"
+			}
+		}
+	}
+	local x, y = table.find(xt, "xyz")
+	T.is_true(x)
+	T.equal(y, "yt")
+	local aa = {
+		ab = {
+			ac = {
+				one = 1
+			}
+		}
+	}
+	local g, h = table.find(aa, 1)
+	T.is_true(g)
+	T.equal(h, "ab")
 end
 if included then
 	return function()
