@@ -8,6 +8,31 @@ local T = require("test")
 --#
 --# toc::[]
 --#
+--# == *string.contains*(_String_, _String_) -> _Number_, _Number_
+--# Look for string(#2) in string(#1) without activating any pattern matching operations.
+--# A shortcut for `string.find(str, str, 1, true)`.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string| String to search into
+--# |string| String to look for
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |number| Starting index where the string is found
+--# |number| Ending index where the string is found
+--# |===
+local string_contains = function()
+	T.is_function(string.contains)
+	local x = "otwone"
+	local y = "two"
+	local a, b, c = x:contains(y)
+	T.equal(a, 2)
+	T.equal(b, 4)
+end
 --# == *string.append*(_String_, _String_) -> _String_
 --# Append newline plus argument #2 string to argument #1 string.
 --#
@@ -138,12 +163,14 @@ local string_to_map = function()
 end
 if not_main then
 	return function()
+		T["string.contains"] = string_contains
 		T["string.append"] = string_append
 		T["string.word_to_list"] = string_word_to_list
 		T["string.to_list"] = string_to_list
 		T["string.to_map"] = string_to_map
 	end
 else
+	T["string.contains"] = string_contains
 	T["string.append"] = string_append
 	T["string.word_to_list"] = string_word_to_list
 	T["string.to_list"] = string_to_list
