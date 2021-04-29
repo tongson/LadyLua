@@ -1,6 +1,11 @@
 do
 	local F = string.format
 	local gmatch = string.gmatch
+	local find = string.find
+
+	string.contains = function(str, a)
+		return find(str, a, 1, true)
+	end
 
 	string.append = function(str, a)
 		return F("%s\n%s", str, a)
