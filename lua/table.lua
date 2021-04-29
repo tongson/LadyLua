@@ -16,17 +16,18 @@ do
 			for key, tval in pairs(tbl) do
 				if type(tval) == "string" then
 					if find(tval, str, 1, plain) then
-						return true, (type(key) == "string" and key)
+						return true, tostring(key)
 					end
 				else
 					if tval == str then
-						return true
+						return true, tostring(key)
 					end
 				end
 			end
 			for key, tval in pairs(tbl) do
-				if _find(tval, str, pattern) then
-					return true, (type(key) == "string" and key)
+				local r, k = _find(tval, str, pattern)
+				if r then
+					return true, tostring(k)
 				end
 			end
 		end
