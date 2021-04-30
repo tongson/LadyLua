@@ -55,6 +55,26 @@ local bitcask_put = function()
 	T.is_true(db:put("one", "uno"))
 end
 --#
+--# == *:keys*() -> _Table_
+--# List of keys in database.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |table |List of keys
+--# |===
+local bitcask_keys = function()
+	T.is_function(db.keys)
+	T.is_true(db:put("xxx", "1"))
+	T.is_true(db:put("yyy", "2"))
+	local keys = db:keys()
+	T.equal(keys[1], "xxx")
+	T.equal(keys[2], "yyy")
+	T.is_true(db:delete("xxx"))
+	T.is_true(db:delete("yyy"))
+end
+--#
 --# == *:get*(_String_) -> _String_
 --# Fetch value with matching key.
 --#
@@ -154,6 +174,7 @@ if included then
 		T["bitcask.get"] = bitcask_get
 		T["bitcask.has"] = bitcask_has
 		T["bitcask.delete"] = bitcask_delete
+		T["bitcask.keys"] = bitcask_keys
 		T["bitcask.sync"] = bitcask_sync
 		T["bitcask.close"] = bitcask_close
 		exec.run.rm("-r", "-f", "/tmp/bitcask")
@@ -164,6 +185,7 @@ else
 		T["bitcask.get"] = bitcask_get
 		T["bitcask.has"] = bitcask_has
 		T["bitcask.delete"] = bitcask_delete
+		T["bitcask.keys"] = bitcask_keys
 		T["bitcask.sync"] = bitcask_sync
 		T["bitcask.close"] = bitcask_close
 		exec.run.rm("-r", "-f", "/tmp/bitcask")
