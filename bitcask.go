@@ -95,6 +95,22 @@ func bitcaskGet(L *lua.LState) int {
 	}
 }
 
+func bitcaskKeys(L *lua.LState) int {
+	bc := bitcaskCheck(L)
+	if bc == nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("bitcask.get: Unable to open database."))
+		return 2
+	}
+	keys := bc.Keys()
+	kt := L.NewTable()
+	for k := range keys {
+		kt.Append(lua.LString(k))
+	}
+	L.Push(kt)
+	return 1
+}
+
 func bitcaskHas(L *lua.LState) int {
 	bc := bitcaskCheck(L)
 	if bc == nil {
@@ -134,6 +150,7 @@ func bitcaskDelete(L *lua.LState) int {
 var bitcaskMethods = map[string]lua.LGFunction{
 	"put":    bitcaskPut,
 	"get":    bitcaskGet,
+	"keys":   bitcaskKeys,
 	"has":    bitcaskHas,
 	"delete": bitcaskDelete,
 	"close":  bitcaskClose,
