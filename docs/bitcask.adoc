@@ -41,6 +41,16 @@ Write key-value to database.
 |boolean |`true` if succesful
 |===
 
+== *:keys*() -> _Table_
+List of keys in database.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |List of keys
+|===
+
 == *:get*(_String_) -> _String_
 Fetch value with matching key.
 
