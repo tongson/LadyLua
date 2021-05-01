@@ -33,12 +33,36 @@ local os_outbound_ip = function()
 	T.is_function(os.outbound_ip)
 	T.is_string(os.outbound_ip())
 end
+--#
+--# == *os.setenv*(_String_, _String_) -> _Boolean_
+--# Set environment variable.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string |Variable
+--# |string |Value
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |boolean |`true` if successful
+--# |===
+local os_setenv = function()
+	T.is_function(os.setenv)
+	T.is_true(os.setenv("TESTLADYLUAOSSETENV", "1"))
+	local e = os.getenv("TESTLADYLUAOSSETENV")
+	T.equal(e, "1")
+end
 if included then
 	return function()
 		T["os.hostname"] = os_hostname
 		T["os.outbound_ip"] = os_outbound_ip
+		T["os.setenv"] = os_setenv
 	end
 else
 	T["os.hostname"] = os_hostname
 	T["os.outbound_ip"] = os_outbound_ip
+	T["os.setenv"] = os_setenv
 end

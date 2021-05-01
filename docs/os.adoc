@@ -23,3 +23,19 @@ Get IP used for outbound connections.
 |===
 |string |IP
 |===
+
+== *os.setenv*(_String_, _String_) -> _Boolean_
+Set environment variable.
+
+=== Arguments
+[width="72%"]
+|===
+|string |Variable
+|string |Value
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean |`true` if successful
+|===
