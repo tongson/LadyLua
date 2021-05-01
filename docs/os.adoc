@@ -14,3 +14,12 @@ Get current hostname.
 |===
 |string |Hostname
 |===
+
+== *os.outbound_ip*() -> _String_
+Get IP used for outbound connections.
+
+=== Returns
+[width="72%"]
+|===
+|string |IP
+|===
