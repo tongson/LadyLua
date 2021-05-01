@@ -626,6 +626,7 @@ end
 local Concat = table.concat
 local Insert = table.insert
 local Unpack = unpack
+local Util = require("util")
 local Gmatch = string.gmatch
 local Setmetatable = setmetatable
 local Next = next
@@ -784,7 +785,6 @@ ENV.NOTIFY = Setmetatable({}, {
 		local key = k:upper()
 		Notify_Toggle[key] = v
 		Notify = function(msg, tbl)
-			local util = require("util")
 			tbl.message = msg
 			tbl.time = Logger.time()
 			tbl._ident = "buildah.lua"
@@ -792,13 +792,13 @@ ENV.NOTIFY = Setmetatable({}, {
 			if Notify_Toggle.TELEGRAM then
 				local telegram = require("telegram")
 				local api = telegram.new()
-				local send = util.retry_f(api.channel)
+				local send = Util.retry_f(api.channel)
 				send(api, Notify_Toggle.TELEGRAM, payload)
 			end
 			if Notify_Toggle.PUSHOVER then
 				local pushover = require("pushover")
 				local api = pushover.new()
-				local send = util.retry_f(api.message)
+				local send = Util.retry_f(api.message)
 				send(api, Notify_Toggle.PUSHOVER, payload)
 			end
 			if Notify_Toggle.SLACK then
@@ -814,7 +814,7 @@ ENV.NOTIFY = Setmetatable({}, {
 					Footer = "buildah.lua",
 					FooterIcon = "https://platform.slack-edge.com/img/default_application_icon.png",
 				}
-				local send = util.retry_f(slack.attachment)
+				local send = Util.retry_f(slack.attachment)
 				send(attachment)
 			end
 		end
@@ -1403,13 +1403,5 @@ ENV.PURGE = function(a, opts)
 		end
 	end
 end
-getmetatable("").__mod = function(a, b)
-	if not b then
-		return a
-	elseif type(b) == "table" then
-		return a:format(Unpack(b))
-	else
-		return a:format(b)
-	end
-end
+Util.format_operator()
 setfenv(3, ENV)
