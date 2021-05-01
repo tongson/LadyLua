@@ -8,10 +8,11 @@ import (
 )
 
 //go:embed dsl/*
-var dslSRC embed.FS
+var dslSrc embed.FS
 
-func dslLoader(L *lua.LState, mod string) lua.LValue {
-	src, _ := luaSrc.ReadFile(fmt.Sprintf("dsl/%s.lua", mod))
+func dslLoader(L *lua.LState, mod string) {
+	src, _ := dslSrc.ReadFile(fmt.Sprintf("dsl/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
-	return fn
+	L.Push(fn)
+	L.PCall(0, 0, nil)
 }
