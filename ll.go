@@ -1,3 +1,5 @@
+// +build !dsl
+
 package main
 
 import (
@@ -113,6 +115,7 @@ Available options are:
 	L.SetField(preload, "util", luaLoader(L, "util"))
 	L.SetField(preload, "test", luaLoader(L, "test"))
 	L.SetField(preload, "template", luaLoader(L, "template"))
+	//__DSL__L.SetField(preload, "__DSLMOD__", dslLoader(L, "__DSLMOD__"))
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)
