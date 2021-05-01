@@ -1404,4 +1404,4 @@ ENV.PURGE = function(a, opts)
 	end
 end
 Util.format_operator()
-setfenv(3, ENV)
+setfenv(0, ENV)
