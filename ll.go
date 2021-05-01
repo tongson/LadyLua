@@ -83,6 +83,7 @@ Available options are:
 	L.SetField(nsFs, "write", L.NewFunction(fsWrite))
 	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
 	L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
+	L.SetField(nsOs, "outbound_ip", L.NewFunction(osOutboundIP))
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)

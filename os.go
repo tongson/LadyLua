@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/yuin/gopher-lua"
+	"net"
 	"os"
 )
 
@@ -13,5 +14,18 @@ func osHostname(L *lua.LState) int {
 		return 2
 	}
 	L.Push(lua.LString(name))
+	return 1
+}
+
+func osOutboundIP(L *lua.LState) int {
+	conn, err := net.Dial("udp", "1.1.1.1:53")
+	if err != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString(err.Error()))
+		return 2
+	}
+	defer conn.Close()
+	localAddr := conn.LocalAddr().(*net.UDPAddr)
+	L.Push(lua.LString(localAddr.IP.String()))
 	return 1
 }
