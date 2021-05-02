@@ -181,7 +181,7 @@ util.truthy = function(s)
 	if s == "yes" or s == "true" or s == "on" or s == "1" then
 		return true
 	else
-		return false
+		return nil
 	end
 end
 
@@ -191,7 +191,7 @@ util.falsy = function(s)
 	if s == "no" or s == "false" or s == "off" or s == "0" then
 		return true
 	else
-		return false
+		return nil
 	end
 end
 
