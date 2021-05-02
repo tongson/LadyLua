@@ -123,7 +123,7 @@ func bitcaskHas(L *lua.LState) int {
 	if found {
 		L.Push(lua.LTrue)
 	} else {
-		L.Push(lua.LFalse)
+		L.Push(lua.LNil)
 	}
 	return 1
 }
