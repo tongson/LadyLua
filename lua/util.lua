@@ -309,6 +309,7 @@ end
 
 util.retry_f = function(fn, t)
 	t = t or 3
+	local wait = 2
 	return function(...)
 		local values = { fn(...) }
 		local r = 0
@@ -317,7 +318,7 @@ util.retry_f = function(fn, t)
 				break
 			end
 			r = r + 1
-			util.sleep(5)
+			util.sleep(wait+r)
 			values = { fn(...) }
 		end
 		return unpack(values)
