@@ -42,7 +42,7 @@ local Panic = function(msg, tbl)
 	Notify(msg, tbl)     --> notification on failure! Last cry before dying
 	os.exit(1)
 end
-local get_if_addr = function(interface, ver)
+local InterfaceAddr = function(interface, ver)
 	ver = ver or "inet"
 	local ip = exec.ctx("ip")
 	local ret, so, se = ip({"-j", "addr"})
@@ -135,7 +135,7 @@ local Exec = function(exe, t)  --> Second argument is the metatable
 	})
 end
 
-local Cmd = function(exe)
+local Command = function(exe)
 	local set = {}
 	return setmetatable(set, {
 		__call = function(_, ...)
@@ -165,9 +165,13 @@ local Cmd = function(exe)
 end
 
 local ENV = {}
+local LOCAL = {}
 setmetatable(ENV, {
+	__newindex = function(_, k, v)
+		return rawset(LOCAL, k, v)
+	end,
 	__index = function(_, value)
-		return rawget(_G, value) or Panic("Unknown command or variable", { string = value })
+		return rawget(LOCAL, value) or rawget(_G, value) or Panic("Unknown command or variable", { string = value })
 	end,
 })
 ENV["Notify"] = setmetatable({}, {
@@ -203,13 +207,10 @@ ENV["Script"] = setmetatable({}, {
 		})
 	end,
 })
-ENV["Command"] = function(exe)
-	return Cmd(exe)
-end
-ENV["InterfaceAddr"] = get_if_addr
+ENV["Command"] = Command
+ENV["InterfaceAddr"] = InterfaceAddr
 package.preload["lopper"] = function()
 	return {
-		Exec = Exec,
 		Panic = Panic,
 		Ok = Ok,
 		Notify = Notify,
