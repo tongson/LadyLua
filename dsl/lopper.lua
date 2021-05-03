@@ -15,37 +15,38 @@ local Ok = function(msg, tbl)
 end
 local Panic = function(msg, tbl)
 	local trace = function()
-		local start_frame = 2
-		local frame = start_frame
-		local ln
-		local src
+		local frame = 1
+		local stack = {}
 		while true do
 			local info = debug.getinfo(frame, "Sl")
 			if not info then
 				break
 			end
-			if info.what == "main" and info.source ~= "<string>" then
-				ln = tostring(info.currentline)
-				src = info.source
+			if info.source ~= "<string>" and info.currentline ~= -1 then
+				if info.source and info.currentline then
+					stack[#stack + 1] = info.source .. ":" .. tostring(info.currentline)
+				end
 			end
 			frame = frame + 1
 		end
-		return src, ln
+		local xstack = {}
+		for i = #stack, 1, -1 do
+			xstack[#xstack + 1] = stack[i]
+		end
+		return table.concat(xstack, " → ")
 	end
-	local src, ln = trace()
 	local stderr = logger.new()
 	tbl._ident = DSL
 	tbl._ksuid = ID
-	tbl._line_number = ln
-	tbl._source = src
+	tbl.stack = trace()
 	stderr:error(msg, tbl)
-	Notify(msg, tbl)     --> notification on failure! Last cry before dying
+	Notify(msg, tbl) --> notification on failure! Last cry before dying
 	os.exit(1)
 end
 local InterfaceAddr = function(interface, ver)
 	ver = ver or "inet"
 	local ip = exec.ctx("ip")
-	local ret, so, se = ip({"-j", "addr"})
+	local ret, so, se = ip({ "-j", "addr" })
 	if not ret then
 		Panic("ip command failed", {
 			command = "ip",
@@ -65,13 +66,13 @@ local InterfaceAddr = function(interface, ver)
 		end
 	end
 	Panic("interface not found", {
-			what = "Get_IP",
+		what = "Get_IP",
 	})
 end
 local Notify_Function = function(msg, tbl, bool)
 	tbl = tbl or {}
-	if bool then         --> If called as NOTIFY()
-		Ok(msg, tbl)       --> will not execute during Panic()
+	if bool then --> If called as NOTIFY()
+		Ok(msg, tbl) --> will not execute during Panic()
 	end
 	tbl._ident = DSL
 	tbl._ksuid = ID
@@ -107,7 +108,7 @@ local Notify_Function = function(msg, tbl, bool)
 		send(attachment)
 	end
 end
-local Exec = function(exe, t)  --> Second argument is the metatable
+local Exec = function(exe, t) --> Second argument is the metatable
 	local fn = exec.ctx(exe)
 	local msg = exe:upper()
 	local set = {}
@@ -149,7 +150,7 @@ local Command = function(exe)
 					Panic()
 				end
 			else
-				a = {...}
+				a = { ... }
 			end
 			local r, so, se, err = exec.command(exe, a, set.env, set.cwd, set.stdin)
 			log.stdout = so
@@ -171,7 +172,9 @@ setmetatable(ENV, {
 		return rawset(LOCAL, k, v)
 	end,
 	__index = function(_, value)
-		return rawget(LOCAL, value) or rawget(_G, value) or Panic("Unknown command or variable", { string = value })
+		return rawget(LOCAL, value)
+			or rawget(_G, value)
+			or Panic("Unknown command or variable", { string = value })
 	end,
 })
 ENV["Notify"] = setmetatable({}, {
@@ -186,7 +189,7 @@ ENV["Notify"] = setmetatable({}, {
 })
 ENV["Shell"] = setmetatable({}, {
 	__newindex = function(t, k, v)
-		rawset(t, k, v)    --> Use the metatable to store settings
+		rawset(t, k, v) --> Use the metatable to store settings
 	end,
 	__call = function(t, sc)
 		local sh = Exec("sh", t)
@@ -198,7 +201,7 @@ ENV["Shell"] = setmetatable({}, {
 })
 ENV["Script"] = setmetatable({}, {
 	__newindex = function(t, k, v)
-		rawset(t, k, v)    --> Use the metatable to store settings
+		rawset(t, k, v) --> Use the metatable to store settings
 	end,
 	__call = function(t, sc)
 		local sh = Exec("sh", t)

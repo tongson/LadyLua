@@ -637,28 +637,29 @@ local Ok = function(msg, tbl)
 end
 local Panic = function(msg, tbl)
 	local trace = function()
-		local start_frame = 2
-		local frame = start_frame
-		local ln
-		local src
+		local frame = 1
+		local stack = {}
 		while true do
 			local info = debug.getinfo(frame, "Sl")
 			if not info then
 				break
 			end
-			if info.what == "main" and info.source ~= "<string>" then
-				ln = tostring(info.currentline)
-				src = info.source
+			if info.source ~= "<string>" and info.currentline ~= -1 then
+				if info.source and info.currentline then
+					stack[#stack + 1] = info.source .. ":" .. tostring(info.currentline)
+				end
 			end
 			frame = frame + 1
 		end
-		return src, ln
+		local xstack = {}
+		for i = #stack, 1, -1 do
+			xstack[#xstack + 1] = stack[i]
+		end
+		return table.concat(xstack, " → ")
 	end
-	local src, ln = trace()
 	local stderr = Logger.new()
-	tbl._ident = "buildah.lua"
-	tbl._source = src
-	tbl._line_number = ln
+	tbl._ident = "lbuildah"
+	tbl.stack = trace()
 	stderr:error(msg, tbl)
 	Notify(msg, tbl)
 	os.exit(1)
