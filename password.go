@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/sethvargo/go-password/password"
+	"github.com/trustelem/zxcvbn"
 	"github.com/yuin/gopher-lua"
 )
 
@@ -22,6 +23,13 @@ func passwordGenerate(L *lua.LState) int {
 	}
 }
 
+func passwordStrength(L *lua.LState) int {
+	pass := L.CheckString(1)
+	r := zxcvbn.PasswordStrength(pass, nil)
+	L.Push(lua.LNumber(r.Score))
+	return 1
+}
+
 func passwordLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, passwordApi)
@@ -31,4 +39,5 @@ func passwordLoader(L *lua.LState) int {
 
 var passwordApi = map[string]lua.LGFunction{
 	"generate": passwordGenerate,
+	"strength": passwordStrength,
 }
