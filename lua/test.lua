@@ -2,19 +2,19 @@ local _tostring = tostring
 local tostring = function(s)
   return string.format('„%s“', _tostring(s))
 end
-local function red(str)    return grey and str or "\27[1;31m" .. str .. "\27[0m" end
-local function blue(str)   return grey and str or "\27[1;34m" .. str .. "\27[0m" end
-local function green(str)  return grey and str or "\27[1;32m" .. str .. "\27[0m" end
-local function yellow(str) return grey and str or "\27[1;33m" .. str .. "\27[0m" end
+local function red(str)    return grey and str or "\27[7;1;31m" .. str .. "\27[0m" end
+local function blue(str)   return grey and str or "\27[7;1;34m" .. str .. "\27[0m" end
+local function green(str)  return grey and str or "\27[7;1;32m" .. str .. "\27[0m" end
+local function yellow(str) return grey and str or "\27[7;1;33m" .. str .. "\27[0m" end
 
-local tab_tag      = blue   "[----------]"
-local done_tag     = blue   "[==========]"
-local run_tag      = blue   "[ RUN      ]"
-local ok_tag       = green  "[       OK ]"
-local fail_tag     = red    "[      FAIL]"
-local disabled_tag = yellow "[ DISABLED ]"
-local passed_tag   = green  "[  PASSED  ]"
-local failed_tag   = red    "[  FAILED  ]"
+local tab_tag      = blue   "--------"
+local done_tag     = blue   "========"
+local run_tag      = blue   "  RUNS  "
+local ok_tag       = green  "   OK   "
+local fail_tag     = red    "  FAIL  "
+local disabled_tag = yellow "DISABLED"
+local passed_tag   = green  " PASSED "
+local failed_tag   = red    " FAILED "
 
 local ntests = 0
 local failed = false
