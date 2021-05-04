@@ -1,0 +1,3915 @@
+{
+  "timestamp": "2019-01-25T00:16:07.137Z",
+  "tests": [
+    {
+      "password": "qwER43@!",
+      "guesses": 90470621.03078316,
+      "guesses_log10": 7.956507571518382,
+      "sequence": [
+        {
+          "pattern": "spatial",
+          "i": 0,
+          "j": 7,
+          "token": "qwER43@!",
+          "graph": "qwerty",
+          "turns": 3,
+          "shifted_count": 4,
+          "guesses": 90470620.03078316,
+          "guesses_log10": 7.95650756671799
+        }
+      ],
+      "calc_time": 7,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3256942357.108194,
+        "online_no_throttling_10_per_second": 9047062.103078317,
+        "offline_slow_hashing_1e4_per_second": 9047.062103078317,
+        "offline_fast_hashing_1e10_per_second": 0.009047062103078317
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "3 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "Short keyboard patterns are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Use a longer keyboard pattern with more turns"
+        ]
+      }
+    },
+    {
+      "password": "Tr0ub4dour&3",
+      "guesses": 19058000,
+      "guesses_log10": 7.280077322611945,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 9,
+          "token": "Tr0ub4dour",
+          "matched_word": "troubadour",
+          "rank": 11905,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "0": "o",
+            "4": "a"
+          },
+          "sub_display": "0 -> o, 4 -> a",
+          "base_guesses": 11905,
+          "uppercase_variations": 2,
+          "l33t_variations": 4,
+          "guesses": 95240,
+          "guesses_log10": 4.978819386732842
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "&3",
+          "i": 10,
+          "j": 11,
+          "guesses": 100,
+          "guesses_log10": 2
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 686088000,
+        "online_no_throttling_10_per_second": 1905800,
+        "offline_slow_hashing_1e4_per_second": 1905.8,
+        "offline_fast_hashing_1e10_per_second": 0.0019058
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "21 years",
+        "online_no_throttling_10_per_second": "22 days",
+        "offline_slow_hashing_1e4_per_second": "32 minutes",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Capitalization doesn't help very much",
+          "Predictable substitutions like '@' instead of 'a' don't help very much"
+        ]
+      }
+    },
+    {
+      "password": "correcthorsebatterystaple",
+      "guesses": 273500327700640,
+      "guesses_log10": 14.436957851029574,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "correct",
+          "matched_word": "correct",
+          "rank": 1140,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1140,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1140,
+          "guesses_log10": 3.0569048513364723
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 11,
+          "token": "horse",
+          "matched_word": "horse",
+          "rank": 701,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 701,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 701,
+          "guesses_log10": 2.8457180179666586
+        },
+        {
+          "pattern": "dictionary",
+          "i": 12,
+          "j": 18,
+          "token": "battery",
+          "matched_word": "battery",
+          "rank": 2197,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2197,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2197,
+          "guesses_log10": 3.34183005692051
+        },
+        {
+          "pattern": "dictionary",
+          "i": 19,
+          "j": 24,
+          "token": "staple",
+          "matched_word": "staple",
+          "rank": 6467,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 6467,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 6467,
+          "guesses_log10": 3.8107028609471167
+        }
+      ],
+      "calc_time": 3,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 9846011797223040,
+        "online_no_throttling_10_per_second": 27350032770064,
+        "offline_slow_hashing_1e4_per_second": 27350032770.064,
+        "offline_fast_hashing_1e10_per_second": 27350.032770064
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "8 hours"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "coRrecth0rseba++ery9.23.2007staple$",
+      "guesses": 515056266510630400000,
+      "guesses_log10": 20.71185467544951,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "coRrect",
+          "matched_word": "correct",
+          "rank": 1140,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1140,
+          "uppercase_variations": 7,
+          "l33t_variations": 1,
+          "guesses": 7980,
+          "guesses_log10": 3.902002891350729
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 11,
+          "token": "h0rse",
+          "matched_word": "horse",
+          "rank": 701,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "0": "o"
+          },
+          "sub_display": "0 -> o",
+          "base_guesses": 701,
+          "uppercase_variations": 1,
+          "l33t_variations": 2,
+          "guesses": 1402,
+          "guesses_log10": 3.1467480136306394
+        },
+        {
+          "pattern": "dictionary",
+          "i": 12,
+          "j": 18,
+          "token": "ba++ery",
+          "matched_word": "battery",
+          "rank": 2197,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "+": "t"
+          },
+          "sub_display": "+ -> t",
+          "base_guesses": 2197,
+          "uppercase_variations": 1,
+          "l33t_variations": 2,
+          "guesses": 4394,
+          "guesses_log10": 3.642860052584491
+        },
+        {
+          "pattern": "date",
+          "token": "9.23.2007",
+          "i": 19,
+          "j": 27,
+          "separator": ".",
+          "year": 2007,
+          "month": 9,
+          "day": 23,
+          "guesses": 29200,
+          "guesses_log10": 4.465382851448418
+        },
+        {
+          "pattern": "dictionary",
+          "i": 28,
+          "j": 34,
+          "token": "staple$",
+          "matched_word": "staples",
+          "rank": 1495,
+          "dictionary_name": "surnames",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "$": "s"
+          },
+          "sub_display": "$ -> s",
+          "base_guesses": 1495,
+          "uppercase_variations": 1,
+          "l33t_variations": 2,
+          "guesses": 2990,
+          "guesses_log10": 3.4756711883244296
+        }
+      ],
+      "calc_time": 21,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 1.8542025594382695e+22,
+        "online_no_throttling_10_per_second": 51505626651063040000,
+        "offline_slow_hashing_1e4_per_second": 51505626651063040,
+        "offline_fast_hashing_1e10_per_second": 51505626651.06304
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "p@ssword",
+      "guesses": 5,
+      "guesses_log10": 0.6989700043360187,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 7,
+          "token": "p@ssword",
+          "matched_word": "password",
+          "rank": 2,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "@": "a"
+          },
+          "sub_display": "@ -> a",
+          "base_guesses": 2,
+          "uppercase_variations": 1,
+          "l33t_variations": 2,
+          "guesses": 4,
+          "guesses_log10": 0.6020599913279623
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 180,
+        "online_no_throttling_10_per_second": 0.5,
+        "offline_slow_hashing_1e4_per_second": 0.0005,
+        "offline_fast_hashing_1e10_per_second": 5e-10
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "3 minutes",
+        "online_no_throttling_10_per_second": "less than a second",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is similar to a commonly used password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Predictable substitutions like '@' instead of 'a' don't help very much"
+        ]
+      }
+    },
+    {
+      "password": "p@13296word",
+      "guesses": 1651396000,
+      "guesses_log10": 9.217851228316068,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "p@",
+          "i": 0,
+          "j": 1,
+          "guesses": 100,
+          "guesses_log10": 2
+        },
+        {
+          "pattern": "date",
+          "token": "13296",
+          "i": 2,
+          "j": 6,
+          "separator": "",
+          "year": 1996,
+          "month": 2,
+          "day": 13,
+          "guesses": 8395,
+          "guesses_log10": 3.9240207004740677
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 10,
+          "token": "word",
+          "matched_word": "word",
+          "rank": 308,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 308,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 308,
+          "guesses_log10": 2.4885507165004443
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 59450256000,
+        "online_no_throttling_10_per_second": 165139600,
+        "offline_slow_hashing_1e4_per_second": 165139.6,
+        "offline_fast_hashing_1e10_per_second": 0.1651396
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "5 years",
+        "offline_slow_hashing_1e4_per_second": "2 days",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "123456",
+      "guesses": 2,
+      "guesses_log10": 0.30102999566398114,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 5,
+          "token": "123456",
+          "matched_word": "123456",
+          "rank": 1,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1,
+          "guesses_log10": 0
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 72,
+        "online_no_throttling_10_per_second": 0.2,
+        "offline_slow_hashing_1e4_per_second": 0.0002,
+        "offline_fast_hashing_1e10_per_second": 2e-10
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "1 minute",
+        "online_no_throttling_10_per_second": "less than a second",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a top-10 common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "123456789",
+      "guesses": 6,
+      "guesses_log10": 0.7781512503836435,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 8,
+          "token": "123456789",
+          "matched_word": "123456789",
+          "rank": 5,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 5,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 5,
+          "guesses_log10": 0.6989700043360187
+        }
+      ],
+      "calc_time": 25,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 216,
+        "online_no_throttling_10_per_second": 0.6,
+        "offline_slow_hashing_1e4_per_second": 0.0006,
+        "offline_fast_hashing_1e10_per_second": 6e-10
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "4 minutes",
+        "online_no_throttling_10_per_second": "less than a second",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a top-10 common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "11111111",
+      "guesses": 64,
+      "guesses_log10": 1.8061799739838869,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 7,
+          "token": "11111111",
+          "matched_word": "11111111",
+          "rank": 63,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 63,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 63,
+          "guesses_log10": 1.7993405494535815
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 2304,
+        "online_no_throttling_10_per_second": 6.4,
+        "offline_slow_hashing_1e4_per_second": 0.0064,
+        "offline_fast_hashing_1e10_per_second": 6.4e-9
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "38 minutes",
+        "online_no_throttling_10_per_second": "6 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a top-100 common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "zxcvbnm,./",
+      "guesses": 3889.0000000000005,
+      "guesses_log10": 3.5898379431474594,
+      "sequence": [
+        {
+          "pattern": "spatial",
+          "i": 0,
+          "j": 9,
+          "token": "zxcvbnm,./",
+          "graph": "qwerty",
+          "turns": 1,
+          "shifted_count": 0,
+          "guesses": 3888.0000000000005,
+          "guesses_log10": 3.5897262562542362
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 140004.00000000003,
+        "online_no_throttling_10_per_second": 388.90000000000003,
+        "offline_slow_hashing_1e4_per_second": 0.3889,
+        "offline_fast_hashing_1e10_per_second": 3.8890000000000005e-7
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "2 days",
+        "online_no_throttling_10_per_second": "6 minutes",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "Straight rows of keys are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Use a longer keyboard pattern with more turns"
+        ]
+      }
+    },
+    {
+      "password": "love88",
+      "guesses": 16600,
+      "guesses_log10": 4.220108088040055,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 3,
+          "token": "love",
+          "matched_word": "love",
+          "rank": 66,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 66,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 66,
+          "guesses_log10": 1.8195439355418683
+        },
+        {
+          "pattern": "repeat",
+          "i": 4,
+          "j": 5,
+          "token": "88",
+          "base_token": "8",
+          "base_guesses": 12,
+          "base_matches": [
+            {
+              "pattern": "bruteforce",
+              "token": "8",
+              "i": 0,
+              "j": 0,
+              "guesses": 11,
+              "guesses_log10": 1.041392685158225
+            }
+          ],
+          "repeat_count": 2,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 597600,
+        "online_no_throttling_10_per_second": 1660,
+        "offline_slow_hashing_1e4_per_second": 1.66,
+        "offline_fast_hashing_1e10_per_second": 0.00000166
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "7 days",
+        "online_no_throttling_10_per_second": "28 minutes",
+        "offline_slow_hashing_1e4_per_second": "2 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "This is similar to a commonly used password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "angel08",
+      "guesses": 22804,
+      "guesses_log10": 4.358011032332094,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 5,
+          "token": "angel0",
+          "matched_word": "angelo",
+          "rank": 291,
+          "dictionary_name": "male_names",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "0": "o"
+          },
+          "sub_display": "0 -> o",
+          "base_guesses": 291,
+          "uppercase_variations": 1,
+          "l33t_variations": 2,
+          "guesses": 582,
+          "guesses_log10": 2.7649229846498886
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "8",
+          "i": 6,
+          "j": 6,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 820944,
+        "online_no_throttling_10_per_second": 2280.4,
+        "offline_slow_hashing_1e4_per_second": 2.2804,
+        "offline_fast_hashing_1e10_per_second": 0.0000022804
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "10 days",
+        "online_no_throttling_10_per_second": "38 minutes",
+        "offline_slow_hashing_1e4_per_second": "2 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "Common names and surnames are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Predictable substitutions like '@' instead of 'a' don't help very much"
+        ]
+      }
+    },
+    {
+      "password": "monkey13",
+      "guesses": 12911,
+      "guesses_log10": 4.110959881124878,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 7,
+          "token": "monkey13",
+          "matched_word": "monkey13",
+          "rank": 12910,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 12910,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 12910,
+          "guesses_log10": 4.11092624226642
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 464796,
+        "online_no_throttling_10_per_second": 1291.1,
+        "offline_slow_hashing_1e4_per_second": 1.2911,
+        "offline_fast_hashing_1e10_per_second": 0.0000012911
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "5 days",
+        "online_no_throttling_10_per_second": "22 minutes",
+        "offline_slow_hashing_1e4_per_second": "1 second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "iloveyou",
+      "guesses": 48,
+      "guesses_log10": 1.681241237375587,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 7,
+          "token": "iloveyou",
+          "matched_word": "iloveyou",
+          "rank": 47,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 47,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 47,
+          "guesses_log10": 1.6720978579357173
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 1728,
+        "online_no_throttling_10_per_second": 4.8,
+        "offline_slow_hashing_1e4_per_second": 0.0048,
+        "offline_fast_hashing_1e10_per_second": 4.8e-9
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "29 minutes",
+        "online_no_throttling_10_per_second": "5 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a top-100 common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "woaini",
+      "guesses": 11543,
+      "guesses_log10": 4.062318695658775,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 5,
+          "token": "woaini",
+          "matched_word": "woaini",
+          "rank": 11542,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 11542,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 11542,
+          "guesses_log10": 4.062281069972644
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 415548,
+        "online_no_throttling_10_per_second": 1154.3,
+        "offline_slow_hashing_1e4_per_second": 1.1543,
+        "offline_fast_hashing_1e10_per_second": 0.0000011543
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "5 days",
+        "online_no_throttling_10_per_second": "19 minutes",
+        "offline_slow_hashing_1e4_per_second": "1 second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "wang",
+      "guesses": 883,
+      "guesses_log10": 2.945960703577568,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 3,
+          "token": "wang",
+          "matched_word": "wang",
+          "rank": 882,
+          "dictionary_name": "surnames",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 882,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 882,
+          "guesses_log10": 2.9454685851318194
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 31788,
+        "online_no_throttling_10_per_second": 88.3,
+        "offline_slow_hashing_1e4_per_second": 0.0883,
+        "offline_fast_hashing_1e10_per_second": 8.83e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "9 hours",
+        "online_no_throttling_10_per_second": "1 minute",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "Names and surnames by themselves are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "tianya",
+      "guesses": 206500,
+      "guesses_log10": 5.314920055992419,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 1,
+          "token": "ti",
+          "matched_word": "it",
+          "rank": 5,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": true,
+          "l33t": false,
+          "base_guesses": 5,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 2,
+          "j": 5,
+          "token": "anya",
+          "matched_word": "anya",
+          "rank": 1965,
+          "dictionary_name": "female_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1965,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1965,
+          "guesses_log10": 3.2933625547114453
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 7434000,
+        "online_no_throttling_10_per_second": 20650,
+        "offline_slow_hashing_1e4_per_second": 20.65,
+        "offline_fast_hashing_1e10_per_second": 0.00002065
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "3 months",
+        "online_no_throttling_10_per_second": "6 hours",
+        "offline_slow_hashing_1e4_per_second": "21 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "Common names and surnames are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "zhang198822",
+      "guesses": 72358110,
+      "guesses_log10": 7.859487214527043,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 4,
+          "token": "zhang",
+          "matched_word": "zhang",
+          "rank": 3197,
+          "dictionary_name": "surnames",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 3197,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 3197,
+          "guesses_log10": 3.5047426362716876
+        },
+        {
+          "pattern": "date",
+          "token": "198822",
+          "i": 5,
+          "j": 10,
+          "separator": "",
+          "year": 1988,
+          "month": 2,
+          "day": 2,
+          "guesses": 11315,
+          "guesses_log10": 4.053654558290747
+        }
+      ],
+      "calc_time": 14,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 2604891960,
+        "online_no_throttling_10_per_second": 7235811,
+        "offline_slow_hashing_1e4_per_second": 7235.811,
+        "offline_fast_hashing_1e10_per_second": 0.007235811
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "81 years",
+        "online_no_throttling_10_per_second": "3 months",
+        "offline_slow_hashing_1e4_per_second": "2 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "Dates are often easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Avoid dates and years that are associated with you"
+        ]
+      }
+    },
+    {
+      "password": "li4478",
+      "guesses": 1000001,
+      "guesses_log10": 6.000000434294264,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "li4478",
+          "i": 0,
+          "j": 5,
+          "guesses": 1000000,
+          "guesses_log10": 5.999999999999999
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 36000036,
+        "online_no_throttling_10_per_second": 100000.1,
+        "offline_slow_hashing_1e4_per_second": 100.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0001000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "1 year",
+        "online_no_throttling_10_per_second": "1 day",
+        "offline_slow_hashing_1e4_per_second": "2 minutes",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "a6a4Aa8a",
+      "guesses": 100000001,
+      "guesses_log10": 8.000000004342944,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "a6a4Aa8a",
+          "i": 0,
+          "j": 7,
+          "guesses": 100000000,
+          "guesses_log10": 8
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3600000036,
+        "online_no_throttling_10_per_second": 10000000.1,
+        "offline_slow_hashing_1e4_per_second": 10000.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0100000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "b6b4Bb8b",
+      "guesses": 100000001,
+      "guesses_log10": 8.000000004342944,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "b6b4Bb8b",
+          "i": 0,
+          "j": 7,
+          "guesses": 100000000,
+          "guesses_log10": 8
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3600000036,
+        "online_no_throttling_10_per_second": 10000000.1,
+        "offline_slow_hashing_1e4_per_second": 10000.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0100000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "z6z4Zz8z",
+      "guesses": 100000001,
+      "guesses_log10": 8.000000004342944,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "z6z4Zz8z",
+          "i": 0,
+          "j": 7,
+          "guesses": 100000000,
+          "guesses_log10": 8
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3600000036,
+        "online_no_throttling_10_per_second": 10000000.1,
+        "offline_slow_hashing_1e4_per_second": 10000.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0100000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "aiIiAaIA",
+      "guesses": 100000001,
+      "guesses_log10": 8.000000004342944,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "aiIiAaIA",
+          "i": 0,
+          "j": 7,
+          "guesses": 100000000,
+          "guesses_log10": 8
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3600000036,
+        "online_no_throttling_10_per_second": 10000000.1,
+        "offline_slow_hashing_1e4_per_second": 10000.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0100000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "zxXxZzXZ",
+      "guesses": 100000001,
+      "guesses_log10": 8.000000004342944,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "zxXxZzXZ",
+          "i": 0,
+          "j": 7,
+          "guesses": 100000000,
+          "guesses_log10": 8
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3600000036,
+        "online_no_throttling_10_per_second": 10000000.1,
+        "offline_slow_hashing_1e4_per_second": 10000.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0100000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "pässwörd",
+      "guesses": 100000001,
+      "guesses_log10": 8.000000004342944,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "pässwörd",
+          "i": 0,
+          "j": 7,
+          "guesses": 100000000,
+          "guesses_log10": 8
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3600000036,
+        "online_no_throttling_10_per_second": 10000000.1,
+        "offline_slow_hashing_1e4_per_second": 10000.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0100000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "alpha bravo charlie delta",
+      "guesses": 541376560000000000,
+      "guesses_log10": 17.733499448178055,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 4,
+          "token": "alpha",
+          "matched_word": "alpha",
+          "rank": 676,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 676,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 676,
+          "guesses_log10": 2.829946695941636
+        },
+        {
+          "pattern": "bruteforce",
+          "token": " bravo ",
+          "i": 5,
+          "j": 11,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        },
+        {
+          "pattern": "dictionary",
+          "i": 12,
+          "j": 18,
+          "token": "charlie",
+          "matched_word": "charlie",
+          "rank": 45,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 45,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "bruteforce",
+          "token": " ",
+          "i": 19,
+          "j": 19,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 20,
+          "j": 24,
+          "token": "delta",
+          "matched_word": "delta",
+          "rank": 1191,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1191,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1191,
+          "guesses_log10": 3.075911761482777
+        }
+      ],
+      "calc_time": 3,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 19489556160000000000,
+        "online_no_throttling_10_per_second": 54137656000000000,
+        "offline_slow_hashing_1e4_per_second": 54137656000000,
+        "offline_fast_hashing_1e10_per_second": 54137656
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "2 years"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9",
+      "guesses": 1.0000000000000002e+71,
+      "guesses_log10": 71,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9",
+          "i": 0,
+          "j": 70,
+          "guesses": 1.0000000000000002e+71,
+          "guesses_log10": 71
+        }
+      ],
+      "calc_time": 110,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3.600000000000001e+72,
+        "online_no_throttling_10_per_second": 1.0000000000000002e+70,
+        "offline_slow_hashing_1e4_per_second": 1.0000000000000001e+67,
+        "offline_fast_hashing_1e10_per_second": 1.0000000000000002e+61
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "a b c 1 2 3",
+      "guesses": 100000000001,
+      "guesses_log10": 11.000000000004341,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "a b c 1 2 3",
+          "i": 0,
+          "j": 10,
+          "guesses": 100000000000,
+          "guesses_log10": 11
+        }
+      ],
+      "calc_time": 4,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3600000000036,
+        "online_no_throttling_10_per_second": 10000000000.1,
+        "offline_slow_hashing_1e4_per_second": 10000000.0001,
+        "offline_fast_hashing_1e10_per_second": 10.0000000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "4 months",
+        "offline_fast_hashing_1e10_per_second": "10 seconds"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "correct-horse-battery-staple",
+      "guesses": 213811968952000000000,
+      "guesses_log10": 20.330032012866745,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "correct",
+          "matched_word": "correct",
+          "rank": 1140,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1140,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1140,
+          "guesses_log10": 3.0569048513364723
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "-horse-",
+          "i": 7,
+          "j": 13,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        },
+        {
+          "pattern": "dictionary",
+          "i": 14,
+          "j": 20,
+          "token": "battery",
+          "matched_word": "battery",
+          "rank": 2197,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2197,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2197,
+          "guesses_log10": 3.34183005692051
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "-",
+          "i": 21,
+          "j": 21,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 22,
+          "j": 27,
+          "token": "staple",
+          "matched_word": "staple",
+          "rank": 6467,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 6467,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 6467,
+          "guesses_log10": 3.8107028609471167
+        }
+      ],
+      "calc_time": 6,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 7.697230882272e+21,
+        "online_no_throttling_10_per_second": 21381196895199998000,
+        "offline_slow_hashing_1e4_per_second": 21381196895200000,
+        "offline_fast_hashing_1e10_per_second": 21381196895.199997
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "correct.horse.battery.staple",
+      "guesses": 213811968952000000000,
+      "guesses_log10": 20.330032012866745,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "correct",
+          "matched_word": "correct",
+          "rank": 1140,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1140,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1140,
+          "guesses_log10": 3.0569048513364723
+        },
+        {
+          "pattern": "bruteforce",
+          "token": ".horse.",
+          "i": 7,
+          "j": 13,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        },
+        {
+          "pattern": "dictionary",
+          "i": 14,
+          "j": 20,
+          "token": "battery",
+          "matched_word": "battery",
+          "rank": 2197,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2197,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2197,
+          "guesses_log10": 3.34183005692051
+        },
+        {
+          "pattern": "bruteforce",
+          "token": ".",
+          "i": 21,
+          "j": 21,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 22,
+          "j": 27,
+          "token": "staple",
+          "matched_word": "staple",
+          "rank": 6467,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 6467,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 6467,
+          "guesses_log10": 3.8107028609471167
+        }
+      ],
+      "calc_time": 3,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 7.697230882272e+21,
+        "online_no_throttling_10_per_second": 21381196895199998000,
+        "offline_slow_hashing_1e4_per_second": 21381196895200000,
+        "offline_fast_hashing_1e10_per_second": 21381196895.199997
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "correct,horse,battery,staple",
+      "guesses": 213811968952000000000,
+      "guesses_log10": 20.330032012866745,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "correct",
+          "matched_word": "correct",
+          "rank": 1140,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1140,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1140,
+          "guesses_log10": 3.0569048513364723
+        },
+        {
+          "pattern": "bruteforce",
+          "token": ",horse,",
+          "i": 7,
+          "j": 13,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        },
+        {
+          "pattern": "dictionary",
+          "i": 14,
+          "j": 20,
+          "token": "battery",
+          "matched_word": "battery",
+          "rank": 2197,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2197,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2197,
+          "guesses_log10": 3.34183005692051
+        },
+        {
+          "pattern": "bruteforce",
+          "token": ",",
+          "i": 21,
+          "j": 21,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 22,
+          "j": 27,
+          "token": "staple",
+          "matched_word": "staple",
+          "rank": 6467,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 6467,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 6467,
+          "guesses_log10": 3.8107028609471167
+        }
+      ],
+      "calc_time": 3,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 7.697230882272e+21,
+        "online_no_throttling_10_per_second": 21381196895199998000,
+        "offline_slow_hashing_1e4_per_second": 21381196895200000,
+        "offline_fast_hashing_1e10_per_second": 21381196895.199997
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "correct~horse~battery~staple",
+      "guesses": 213811968952000000000,
+      "guesses_log10": 20.330032012866745,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "correct",
+          "matched_word": "correct",
+          "rank": 1140,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1140,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1140,
+          "guesses_log10": 3.0569048513364723
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "~horse~",
+          "i": 7,
+          "j": 13,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        },
+        {
+          "pattern": "dictionary",
+          "i": 14,
+          "j": 20,
+          "token": "battery",
+          "matched_word": "battery",
+          "rank": 2197,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2197,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2197,
+          "guesses_log10": 3.34183005692051
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "~",
+          "i": 21,
+          "j": 21,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 22,
+          "j": 27,
+          "token": "staple",
+          "matched_word": "staple",
+          "rank": 6467,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 6467,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 6467,
+          "guesses_log10": 3.8107028609471167
+        }
+      ],
+      "calc_time": 6,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 7.697230882272e+21,
+        "online_no_throttling_10_per_second": 21381196895199998000,
+        "offline_slow_hashing_1e4_per_second": 21381196895200000,
+        "offline_fast_hashing_1e10_per_second": 21381196895.199997
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "WhyfaultthebardifhesingstheArgives’harshfate?",
+      "guesses": 5.681522165759999e+40,
+      "guesses_log10": 40.75446470536368,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 2,
+          "token": "Why",
+          "matched_word": "why",
+          "rank": 48,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 48,
+          "uppercase_variations": 2,
+          "l33t_variations": 1,
+          "guesses": 96,
+          "guesses_log10": 1.9822712330395682
+        },
+        {
+          "pattern": "dictionary",
+          "i": 3,
+          "j": 7,
+          "token": "fault",
+          "matched_word": "fault",
+          "rank": 435,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 435,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 435,
+          "guesses_log10": 2.638489256954637
+        },
+        {
+          "pattern": "dictionary",
+          "i": 8,
+          "j": 10,
+          "token": "the",
+          "matched_word": "the",
+          "rank": 1,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "bardifhesingst",
+          "i": 11,
+          "j": 24,
+          "guesses": 100000000000000,
+          "guesses_log10": 14
+        },
+        {
+          "pattern": "dictionary",
+          "i": 25,
+          "j": 28,
+          "token": "heAr",
+          "matched_word": "hear",
+          "rank": 164,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 164,
+          "uppercase_variations": 4,
+          "l33t_variations": 1,
+          "guesses": 656,
+          "guesses_log10": 2.81690383937566
+        },
+        {
+          "pattern": "dictionary",
+          "i": 29,
+          "j": 33,
+          "token": "gives",
+          "matched_word": "gives",
+          "rank": 823,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 823,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 823,
+          "guesses_log10": 2.9153998352122694
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "’harshfate?",
+          "i": 34,
+          "j": 44,
+          "guesses": 100000000000,
+          "guesses_log10": 11
+        }
+      ],
+      "calc_time": 8,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 2.0453479796736e+42,
+        "online_no_throttling_10_per_second": 5.68152216576e+39,
+        "offline_slow_hashing_1e4_per_second": 5.68152216576e+36,
+        "offline_fast_hashing_1e10_per_second": 5.681522165759999e+30
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "Eupithes’sonAntinousbroketheirsilence",
+      "guesses": 1.116864e+29,
+      "guesses_log10": 29.048000292501914,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "Eupithes’sonAntinous",
+          "i": 0,
+          "j": 19,
+          "guesses": 100000000000000000000,
+          "guesses_log10": 20
+        },
+        {
+          "pattern": "dictionary",
+          "i": 20,
+          "j": 24,
+          "token": "broke",
+          "matched_word": "broke",
+          "rank": 554,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 554,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 554,
+          "guesses_log10": 2.7435097647284294
+        },
+        {
+          "pattern": "dictionary",
+          "i": 25,
+          "j": 29,
+          "token": "their",
+          "matched_word": "their",
+          "rank": 28,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 28,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 30,
+          "j": 36,
+          "token": "silence",
+          "matched_word": "silence",
+          "rank": 1680,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1680,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1680,
+          "guesses_log10": 3.2253092817258624
+        }
+      ],
+      "calc_time": 6,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 4.0207104e+30,
+        "online_no_throttling_10_per_second": 1.1168639999999999e+28,
+        "offline_slow_hashing_1e4_per_second": 1.116864e+25,
+        "offline_fast_hashing_1e10_per_second": 11168640000000000000
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "Athena lavished a marvelous splendor",
+      "guesses": 1.529741031089717e+24,
+      "guesses_log10": 24.18461791559664,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 5,
+          "token": "Athena",
+          "matched_word": "athena",
+          "rank": 1054,
+          "dictionary_name": "female_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1054,
+          "uppercase_variations": 2,
+          "l33t_variations": 1,
+          "guesses": 2108,
+          "guesses_log10": 3.323870606540509
+        },
+        {
+          "pattern": "bruteforce",
+          "token": " ",
+          "i": 6,
+          "j": 6,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 14,
+          "token": "lavished",
+          "matched_word": "lavished",
+          "rank": 17131,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 17131,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 17131,
+          "guesses_log10": 4.233782715084947
+        },
+        {
+          "pattern": "bruteforce",
+          "token": " a ",
+          "i": 15,
+          "j": 17,
+          "guesses": 1000,
+          "guesses_log10": 2.9999999999999996
+        },
+        {
+          "pattern": "dictionary",
+          "i": 18,
+          "j": 26,
+          "token": "marvelous",
+          "matched_word": "marvelous",
+          "rank": 2846,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2846,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2846,
+          "guesses_log10": 3.4542348957482654
+        },
+        {
+          "pattern": "bruteforce",
+          "token": " ",
+          "i": 27,
+          "j": 27,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 28,
+          "j": 35,
+          "token": "splendor",
+          "matched_word": "splendor",
+          "rank": 8452,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 8452,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 8452,
+          "guesses_log10": 3.926959488380276
+        }
+      ],
+      "calc_time": 7,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 5.507067711922981e+25,
+        "online_no_throttling_10_per_second": 1.529741031089717e+23,
+        "offline_slow_hashing_1e4_per_second": 152974103108971700000,
+        "offline_fast_hashing_1e10_per_second": 152974103108971.7
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "buckmulliganstenderchant",
+      "guesses": 49843739981702800,
+      "guesses_log10": 16.697610621782676,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 3,
+          "token": "buck",
+          "matched_word": "buck",
+          "rank": 657,
+          "dictionary_name": "surnames",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 657,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 657,
+          "guesses_log10": 2.8175653695597807
+        },
+        {
+          "pattern": "dictionary",
+          "i": 4,
+          "j": 11,
+          "token": "mulligan",
+          "matched_word": "mulligan",
+          "rank": 2431,
+          "dictionary_name": "surnames",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2431,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2431,
+          "guesses_log10": 3.3857849588433355
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "s",
+          "i": 12,
+          "j": 12,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        },
+        {
+          "pattern": "dictionary",
+          "i": 13,
+          "j": 18,
+          "token": "tender",
+          "matched_word": "tender",
+          "rank": 2921,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 2921,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 2921,
+          "guesses_log10": 3.4655315569735494
+        },
+        {
+          "pattern": "dictionary",
+          "i": 19,
+          "j": 23,
+          "token": "chant",
+          "matched_word": "chant",
+          "rank": 6470,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 6470,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 6470,
+          "guesses_log10": 3.8109042806687
+        }
+      ],
+      "calc_time": 3,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 1794374639341301000,
+        "online_no_throttling_10_per_second": 4984373998170280,
+        "offline_slow_hashing_1e4_per_second": 4984373998170.28,
+        "offline_fast_hashing_1e10_per_second": 4984373.99817028
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "2 months"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "seethenthatyewalkcircumspectly",
+      "guesses": 3.7200000000001e+25,
+      "guesses_log10": 25.570542939881907,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 2,
+          "token": "see",
+          "matched_word": "see",
+          "rank": 49,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 49,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 3,
+          "j": 6,
+          "token": "then",
+          "matched_word": "then",
+          "rank": 62,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 62,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 62,
+          "guesses_log10": 1.7923916894982537
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 10,
+          "token": "that",
+          "matched_word": "that",
+          "rank": 4,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 4,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "yewalkcircumspectly",
+          "i": 11,
+          "j": 29,
+          "guesses": 10000000000000000000,
+          "guesses_log10": 19
+        }
+      ],
+      "calc_time": 3,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 1.339200000000036e+27,
+        "online_no_throttling_10_per_second": 3.7200000000001e+24,
+        "offline_slow_hashing_1e4_per_second": 3.7200000000001e+21,
+        "offline_fast_hashing_1e10_per_second": 3720000000000100
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "LihiandthepeopleofMorianton",
+      "guesses": 2.79559e+21,
+      "guesses_log10": 21.446473478306082,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "Lihiand",
+          "i": 0,
+          "j": 6,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 9,
+          "token": "the",
+          "matched_word": "the",
+          "rank": 1,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 10,
+          "j": 15,
+          "token": "people",
+          "matched_word": "people",
+          "rank": 93,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 93,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 93,
+          "guesses_log10": 1.968482948553935
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "ofMori",
+          "i": 16,
+          "j": 21,
+          "guesses": 1000000,
+          "guesses_log10": 5.999999999999999
+        },
+        {
+          "pattern": "dictionary",
+          "i": 22,
+          "j": 26,
+          "token": "anton",
+          "matched_word": "anton",
+          "rank": 501,
+          "dictionary_name": "male_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 501,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 501,
+          "guesses_log10": 2.6998377258672455
+        }
+      ],
+      "calc_time": 3,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 1.0064124e+23,
+        "online_no_throttling_10_per_second": 279559000000000000000,
+        "offline_slow_hashing_1e4_per_second": 279559000000000000,
+        "offline_fast_hashing_1e10_per_second": 279559000000
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "establishedinthecityofZarahemla",
+      "guesses": 3.291840001e+21,
+      "guesses_log10": 21.517438718286442,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 10,
+          "token": "established",
+          "matched_word": "established",
+          "rank": 254,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 254,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 254,
+          "guesses_log10": 2.404833716619938
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "inthe",
+          "i": 11,
+          "j": 15,
+          "guesses": 100000,
+          "guesses_log10": 5
+        },
+        {
+          "pattern": "dictionary",
+          "i": 16,
+          "j": 19,
+          "token": "city",
+          "matched_word": "city",
+          "rank": 54,
+          "dictionary_name": "english_wikipedia",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 54,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 54,
+          "guesses_log10": 1.7323937598229684
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "ofZarahemla",
+          "i": 20,
+          "j": 30,
+          "guesses": 100000000000,
+          "guesses_log10": 11
+        }
+      ],
+      "calc_time": 4,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 1.1850624003600002e+23,
+        "online_no_throttling_10_per_second": 329184000100000000000,
+        "offline_slow_hashing_1e4_per_second": 329184000100000000,
+        "offline_fast_hashing_1e10_per_second": 329184000100
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "!\"£$%^&*()",
+      "guesses": 10378000.000000002,
+      "guesses_log10": 7.016113666358907,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "!\"£",
+          "i": 0,
+          "j": 2,
+          "guesses": 1000,
+          "guesses_log10": 2.9999999999999996
+        },
+        {
+          "pattern": "spatial",
+          "i": 3,
+          "j": 9,
+          "token": "$%^&*()",
+          "graph": "qwerty",
+          "turns": 1,
+          "shifted_count": 7,
+          "guesses": 5184.000000000001,
+          "guesses_log10": 3.7146649928625366
+        }
+      ],
+      "calc_time": 4,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 373608000.00000006,
+        "online_no_throttling_10_per_second": 1037800.0000000002,
+        "offline_slow_hashing_1e4_per_second": 1037.8000000000002,
+        "offline_fast_hashing_1e10_per_second": 0.0010378000000000002
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "12 years",
+        "online_no_throttling_10_per_second": "12 days",
+        "offline_slow_hashing_1e4_per_second": "17 minutes",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "Straight rows of keys are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Use a longer keyboard pattern with more turns"
+        ]
+      }
+    },
+    {
+      "password": "D0g..................",
+      "guesses": 442000,
+      "guesses_log10": 5.645422269349091,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "D0g",
+          "i": 0,
+          "j": 2,
+          "guesses": 1000,
+          "guesses_log10": 2.9999999999999996
+        },
+        {
+          "pattern": "repeat",
+          "i": 3,
+          "j": 20,
+          "token": "..................",
+          "base_token": ".",
+          "base_guesses": 12,
+          "base_matches": [
+            {
+              "pattern": "bruteforce",
+              "token": ".",
+              "i": 0,
+              "j": 0,
+              "guesses": 11,
+              "guesses_log10": 1.041392685158225
+            }
+          ],
+          "repeat_count": 18,
+          "guesses": 216,
+          "guesses_log10": 2.3344537511509307
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 15912000,
+        "online_no_throttling_10_per_second": 44200,
+        "offline_slow_hashing_1e4_per_second": 44.2,
+        "offline_fast_hashing_1e10_per_second": 0.0000442
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "6 months",
+        "online_no_throttling_10_per_second": "12 hours",
+        "offline_slow_hashing_1e4_per_second": "44 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "Repeats like \"aaa\" are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Avoid repeated words and characters"
+        ]
+      }
+    },
+    {
+      "password": "abcdefghijk987654321",
+      "guesses": 15000,
+      "guesses_log10": 4.176091259055681,
+      "sequence": [
+        {
+          "pattern": "sequence",
+          "i": 0,
+          "j": 10,
+          "token": "abcdefghijk",
+          "sequence_name": "lower",
+          "sequence_space": 26,
+          "ascending": true,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 11,
+          "j": 19,
+          "token": "987654321",
+          "matched_word": "123456789",
+          "rank": 5,
+          "dictionary_name": "passwords",
+          "reversed": true,
+          "l33t": false,
+          "base_guesses": 5,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 10,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 540000,
+        "online_no_throttling_10_per_second": 1500,
+        "offline_slow_hashing_1e4_per_second": 1.5,
+        "offline_fast_hashing_1e10_per_second": 0.0000015
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "6 days",
+        "online_no_throttling_10_per_second": "25 minutes",
+        "offline_slow_hashing_1e4_per_second": "2 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "Sequences like abc or 6543 are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Avoid sequences"
+        ]
+      }
+    },
+    {
+      "password": "neverforget13/3/1997",
+      "guesses": 3756862000,
+      "guesses_log10": 9.574825242511018,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 4,
+          "token": "never",
+          "matched_word": "never",
+          "rank": 75,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 75,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 75,
+          "guesses_log10": 1.8750612633916997
+        },
+        {
+          "pattern": "dictionary",
+          "i": 5,
+          "j": 10,
+          "token": "forget",
+          "matched_word": "forget",
+          "rank": 253,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 253,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 253,
+          "guesses_log10": 2.4031205211758175
+        },
+        {
+          "pattern": "date",
+          "token": "13/3/1997",
+          "i": 11,
+          "j": 19,
+          "separator": "/",
+          "year": 1997,
+          "month": 3,
+          "day": 13,
+          "guesses": 32120,
+          "guesses_log10": 4.506775536606643
+        }
+      ],
+      "calc_time": 4,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 135247032000,
+        "online_no_throttling_10_per_second": 375686200,
+        "offline_slow_hashing_1e4_per_second": 375686.2,
+        "offline_fast_hashing_1e10_per_second": 0.3756862
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "12 years",
+        "offline_slow_hashing_1e4_per_second": "4 days",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "1qaz2wsx3edc\"",
+      "guesses": 32000,
+      "guesses_log10": 4.505149978319905,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 11,
+          "token": "1qaz2wsx3edc",
+          "matched_word": "1qaz2wsx3edc",
+          "rank": 1000,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1000,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 1000,
+          "guesses_log10": 2.9999999999999996
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "\"",
+          "i": 12,
+          "j": 12,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 1152000,
+        "online_no_throttling_10_per_second": 3200,
+        "offline_slow_hashing_1e4_per_second": 3.2,
+        "offline_fast_hashing_1e10_per_second": 0.0000032
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "13 days",
+        "online_no_throttling_10_per_second": "53 minutes",
+        "offline_slow_hashing_1e4_per_second": "3 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "This is similar to a commonly used password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "temppass22",
+      "guesses": 387500,
+      "guesses_log10": 5.588271706842329,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 7,
+          "token": "temppass",
+          "matched_word": "temppass",
+          "rank": 3775,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 3775,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 3775,
+          "guesses_log10": 3.5769169559652063
+        },
+        {
+          "pattern": "repeat",
+          "i": 8,
+          "j": 9,
+          "token": "22",
+          "base_token": "2",
+          "base_guesses": 12,
+          "base_matches": [
+            {
+              "pattern": "bruteforce",
+              "token": "2",
+              "i": 0,
+              "j": 0,
+              "guesses": 11,
+              "guesses_log10": 1.041392685158225
+            }
+          ],
+          "repeat_count": 2,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 13950000,
+        "online_no_throttling_10_per_second": 38750,
+        "offline_slow_hashing_1e4_per_second": 38.75,
+        "offline_fast_hashing_1e10_per_second": 0.00003875
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "5 months",
+        "online_no_throttling_10_per_second": "11 hours",
+        "offline_slow_hashing_1e4_per_second": "39 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "This is similar to a commonly used password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "briansmith",
+      "guesses": 15000,
+      "guesses_log10": 4.176091259055681,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 4,
+          "token": "brian",
+          "matched_word": "brian",
+          "rank": 20,
+          "dictionary_name": "male_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 20,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 5,
+          "j": 9,
+          "token": "smith",
+          "matched_word": "smith",
+          "rank": 1,
+          "dictionary_name": "surnames",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 540000,
+        "online_no_throttling_10_per_second": 1500,
+        "offline_slow_hashing_1e4_per_second": 1.5,
+        "offline_fast_hashing_1e10_per_second": 0.0000015
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "6 days",
+        "online_no_throttling_10_per_second": "25 minutes",
+        "offline_slow_hashing_1e4_per_second": "2 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "Common names and surnames are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "briansmith4mayor",
+      "guesses": 15100000000,
+      "guesses_log10": 10.178976947293169,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 4,
+          "token": "brian",
+          "matched_word": "brian",
+          "rank": 20,
+          "dictionary_name": "male_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 20,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 5,
+          "j": 9,
+          "token": "smith",
+          "matched_word": "smith",
+          "rank": 1,
+          "dictionary_name": "surnames",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 1,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "4mayor",
+          "i": 10,
+          "j": 15,
+          "guesses": 1000000,
+          "guesses_log10": 5.999999999999999
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 543600000000,
+        "online_no_throttling_10_per_second": 1510000000,
+        "offline_slow_hashing_1e4_per_second": 1510000,
+        "offline_fast_hashing_1e10_per_second": 1.51
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "47 years",
+        "offline_slow_hashing_1e4_per_second": "17 days",
+        "offline_fast_hashing_1e10_per_second": "2 seconds"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "password1",
+      "guesses": 190,
+      "guesses_log10": 2.278753600952829,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 8,
+          "token": "password1",
+          "matched_word": "password1",
+          "rank": 189,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 189,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 189,
+          "guesses_log10": 2.276461804173244
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 6840,
+        "online_no_throttling_10_per_second": 19,
+        "offline_slow_hashing_1e4_per_second": 0.019,
+        "offline_fast_hashing_1e10_per_second": 1.9e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "2 hours",
+        "online_no_throttling_10_per_second": "19 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "viking",
+      "guesses": 244,
+      "guesses_log10": 2.387389826338729,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 5,
+          "token": "viking",
+          "matched_word": "viking",
+          "rank": 243,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 243,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 243,
+          "guesses_log10": 2.3856062735983117
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 8784,
+        "online_no_throttling_10_per_second": 24.4,
+        "offline_slow_hashing_1e4_per_second": 0.0244,
+        "offline_fast_hashing_1e10_per_second": 2.44e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "2 hours",
+        "online_no_throttling_10_per_second": "24 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "thx1138",
+      "guesses": 209,
+      "guesses_log10": 2.320146286111054,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "thx1138",
+          "matched_word": "thx1138",
+          "rank": 208,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 208,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 208,
+          "guesses_log10": 2.3180633349627615
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 7524,
+        "online_no_throttling_10_per_second": 20.9,
+        "offline_slow_hashing_1e4_per_second": 0.0209,
+        "offline_fast_hashing_1e10_per_second": 2.09e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "2 hours",
+        "online_no_throttling_10_per_second": "21 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "ScoRpi0ns",
+      "guesses": 289664,
+      "guesses_log10": 5.461894523602596,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 7,
+          "token": "ScoRpi0n",
+          "matched_word": "scorpion",
+          "rank": 227,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "0": "o"
+          },
+          "sub_display": "0 -> o",
+          "base_guesses": 227,
+          "uppercase_variations": 28,
+          "l33t_variations": 2,
+          "guesses": 12712,
+          "guesses_log10": 4.104213884199322
+        },
+        {
+          "pattern": "bruteforce",
+          "token": "s",
+          "i": 8,
+          "j": 8,
+          "guesses": 11,
+          "guesses_log10": 1.041392685158225
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 10427904,
+        "online_no_throttling_10_per_second": 28966.4,
+        "offline_slow_hashing_1e4_per_second": 28.9664,
+        "offline_fast_hashing_1e10_per_second": 0.0000289664
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "4 months",
+        "online_no_throttling_10_per_second": "8 hours",
+        "offline_slow_hashing_1e4_per_second": "29 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Predictable substitutions like '@' instead of 'a' don't help very much"
+        ]
+      }
+    },
+    {
+      "password": "do you know",
+      "guesses": 1000010000,
+      "guesses_log10": 9.000004342923104,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "do you ",
+          "i": 0,
+          "j": 6,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 10,
+          "token": "know",
+          "matched_word": "know",
+          "rank": 9,
+          "dictionary_name": "us_tv_and_film",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 9,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 36000360000,
+        "online_no_throttling_10_per_second": 100001000,
+        "offline_slow_hashing_1e4_per_second": 100001,
+        "offline_fast_hashing_1e10_per_second": 0.100001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "3 years",
+        "offline_slow_hashing_1e4_per_second": "1 day",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "ryanhunter2000",
+      "guesses": 100750000,
+      "guesses_log10": 8.003245054813148,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 3,
+          "token": "ryan",
+          "matched_word": "ryan",
+          "rank": 49,
+          "dictionary_name": "male_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 49,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "dictionary",
+          "i": 4,
+          "j": 9,
+          "token": "hunter",
+          "matched_word": "hunter",
+          "rank": 37,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 37,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "regex",
+          "token": "2000",
+          "i": 10,
+          "j": 13,
+          "regex_name": "recent_year",
+          "regex_match": [
+            "2000"
+          ],
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 4,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3627000000,
+        "online_no_throttling_10_per_second": 10075000,
+        "offline_slow_hashing_1e4_per_second": 10075,
+        "offline_fast_hashing_1e10_per_second": 0.010075
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 months",
+        "offline_slow_hashing_1e4_per_second": "3 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "rianhunter2000",
+      "guesses": 250000000,
+      "guesses_log10": 8.397940008672036,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "rian",
+          "i": 0,
+          "j": 3,
+          "guesses": 10000,
+          "guesses_log10": 4
+        },
+        {
+          "pattern": "dictionary",
+          "i": 4,
+          "j": 9,
+          "token": "hunter",
+          "matched_word": "hunter",
+          "rank": 37,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 37,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        },
+        {
+          "pattern": "regex",
+          "token": "2000",
+          "i": 10,
+          "j": 13,
+          "regex_name": "recent_year",
+          "regex_match": [
+            "2000"
+          ],
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 9000000000,
+        "online_no_throttling_10_per_second": 25000000,
+        "offline_slow_hashing_1e4_per_second": 25000,
+        "offline_fast_hashing_1e10_per_second": 0.025
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "9 months",
+        "offline_slow_hashing_1e4_per_second": "7 hours",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "asdfghju7654rewq",
+      "guesses": 923189026.4430684,
+      "guesses_log10": 8.965290633567779,
+      "sequence": [
+        {
+          "pattern": "spatial",
+          "i": 0,
+          "j": 15,
+          "token": "asdfghju7654rewq",
+          "graph": "qwerty",
+          "turns": 5,
+          "shifted_count": 0,
+          "guesses": 923189025.4430684,
+          "guesses_log10": 8.96529063309735
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 33234804951.950462,
+        "online_no_throttling_10_per_second": 92318902.64430684,
+        "offline_slow_hashing_1e4_per_second": 92318.90264430684,
+        "offline_fast_hashing_1e10_per_second": 0.09231890264430684
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "3 years",
+        "offline_slow_hashing_1e4_per_second": "1 day",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "AOEUIDHG&*()LS_",
+      "guesses": 1280140890.9735801,
+      "guesses_log10": 9.107257770276851,
+      "sequence": [
+        {
+          "pattern": "spatial",
+          "i": 0,
+          "j": 14,
+          "token": "AOEUIDHG&*()LS_",
+          "graph": "dvorak",
+          "turns": 5,
+          "shifted_count": 15,
+          "guesses": 1280140889.9735801,
+          "guesses_log10": 9.107257769937595
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 46085072075.04889,
+        "online_no_throttling_10_per_second": 128014089.09735802,
+        "offline_slow_hashing_1e4_per_second": 128014.08909735801,
+        "offline_fast_hashing_1e10_per_second": 0.128014089097358
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "4 years",
+        "offline_slow_hashing_1e4_per_second": "1 day",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "12345678",
+      "guesses": 4,
+      "guesses_log10": 0.6020599913279623,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 7,
+          "token": "12345678",
+          "matched_word": "12345678",
+          "rank": 3,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 3,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 3,
+          "guesses_log10": 0.4771212547196623
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 144,
+        "online_no_throttling_10_per_second": 0.4,
+        "offline_slow_hashing_1e4_per_second": 0.0004,
+        "offline_fast_hashing_1e10_per_second": 4e-10
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "2 minutes",
+        "online_no_throttling_10_per_second": "less than a second",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a top-10 common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "defghi6789",
+      "guesses": 25600,
+      "guesses_log10": 4.408239965311849,
+      "sequence": [
+        {
+          "pattern": "sequence",
+          "i": 0,
+          "j": 5,
+          "token": "defghi",
+          "sequence_name": "lower",
+          "sequence_space": 26,
+          "ascending": true,
+          "guesses": 156,
+          "guesses_log10": 2.1931245983544616
+        },
+        {
+          "pattern": "sequence",
+          "i": 6,
+          "j": 9,
+          "token": "6789",
+          "sequence_name": "digits",
+          "sequence_space": 10,
+          "ascending": true,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 921600,
+        "online_no_throttling_10_per_second": 2560,
+        "offline_slow_hashing_1e4_per_second": 2.56,
+        "offline_fast_hashing_1e10_per_second": 0.00000256
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "11 days",
+        "online_no_throttling_10_per_second": "43 minutes",
+        "offline_slow_hashing_1e4_per_second": "3 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "Sequences like abc or 6543 are easy to guess",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Avoid sequences"
+        ]
+      }
+    },
+    {
+      "password": "rosebud",
+      "guesses": 272,
+      "guesses_log10": 2.4345689040341987,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "rosebud",
+          "matched_word": "rosebud",
+          "rank": 271,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 271,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 271,
+          "guesses_log10": 2.4329692908744054
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 9792,
+        "online_no_throttling_10_per_second": 27.2,
+        "offline_slow_hashing_1e4_per_second": 0.0272,
+        "offline_fast_hashing_1e10_per_second": 2.72e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "3 hours",
+        "online_no_throttling_10_per_second": "27 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "Rosebud",
+      "guesses": 543,
+      "guesses_log10": 2.7347998295888467,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "Rosebud",
+          "matched_word": "rosebud",
+          "rank": 271,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 271,
+          "uppercase_variations": 2,
+          "l33t_variations": 1,
+          "guesses": 542,
+          "guesses_log10": 2.7339992865383866
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 19548,
+        "online_no_throttling_10_per_second": 54.3,
+        "offline_slow_hashing_1e4_per_second": 0.0543,
+        "offline_fast_hashing_1e10_per_second": 5.43e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "5 hours",
+        "online_no_throttling_10_per_second": "54 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Capitalization doesn't help very much"
+        ]
+      }
+    },
+    {
+      "password": "ROSEBUD",
+      "guesses": 543,
+      "guesses_log10": 2.7347998295888467,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "ROSEBUD",
+          "matched_word": "rosebud",
+          "rank": 271,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 271,
+          "uppercase_variations": 2,
+          "l33t_variations": 1,
+          "guesses": 542,
+          "guesses_log10": 2.7339992865383866
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 19548,
+        "online_no_throttling_10_per_second": 54.3,
+        "offline_slow_hashing_1e4_per_second": 0.0543,
+        "offline_fast_hashing_1e10_per_second": 5.43e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "5 hours",
+        "online_no_throttling_10_per_second": "54 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "All-uppercase is almost as easy to guess as all-lowercase"
+        ]
+      }
+    },
+    {
+      "password": "rosebuD",
+      "guesses": 543,
+      "guesses_log10": 2.7347998295888467,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "rosebuD",
+          "matched_word": "rosebud",
+          "rank": 271,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 271,
+          "uppercase_variations": 2,
+          "l33t_variations": 1,
+          "guesses": 542,
+          "guesses_log10": 2.7339992865383866
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 19548,
+        "online_no_throttling_10_per_second": 54.3,
+        "offline_slow_hashing_1e4_per_second": 0.0543,
+        "offline_fast_hashing_1e10_per_second": 5.43e-8
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "5 hours",
+        "online_no_throttling_10_per_second": "54 seconds",
+        "offline_slow_hashing_1e4_per_second": "less than a second",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 0,
+      "feedback": {
+        "warning": "This is a very common password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "ros3bud99",
+      "guesses": 64200,
+      "guesses_log10": 4.807535028068853,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "ros3bud",
+          "matched_word": "rosebud",
+          "rank": 271,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "3": "e"
+          },
+          "sub_display": "3 -> e",
+          "base_guesses": 271,
+          "uppercase_variations": 1,
+          "l33t_variations": 2,
+          "guesses": 542,
+          "guesses_log10": 2.7339992865383866
+        },
+        {
+          "pattern": "repeat",
+          "i": 7,
+          "j": 8,
+          "token": "99",
+          "base_token": "9",
+          "base_guesses": 12,
+          "base_matches": [
+            {
+              "pattern": "bruteforce",
+              "token": "9",
+              "i": 0,
+              "j": 0,
+              "guesses": 11,
+              "guesses_log10": 1.041392685158225
+            }
+          ],
+          "repeat_count": 2,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 2311200,
+        "online_no_throttling_10_per_second": 6420,
+        "offline_slow_hashing_1e4_per_second": 6.42,
+        "offline_fast_hashing_1e10_per_second": 0.00000642
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "27 days",
+        "online_no_throttling_10_per_second": "2 hours",
+        "offline_slow_hashing_1e4_per_second": "6 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "This is similar to a commonly used password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Predictable substitutions like '@' instead of 'a' don't help very much"
+        ]
+      }
+    },
+    {
+      "password": "r0s3bud99",
+      "guesses": 118400,
+      "guesses_log10": 5.0733517023869,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "r0s3bud",
+          "matched_word": "rosebud",
+          "rank": 271,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": true,
+          "sub": {
+            "0": "o",
+            "3": "e"
+          },
+          "sub_display": "0 -> o, 3 -> e",
+          "base_guesses": 271,
+          "uppercase_variations": 1,
+          "l33t_variations": 4,
+          "guesses": 1084,
+          "guesses_log10": 3.035029282202368
+        },
+        {
+          "pattern": "repeat",
+          "i": 7,
+          "j": 8,
+          "token": "99",
+          "base_token": "9",
+          "base_guesses": 12,
+          "base_matches": [
+            {
+              "pattern": "bruteforce",
+              "token": "9",
+              "i": 0,
+              "j": 0,
+              "guesses": 11,
+              "guesses_log10": 1.041392685158225
+            }
+          ],
+          "repeat_count": 2,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 4262400,
+        "online_no_throttling_10_per_second": 11840,
+        "offline_slow_hashing_1e4_per_second": 11.84,
+        "offline_fast_hashing_1e10_per_second": 0.00001184
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "2 months",
+        "online_no_throttling_10_per_second": "3 hours",
+        "offline_slow_hashing_1e4_per_second": "12 seconds",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 1,
+      "feedback": {
+        "warning": "This is similar to a commonly used password",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better.",
+          "Predictable substitutions like '@' instead of 'a' don't help very much"
+        ]
+      }
+    },
+    {
+      "password": "R08uD99",
+      "guesses": 10000001,
+      "guesses_log10": 7.000000043429445,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "R08uD99",
+          "i": 0,
+          "j": 6,
+          "guesses": 10000000,
+          "guesses_log10": 7
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 360000036,
+        "online_no_throttling_10_per_second": 1000000.1,
+        "offline_slow_hashing_1e4_per_second": 1000.0001,
+        "offline_fast_hashing_1e10_per_second": 0.0010000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "11 years",
+        "online_no_throttling_10_per_second": "12 days",
+        "offline_slow_hashing_1e4_per_second": "17 minutes",
+        "offline_fast_hashing_1e10_per_second": "less than a second"
+      },
+      "score": 2,
+      "feedback": {
+        "warning": "",
+        "suggestions": [
+          "Add another word or two. Uncommon words are better."
+        ]
+      }
+    },
+    {
+      "password": "verlineVANDERMARK",
+      "guesses": 24500856400,
+      "guesses_log10": 10.389181264907144,
+      "sequence": [
+        {
+          "pattern": "dictionary",
+          "i": 0,
+          "j": 6,
+          "token": "verline",
+          "matched_word": "verline",
+          "rank": 3634,
+          "dictionary_name": "female_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 3634,
+          "uppercase_variations": 1,
+          "l33t_variations": 1,
+          "guesses": 3634,
+          "guesses_log10": 3.560384922972015
+        },
+        {
+          "pattern": "dictionary",
+          "i": 7,
+          "j": 12,
+          "token": "VANDER",
+          "matched_word": "vander",
+          "rank": 11191,
+          "dictionary_name": "passwords",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 11191,
+          "uppercase_variations": 2,
+          "l33t_variations": 1,
+          "guesses": 22382,
+          "guesses_log10": 4.349898891403912
+        },
+        {
+          "pattern": "dictionary",
+          "i": 13,
+          "j": 16,
+          "token": "MARK",
+          "matched_word": "mark",
+          "rank": 14,
+          "dictionary_name": "male_names",
+          "reversed": false,
+          "l33t": false,
+          "base_guesses": 14,
+          "uppercase_variations": 2,
+          "l33t_variations": 1,
+          "guesses": 50,
+          "guesses_log10": 1.6989700043360185
+        }
+      ],
+      "calc_time": 1,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 882030830400,
+        "online_no_throttling_10_per_second": 2450085640,
+        "offline_slow_hashing_1e4_per_second": 2450085.64,
+        "offline_fast_hashing_1e10_per_second": 2.45008564
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "76 years",
+        "offline_slow_hashing_1e4_per_second": "28 days",
+        "offline_fast_hashing_1e10_per_second": "2 seconds"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "eheuczkqyq",
+      "guesses": 10000000001,
+      "guesses_log10": 10.000000000043428,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "eheuczkqyq",
+          "i": 0,
+          "j": 9,
+          "guesses": 10000000000,
+          "guesses_log10": 10
+        }
+      ],
+      "calc_time": 0,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 360000000036,
+        "online_no_throttling_10_per_second": 1000000000.1,
+        "offline_slow_hashing_1e4_per_second": 1000000.0001,
+        "offline_fast_hashing_1e10_per_second": 1.0000000001
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "31 years",
+        "offline_slow_hashing_1e4_per_second": "12 days",
+        "offline_fast_hashing_1e10_per_second": "1 second"
+      },
+      "score": 3,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "rWibMFACxAUGZmxhVncy",
+      "guesses": 100000000000000000000,
+      "guesses_log10": 20,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "rWibMFACxAUGZmxhVncy",
+          "i": 0,
+          "j": 19,
+          "guesses": 100000000000000000000,
+          "guesses_log10": 20
+        }
+      ],
+      "calc_time": 2,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3.6e+21,
+        "online_no_throttling_10_per_second": 10000000000000000000,
+        "offline_slow_hashing_1e4_per_second": 10000000000000000,
+        "offline_fast_hashing_1e10_per_second": 10000000000
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    },
+    {
+      "password": "Ba9ZyWABu99[BK#6MBgbH88Tofv)vs",
+      "guesses": 1e+30,
+      "guesses_log10": 29.999999999999996,
+      "sequence": [
+        {
+          "pattern": "bruteforce",
+          "token": "Ba9ZyWABu99[BK#6MBgbH88Tofv)vs",
+          "i": 0,
+          "j": 29,
+          "guesses": 1e+30,
+          "guesses_log10": 29.999999999999996
+        }
+      ],
+      "calc_time": 7,
+      "crack_times_seconds": {
+        "online_throttling_100_per_hour": 3.6000000000000004e+31,
+        "online_no_throttling_10_per_second": 1.0000000000000001e+29,
+        "offline_slow_hashing_1e4_per_second": 1e+26,
+        "offline_fast_hashing_1e10_per_second": 100000000000000000000
+      },
+      "crack_times_display": {
+        "online_throttling_100_per_hour": "centuries",
+        "online_no_throttling_10_per_second": "centuries",
+        "offline_slow_hashing_1e4_per_second": "centuries",
+        "offline_fast_hashing_1e10_per_second": "centuries"
+      },
+      "score": 4,
+      "feedback": {
+        "warning": "",
+        "suggestions": []
+      }
+    }
+  ]
+}
