@@ -1,4 +1,4 @@
--- Requires buildah, crun
+-- Requires buildah, crun, coreutils, rsync
 local stdin_userland = [[
 bin/domainname
 bin/findmnt
@@ -632,7 +632,7 @@ local Next = next
 local Logger = require("logger")
 local Ok = function(msg, tbl)
 	local stdout = Logger.new("stdout")
-	tbl._ident = "buildah.lua"
+	tbl._ident = "lbuildah"
 	stdout:info(msg, tbl)
 end
 local Panic = function(msg, tbl)
@@ -791,7 +791,7 @@ ENV.NOTIFY = Setmetatable({}, {
 		Notify = function(msg, tbl)
 			tbl.message = msg
 			tbl.time = Logger.time()
-			tbl._ident = "buildah.lua"
+			tbl._ident = "lbuildah"
 			local payload = Json.encode(tbl)
 			if Notify_Toggle.TELEGRAM then
 				local telegram = require("telegram")
@@ -812,10 +812,10 @@ ENV.NOTIFY = Setmetatable({}, {
 					Color = "#2eb886",
 					AuthorName = tbl.name,
 					AuthorSubname = tbl.message,
-					AuthorLink = "https://github.com/tongson/buildah.lua",
+					AuthorLink = "https://github.com/tongson/lbuildah",
 					AuthorIcon = "https://avatars2.githubusercontent.com/u/652790",
 					Text = "```" .. payload .. "```",
-					Footer = "buildah.lua",
+					Footer = "lbuildah",
 					FooterIcon = "https://platform.slack-edge.com/img/default_application_icon.png",
 				}
 				local send = Util.retry_f(slack.attachment)
@@ -831,12 +831,17 @@ ENV.FROM = function(base, cname, assets)
 			"containers",
 			"--json",
 		})
-		local j = Json.decode(so)
-		for _, v in ipairs(j) do
-			if v.containername == Name then
-				return true
+		if so:len() > 0 then
+			local j = Json.decode(so)
+			if j and next(j) then
+				for _, v in ipairs(j) do
+					if v.containername == Name then
+						return true
+					end
+				end
 			end
 		end
+		return false
 	end
 	Assets = assets or fs.currentdir()
 	base = base or "scratch"
@@ -1046,7 +1051,7 @@ ENV.COPY = function(src, dest, og, mo)
 	if src:sub(1, 1) ~= "/" then
 		src = Assets .. "/" .. src
 	end
-	local B = Buildah("COPY/UPLOAD")
+	local B = Buildah("COPY")
 	B.cmd = {
 		"copy",
 		Name,
@@ -1067,7 +1072,49 @@ ENV.COPY = function(src, dest, og, mo)
 	}
 	B()
 end
-ENV.UPLOAD = ENV.COPY
+ENV.UPLOAD = function(src, dest)
+	if not Name then
+		Ok("UPLOAD", { skip = true, name = false })
+		return
+	end
+	local cwd = fs.currentdir()
+	src = cwd .. "/" .. src
+	local rd
+	if dest:sub(1, 1) == "/" then
+		rd = "." .. dest
+	end
+	local rsync = exec.ctx("rsync")
+	rsync.cwd = Mount()
+	local t = {
+		"--recursive",
+		"--links",
+		"--perms",
+		"--no-o",
+		"--no-g",
+		src,
+		rd,
+	}
+	local ignore = cwd .. "/.dockerignore"
+	if fs.isfile(ignore) then
+		Insert(t, 1, ignore)
+		Insert(t, 1, "--exclude-from")
+	end
+	local r, so, se = rsync(t)
+	Unmount()
+	if r then
+		Ok("UPLOAD", {
+			source = src,
+			destination = dest,
+		})
+	else
+		Panic("UPLOAD", {
+			source = src,
+			destination = dest,
+			stdout = so,
+			stderr = se,
+		})
+	end
+end
 ENV.MKDIR = function(d, mode)
 	if not Name then
 		Ok("MKDIR", { skip = true, name = false })
@@ -1139,7 +1186,6 @@ ENV.DOWNLOAD = function(src, dest)
 	local r, so, se = cp({
 		"-R",
 		"-P",
-		"-n",
 		Trim(src),
 		rd,
 	})
