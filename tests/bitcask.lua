@@ -137,7 +137,7 @@ end
 local bitcask_delete = function()
 	T.is_function(db.delete)
 	T.is_true(db:delete("one"))
-	T.is_false(db:has("one"))
+	T.is_nil(db:has("one"))
 end
 --#
 --# == *:sync*() -> _Boolean_
