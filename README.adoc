@@ -23,6 +23,7 @@ Next release: *0.7.0 Negligent Clamshell* +
 + New function string.contains +
 + table.find is now recursive +
 + New function os.outbound_ip +
++ New function password.strength +
 
 Current release: *0.6.0 Gummy Mastiff* +
 + New module: telegram +
@@ -155,7 +156,7 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 == Statistics and numbers
 |=======================
 |Tests |184/184
-|Static executable bytes |9326592
+|Static executable bytes |9867264
 |=======================
 
 === Startup time
@@ -173,6 +174,7 @@ Modules that adds significant bloat to the interpreter. If you don't need these 
 |http |3-4MiB
 |redis |800KiB
 |mysql |500KiB
+|password |500KiB
 |slack |230KiB
 |refmt |300KiB
 |======
