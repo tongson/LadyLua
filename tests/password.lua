@@ -41,10 +41,38 @@ local password_generate = function()
 	local u = string.find(p, "%u")
 	T.is_nil(u)
 end
+--#
+--# == *password.strength(_String_) -> _Number_
+--# Score the strength of a given password.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |Password
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number |Score
+--# |===
+local password_strength = function()
+	T.is_function(password.strength)
+	local p = password.strength("289u3rmpomghqv883c")
+	T.is_number(p)
+	T.equal(p, 4)
+	p = password.strength("1234")
+	T.is_number(p)
+	T.equal(p, 0)
+end
 if included then
 	return function()
 		T["password.generate"] = password_generate
+		T["password.strength"] = password_strength
 	end
 else
 	T["password.generate"] = password_generate
+	T["password.strength"] = password_strength
 end
