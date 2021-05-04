@@ -43,7 +43,7 @@ end
 
 local function fail(msg, start_frame)
     failed = true
-    print("Fail: " .. msg)
+    print("Fail:\n" .. msg)
     trace(start_frame or 2)
 end
 
@@ -79,13 +79,13 @@ end
 
 api.equal = function (l, r)
     if l ~= r then
-        fail(tostring(l) .. " ≠ " .. tostring(r))
+        fail(tostring(l) .. "\n≠\n" .. tostring(r))
     end
 end
 
 api.not_equal = function (l, r)
     if l == r then
-        fail(tostring(l) .. " == " .. tostring(r))
+        fail(tostring(l) .. "\n==\n" .. tostring(r))
     end
 end
 
