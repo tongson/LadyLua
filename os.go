@@ -20,7 +20,7 @@ func osHostname(L *lua.LState) int {
 
 func osSleep(L *lua.LState) int {
 	n := L.CheckNumber(1)
-	time.Sleep(time.Duration(n) * time.Second)
+	time.Sleep(time.Duration(n) * time.Millisecond)
 	L.Push(lua.LTrue)
 	return 1
 }
