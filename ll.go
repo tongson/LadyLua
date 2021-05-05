@@ -84,6 +84,7 @@ Available options are:
 	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
 	L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
 	L.SetField(nsOs, "outbound_ip", L.NewFunction(osOutboundIP))
+	L.SetField(nsOs, "sleep", L.NewFunction(osSleep))
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("json", ljson.Loader)

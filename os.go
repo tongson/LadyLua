@@ -4,6 +4,7 @@ import (
 	"github.com/yuin/gopher-lua"
 	"net"
 	"os"
+	"time"
 )
 
 func osHostname(L *lua.LState) int {
@@ -14,6 +15,13 @@ func osHostname(L *lua.LState) int {
 		return 2
 	}
 	L.Push(lua.LString(name))
+	return 1
+}
+
+func osSleep(L *lua.LState) int {
+	n := L.CheckNumber(1)
+	time.Sleep(time.Duration(n) * time.Second)
+	L.Push(lua.LTrue)
 	return 1
 }
 
