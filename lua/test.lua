@@ -21,7 +21,7 @@ local failed = false
 local failed_list = {}
 
 local function trace(start_frame)
-    print "Trace:"
+    print("✕  TRACE")
     local frame = start_frame
     while true do
         local info = debug.getinfo(frame, "Sl")
@@ -43,7 +43,7 @@ end
 
 local function fail(msg, start_frame)
     failed = true
-    print("Fail:\n" .. msg)
+    print("✕  FAIL\n" .. msg)
     trace(start_frame or 2)
 end
 
