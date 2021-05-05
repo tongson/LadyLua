@@ -27,9 +27,13 @@ exec.cmd = function(exe)
 			end
 			local r, so, se, cerr = exec.command(exe, args, set.env, set.cwd, set.stdin)
 			local pretty_prefix = function(header, prefix, str)
+				local n
 				if len(str) > 0 then
 					local replacement = format("\n %s > ", prefix)
-					str = gsub(str, "\n", replacement)
+					str, n = gsub(str, "\n", replacement)
+					if n == 0 then
+						str = str .. ("\n %s > "):format(prefix)
+					end
 					return format("%s\n %s >\n %s > %s\n", header, prefix, prefix, str)
 				else
 					return ""
