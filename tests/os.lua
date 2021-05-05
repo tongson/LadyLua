@@ -34,6 +34,25 @@ local os_outbound_ip = function()
 	T.is_string(os.outbound_ip())
 end
 --#
+--# == *os.sleep(_Number_) -> _Boolean_
+--# Sleep for a number of seconds.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |number |Seconds
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |boolean |`true`
+--# |===
+local os_sleep = function()
+	T.is_function(os.sleep)
+	T.is_true(os.sleep(1))
+end
+--#
 --# == *os.setenv*(_String_, _String_) -> _Boolean_
 --# Set environment variable.
 --#
@@ -59,10 +78,12 @@ if included then
 	return function()
 		T["os.hostname"] = os_hostname
 		T["os.outbound_ip"] = os_outbound_ip
+		T["os.sleep"] = os_sleep
 		T["os.setenv"] = os_setenv
 	end
 else
 	T["os.hostname"] = os_hostname
 	T["os.outbound_ip"] = os_outbound_ip
+	T["os.sleep"] = os_sleep
 	T["os.setenv"] = os_setenv
 end
