@@ -81,7 +81,7 @@ api.expected = function(e)
 	return setmetatable({}, {
 		__call = function(_, received)
 			if e ~= received then
-				fail("Expected: ".. tostring(e) .. "\n" .. "Received: " .. tostring(received))
+				fail("  Expected: ".. tostring(e) .. "\n" .. "  Received: " .. tostring(received))
 			end
 		end
 	})
