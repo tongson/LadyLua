@@ -77,6 +77,16 @@ api.assert = function (cond)
     end
 end
 
+api.expected = function(e)
+	return setmetatable({}, {
+		__call = function(_, received)
+			if e ~= received then
+				fail("\nExpected: ".. tostring(e) .. "\n" .. "Received: " .. tostring(received) .. "\n")
+			end
+		end
+	})
+end
+
 api.equal = function (l, r)
     if l ~= r then
         fail(tostring(l) .. "\n≠\n" .. tostring(r))
