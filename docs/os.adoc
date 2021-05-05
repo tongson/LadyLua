@@ -24,6 +24,21 @@ Get IP used for outbound connections.
 |string |IP
 |===
 
+== *os.sleep(_Number_) -> _Boolean_
+Sleep for a number of seconds.
+
+=== Arguments
+[width="72%"]
+|===
+|number |Seconds
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean |`true`
+|===
+
 == *os.setenv*(_String_, _String_) -> _Boolean_
 Set environment variable.
 
