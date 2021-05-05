@@ -120,19 +120,19 @@ end
 
 api.is_false = function (maybe_false)
     if maybe_false or type(maybe_false) ~= "boolean" then
-        fail("got " .. tostring(maybe_false) .. " instead of false")
+        fail("GOT " .. tostring(maybe_false) .. " instead of false")
     end
 end
 
 api.is_true = function (maybe_true)
     if not maybe_true or type(maybe_true) ~= "boolean" then
-        fail("got " .. tostring(maybe_true) .. " instead of true")
+        fail("GOT " .. tostring(maybe_true) .. " instead of true")
     end
 end
 
 api.is_not_nil = function (maybe_not_nil)
     if type(maybe_not_nil) == "nil" then
-        fail("got nil")
+        fail("GOT nil")
     end
 end
 
@@ -163,7 +163,7 @@ end
 local function make_type_checker(typename)
     api["is_" .. typename] = function (maybe_type)
         if type(maybe_type) ~= typename then
-            fail("got " .. tostring(maybe_type) .. " instead of " .. typename, 4)
+            fail("GOT " .. tostring(maybe_type) .. " instead of " .. typename, 4)
         end
     end
 end
