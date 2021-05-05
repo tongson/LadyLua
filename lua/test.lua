@@ -78,10 +78,23 @@ api.assert = function (cond)
 end
 
 api.expected = function(e)
+	local pretty_prefix = function(header, prefix, str)
+		local n
+		if str:len() > 0 then
+			local replacement = ("\n %s > "):format(prefix)
+			str, n = str:gsub("\n", replacement)
+			if n == 0 then
+				str = str .. ("\n %s > "):format(prefix)
+			end
+			return ("%s\n %s >\n %s > %s\n"):format(header, prefix, prefix, str)
+		else
+			return ""
+		end
+	end
 	return setmetatable({}, {
 		__call = function(_, received)
 			if e ~= received then
-				fail("  Expected: ".. tostring(e) .. "\n" .. "  Received: " .. tostring(received))
+				fail(pretty_prefix("", "expected", _tostring(e)) .. pretty_prefix("", "received", _tostring(received)) )
 			end
 		end
 	})
