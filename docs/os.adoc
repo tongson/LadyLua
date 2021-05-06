@@ -25,12 +25,12 @@ Get IP used for outbound connections.
 |===
 
 == *os.sleep(_Number_) -> _Boolean_
-Sleep for a number of seconds.
+Sleep for a number of milliseconds.
 
 === Arguments
 [width="72%"]
 |===
-|number |Seconds
+|number |Milliseconds
 |===
 
 === Returns

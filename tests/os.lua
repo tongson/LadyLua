@@ -35,12 +35,12 @@ local os_outbound_ip = function()
 end
 --#
 --# == *os.sleep(_Number_) -> _Boolean_
---# Sleep for a number of seconds.
+--# Sleep for a number of milliseconds.
 --#
 --# === Arguments
 --# [width="72%"]
 --# |===
---# |number |Seconds
+--# |number |Milliseconds
 --# |===
 --#
 --# === Returns
@@ -50,7 +50,7 @@ end
 --# |===
 local os_sleep = function()
 	T.is_function(os.sleep)
-	T.is_true(os.sleep(1))
+	T.is_true(os.sleep(500))
 end
 --#
 --# == *os.setenv*(_String_, _String_) -> _Boolean_

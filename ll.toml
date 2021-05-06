@@ -2,6 +2,9 @@
 base = "lua51"
 name = "ll"
 
+[[os.sleep.args]]
+type = "number"
+required = true
 
 [[fmt.print.args]]
 type = "..."
