@@ -1,5 +1,5 @@
-package.path = "./?.lua;modules/?.lua"
-local DSL = "Lopper"
+package.path = "modules/?.lua"
+local DSL = "lopper"
 local ID = require("ksuid").new()
 local json = require("json")
 local util = require("util")
@@ -226,12 +226,12 @@ ENV["Command"] = Command
 ENV["InterfaceAddr"] = InterfaceAddr
 package.preload["lopper"] = function()
 	return {
-		Panic = Panic,
-		Ok = Ok,
-		Warn = Warn,
-		Debug = Debug,
-		Notify = Notify,
-		ID = ID,
+		panic = Panic,
+		ok = Ok,
+		warn = Warn,
+		debug = Debug,
+		notify = Notify,
+		id = ID,
 	}
 end
 util.format_operator()
