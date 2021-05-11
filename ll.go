@@ -21,8 +21,8 @@ import (
 
 var start time.Time
 
-const versionNumber = "0.7.0"
-const codeName = "\"Negligent Clamshell\""
+const versionNumber = "0.8.0"
+const codeName = "\"Freckled Serpent\""
 
 func main() {
 	start = time.Now()
