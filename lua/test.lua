@@ -77,7 +77,7 @@ api.assert = function (cond)
     end
 end
 
-api.expected = function(e)
+api.expect = function(e)
 	local pretty_prefix = function(header, prefix, str)
 		local n
 		if str:len() > 0 then
