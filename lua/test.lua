@@ -212,7 +212,7 @@ local function run_test(test_suite, test_name, test_function, ...)
     local stop = os.clock()
 
     local is_test_failed = not status or failed
-    log(string.format("%s %s %.4f sec",
+    log(string.format("%s %s ⇌  %.4f sec",
                             is_test_failed and fail_tag or ok_tag,
                             full_test_name,
                             stop-start))
