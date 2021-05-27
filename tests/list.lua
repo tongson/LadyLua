@@ -256,6 +256,20 @@ local range = function()
 end
 if included then
 	return function()
+		T["new"] = new
+		T["pushf_string"] = pushf_string
+		T["pushf_number"] = pushf_number
+		T["pushf_boolean"] = pushf_boolean
+		T["pushf_number"] = pushf_number
+		T["pushl_string"] = pushl_string
+		T["pushl_number"] = pushl_number
+		T["pushl_boolean"] = pushl_boolean
+		T["pushl_number"] = pushl_number
+		T["popf"] = popf
+		T["popl"] = popl
+		T["contains"] = contains
+		T["walk"] = walk
+		T["range"] = range
 	end
 else
 	T["new"] = new
