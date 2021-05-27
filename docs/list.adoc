@@ -1,0 +1,96 @@
+= list
+:toc:
+:toc-placement!:
+
+Doubly linked list data structures. Stores one instance of a value. Push tables for more leeway.
+
+toc::[]
+
+== *list.new*() -> _Table_
+Create a new list.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |List
+|===
+
+
+== *:pushf*(_Value_)
+Push to beginning of list.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:pushl*(_Value_)
+Push to end of list.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:popf*() -> _Value_
+Pop value from beginning of list.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:popl*() -> _Value_
+Pop value from end of list.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:contains*() -> _Boolean_
+Check if list contains an instance of number, string, or boolean
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if value is found, `false` otherwise
+|===
+
+== *:walk*([_Boolean_]) -> _Iterator_
+Iterate over list.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |if `false`, does a reverse iteration
+|===
+
+== *:range*(_Number_, _Number_) -> _Table_
+Return a table for ranged iteration.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Index start
+|number |Index end
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Table with values
+|===
