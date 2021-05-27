@@ -8,6 +8,7 @@ Next release: *0.8.0 Freckled Serpent* +
 + New module: iterator +
 + New function: os.sleep +
 + Removed password module +
++ Replaced kapow.not_allowed with kapow.unprocessable +
 
 Current release: *0.7.0 Negligent Clamshell* +
 + New module: bitcask +
