@@ -99,8 +99,8 @@ HTTP 403, forbidden.
 |boolean | `true` if successful, nil and an error string otherwise
 |===
 
-== *kapow.not_allowed*() -> _Boolean_
-HTTP 405, detects hackers.
+== *kapow.unprocessable*() -> _Boolean_
+HTTP 422, detects hackers.
 
 === Returns
 [width="72%"]
