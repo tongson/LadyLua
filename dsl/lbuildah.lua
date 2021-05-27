@@ -1241,6 +1241,10 @@ ENV.RM = function(f)
 end
 ENV.CONFIG = Setmetatable({}, {
 	__newindex = function(_, k, v)
+		if not Name then
+			Ok("RUN", { skip = true, name = false })
+			return
+		end
 		k = k:lower()
 		local B = Buildah("CONFIG")
 		B.cmd = {
