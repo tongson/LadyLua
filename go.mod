@@ -5,7 +5,6 @@ go 1.16
 require (
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e
 	github.com/cjoudrey/gluahttp v0.0.0-25003d9adfa9
-	github.com/dlclark/regexp2 v1.4.0 // indirect
 	github.com/frankban/quicktest v1.11.3 // indirect
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
@@ -22,12 +21,10 @@ require (
 	github.com/prologic/bitcask v0.3.10
 	github.com/rs/zerolog v1.21.0
 	github.com/segmentio/ksuid v1.0.3
-	github.com/sethvargo/go-password v0.2.0
 	github.com/slack-go/slack v0.9.0
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	github.com/tengattack/gluacrypto v0.0.0-8bf181b63bba
 	github.com/tengattack/gluasql v0.0.0-2e5ed630c4cf
-	github.com/trustelem/zxcvbn v1.0.1
 	github.com/yuin/gluamapper v0.0.0-20150323120927-d836955830e7
 	github.com/yuin/gopher-lua v0.0.0-20200816102855-ee81675732da
 	layeh.com/gopher-json v0.0.0-552bb3c4c3bf
@@ -45,5 +42,3 @@ replace github.com/tengattack/gluacrypto => ./external/gluacrypto
 replace github.com/tengattack/gluasql => ./external/gluasql
 
 replace github.com/ghodss/yaml => ./external/gyaml
-
-replace github.com/trustelem/zxcvbn => ./external/zxcvbn

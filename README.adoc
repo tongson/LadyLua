@@ -7,6 +7,7 @@ Single static executable, batteries-included, Lua 5.1 interpreter. A fat https:/
 Next release: *0.8.0 Freckled Serpent* +
 + New module: iterator +
 + New function: os.sleep +
++ Removed password module +
 
 Current release: *0.7.0 Negligent Clamshell* +
 + New module: bitcask +
@@ -94,7 +95,6 @@ Check the `docs` directory for more information about these modules.
 |logger      |N      |                 |MIT
 |lz4         |N      |                 |BSD3
 |mysql       |N      |gluasql          |MIT
-|password    |N      |                 |MIT
 |pushover    |N      |                 |MIT
 |redis       |N      |                 |MIT
 |refmt       |N      |                 |MIT
@@ -178,7 +178,6 @@ Modules that adds significant bloat to the interpreter. If you don't need these 
 |http |3-4MiB
 |redis |800KiB
 |mysql |500KiB
-|password |500KiB
 |slack |230KiB
 |refmt |300KiB
 |======
