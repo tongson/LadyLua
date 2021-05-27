@@ -161,7 +161,7 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 == Statistics and numbers
 |=======================
 |Tests |188/188
-|Static executable bytes |9867264
+|Static executable bytes |8925184
 |=======================
 
 === Startup time
