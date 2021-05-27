@@ -9,6 +9,7 @@ Next release: *0.8.0 Freckled Serpent* +
 + New function: os.sleep +
 + Removed password module +
 + Replaced kapow.not_allowed with kapow.unprocessable +
++ Removed html module +
 
 Current release: *0.7.0 Negligent Clamshell* +
 + New module: bitcask +
@@ -88,7 +89,6 @@ Check the `docs` directory for more information about these modules.
 |fmt         |Y      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
 |fsnotify    |N      |                 |MIT
-|html        |N      |                 |MIT
 |http        |N      |gluahttp         |MIT
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT

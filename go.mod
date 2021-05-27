@@ -14,7 +14,6 @@ require (
 	github.com/gregdel/pushover v0.0.0-20210420080121-f84e8ffafef5
 	github.com/hashicorp/go-uuid v1.0.1
 	github.com/junhsieh/goexamples v0.0.0-20190721045834-1c67ae74caa6 // indirect
-	github.com/microcosm-cc/bluemonday v1.0.5
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/oklog/ulid/v2 v2.0.2
 	github.com/pierrec/lz4 v2.6.0+incompatible

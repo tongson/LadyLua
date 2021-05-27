@@ -90,7 +90,6 @@ Available options are:
 	L.PreloadModule("json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
 	L.PreloadModule("ksuid", ksuidLoader)
-	L.PreloadModule("html", htmlLoader)
 	L.PreloadModule("mysql", mysql.Loader)
 	L.PreloadModule("lz4", lz4Loader)
 	L.PreloadModule("telegram", telegramLoader)
