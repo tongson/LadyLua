@@ -1,9 +1,9 @@
 local json = require("json")
 local Array = function(j)
 	local t = json.decode(j)
-	local jagen = function(t, i)
+	local jagen = function(x, i)
 		i = i + 1
-		local v = t[i]
+		local v = x[i]
 		if v ~= nil then
 			return i, v
 		else
