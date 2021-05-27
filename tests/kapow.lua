@@ -147,18 +147,18 @@ local kapow_forbid = function()
 	T.equal(r.body, "kapow.forbid")
 end
 --#
---# == *kapow.not_allowed*() -> _Boolean_
---# HTTP 405, detects hackers.
+--# == *kapow.unprocessable*() -> _Boolean_
+--# HTTP 422, detects hackers.
 --#
 --# === Returns
 --# [width="72%"]
 --# |===
 --# |boolean | `true` if successful, nil and an error string otherwise
 --# |===
-local kapow_not_allowed = function()
-	T.is_function(kapow.not_allowed)
-	local r = http.get(URL .. "/not_allowed")
-	T.equal(r.status_code, 405)
+local kapow_unprocessable = function()
+	T.is_function(kapow.unprocessable)
+	local r = http.get(URL .. "/unprocessable")
+	T.equal(r.status_code, 422)
 	T.equal(r.body_size, 0)
 end
 --#
@@ -206,7 +206,7 @@ if included then
 		T["kapow.fail"] = kapow_fail
 		T["kapow.warn"] = kapow_warn
 		T["kapow.forbid"] = kapow_forbid
-		T["kapow.not_allowed"] = kapow_not_allowed
+		T["kapow.unprocessable"] = kapow_unprocessable
 		T["kapow.no_content"] = kapow_no_content
 		T["kapow.redirect"] = kapow_redirect
 	end
@@ -218,7 +218,7 @@ else
 	T["kapow.fail"] = kapow_fail
 	T["kapow.warn"] = kapow_warn
 	T["kapow.forbid"] = kapow_forbid
-	T["kapow.not_allowed"] = kapow_not_allowed
+	T["kapow.unprocessable"] = kapow_unprocessable
 	T["kapow.no_content"] = kapow_no_content
 	T["kapow.redirect"] = kapow_redirect
 end
