@@ -116,6 +116,7 @@ Available options are:
 	L.SetField(preload, "test", luaLoader(L, "test"))
 	L.SetField(preload, "template", luaLoader(L, "template"))
 	L.SetField(preload, "iterator", luaLoader(L, "iterator"))
+	L.SetField(preload, "list", luaLoader(L, "list"))
 	//__DSL__dslLoader(L, "__DSLMOD__")
 
 	if opt_m > 0 {
