@@ -51,6 +51,9 @@ end
 local no_content = function()
 	return xset("204")
 end
+local unprocessable = function()
+	return xset("422")
+end
 local redirect = function(b)
 	local s = H.put(F("%s/handlers/%s/response/status", D, I), { body = "303" })
 	if b then
@@ -75,4 +78,5 @@ return {
 	forbid = forbid,
 	not_allowed = not_allowed,
 	no_content = no_content,
+	unprocessable = unprocessable,
 }
