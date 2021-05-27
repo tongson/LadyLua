@@ -45,9 +45,6 @@ end
 local forbid = function(b)
 	return xset("403", b)
 end
-local not_allowed = function()
-	return xset("405")
-end
 local no_content = function()
 	return xset("204")
 end
@@ -76,7 +73,6 @@ return {
 	fail = fail,
 	redirect = redirect,
 	forbid = forbid,
-	not_allowed = not_allowed,
 	no_content = no_content,
 	unprocessable = unprocessable,
 }
