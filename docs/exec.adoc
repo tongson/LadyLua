@@ -6,7 +6,7 @@ Execute external programs.
 
 toc::[]
 
-== *exec.command*(_String_[, _Table_][, _Table_][, _Table_][, _String_][, _String_]) -> _Boolean_, _String_, _String_
+== *exec.command*(_String_[, _Table_][, _Table_][, _Table_][, _String_][, _String_]) -> _Boolean_, _String_, _String_, _String_
 Execute a program. Base function of the the other functions in this module.
 
 === Arguments
@@ -18,6 +18,7 @@ Execute a program. Base function of the the other functions in this module.
 |table |Environment
 |string |Working directory
 |string |STDIN
+|number |Timeout in seconds
 |===
 
 === Returns
@@ -27,6 +28,7 @@ Execute a program. Base function of the the other functions in this module.
 |boolean |`true` if no errors encountered, `false` otherwise
 |string |STDOUT output from program
 |string |STDERR output from program
+|string |Error from Go
 |===
 
 == *exec.ctx*(_String_) -> _Function_
@@ -53,6 +55,7 @@ Execute program under a context. The returned function takes a table(list) for a
 |env |Environment
 |cwd |Working directory
 |stdin |STDIN
+|timeout |Timeout in seconds
 |===
 
 === Example
@@ -87,6 +90,7 @@ The returned function's also accepts a format string OR a table(list) for buildi
 |env |Environment
 |cwd |Working directory
 |stdin |STDIN
+|timeout |Timeout in seconds
 |errexit |Exit immediately when an error is encountered
 |error |Custom error message when errexit is triggered
 |===
