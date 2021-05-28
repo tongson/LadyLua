@@ -22,6 +22,7 @@ local F = "/tmp/exec.command/file"
 --# |table |Environment
 --# |string |Working directory
 --# |string |STDIN
+--# |number |Timeout in seconds
 --# |===
 --#
 --# === Returns
@@ -87,6 +88,7 @@ end
 --# |env |Environment
 --# |cwd |Working directory
 --# |stdin |STDIN
+--# |timeout |Timeout in seconds
 --# |===
 --#
 --# === Example
@@ -183,6 +185,7 @@ end
 --# |env |Environment
 --# |cwd |Working directory
 --# |stdin |STDIN
+--# |timeout |Timeout in seconds
 --# |errexit |Exit immediately when an error is encountered
 --# |error |Custom error message when errexit is triggered
 --# |===
