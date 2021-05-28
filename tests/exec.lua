@@ -63,6 +63,14 @@ local exec_command__STDIN = function()
 	local s = string.find(o, "gg", 1, true)
 	T.is_number(s)
 end
+local exec_command__TIMEOUT = function()
+	local start = os.clock()
+	local r, so, se, e = exec.command("/usr/bin/sleep", { "5" }, nil, nil, nil, 2)
+	local s = string.find(e, "signal: killed", 1, true)
+	T.is_number(s)
+	local elapsed = os.clock() - start
+	T.is_true(elapsed > 2 and 3 > elapsed)
+end
 --#
 --# == *exec.ctx*(_String_) -> _Function_
 --# Execute program under a context. The returned function takes a table(list) for arguments.
@@ -270,6 +278,7 @@ if included then
 		T["exec.command cwd"] = exec_command__CWD
 		T["exec.command env"] = exec_command__ENV
 		T["exec.command stdin"] = exec_command__STDIN
+		T["exec.command timeout"] = exec_command__TIMEOUT
 		T["exec.ctx simple"] = exec_ctx__SIMPLE
 		T["exec.ctx cwd"] = exec_ctx__CWD
 		T["exec.ctx cwd"] = exec_ctx__CWD_error
@@ -285,6 +294,7 @@ else
 	T["exec.command cwd"] = exec_command__CWD
 	T["exec.command env"] = exec_command__ENV
 	T["exec.command stdin"] = exec_command__STDIN
+	T["exec.command timeout"] = exec_command__TIMEOUT
 	T["exec.ctx simple"] = exec_ctx__SIMPLE
 	T["exec.ctx cwd"] = exec_ctx__CWD
 	T["exec.ctx cwd"] = exec_ctx__CWD_error
