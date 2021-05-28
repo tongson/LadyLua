@@ -4,7 +4,9 @@
 
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
-Next release: *0.8.0 Freckled Serpent* +
+Next release: *0.9.0 Scared Shrapnel* +
+
+Current release: *0.8.0 Freckled Serpent* +
 + New setting for exec.*; timeout in seconds +
 + New json functions, array and object iterators +
 + New function: os.sleep +
@@ -14,7 +16,8 @@ Next release: *0.8.0 Freckled Serpent* +
 + Stripped 1MiB by removing password and html modules +
 + New module: list +
 
-Current release: *0.7.0 Negligent Clamshell* +
+Old releases: +
+*0.7.0 Negligent Clamshell* +
 + New module: bitcask +
 + New function: logger.time() +
 + New DSL module: Lopper +
@@ -35,7 +38,6 @@ Current release: *0.7.0 Negligent Clamshell* +
 + New function os.outbound_ip +
 + New function password.strength +
 
-Old releases: +
 *0.6.0 Gummy Mastiff* +
 + New module: telegram +
 + New module: pushover +
