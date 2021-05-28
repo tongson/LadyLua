@@ -147,6 +147,13 @@ local exec_ctx__STDIN = function()
 	local s = string.find(o, "gg", 1, true)
 	T.is_number(s)
 end
+local exec_ctx__TIMEOUT = function()
+	local sleep = exec.ctx("sleep")
+	sleep.timeout = 2
+	local r, so, se, e = sleep({"5"})
+	local s = string.find(e, "signal: killed", 1, true)
+	T.is_number(s)
+end
 --#
 --# == *exec.cmd*(_String_) -> _Function_
 --# Execute program under a context. Difference with `exec.ctx` is this takes two additional settings; `errexit` and `error`. When `errexit` is set to `true`, the programs exits immediately when an error is encountered. The `error` setting takes a string to show when `errexit` is triggered. +
@@ -250,6 +257,7 @@ local exec_run = function()
 	T.is_nil(fs.isfile(F))
 	T.is_true(fs.rmdir(D))
 end
+local exec
 if included then
 	return function()
 		T["exec.command simple"] = exec_command__SIMPLE
@@ -277,6 +285,7 @@ else
 	T["exec.ctx cwd"] = exec_ctx__exit_code
 	T["exec.ctx env"] = exec_ctx__ENV
 	T["exec.ctx stdin"] = exec_ctx__STDIN
+	T["exec.ctx timeout"] = exec_ctx__TIMEOUT
 	T["exec.cmd"] = exec_cmd
 	T["exec.cmd list"] = exec_cmd_list
 	T["exec.run"] = exec_run
