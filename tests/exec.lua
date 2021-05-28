@@ -150,9 +150,12 @@ end
 local exec_ctx__TIMEOUT = function()
 	local sleep = exec.ctx("sleep")
 	sleep.timeout = 2
+	local start = os.clock()
 	local r, so, se, e = sleep({"5"})
 	local s = string.find(e, "signal: killed", 1, true)
 	T.is_number(s)
+	local elapsed = os.clock() - start
+	T.is_true(elapsed > 2 and 3 > elapsed)
 end
 --#
 --# == *exec.cmd*(_String_) -> _Function_
