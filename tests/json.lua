@@ -1,6 +1,7 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
 local json = require("json")
+local expect = T.expect
 --# = json
 --# :toc:
 --# :toc-placement!:
@@ -121,6 +122,56 @@ local json_decode_nestedobject = function()
 		"tim"
 	)
 end
+--#
+--# == *json.array*(_String_)
+--# JSON array iterator
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |JSON
+--# |===
+local json_array = function()
+	T.is_function(json.array)
+	local t = {
+		"one",
+		"two",
+		"three",
+	}
+	local e = {}
+	for x, y in json.array(json.encode(t)) do
+		e[x] = y
+	end
+	expect(t[1])(e[1])
+	expect(t[2])(e[2])
+	expect(t[3])(e[3])
+end
+--#
+--# == *json.object*(_String_)
+--# JSON object iterator.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string |JSON
+--# |===
+local json_object = function()
+	T.is_function(json.object)
+	local t = {
+		one = 1,
+		two = 2,
+		three = 3,
+	}
+	local e = {}
+	for x, y in json.object(json.encode(t)) do
+		e[x] = y
+	end
+	expect(t.one)(e.one)
+	expect(t.two)(e.two)
+	expect(t.three)(e.three)
+end
 if included then
 	return function()
 		T["json.encode"] = json_encode
@@ -139,6 +190,8 @@ if included then
 		T["json.decode object"] = json_decode_object
 		T["json.decode null"] = json_decode_null
 		T["json.decode nested object"] = json_decode_nestedobject
+		T["json array iterator"] = json_array
+		T["json object iterator"] = json_object
 	end
 else
 	local errstr = function(tested, str, ...)
@@ -169,4 +222,6 @@ else
 	T["json.decode object"] = json_decode_object
 	T["json.decode null"] = json_decode_null
 	T["json.decode nested object"] = json_decode_nestedobject
+	T["json array iterator"] = json_array
+	T["json object iterator"] = json_object
 end

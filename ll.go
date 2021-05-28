@@ -87,7 +87,7 @@ Available options are:
 	L.SetField(nsOs, "sleep", L.NewFunction(osSleep))
 	L.SetGlobal("pi", L.NewFunction(globalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
-	L.PreloadModule("json", ljson.Loader)
+	L.PreloadModule("ll_json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
 	L.PreloadModule("ksuid", ksuidLoader)
 	L.PreloadModule("mysql", mysql.Loader)
@@ -115,7 +115,7 @@ Available options are:
 	L.SetField(preload, "util", luaLoader(L, "util"))
 	L.SetField(preload, "test", luaLoader(L, "test"))
 	L.SetField(preload, "template", luaLoader(L, "template"))
-	L.SetField(preload, "iterator", luaLoader(L, "iterator"))
+	L.SetField(preload, "json", luaLoader(L, "json"))
 	L.SetField(preload, "list", luaLoader(L, "list"))
 	//__DSL__dslLoader(L, "__DSLMOD__")
 
