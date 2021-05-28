@@ -8,14 +8,16 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 )
 
 type RunArgs struct {
-	Exe   string
-	Args  []string
-	Dir   string
-	Env   []string
-	Stdin []byte
+	Exe     string
+	Args    []string
+	Dir     string
+	Env     []string
+	Stdin   []byte
+	Timeout int
 }
 
 type panicT struct {
@@ -46,10 +48,29 @@ func (a RunArgs) Run() (bool, string, string, string) {
 	var errorStr string
 	cmd.Stdout = &stdout
 	cmd.Stderr = &stderr
-	err := cmd.Run()
-	if err != nil {
-		r = false
-		errorStr = err.Error()
+	var err error
+	if a.Timeout > 0 {
+		err = cmd.Start()
+		if err != nil {
+			r = false
+			errorStr = err.Error()
+		} else {
+			timer := time.AfterFunc(time.Duration(a.Timeout)*time.Second, func() {
+				cmd.Process.Kill()
+			})
+			err = cmd.Wait()
+			if err != nil {
+				r = false
+				errorStr = err.Error()
+			}
+			timer.Stop()
+		}
+	} else {
+		err = cmd.Run()
+		if err != nil {
+			r = false
+			errorStr = err.Error()
+		}
 	}
 	return r, stdout.String(), stderr.String(), errorStr
 }

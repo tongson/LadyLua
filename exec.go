@@ -13,6 +13,7 @@ func execCommand(L *lua.LState) int {
 	env := L.OptTable(3, tbl)
 	cwd := L.OptString(4, "")
 	sin := L.OptString(5, "")
+	tme := L.OptNumber(6, 0)
 
 	if arg.Len() > 0 {
 		arg.ForEach(func(_, value lua.LValue) {
@@ -24,7 +25,7 @@ func execCommand(L *lua.LState) int {
 			tenv = append(tenv, lua.LVAsString(value))
 		})
 	}
-	cmd := RunArgs{Exe: exe, Args: targ, Env: tenv, Dir: cwd, Stdin: []byte(sin)}
+	cmd := RunArgs{Exe: exe, Args: targ, Env: tenv, Dir: cwd, Stdin: []byte(sin), Timeout: int(tme)}
 	ret, stdout, stderr, err := cmd.Run()
 
 	if ret {

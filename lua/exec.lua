@@ -3,7 +3,7 @@ exec.ctx = function(exe)
 	return setmetatable(set, {
 		__call = function(_, args)
 			args = args or {}
-			return exec.command(exe, args, set.env, set.cwd, set.stdin)
+			return exec.command(exe, args, set.env, set.cwd, set.stdin, set.timeout)
 		end,
 	})
 end
@@ -25,7 +25,7 @@ exec.cmd = function(exe)
 			if a and type(a) == "table" then
 				args = a
 			end
-			local r, so, se, cerr = exec.command(exe, args, set.env, set.cwd, set.stdin)
+			local r, so, se, cerr = exec.command(exe, args, set.env, set.cwd, set.stdin, set.timeout)
 			local pretty_prefix = function(header, prefix, str)
 				local n
 				if len(str) > 0 then
