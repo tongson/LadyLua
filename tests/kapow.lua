@@ -56,7 +56,7 @@ local kapow_set = function()
 end
 local kapow_set_binary = function()
 	local b = http.get(URL .. "/binary")
-	local bin = fs.read("/home/e/bin/kapow.v0.7.0")
+	local bin = fs.read("/usr/bin/kapow")
 	T.equal(#bin, b.body_size)
 	local lc = crypto.sha512(bin)
 	local rt = crypto.sha512(b.body)
