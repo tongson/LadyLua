@@ -158,6 +158,8 @@ local crypto_valid_hmac = function()
 	mac = C.hmac("sha256", "AA", "KEY", true)
 	bool = C.valid_hmac("sha256", "AAA", "KEY", mac)
 	T.is_false(bool)
+	bool = C.valid_hmac("sha256", "AA", "KEY_", mac)
+	T.is_false(bool)
 end
 if included then
 	return function()
