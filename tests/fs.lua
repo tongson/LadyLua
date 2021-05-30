@@ -279,7 +279,7 @@ end
 --# Create a file system link.
 --#
 --# First argument is the target path. Second is the new link.
---# Creates a hard link by default. If the optional third argument is set to `true` then a symlink is created insteed.
+--# Creates a hard link by default. If the optional third argument is set to `true` then a symlink is created instead.
 --#
 --# Returns `true` if successful.
 --# Returns `nil` and an error message when an error is encountered.
