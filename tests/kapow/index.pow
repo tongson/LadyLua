@@ -1,0 +1,27 @@
+#!/LadyLua/ll
+local Exe = "/LadyLua/ll"
+local Lua = "/LadyLua/tests/kapow/index.lua"
+local Kapow = exec.cmd("/usr/bin/kapow")
+local Control = "https://127.0.0.1:60081"
+Kapow.errexit = true
+Kapow.env = {
+	'KAPOW_DATA_URL="http://127.0.0.1:60082"',
+}
+Kapow("route add / --control-url %s -e %s -c %s", Control, Exe, Lua)
+Kapow("route add / --control-url %s -X POST -e %s -c %s", Control, Exe, Lua)
+local routes = function(r)
+	Kapow("route add /%s --control-url %s -e %s -c %s", r, Control, Exe, Lua)
+end
+local r = {
+	"ok",
+	"warn",
+	"fail",
+	"redirect",
+	"forbid",
+	"unprocessable",
+	"no_content",
+	"binary",
+}
+for n = 1, #r do
+	routes(r[n])
+end
