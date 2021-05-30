@@ -291,8 +291,8 @@ end
 --# |===
 local fs_link = function()
 	T.is_function(fs.link)
-	-- Hardlinks shouldn't work in /tmp
-	T.is_nil(fs.link("/etc/passwd", "/tmp/fs.link"))
+	-- Hardlinks shouldn't work on directories.
+	T.is_nil(fs.link("/etc", "/tmp/fs.link"))
 	T.is_true(fs.link("/etc/passwd", "/tmp/fs.link", true))
 	local a = fs.symlinkattributes("/tmp/fs.link")
 	T.equal("link", a.mode)
