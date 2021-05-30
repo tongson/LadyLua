@@ -3,7 +3,7 @@ local kapow = require("kapow")
 local http = require("http")
 local crypto = require("crypto")
 local T = require("test")
-local URL = "http://0.255.80.1:60080"
+local URL = "http://127.0.0.1:60080"
 --# = kapow
 --# :toc:
 --# :toc-placement!:
