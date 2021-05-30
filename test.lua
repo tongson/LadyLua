@@ -1,4 +1,5 @@
 #!./ll
+os.setenv("MYSQL_PASSWORD", "irbj0O3Bn1j8Ezja21NdfcMzj7ZFd2lz")
 local T = require("test")
 local errstr = function(tested, str, ...)
 	local n, s = tested(...)
