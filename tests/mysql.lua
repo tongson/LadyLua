@@ -110,7 +110,7 @@ local mysql_query = function()
 	T.is_function(c.connect)
 	local password = os.getenv("MYSQL_PASSWORD")
 	local ok, err = c:connect({
-		host = "0.255.128.1",
+		host = "127.0.0.1",
 		port = "3306",
 		database = "mysql",
 		user = "root",
