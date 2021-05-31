@@ -152,14 +152,15 @@ end
 --# |boolean |`true` if valid
 --# |===
 local crypto_valid_hmac = function()
-  local mac = C.hmac("sha256", "AAA", "KEY", true)
-	local bool = C.valid_hmac("sha256", "AAA", "KEY", mac)
-	T.is_true(bool)
-	mac = C.hmac("sha256", "AA", "KEY", true)
-	bool = C.valid_hmac("sha256", "AAA", "KEY", mac)
-	T.is_false(bool)
-	bool = C.valid_hmac("sha256", "AA", "KEY_", mac)
-	T.is_false(bool)
+	do
+		local mac = C.hmac("sha256", "AAA", "KEY", true)
+		T.is_true(C.valid_hmac("sha256", "AAA", "KEY", mac))
+	end
+	do
+		local mac = C.hmac("sha256", "AA", "KEY", true)
+		T.is_false(C.valid_hmac("sha256", "AAA", "KEY", mac))
+		T.is_false(C.valid_hmac("sha256", "AA", "KEY_", mac))
+	end
 end
 if included then
 	return function()
