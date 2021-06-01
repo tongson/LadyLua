@@ -180,6 +180,24 @@ local contains = function()
 	nope(l:contains(5))
 end
 --#
+--# == *:count*() -> _Number_
+--# Count items in list.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number |Count
+--# |===
+local count = function()
+	local l = list.new()
+	func(l.count)
+	l:pushl("1")
+	l:pushl(2)
+	l:pushl(false)
+	expect(3)(l:count())
+end
+--#
 --# == *:walk*([_Boolean_]) -> _Iterator_
 --# Iterate over list.
 --#
@@ -268,6 +286,7 @@ if included then
 		T["popf"] = popf
 		T["popl"] = popl
 		T["contains"] = contains
+		T["count"] = count
 		T["walk"] = walk
 		T["range"] = range
 	end
@@ -284,6 +303,7 @@ else
 	T["popf"] = popf
 	T["popl"] = popl
 	T["contains"] = contains
+	T["count"] = count
 	T["walk"] = walk
 	T["range"] = range
 	local lst = list.new()
