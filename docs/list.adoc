@@ -67,6 +67,36 @@ Check if list contains an instance of number, string, or boolean
 |boolean |`true` if value is found, `false` otherwise
 |===
 
+== *:count*() -> _Number_
+Count items in list.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Count
+|===
+
+== *:first*() -> _Value_
+Return first value in the list. Does not pop() the value.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |Value
+|===
+
+== *:last*() -> _Value_
+Return last value in the list. Does not pop() the value.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |Value
+|===
+
 == *:walk*([_Boolean_]) -> _Iterator_
 Iterate over list.
 
