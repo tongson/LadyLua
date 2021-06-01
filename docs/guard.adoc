@@ -1,0 +1,38 @@
+= guard
+:toc:
+:toc-placement!:
+
+Elixir-style guards. One way to avoid nested conditionals.
+
+toc::[]
+
+== *guard*() -> _Table_
+Returns new guard factory.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Guardian table
+|===
+
+== *.any*(_function_)
+Fallthrough for a guard chain.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|type |description
+|function |Default case function
+|===
+
+== *.when*(_function_, _function_)
+Expects two functions arguments: the first one being a filter function, and the second one being a function to be evaluated. the filter function should return a boolean. if it returns `true`, the second function argument is evaluated and the guard returns itself right after.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|type |description
+|function |filter
+|function |main function
+|===
