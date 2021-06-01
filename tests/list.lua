@@ -310,6 +310,13 @@ local range = function()
 			nope(y)
 		end
 	end
+	do
+		local s = list.new()
+		s:pushl("a")
+		s:pushl("b")
+		s:pushl("c")
+		expect("abc")(table.concat(s:range(1, s:count()), ""))
+	end
 end
 if included then
 	return function()
