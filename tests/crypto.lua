@@ -1,5 +1,6 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
+local expect = T.expect
 local C = require("crypto")
 --# = crypto
 --# :toc:
@@ -162,6 +163,28 @@ local crypto_valid_hmac = function()
 		T.is_false(C.valid_hmac("sha256", "AA", "KEY_", mac))
 	end
 end
+--#
+--# == *crypto.random*([_Number_]) -> _String_
+--# Generate random Hexadecimal string.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |number |Optional hexadecimal length, default: 8 (16 characters)
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |string |Hexadecimal string
+--# |===
+local crypto_random = function()
+	local rand = C.random()
+	expect(16)(#rand)
+	T.is_string(rand)
+	local another = C.random()
+	T.not_equal(rand, another)
+end
 if included then
 	return function()
 		T["crypto.base64_encode"] = crypto_base64_encode
@@ -171,6 +194,7 @@ if included then
 		T["crypto.sha512"] = crypto_sha512
 		T["crypto.hmac"] = crypto_hmac
 		T["crypto.valid_hmac"] = crypto_valid_hmac
+		T["crypto.random"] = crypto_random
 	end
 else
 	T["crypto.base64_encode"] = crypto_base64_encode
@@ -179,5 +203,6 @@ else
 	T["crypto.sha256"] = crypto_sha256
 	T["crypto.sha512"] = crypto_sha512
 	T["crypto.hmac"] = crypto_hmac
-  T["crypto.valid_hmac"] = crypto_valid_hmac
+  	T["crypto.valid_hmac"] = crypto_valid_hmac
+	T["crypto.random"] = crypto_random
 end
