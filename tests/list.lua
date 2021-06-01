@@ -196,6 +196,27 @@ local count = function()
 	l:pushl(2)
 	l:pushl(false)
 	expect(3)(l:count())
+	l:popl()
+	expect(2)(l:count())
+end
+--#
+--# == *:first*() -> _Number_
+--# Return first value in list.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |value |Value
+--# |===
+local first= function()
+	local l = list.new()
+	func(l.count)
+	l:pushl("1")
+	l:pushl(2)
+	l:pushl(false)
+	expect("1")(l:first())
+	expect(3)(l:count())
 end
 --#
 --# == *:walk*([_Boolean_]) -> _Iterator_
@@ -287,6 +308,7 @@ if included then
 		T["popl"] = popl
 		T["contains"] = contains
 		T["count"] = count
+		T["first"] = first
 		T["walk"] = walk
 		T["range"] = range
 	end
@@ -304,6 +326,7 @@ else
 	T["popl"] = popl
 	T["contains"] = contains
 	T["count"] = count
+	T["first"] = first
 	T["walk"] = walk
 	T["range"] = range
 	local lst = list.new()
