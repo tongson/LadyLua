@@ -200,8 +200,8 @@ local count = function()
 	expect(2)(l:count())
 end
 --#
---# == *:first*() -> _Number_
---# Return first value in list.
+--# == *:first*() -> _Value_
+--# Return first value in the list. Does not pop() the value.
 --#
 --# === Returns
 --# [options="header",width="72%"]
@@ -217,6 +217,24 @@ local first= function()
 	l:pushl(false)
 	expect("1")(l:first())
 	expect(3)(l:count())
+end
+--#
+--# == *:last*() -> _Value_
+--# Return last value in the list. Does not pop() the value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |value |Value
+--# |===
+local last = function()
+	local l = list.new()
+	func(l.count)
+	l:pushl("1")
+	l:pushl(2)
+	expect(2)(l:last())
+	expect(2)(l:count())
 end
 --#
 --# == *:walk*([_Boolean_]) -> _Iterator_
@@ -309,6 +327,7 @@ if included then
 		T["contains"] = contains
 		T["count"] = count
 		T["first"] = first
+		T["last"] = last
 		T["walk"] = walk
 		T["range"] = range
 	end
@@ -327,6 +346,7 @@ else
 	T["contains"] = contains
 	T["count"] = count
 	T["first"] = first
+	T["last"] = last
 	T["walk"] = walk
 	T["range"] = range
 	local lst = list.new()
