@@ -144,7 +144,7 @@ api.error_raised = function (f, error_message, ...)
         if error_message ~= nil then
             -- we set "plain" to true to avoid pattern matching in string.find
             if err:find(error_message, 1, true) == nil then
-                fail("'" .. error_message .. "' not found in error '" .. tostring(err) .. "'")
+                fail("„" .. error_message .. "“ not found in error " .. tostring(err))
             end
         end
     end
