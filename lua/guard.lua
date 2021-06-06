@@ -25,7 +25,7 @@ local _guardian = function()
 			if guard.__any then
 				return guard.__any(...)
 			end
-			return error(("guard: No guard defined for given arguments."), 1)
+			return error("guard: No guard defined for given arguments.", 0)
 		end,
 	})
 end
