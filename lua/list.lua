@@ -36,8 +36,8 @@ end
 
 -- push to first
 function _M:pushf(value)
-    if self:contains(value) then
-        return false
+    if value == nil or self:contains(value) then
+        return
     end
     self._next[value] = self._first
     if self._first == nil then
@@ -49,12 +49,12 @@ function _M:pushf(value)
     end
     self._value[value] = dummy
     self._count = self._count + 1
-    return true
+    return
 end
 
 -- push to last
 function _M:pushl(value)
-    if self:contains(value) then
+    if value == nil or self:contains(value) then
         return false
     end
     self._prev[value] = self._last
@@ -72,7 +72,7 @@ end
 
 -- remove element in list
 function _M:remove(value)
-    if not self:contains(value) then
+    if value == nil or not self:contains(value) then
         return nil
     end
     local next = self._next[value]
