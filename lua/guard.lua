@@ -1,5 +1,6 @@
 local setmetatable = setmetatable
 local ipairs = ipairs
+local error = error
 
 local _guardian = function()
 	local guard = { __when = {} }
@@ -24,7 +25,7 @@ local _guardian = function()
 			if guard.__any then
 				return guard.__any(...)
 			end
-			return nil, "Reached end of guard chain."
+			return error(("No guard defined for given arguments"), 1)
 		end,
 	})
 end
