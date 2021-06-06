@@ -65,7 +65,7 @@ local when = function()
 	end, function()
 	end)
 	T.is_table(x)
-	T.is_nil(x())
+	T.error_raised(x)
 	local is_odd = function(n)
 		return n % 2 ~= 0
 	end
@@ -74,7 +74,7 @@ local when = function()
 	end
 	local g = G().when(is_odd, double)
 	expect(6)(g(3))
-	T.is_nil(g(2))
+	T.error_raised(g, "guard: No guard defined for given arguments.", 0)
 	g.any(function()
 		return "default case"
 	end)
@@ -106,7 +106,7 @@ local chain = function()
 	T.not_equal(1, g()) --falsy
 	T.not_equal(3, g()) --falsy
 	T.not_equal(4, g()) --FIFO
-	T.is_nil(h())
+	T.error_raised(h)
 	h.any(f_four)
 	expect(4)(h())
 end
