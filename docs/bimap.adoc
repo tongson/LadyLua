@@ -1,0 +1,18 @@
+= bimap
+:toc:
+:toc-placement!:
+
+Bidirectional map implementation.
+
+toc::[]
+
+== *bimap.new*() -> _Table_, _Table_
+Create a new map.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Map
+|table |Map
+|===
