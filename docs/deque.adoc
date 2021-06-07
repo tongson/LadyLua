@@ -1,0 +1,188 @@
+= deque
+:toc:
+:toc-placement!:
+
+Double-ended queue implementation.
+
+toc::[]
+
+== *deque.new*() -> _Table_
+Create a new queue.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Queue
+|===
+
+
+== *:push_left*(_Value_)
+Push to beginning of queue.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:length*() -> _Number_
+Count items in queue.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Count
+|===
+
+== *:contents*() -> _Table_
+Array representation of queue.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Array
+|===
+
+== *:push_right*(_Value_)
+Push to end of queue.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:pop_left*() -> _Value_
+Pop value from beginning of queue.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:pop_right*() -> _Value_
+Pop value from end of queue.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:peek_left*() -> _Value_
+Return first value in the queue.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:peek_right*() -> _Value_
+Return last value in queue.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |String, Boolean, Number, or Table
+|===
+
+== *:remove_left*(_Value_) -> _Boolean_
+Remove first matching value from beginning of queue.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |Value to remove
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if removed, `false` otherwise
+|===
+
+== *:remove_right*(_Value_) -> _Boolean_
+Remove first matching value from end of queue.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |Value to remove
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if removed, `false` otherwise
+|===
+
+== *:is_empty*() -> _Boolean_
+Check if queue has length of 0.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |`true` if empty, `false` otherwise
+|===
+
+== *:iter_left*()
+Iterate from start of queue.
+
+== *:iter_right*()
+Iterate from end of queue.
+
+== *:rotate_left*([_Number_])
+Rotate queue from beginning. Argument is number of steps to rotate, defaults to 1.
+
+=== Example
+[options="header",width="72%"]
+|===
+|Step|v1|v2|v3
+|Initial|4|2|3
+|1|2|3|4
+|2|3|4|2
+|3|4|2|3
+|4|2|3|4
+|===
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Rotation steps
+|===
+
+== *:rotate_right*([_Number_])
+Rotate queue from end. Argument is number of steps to rotate, defaults to 1.
+
+=== Example
+[options="header",width="72%"]
+|===
+|Step|v1|v2|v3
+|Initial|2|3|3
+|1|4|2|3
+|2|3|4|2
+|===
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Rotation steps
+|===
