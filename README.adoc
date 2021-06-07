@@ -7,6 +7,7 @@ Single static executable, batteries-included, Lua 5.1 interpreter. A fat https:/
 Next release: *0.9.0 Scared Shrapnel* +
 + New function: crypto.random +
 + New module: guard +
++ New module: deque +
 + Bug fix: list +
 
 Current release: *0.8.0 Freckled Serpent* +
@@ -93,6 +94,7 @@ Check the `docs` directory for more information about these modules.
 |Module      |Global |Source           |License
 |bitcask     |N      |                 |MIT
 |crypto      |N      |gluacrypto       |MIT
+|deque       |N      |cw-lua           |MIT
 |exec        |Y      |                 |MIT
 |fmt         |Y      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense

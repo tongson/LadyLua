@@ -118,6 +118,7 @@ Available options are:
 	L.SetField(preload, "json", luaLoader(L, "json"))
 	L.SetField(preload, "list", luaLoader(L, "list"))
 	L.SetField(preload, "guard", luaLoader(L, "guard"))
+	L.SetField(preload, "deque", luaLoader(L, "deque"))
 	//__DSL__dslLoader(L, "__DSLMOD__")
 
 	if opt_m > 0 {
