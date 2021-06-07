@@ -30,7 +30,7 @@ local new = function()
 	tbl(l)
 end
 --#
---# == *:pushf*(_Value_)
+--# == *:push_front*(_Value_)
 --# Push to beginning of list.
 --#
 --# === Arguments
@@ -39,29 +39,29 @@ end
 --# |Type |Description
 --# |value |String, Boolean, Number, or Table
 --# |===
-local pushf_string = function()
+local push_front_string = function()
 	local l = list.new()
-	func(l.pushf)
-	l:pushf("1")
-	l:pushf("2")
-	local x = l:popl()
+	func(l.push_front)
+	l:push_front("1")
+	l:push_front("2")
+	local x = l:pop_back()
 	expect("1")(x)
 end
-local pushf_number = function()
+local push_front_number = function()
 	local l = list.new()
-	l:pushf(1)
-	l:pushf(2)
-	local x = l:popl()
+	l:push_front(1)
+	l:push_front(2)
+	local x = l:pop_back()
 	expect(1)(x)
 end
-local pushf_boolean = function()
+local push_front_boolean = function()
 	local l = list.new()
-	l:pushf(false)
-	l:pushf(true)
-	local x = l:popl()
+	l:push_front(false)
+	l:push_front(true)
+	local x = l:pop_back()
 	expect(false)(x)
 end
-local pushf_table = function()
+local push_front_table = function()
 	local l = list.new()
 	local one = {
 		one = 1,
@@ -69,14 +69,14 @@ local pushf_table = function()
 	local two = {
 		two = 2,
 	}
-	l:pushf(one)
-	l:pushf(two)
-	local x = l:popl()
+	l:push_front(one)
+	l:push_front(two)
+	local x = l:pop_back()
 	tbl(x)
 	expect(1)(x.one)
 end
 --#
---# == *:pushl*(_Value_)
+--# == *:push_back*(_Value_)
 --# Push to end of list.
 --#
 --# === Arguments
@@ -85,29 +85,29 @@ end
 --# |Type |Description
 --# |value |String, Boolean, Number, or Table
 --# |===
-local pushl_string = function()
+local push_back_string = function()
 	local l = list.new()
-	func(l.pushl)
-	l:pushl("1")
-	l:pushl("2")
-	local x = l:popl()
+	func(l.push_back)
+	l:push_back("1")
+	l:push_back("2")
+	local x = l:pop_back()
 	expect("2")(x)
 end
-local pushl_number = function()
+local push_back_number = function()
 	local l = list.new()
-	l:pushl(1)
-	l:pushl(2)
-	local x = l:popl()
+	l:push_back(1)
+	l:push_back(2)
+	local x = l:pop_back()
 	expect(2)(x)
 end
-local pushl_boolean = function()
+local push_back_boolean = function()
 	local l = list.new()
-	l:pushl(false)
-	l:pushl(true)
-	local x = l:popl()
+	l:push_back(false)
+	l:push_back(true)
+	local x = l:pop_back()
 	expect(true)(x)
 end
-local pushl_table = function()
+local push_back_table = function()
 	local l = list.new()
 	local one = {
 		one = 1,
@@ -115,14 +115,14 @@ local pushl_table = function()
 	local two = {
 		two = 2,
 	}
-	l:pushl(one)
-	l:pushl(two)
-	local x = l:popl()
+	l:push_back(one)
+	l:push_back(two)
+	local x = l:pop_back()
 	tbl(x)
 	expect(2)(x.two)
 end
 --#
---# == *:popf*() -> _Value_
+--# == *:pop_front*() -> _Value_
 --# Pop value from beginning of list.
 --#
 --# === Returns
@@ -131,16 +131,16 @@ end
 --# |Type |Description
 --# |value |String, Boolean, Number, or Table
 --# |===
-local popf = function()
+local pop_front = function()
 	local l = list.new()
-	func(l.popf)
-	l:pushl("1")
-	l:pushl("2")
-	local x = l:popf()
+	func(l.pop_front)
+	l:push_back("1")
+	l:push_back("2")
+	local x = l:pop_front()
 	expect("1")(x)
 end
 --#
---# == *:popl*() -> _Value_
+--# == *:pop_back*() -> _Value_
 --# Pop value from end of list.
 --#
 --# === Returns
@@ -149,12 +149,12 @@ end
 --# |Type |Description
 --# |value |String, Boolean, Number, or Table
 --# |===
-local popl = function()
+local pop_back = function()
 	local l = list.new()
-	func(l.popl)
-	l:pushl("1")
-	l:pushl("2")
-	local x = l:popl()
+	func(l.pop_back)
+	l:push_back("1")
+	l:push_back("2")
+	local x = l:pop_back()
 	expect("2")(x)
 end
 --#
@@ -170,9 +170,9 @@ end
 local contains = function()
 	local l = list.new()
 	func(l.contains)
-	l:pushl("1")
-	l:pushl(2)
-	l:pushl(false)
+	l:push_back("1")
+	l:push_back(2)
+	l:push_back(false)
 	trve(l:contains("1"))
 	trve(l:contains(2))
 	trve(l:contains(false))
@@ -180,7 +180,7 @@ local contains = function()
 	nope(l:contains(5))
 end
 --#
---# == *:count*() -> _Number_
+--# == *:size*() -> _Number_
 --# Count items in list.
 --#
 --# === Returns
@@ -191,24 +191,24 @@ end
 --# |===
 local count = function()
 	local l = list.new()
-	func(l.count)
-	l:pushl("1")
-	l:pushl(2)
-	l:pushl(false)
-	expect(3)(l:count())
-	l:popl()
-	expect(2)(l:count())
+	func(l.size)
+	l:push_back("1")
+	l:push_back(2)
+	l:push_back(false)
+	expect(3)(l:size())
+	l:pop_back()
+	expect(2)(l:size())
 end
 local dup = function()
 	local l = list.new()
-	l:pushf(3)
-	l:pushf(3)
-	l:pushl("a")
-	l:pushf("a")
-	expect(2)(l:count())
+	l:push_front(3)
+	l:push_front(3)
+	l:push_back("a")
+	l:push_front("a")
+	expect(2)(l:size())
 end
 --#
---# == *:first*() -> _Value_
+--# == *:front*() -> _Value_
 --# Return first value in the list. Does not pop() the value.
 --#
 --# === Returns
@@ -217,17 +217,17 @@ end
 --# |Type |Description
 --# |value |Value
 --# |===
-local first= function()
+local first = function()
 	local l = list.new()
-	func(l.count)
-	l:pushl("1")
-	l:pushl(2)
-	l:pushl(false)
-	expect("1")(l:first())
-	expect(3)(l:count())
+	func(l.size)
+	l:push_back("1")
+	l:push_back(2)
+	l:push_back(false)
+	expect("1")(l:front())
+	expect(3)(l:size())
 end
 --#
---# == *:last*() -> _Value_
+--# == *:back*() -> _Value_
 --# Return last value in the list. Does not pop() the value.
 --#
 --# === Returns
@@ -238,11 +238,11 @@ end
 --# |===
 local last = function()
 	local l = list.new()
-	func(l.count)
-	l:pushl("1")
-	l:pushl(2)
-	expect(2)(l:last())
-	expect(2)(l:count())
+	func(l.size)
+	l:push_back("1")
+	l:push_back(2)
+	expect(2)(l:back())
+	expect(2)(l:size())
 end
 --#
 --# == *:walk*([_Boolean_]) -> _Iterator_
@@ -257,9 +257,9 @@ end
 local walk = function()
 	local l = list.new()
 	func(l.walk)
-	l:pushl("1")
-	l:pushl(2)
-	l:pushl(false)
+	l:push_back("1")
+	l:push_back(2)
+	l:push_back(false)
 	for x, y in l:walk() do
 		if x == 1 then
 			expect("1")(y)
@@ -298,10 +298,10 @@ end
 local range = function()
 	local l = list.new()
 	func(l.range)
-	l:pushl("1")
-	l:pushl(2)
-	l:pushl(false)
-	l:pushl({})
+	l:push_back("1")
+	l:push_back(2)
+	l:push_back(false)
+	l:push_back({})
 	for x, y in ipairs(l:range(2, 3)) do
 		if x == 1 then
 			expect(2)(y)
@@ -320,25 +320,25 @@ local range = function()
 	end
 	do
 		local s = list.new()
-		s:pushl("a")
-		s:pushl("b")
-		s:pushl("c")
-		expect("abc")(table.concat(s:range(1, s:count()), ""))
+		s:push_back("a")
+		s:push_back("b")
+		s:push_back("c")
+		expect("abc")(table.concat(s:range(1, s:size()), ""))
 	end
 end
 if included then
 	return function()
 		T["new"] = new
-		T["pushf_string"] = pushf_string
-		T["pushf_number"] = pushf_number
-		T["pushf_boolean"] = pushf_boolean
-		T["pushf_number"] = pushf_number
-		T["pushl_string"] = pushl_string
-		T["pushl_number"] = pushl_number
-		T["pushl_boolean"] = pushl_boolean
-		T["pushl_number"] = pushl_number
-		T["popf"] = popf
-		T["popl"] = popl
+		T["push_front_string"] = push_front_string
+		T["push_front_number"] = push_front_number
+		T["push_front_boolean"] = push_front_boolean
+		T["push_front_number"] = push_front_number
+		T["push_back_string"] = push_back_string
+		T["push_back_number"] = push_back_number
+		T["push_back_boolean"] = push_back_boolean
+		T["push_back_number"] = push_back_number
+		T["pop_front"] = pop_front
+		T["pop_back"] = pop_back
 		T["contains"] = contains
 		T["count"] = count
 		T["first"] = first
@@ -349,16 +349,16 @@ if included then
 	end
 else
 	T["new"] = new
-	T["pushf_string"] = pushf_string
-	T["pushf_number"] = pushf_number
-	T["pushf_boolean"] = pushf_boolean
-	T["pushf_number"] = pushf_number
-	T["pushl_string"] = pushl_string
-	T["pushl_number"] = pushl_number
-	T["pushl_boolean"] = pushl_boolean
-	T["pushl_number"] = pushl_number
-	T["popf"] = popf
-	T["popl"] = popl
+	T["push_front_string"] = push_front_string
+	T["push_front_number"] = push_front_number
+	T["push_front_boolean"] = push_front_boolean
+	T["push_front_number"] = push_front_number
+	T["push_back_string"] = push_back_string
+	T["push_back_number"] = push_back_number
+	T["push_back_boolean"] = push_back_boolean
+	T["push_back_number"] = push_back_number
+	T["pop_front"] = pop_front
+	T["pop_back"] = pop_back
 	T["contains"] = contains
 	T["count"] = count
 	T["first"] = first
@@ -376,14 +376,14 @@ else
 	max_count = 1000 * 1000 * 10
 	o = os.clock()
 	for i = 50, max_count + 50, 1 do
-		lst:pushf(i)
+		lst:push_front(i)
 	end
 	t = os.clock() - o
 	push_mean = push_mean + t
 	print("push " .. max_count .. " cost " .. t)
 	o = os.clock()
-	while lst:count() > 0 do
-		lst:popl()
+	while lst:size() > 0 do
+		lst:pop_back()
 	end
 	t = os.clock() - o
 	pop_mean = pop_mean + t
