@@ -2,13 +2,13 @@
 --- MIT licensed (see LICENSE.txt)
 
 local push_right = function(self, x)
-  assert(x ~= nil)
+  assert(x ~= nil, "deque.push_right: Value cannot be nil.")
   self.tail = self.tail + 1
   self[self.tail] = x
 end
 
 local push_left = function(self, x)
-  assert(x ~= nil)
+  assert(x ~= nil, "deque.push_left: Value cannot be nil.")
   self[self.head] = x
   self.head = self.head - 1
 end
@@ -41,17 +41,23 @@ end
 local rotate_right = function(self, n)
   n = n or 1
   if self:is_empty() then return nil end
-  for i=1,n do self:push_left(self:pop_right()) end
+  for _=1,n do
+    self:push_left(self:pop_right())
+  end
 end
 
 local rotate_left = function(self, n)
   n = n or 1
   if self:is_empty() then return nil end
-  for i=1,n do self:push_right(self:pop_left()) end
+  for _=1,n do
+    self:push_right(self:pop_left())
+  end
 end
 
 local _remove_at_internal = function(self, idx)
-  for i=idx, self.tail do self[i] = self[i+1] end
+  for i=idx, self.tail do
+    self[i] = self[i+1]
+  end
   self.tail = self.tail - 1
 end
 
