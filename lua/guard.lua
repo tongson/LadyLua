@@ -16,14 +16,14 @@ local _guardian = function()
 	end
 
 	return setmetatable(guard, {
-		__call = function(guard, ...)
-			for k, g in ipairs(guard.__when) do
+		__call = function(gg, ...)
+			for _, g in ipairs(gg.__when) do
 				if g.filter(...) then
 					return g.f(...)
 				end
 			end
-			if guard.__any then
-				return guard.__any(...)
+			if gg.__any then
+				return gg.__any(...)
 			end
 			return error("guard: No guard defined for given arguments.", 0)
 		end,
