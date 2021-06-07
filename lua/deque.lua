@@ -33,7 +33,7 @@ local pop_left = function(self)
   if self:is_empty() then return nil end
   local r = self[self.head+1]
   self.head = self.head + 1
-  local r = self[self.head]
+  r = self[self.head]
   self[self.head] = nil
   return r
 end
