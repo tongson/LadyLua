@@ -12,17 +12,17 @@ _M.__index = _M
 local dummy = {}
 
 -- list count
-function _M:count()
+function _M:size()
     return self._count
 end
 
 -- first element in list
-function _M:first()
+function _M:front()
     return self._first
 end
 
 -- last element in list
-function _M:last()
+function _M:back()
     return self._last
 end
 
@@ -35,7 +35,7 @@ function _M:contains(value)
 end
 
 -- push to first
-function _M:pushf(value)
+function _M:push_front(value)
     if value == nil or self:contains(value) then
         return
     end
@@ -53,7 +53,7 @@ function _M:pushf(value)
 end
 
 -- push to last
-function _M:pushl(value)
+function _M:push_back(value)
     if value == nil or self:contains(value) then
         return false
     end
@@ -97,12 +97,12 @@ function _M:remove(value)
 end
 
 -- pop first element
-function _M:popf()
+function _M:pop_front()
     return self:remove(self._first)
 end
 
 -- pop last element
-function _M:popl()
+function _M:pop_back()
     return self:remove(self._last)
 end
 
