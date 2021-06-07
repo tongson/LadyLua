@@ -17,7 +17,7 @@ Create a new queue.
 |===
 
 
-== *:push_left*(_Value_)
+== *:push_front*(_Value_)
 Push to beginning of queue.
 
 === Arguments
@@ -27,7 +27,7 @@ Push to beginning of queue.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:length*() -> _Number_
+== *:size*() -> _Number_
 Count items in queue.
 
 === Returns
@@ -47,7 +47,7 @@ Array representation of queue.
 |table |Array
 |===
 
-== *:push_right*(_Value_)
+== *:push_back*(_Value_)
 Push to end of queue.
 
 === Arguments
@@ -57,7 +57,7 @@ Push to end of queue.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:pop_left*() -> _Value_
+== *:pop_front*() -> _Value_
 Pop value from beginning of queue.
 
 === Returns
@@ -67,7 +67,7 @@ Pop value from beginning of queue.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:pop_right*() -> _Value_
+== *:pop_back*() -> _Value_
 Pop value from end of queue.
 
 === Returns
@@ -77,7 +77,7 @@ Pop value from end of queue.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:peek_left*() -> _Value_
+== *:peek_front*() -> _Value_
 Return first value in the queue.
 
 === Returns
@@ -87,7 +87,7 @@ Return first value in the queue.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:peek_right*() -> _Value_
+== *:peek_back*() -> _Value_
 Return last value in queue.
 
 === Returns
@@ -97,7 +97,7 @@ Return last value in queue.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:remove_left*(_Value_) -> _Boolean_
+== *:remove_front*(_Value_) -> _Boolean_
 Remove first matching value from beginning of queue.
 
 === Arguments
@@ -114,7 +114,7 @@ Remove first matching value from beginning of queue.
 |boolean |`true` if removed, `false` otherwise
 |===
 
-== *:remove_right*(_Value_) -> _Boolean_
+== *:remove_back*(_Value_) -> _Boolean_
 Remove first matching value from end of queue.
 
 === Arguments
@@ -141,13 +141,13 @@ Check if queue has length of 0.
 |boolean |`true` if empty, `false` otherwise
 |===
 
-== *:iter_left*()
+== *:iter_front*()
 Iterate from start of queue.
 
-== *:iter_right*()
+== *:iter_back*()
 Iterate from end of queue.
 
-== *:rotate_left*([_Number_])
+== *:rotate_front*([_Number_])
 Rotate queue from beginning. Argument is number of steps to rotate, defaults to 1.
 
 === Example
@@ -168,7 +168,7 @@ Rotate queue from beginning. Argument is number of steps to rotate, defaults to 
 |number |Rotation steps
 |===
 
-== *:rotate_right*([_Number_])
+== *:rotate_back*([_Number_])
 Rotate queue from end. Argument is number of steps to rotate, defaults to 1.
 
 === Example
