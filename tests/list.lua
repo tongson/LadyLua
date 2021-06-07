@@ -199,6 +199,14 @@ local count = function()
 	l:popl()
 	expect(2)(l:count())
 end
+local dup = function()
+	local l = list.new()
+	l:pushf(3)
+	l:pushf(3)
+	l:pushl("a")
+	l:pushf("a")
+	expect(2)(l:count())
+end
 --#
 --# == *:first*() -> _Value_
 --# Return first value in the list. Does not pop() the value.
@@ -337,6 +345,7 @@ if included then
 		T["last"] = last
 		T["walk"] = walk
 		T["range"] = range
+		T["dup"] = dup
 	end
 else
 	T["new"] = new
@@ -356,6 +365,7 @@ else
 	T["last"] = last
 	T["walk"] = walk
 	T["range"] = range
+	T["dup"] = dup
 	local lst = list.new()
 	local round = 0
 	local push_mean = 0
