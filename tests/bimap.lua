@@ -1,0 +1,104 @@
+local included = pcall(debug.getlocal, 4, 1)
+local bimap = require("bimap")
+local T = require("test")
+local expect = T.expect
+local func = T.is_function
+local tbl = T.is_table
+local compare = require("util").deepcompare
+--# = bimap
+--# :toc:
+--# :toc-placement!:
+--#
+--# Bidirectional map implementation.
+--#
+--# toc::[]
+--#
+--# == *bimap.new*() -> _Table_, _Table_
+--# Create a new map.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |table |Map
+--# |table |Map
+--# |===
+local new = function()
+	func(bimap.new)
+	local l, r = bimap.new()
+	tbl(l)
+	tbl(r)
+end
+local raw = function()
+	local l, r = bimap.new()
+	l.test = true
+	l.nope = false
+	local left = l("raw")
+	local right = r("raw")
+	expect(true)(left["test"])
+	expect(false)(left["nope"])
+	expect("test")(right[true])
+	expect("nope")(right[false])
+end
+local len = function()
+	local t = { 1 }
+	expect(1)(#t)
+	local l, r = bimap.new()
+	l.test = 1
+	l.nope = 2
+	expect(0)(l("len"))
+	expect(2)(r("len"))
+end
+local testing = function(l, r)
+	expect(2)(l.bar)
+	expect("bar")(r[2])
+	expect(true)(compare(r("raw"), { "foo", "bar", "baz" }))
+	local t1 = l("raw")
+	expect(1)(t1.foo)
+	expect(2)(t1.bar)
+	expect(3)(t1.baz)
+	expect(3)(r("len"))
+	l.baz = nil
+	expect(2)(#(r("raw")))
+	r[r("len")] = nil
+	expect(true)(compare(r("raw"), { "foo" }))
+	expect(true)(compare(l("raw"), { foo = 1 }))
+	expect(1)(r("len"))
+	l.spam = "eggs"
+	r.eggs = "chunky"
+	l["chunky"] = "bacon"
+	expect("bacon")(l["chunky"])
+	expect("chunky")(r["bacon"])
+	expect(nil)(l["spam"])
+	expect(nil)(r["eggs"])
+	expect(true)(compare(r("raw"), { "foo", bacon = "chunky" }))
+	expect(true)(compare(l("raw"), { foo = 1, chunky = "bacon" }))
+	local fn = function()
+		l.evil = 1
+	end
+	T.error_raised(
+		fn,
+		'cannot assign value "1" to key "evil": ' .. 'already assigned to key "foo"'
+	)
+end
+local left = function()
+	local l, r = bimap.new()
+	l.foo = 1
+	l.bar = 2
+	l.baz = 3
+	testing(l, r)
+end
+local right = function()
+	l, r = bimap.new{"foo", "bar", "baz"}
+	testing(r, l)
+end
+if included then
+	return function()
+	end
+else
+	T["new"] = new
+	T["raw argument"] = raw
+	T["len argument"] = len
+	T["left"] = left
+	T["right"] = right
+end
