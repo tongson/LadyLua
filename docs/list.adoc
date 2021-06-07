@@ -17,7 +17,7 @@ Create a new list.
 |===
 
 
-== *:pushf*(_Value_)
+== *:push_front*(_Value_)
 Push to beginning of list.
 
 === Arguments
@@ -27,7 +27,7 @@ Push to beginning of list.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:pushl*(_Value_)
+== *:push_back*(_Value_)
 Push to end of list.
 
 === Arguments
@@ -37,7 +37,7 @@ Push to end of list.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:popf*() -> _Value_
+== *:pop_front*() -> _Value_
 Pop value from beginning of list.
 
 === Returns
@@ -47,7 +47,7 @@ Pop value from beginning of list.
 |value |String, Boolean, Number, or Table
 |===
 
-== *:popl*() -> _Value_
+== *:pop_back*() -> _Value_
 Pop value from end of list.
 
 === Returns
@@ -67,7 +67,7 @@ Check if list contains an instance of number, string, or boolean
 |boolean |`true` if value is found, `false` otherwise
 |===
 
-== *:count*() -> _Number_
+== *:size*() -> _Number_
 Count items in list.
 
 === Returns
@@ -77,7 +77,7 @@ Count items in list.
 |number |Count
 |===
 
-== *:first*() -> _Value_
+== *:front*() -> _Value_
 Return first value in the list. Does not pop() the value.
 
 === Returns
@@ -87,7 +87,7 @@ Return first value in the list. Does not pop() the value.
 |value |Value
 |===
 
-== *:last*() -> _Value_
+== *:back*() -> _Value_
 Return last value in the list. Does not pop() the value.
 
 === Returns
