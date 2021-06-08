@@ -24,7 +24,7 @@ end
 
 -- Returns a string representation of tuple
 function tuple:__tostring()
-  local t = self:to_array()
+  local t = self:contents()
   for k,v in ipairs(t) do
     t[k] = tostring(v)
   end
@@ -71,7 +71,7 @@ function tuple:includes(other)
 end
 
 -- Converts tuple to simpe array ?
-function tuple:to_array()
+function tuple:contents()
   return {unpack(self)}
 end
 
