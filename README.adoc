@@ -120,7 +120,7 @@ Check the `docs` directory for more information about these modules.
 |telegram    |N      |                 |MIT
 |template    |N      |etlua            |MIT
 |test        |N      |u-test           |MIT
-|tuple       |N      |tuple            |MIT
+|tuple       |N      |tuple.lua        |MIT
 |ulid        |N      |                 |APL2
 |uuid        |N      |                 |MPL2
 |===
