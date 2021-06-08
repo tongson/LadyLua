@@ -141,3 +141,18 @@ Immediately return `true` if a match is found.
 |boolean| `true` if string is found, `nil` and an error message, otherwise
 |string | Key of matching value if the type is string
 |===
+
+=== *table.clone*(_Table_) -> _Table_
+Deep copy of table.
+
+=== Arguments
+[width="72%"]
+|===
+|table|Table to clone
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table|New table
+|===
