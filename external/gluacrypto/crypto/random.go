@@ -3,6 +3,7 @@ package gluacrypto_crypto
 import (
 	"crypto/rand"
 	"fmt"
+	"hash/maphash"
 	"io"
 
 	lua "github.com/yuin/gopher-lua"
@@ -17,5 +18,11 @@ func randomFn(L *lua.LState) int {
 		return 2
 	}
 	L.Push(lua.LString(fmt.Sprintf("%x", buf[0:size])))
+	return 1
+}
+
+func fastRandomFn(L *lua.LState) int {
+	h := new(maphash.Hash)
+	L.Push(lua.LString(fmt.Sprintf("%x", h.Sum64())))
 	return 1
 }

@@ -17,6 +17,7 @@ var exports = map[string]lua.LGFunction{
 	"encrypt":       encryptFn,
 	"decrypt":       decryptFn,
 	"random":        randomFn,
+	"fastrandom":    fastRandomFn,
 }
 
 func Loader(L *lua.LState) int {
