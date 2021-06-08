@@ -130,7 +130,7 @@ do
 	end
 	table.auto = autotable
 
-	table.len = function(t, maxn)
+	table.size = function(t, maxn)
 		local n = 0
 		if maxn then
 			for _ in next, t do
