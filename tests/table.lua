@@ -73,7 +73,7 @@ local table_count = function()
 	T.equal(table.count(t, "found"), 3)
 end
 --#
---# === *table.len*(_Table_) -> _Number_
+--# === *table.size*(_Table_) -> _Number_
 --# Count the number of non-nil values in a table(map or list).
 --#
 --# === Arguments
@@ -87,8 +87,8 @@ end
 --# |===
 --# |number| Count
 --# |===
-local table_len = function()
-	T.is_function(table.len)
+local table_size = function()
+	T.is_function(table.size)
 	local t = {
 		"one",
 		nil,
@@ -98,8 +98,8 @@ local table_len = function()
 	}
 	t.map = 0
 	t.xy = nil
-	local r1 = table.len(t)
-	local r2 = table.len(t, 3)
+	local r1 = table.size(t)
+	local r2 = table.size(t, 3)
 	T.is_number(r1)
 	T.is_number(r2)
 	T.equal(#t, 5)
@@ -339,7 +339,7 @@ if included then
 		T["table.filter"] = table_filter
 		T["table.insert_if"] = table_insert_if
 		T["table.auto"] = table_auto
-		T["table.len"] = table_len
+		T["table.size"] = table_size
 		T["table.count"] = table_count
 		T["table.unique"] = table_unique
 	end
@@ -350,7 +350,7 @@ else
 	T["table.filter"] = table_filter
 	T["table.insert_if"] = table_insert_if
 	T["table.auto"] = table_auto
-	T["table.len"] = table_len
+	T["table.size"] = table_size
 	T["table.count"] = table_count
 	T["table.unique"] = table_unique
 end
