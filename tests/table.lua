@@ -102,7 +102,7 @@ local table_size = function()
 	local r2 = table.size(t, 3)
 	T.is_number(r1)
 	T.is_number(r2)
-	T.equal(#t, 5)
+	T.equal(#t, 1)
 	T.equal(r1, 4)
 	T.equal(r2, 3)
 end
