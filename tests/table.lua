@@ -332,6 +332,21 @@ local table_find = function()
 	T.is_true(g)
 	T.equal(h, "one")
 end
+--#
+--# === *table.clone*(_Table_) -> _Table_
+--# Deep copy of table.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |table|Table to clone
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |table|New table
+--# |===
 local table_clone = function()
 	T.is_function(table.clone)
 	local o = { 1 }
