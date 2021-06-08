@@ -180,7 +180,7 @@ do
 		local s = seen or {}
 		local res = {}
 		s[obj] = res
-		for k, v in pairs(obj) do
+		for k, v in next, obj do
 			res[clone(k, s)] = clone(v, s)
 		end
 		return setmetatable(res, getmetatable(obj))
