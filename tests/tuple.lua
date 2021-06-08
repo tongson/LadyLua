@@ -140,7 +140,7 @@ local size = function()
 	expect(3)(#tup)
 end
 --#
---# == *:to_array(_Table_)* -> _Table_
+--# == *:contents(_Table_)* -> _Table_
 --# Converts the tuple contents to a simple array.
 --#
 --# === Arguments
@@ -159,7 +159,7 @@ end
 local array = function()
 	local o = { 1 }
 	local tup = tuple(0, false, '3', o)
-	local arr = tup:to_array()
+	local arr = tup:contents()
 	expect(0)(arr[1])
 	expect(false)(arr[2])
 	expect("3")(arr[3])
@@ -239,7 +239,7 @@ else
 	T[":includes()"] = includes
 	T[":has()"] = has
 	T[":size()"] = size
-	T[":to_array()"] = array
+	T[":contents()"] = array
 	T["Addition"] = addition
 	T["Comparison"] = comparison
 	T["Multiplication"] = multiplication
