@@ -1,0 +1,81 @@
+= tuple
+:toc:
+:toc-placement!:
+
+Implementation of ordered n-tuples.
+
+toc::[]
+
+== *tuple([...])* -> _Table_
+Create a new tuple.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Tuple
+|===
+
+== *:elements()*
+Iterator function to traverse a tuple. Returns a count and a value at each step of iteration, until nil value is encountered or the end of the tuple was reached.
+
+== *:includes(_Table_)* -> _Boolean_
+Returns `true` if the tuple argument is included in the tuple, i.e when all elements found in tuple argument were found in the original tuple. Otherwise, returns `false`.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Tuple
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |Result
+|===
+
+== *:has(_Table_)* -> _Boolean_
+Returns `true` when the given value was found in the tuple. Otherwhise, returns `false`.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|value |Any valid value for comparison
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|boolean |Result
+|===
+
+== *:size(_Table_)* -> _Number_
+Returns the size (the count of values) of the tuple.
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|number |Size of tuple
+|===
+
+== *:to_array(_Table_)* -> _Table_
+Converts the tuple contents to a simple array.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Tuple
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |New table
+|===
