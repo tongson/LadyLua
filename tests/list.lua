@@ -189,7 +189,7 @@ end
 --# |Type |Description
 --# |number |Count
 --# |===
-local count = function()
+local size = function()
 	local l = list.new()
 	func(l.size)
 	l:push_back("1")
@@ -340,7 +340,7 @@ if included then
 		T["pop_front"] = pop_front
 		T["pop_back"] = pop_back
 		T["contains"] = contains
-		T["count"] = count
+		T["size"] = count
 		T["first"] = first
 		T["last"] = last
 		T["walk"] = walk
