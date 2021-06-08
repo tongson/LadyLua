@@ -217,7 +217,7 @@ end
 --# |Type |Description
 --# |value |Value
 --# |===
-local first = function()
+local front = function()
 	local l = list.new()
 	func(l.size)
 	l:push_back("1")
@@ -236,7 +236,7 @@ end
 --# |Type |Description
 --# |value |Value
 --# |===
-local last = function()
+local back back= function()
 	local l = list.new()
 	func(l.size)
 	l:push_back("1")
@@ -341,8 +341,8 @@ if included then
 		T["pop_back"] = pop_back
 		T["contains"] = contains
 		T["size"] = count
-		T["first"] = first
-		T["last"] = last
+		T["front"] = front
+		T["back"] = back
 		T["walk"] = walk
 		T["range"] = range
 		T["dup"] = dup
@@ -361,8 +361,8 @@ else
 	T["pop_back"] = pop_back
 	T["contains"] = contains
 	T["size"] = size
-	T["first"] = first
-	T["last"] = last
+	T["front"] = front
+	T["back"] = back
 	T["walk"] = walk
 	T["range"] = range
 	T["dup"] = dup
