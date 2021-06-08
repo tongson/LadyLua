@@ -1,5 +1,6 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
+local expect = T.expect
 --# = table
 --# :toc:
 --# :toc-placement!:
@@ -331,6 +332,15 @@ local table_find = function()
 	T.is_true(g)
 	T.equal(h, "one")
 end
+local table_clone = function()
+	T.is_function(table.clone)
+	local o = { 1 }
+	local x = table.clone(o)
+	expect(1)(x[1])
+	x[1] = 0
+	expect(0)(x[1])
+	expect(1)(o[1])
+end
 if included then
 	return function()
 		T["table.find"] = table_find
@@ -342,6 +352,7 @@ if included then
 		T["table.size"] = table_size
 		T["table.count"] = table_count
 		T["table.unique"] = table_unique
+		T["table.clone"] = table_clone
 	end
 else
 	T["table.find"] = table_find
@@ -353,4 +364,5 @@ else
 	T["table.size"] = table_size
 	T["table.count"] = table_count
 	T["table.unique"] = table_unique
+	T["table.clone"] = table_clone
 end
