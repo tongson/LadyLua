@@ -186,7 +186,7 @@ local crypto_random = function()
 	T.not_equal(rand, another)
 end
 --#
---# == *crypto.fastrandom*() -> _String_
+--# == *crypto.fast_random*() -> _String_
 --# Generate random Hexadecimal string(16-character string).
 --#
 --# === Returns
@@ -194,11 +194,11 @@ end
 --# |===
 --# |string |Hexadecimal string
 --# |===
-local crypto_fastrandom = function()
-	local rand = C.fastrandom()
+local crypto_fast_random = function()
+	local rand = C.fast_random()
 	expect(16)(#rand)
 	T.is_string(rand)
-	local another = C.fastrandom()
+	local another = C.fast_random()
 	T.not_equal(rand, another)
 end
 
@@ -212,7 +212,7 @@ if included then
 		T["crypto.hmac"] = crypto_hmac
 		T["crypto.valid_hmac"] = crypto_valid_hmac
 		T["crypto.random"] = crypto_random
-		T["crypto.fastrandom"] = crypto_fastrandom
+		T["crypto.fast_random"] = crypto_fast_random
 	end
 else
 	T["crypto.base64_encode"] = crypto_base64_encode
@@ -223,5 +223,5 @@ else
 	T["crypto.hmac"] = crypto_hmac
   	T["crypto.valid_hmac"] = crypto_valid_hmac
 	T["crypto.random"] = crypto_random
-	T["crypto.fastrandom"] = crypto_fastrandom
+	T["crypto.fast_random"] = crypto_fast_random
 end
