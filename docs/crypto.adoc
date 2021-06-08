@@ -136,3 +136,12 @@ Generate random Hexadecimal string.
 |===
 |string |Hexadecimal string
 |===
+
+== *crypto.fast_random*() -> _String_
+Generate random Hexadecimal string(16-character string).
+
+=== Returns
+[width="72%"]
+|===
+|string |Hexadecimal string
+|===
