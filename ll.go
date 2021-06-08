@@ -120,6 +120,7 @@ Available options are:
 	L.SetField(preload, "guard", luaLoader(L, "guard"))
 	L.SetField(preload, "deque", luaLoader(L, "deque"))
 	L.SetField(preload, "bimap", luaLoader(L, "bimap"))
+	L.SetField(preload, "tuple", luaLoader(L, "tuple"))
 	//__DSL__dslLoader(L, "__DSLMOD__")
 
 	if opt_m > 0 {
