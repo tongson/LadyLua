@@ -34,7 +34,7 @@ Count the number of values(argument #2) in table(argument #1).
 |number| Count
 |===
 
-=== *table.len*(_Table_) -> _Number_
+=== *table.size*(_Table_) -> _Number_
 Count the number of non-nil values in a table(map or list).
 
 === Arguments
