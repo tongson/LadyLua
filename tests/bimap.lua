@@ -94,6 +94,11 @@ local right = function()
 end
 if included then
 	return function()
+		T["new"] = new
+		T["raw argument"] = raw
+		T["len argument"] = len
+		T["left"] = left
+		T["right"] = right
 	end
 else
 	T["new"] = new
