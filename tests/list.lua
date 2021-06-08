@@ -360,7 +360,7 @@ else
 	T["pop_front"] = pop_front
 	T["pop_back"] = pop_back
 	T["contains"] = contains
-	T["count"] = count
+	T["size"] = size
 	T["first"] = first
 	T["last"] = last
 	T["walk"] = walk
