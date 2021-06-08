@@ -4,7 +4,6 @@ local T = require("test")
 local expect = T.expect
 local func = T.is_function
 local tbl = T.is_table
-local compare = require("util").deepcompare
 --# = bimap
 --# :toc:
 --# :toc-placement!:
@@ -52,7 +51,10 @@ end
 local testing = function(l, r)
 	expect(2)(l.bar)
 	expect("bar")(r[2])
-	expect(true)(compare(r("raw"), { "foo", "bar", "baz" }))
+	local r1 = r("raw")
+	expect("foo")(r1[1])
+	expect("bar")(r1[2])
+	expect("baz")(r1[3])
 	local t1 = l("raw")
 	expect(1)(t1.foo)
 	expect(2)(t1.bar)
@@ -61,8 +63,10 @@ local testing = function(l, r)
 	l.baz = nil
 	expect(2)(#(r("raw")))
 	r[r("len")] = nil
-	expect(true)(compare(r("raw"), { "foo" }))
-	expect(true)(compare(l("raw"), { foo = 1 }))
+	local r2 = r("raw")
+	expect("foo")(r2[1])
+	local l1 = l("raw")
+	expect(1)(l1.foo)
 	expect(1)(r("len"))
 	l.spam = "eggs"
 	r.eggs = "chunky"
@@ -71,8 +75,12 @@ local testing = function(l, r)
 	expect("chunky")(r["bacon"])
 	expect(nil)(l["spam"])
 	expect(nil)(r["eggs"])
-	expect(true)(compare(r("raw"), { "foo", bacon = "chunky" }))
-	expect(true)(compare(l("raw"), { foo = 1, chunky = "bacon" }))
+	local r3 = r("raw")
+	local l2 = l("raw")
+	expect("foo")(r3[1])
+	expect("chunky")(r3.bacon)
+	expect(1)(l2.foo)
+	expect("bacon")(l2.chunky)
 	local fn = function()
 		l.evil = 1
 	end
