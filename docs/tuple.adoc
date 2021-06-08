@@ -63,7 +63,7 @@ Returns the size (the count of values) of the tuple.
 |number |Size of tuple
 |===
 
-== *:to_array(_Table_)* -> _Table_
+== *:contents(_Table_)* -> _Table_
 Converts the tuple contents to a simple array.
 
 === Arguments
