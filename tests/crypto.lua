@@ -187,7 +187,7 @@ local crypto_random = function()
 end
 --#
 --# == *crypto.fast_random*() -> _String_
---# Generate random Hexadecimal string(16-character string).
+--# Generate random 16-character hexadecimal string.
 --#
 --# === Returns
 --# [width="72%"]
@@ -197,7 +197,7 @@ end
 local crypto_fast_random = function()
 	local rand = C.fast_random()
 	local x = expect(true)
-	x(#rand == 16 or #rand == 15)
+	x(#rand == 16)
 	T.is_string(rand)
 	local another = C.fast_random()
 	T.not_equal(rand, another)
