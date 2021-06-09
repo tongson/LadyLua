@@ -1,0 +1,3 @@
+GOOS=linux CGO_ENABLED=0 go build -tags main \
+    -trimpath -ldflags '-s -w -extldflags "-static"' \
+    -o "standalone" .

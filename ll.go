@@ -1,4 +1,5 @@
 // +build !dsl
+// +build !main
 
 package main
 
