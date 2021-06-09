@@ -21,15 +21,8 @@ var mainSrc embed.FS
 
 func main() {
 	runtime.MemProfileRate = 0
-	os.Exit(mainAux())
-}
-
-func mainAux() int {
 	defer RecoverPanic()
 	flag.Parse()
-
-	status := 0
-
 	L := lua.NewState()
 	defer L.Close()
 	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
@@ -89,7 +82,7 @@ func mainAux() int {
 	src, _ := mainSrc.ReadFile("main/main.lua")
 	if err := L.DoString(string(src)); err != nil {
 		fmt.Println(err.Error())
-		status = 1
+		os.Exit(1)
 	}
-	return status
+	os.Exit(0)
 }
