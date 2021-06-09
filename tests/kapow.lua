@@ -177,8 +177,8 @@ local kapow_no_content = function()
 	T.equal(r.body_size, 0)
 end
 --#
---# == *kapow.redirect*(_String_) -> _Boolean_
---# Perform redirect to argument #1.
+--# == *kapow.redirect_permanent*(_String_) -> _Boolean_
+--# Perform HTTP 301 redirect to argument #1.
 --#
 --# === Arguments
 --# [width="72%"]
@@ -191,9 +191,51 @@ end
 --# |===
 --# |boolean | `true` if successful, nil and an error string otherwise
 --# |===
-local kapow_redirect = function()
-	T.is_function(kapow.redirect)
-	local r = http.get(URL .. "/redirect")
+local kapow_redirect_permanent = function()
+	T.is_function(kapow.redirect_permanent)
+	local r = http.get(URL .. "/redirect_permanent")
+	T.equal(r.url, URL.."/")
+	T.equal(r.status_code, 418)
+end
+--#
+--# == *kapow.redirect_temporary*(_String_) -> _Boolean_
+--# Perform HTTP 302 redirect to argument #1.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string |URL
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |boolean | `true` if successful, nil and an error string otherwise
+--# |===
+local kapow_redirect_temporary = function()
+	T.is_function(kapow.redirect_temporary)
+	local r = http.get(URL .. "/redirect_temporary")
+	T.equal(r.url, URL.."/")
+	T.equal(r.status_code, 418)
+end
+--#
+--# == *kapow.redirect_post*(_String_) -> _Boolean_
+--# Perform HTTP 303 redirect to argument #1.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |string |URL
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |boolean | `true` if successful, nil and an error string otherwise
+--# |===
+local kapow_redirect_post = function()
+	T.is_function(kapow.redirect_post)
+	local r = http.get(URL .. "/redirect_post")
 	T.equal(r.url, URL.."/")
 	T.equal(r.status_code, 418)
 end
@@ -208,7 +250,9 @@ if included then
 		T["kapow.forbid"] = kapow_forbid
 		T["kapow.unprocessable"] = kapow_unprocessable
 		T["kapow.no_content"] = kapow_no_content
-		T["kapow.redirect"] = kapow_redirect
+		T["kapow.redirect_permanent"] = kapow_redirect_permanent
+		T["kapow.redirect_temporary"] = kapow_redirect_temporary
+		T["kapow.redirect_post"] = kapow_redirect_post
 	end
 else
 	T["kapow.get"] = kapow_get
@@ -220,5 +264,7 @@ else
 	T["kapow.forbid"] = kapow_forbid
 	T["kapow.unprocessable"] = kapow_unprocessable
 	T["kapow.no_content"] = kapow_no_content
-	T["kapow.redirect"] = kapow_redirect
+	T["kapow.redirect_permanent"] = kapow_redirect_permanent
+	T["kapow.redirect_temporary"] = kapow_redirect_temporary
+	T["kapow.redirect_post"] = kapow_redirect_post
 end
