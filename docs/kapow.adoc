@@ -117,8 +117,38 @@ HTTP 204, from /dev/null.
 |boolean | `true` if successful, nil and an error string otherwise
 |===
 
-== *kapow.redirect*(_String_) -> _Boolean_
-Perform redirect to argument #1.
+== *kapow.redirect_permanent*(_String_) -> _Boolean_
+Perform HTTP 301 redirect to argument #1.
+
+=== Arguments
+[width="72%"]
+|===
+|string |URL
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.redirect_temporary*(_String_) -> _Boolean_
+Perform HTTP 302 redirect to argument #1.
+
+=== Arguments
+[width="72%"]
+|===
+|string |URL
+|===
+
+=== Returns
+[width="72%"]
+|===
+|boolean | `true` if successful, nil and an error string otherwise
+|===
+
+== *kapow.redirect_post*(_String_) -> _Boolean_
+Perform HTTP 303 redirect to argument #1.
 
 === Arguments
 [width="72%"]
