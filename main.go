@@ -4,7 +4,6 @@ package main
 
 import (
 	"embed"
-	"flag"
 	"fmt"
 	"github.com/cjoudrey/gluahttp"
 	gluacrypto "github.com/tengattack/gluacrypto/crypto"
@@ -22,7 +21,6 @@ var mainSrc embed.FS
 func main() {
 	runtime.MemProfileRate = 0
 	defer RecoverPanic()
-	flag.Parse()
 	L := lua.NewState()
 	defer L.Close()
 	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
@@ -72,13 +70,10 @@ func main() {
 	L.SetField(preload, "bimap", luaLoader(L, "bimap"))
 	L.SetField(preload, "tuple", luaLoader(L, "tuple"))
 	argtb := L.NewTable()
-	L.RawSet(argtb, lua.LNumber(0), lua.LString(os.Args[0]))
-	if nargs := flag.NArg(); nargs > 0 {
-		for i := 0; i < nargs; i++ {
-			L.RawSet(argtb, lua.LNumber(i+1), lua.LString(flag.Arg(i)))
-		}
-		L.SetGlobal("arg", argtb)
+	for i := 0; i < len(os.Args); i++ {
+		L.RawSet(argtb, lua.LNumber(i), lua.LString(os.Args[i]))
 	}
+	L.SetGlobal("arg", argtb)
 	src, _ := mainSrc.ReadFile("main/main.lua")
 	if err := L.DoString(string(src)); err != nil {
 		fmt.Println(err.Error())
