@@ -14,18 +14,12 @@ import (
 	"layeh.com/gopher-lfs"
 	"os"
 	"runtime"
-	"time"
 )
 
 //go:embed main/*
 var mainSrc embed.FS
 
-var start time.Time
-const versionNumber = "0.9.0"
-const codeName = "\"Scared Shrapnel\""
-
 func main() {
-	start = time.Now()
 	runtime.MemProfileRate = 0
 	os.Exit(mainAux())
 }
