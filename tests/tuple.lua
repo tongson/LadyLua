@@ -227,6 +227,12 @@ local lte = function()
 		expect(false)(tupB <= tupA)
 	end
 end
+local mutate = function()
+	local tup = tuple(1, 2)
+	tup[1] = 2
+	expect(2)(tup[1])
+	expect(2)(tup[2])
+end
 if included then
 	return function()
 	end
@@ -245,4 +251,5 @@ else
 	T["Multiplication"] = multiplication
 	T["<"] = less_than
 	T["<="] = lte
+	T["mutate"] = mutate
 end
