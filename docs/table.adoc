@@ -156,3 +156,18 @@ Deep copy of table.
 |===
 |table|New table
 |===
+
+=== *table.read_only*(_Table_) -> _Table_
+Use a proxy table to mimic read-only tables.
+
+=== Arguments
+[width="72%"]
+|===
+|table|Table
+|===
+
+=== Returns
+[width="72%"]
+|===
+|table|New table
+|===
