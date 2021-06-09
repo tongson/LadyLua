@@ -7,6 +7,9 @@ Single static executable, batteries-included, Lua 5.1 interpreter. A fat https:/
 Next release: *0.9.0 Scared Shrapnel* +
 + New function: crypto.random +
 + New function: crypto.fast_random +
++ New function: kapow.redirect_permanent +
++ New function: kapow.redirect_temporary +
++ New function: kapow.redirect_post +
 + New module: guard +
 + New module: deque +
 + New module: bimap +
