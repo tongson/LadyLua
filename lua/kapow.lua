@@ -51,8 +51,8 @@ end
 local unprocessable = function()
 	return xset("422")
 end
-local redirect = function(b)
-	local s = H.put(F("%s/handlers/%s/response/status", D, I), { body = "303" })
+local redirect = function(c, b)
+	local s = H.put(F("%s/handlers/%s/response/status", D, I), { body = c })
 	if b then
 		b = H.put(F("%s/handlers/%s/response/headers/Location", D, I), { body = b })
 		b = (b.status_code == 200)
@@ -65,13 +65,24 @@ local redirect = function(b)
 		return nil, "Kapow data URL returned non-200 code."
 	end
 end
+local redirect_permanent = function(b)
+	return redirect("301", b)
+end
+local redirect_temporary = function(b)
+	return redirect("302", b)
+end
+local redirect_post = function(b)
+	return redirect("303", b)
+end
 return {
 	get = get,
 	set = set,
 	ok = ok,
 	warn = warn,
 	fail = fail,
-	redirect = redirect,
+	redirect_permanent = redirect_permanent,
+	redirect_temporary = redirect_temporary,
+	redirect_post = redirect_post,
 	forbid = forbid,
 	no_content = no_content,
 	unprocessable = unprocessable,
