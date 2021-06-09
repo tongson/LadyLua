@@ -186,4 +186,13 @@ do
 		return setmetatable(res, getmetatable(obj))
 	end
 	table.clone = clone
+	table.read_only = function(t)
+		return setmetatable({}, {
+			__index = t,
+			__newindex = function()
+				return error("Attempt to modify read-only table", 0)
+			end,
+			__metatable = false
+		});
+	end
 end

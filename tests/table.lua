@@ -356,6 +356,28 @@ local table_clone = function()
 	expect(0)(x[1])
 	expect(1)(o[1])
 end
+--#
+--# === *table.read_only*(_Table_) -> _Table_
+--# Use a proxy table to mimic read-only tables.
+--#
+--# === Arguments
+--# [width="72%"]
+--# |===
+--# |table|Table
+--# |===
+--#
+--# === Returns
+--# [width="72%"]
+--# |===
+--# |table|New table
+--# |===
+local table_read_only = function()
+	T.is_function(table.read_only)
+	local t = table.read_only({ 1, 2 })
+	T.error_raised(function() t[1] = 0 end)
+	expect(2)(t[2])
+	expect(1)(t[1])
+end
 if included then
 	return function()
 		T["table.find"] = table_find
@@ -368,6 +390,7 @@ if included then
 		T["table.count"] = table_count
 		T["table.unique"] = table_unique
 		T["table.clone"] = table_clone
+		T["table.read_only"] = table_read_only
 	end
 else
 	T["table.find"] = table_find
@@ -380,4 +403,5 @@ else
 	T["table.count"] = table_count
 	T["table.unique"] = table_unique
 	T["table.clone"] = table_clone
+	T["table.read_only"] = table_read_only
 end
