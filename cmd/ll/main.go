@@ -11,7 +11,7 @@ import (
 	"github.com/yuin/gopher-lua/parse"
 	ljson "layeh.com/gopher-json"
 	"layeh.com/gopher-lfs"
-	"ll"
+	"ll/internal"
 	"os"
 	"runtime"
 	"runtime/pprof"
