@@ -99,6 +99,7 @@ Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.
 . Clone this repository locally
 . Programs go in `./cmd`
 . Use `./cmd/standalone` as a basis
+. In the example program, the *main* Lua source goes into `src/main.lua`
 . See `./scripts/build-standalone` for command to build your program
 
 == Modules
