@@ -25,7 +25,7 @@ require (
 	github.com/tengattack/gluacrypto v0.0.0-8bf181b63bba
 	github.com/tengattack/gluasql v0.0.0-2e5ed630c4cf
 	github.com/yuin/gluamapper v0.0.0-20150323120927-d836955830e7
-	github.com/yuin/gopher-lua v0.0.0-20200816102855-ee81675732da
+	github.com/yuin/gopher-lua v0.0.0-20210529063254-53ab9600e90f
 	layeh.com/gopher-json v0.0.0-552bb3c4c3bf
 	layeh.com/gopher-lfs v0.0.0-d5fb28581d14
 )
@@ -41,3 +41,6 @@ replace github.com/tengattack/gluacrypto => ./external/gluacrypto
 replace github.com/tengattack/gluasql => ./external/gluasql
 
 replace github.com/ghodss/yaml => ./external/gyaml
+
+// replace github.com/yuin/gopher-lua => ./external/gopher-lua
+replace github.com/yuin/gopher-lua => github.com/tongson/gopher-lua v0.0.0-20210610051759-53ab9600e09f
