@@ -14,7 +14,7 @@ import (
 	"runtime"
 )
 
-//go:embed main/*
+//go:embed src/*
 var mainSrc embed.FS
 
 func main() {
@@ -73,7 +73,7 @@ func main() {
 		L.RawSet(argtb, lua.LNumber(i), lua.LString(os.Args[i]))
 	}
 	L.SetGlobal("arg", argtb)
-	src, _ := mainSrc.ReadFile("main/main.lua")
+	src, _ := mainSrc.ReadFile("src/main.lua")
 	if err := L.DoString(string(src)); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
