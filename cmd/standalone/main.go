@@ -6,7 +6,7 @@ import (
 	"github.com/cjoudrey/gluahttp"
 	gluacrypto "github.com/tengattack/gluacrypto/crypto"
 	mysql "github.com/tengattack/gluasql/mysql"
-	"LadyLua"
+	"ll"
 	"github.com/yuin/gopher-lua"
 	ljson "layeh.com/gopher-json"
 	"layeh.com/gopher-lfs"

@@ -1,4 +1,4 @@
-module LadyLua
+module ll
 
 go 1.16
 
