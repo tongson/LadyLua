@@ -69,7 +69,7 @@ func loggerNew(L *lua.LState) int {
 	case "stderr":
 		ud.Value = loggerInit(zerolog.New(os.Stderr).With().Timestamp().Logger())
 	default:
-		loggerFile, err := os.OpenFile(a, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+		loggerFile, err := os.OpenFile(a, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0600)
 		if err != nil {
 			ud.Value = nil
 		} else {
