@@ -20,7 +20,6 @@ Next release: *0.9.0 Scared Shrapnel* +
 + Added table.read_only +
 + Bug fix: list +
 + gopher-lua fixes for `pcall()`, `select()`, `#` operator, and `string.gsub()` +
-+ gopher-lua fix for internal state corruption +
 
 Current release: *0.8.0 Freckled Serpent* +
 + New setting for exec.*; timeout in seconds +
