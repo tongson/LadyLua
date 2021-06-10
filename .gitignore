@@ -4,3 +4,4 @@
 /cmd/lopper
 /cmd/lbuildah
 /*.lua
+/bin
