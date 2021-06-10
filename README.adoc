@@ -94,6 +94,13 @@ Lua is a good language but no one wants to use it for general-purpose scripting.
 == Reference
 Since GopherLua is an implementation of Lua 5.1, you can use the official Lua 5.1 reference manual: https://www.lua.org/manual/5.1/manual.html[Lua 5.1 Manual]. Other resources are also useful just make sure they do not target 5.2+ versions. Search for PDFs of Lua 5.1 cheatsheets. The Learn in in 15 minutes series also has an entry for http://tylerneylon.com/a/learn-lua/[Lua].
 
+== Standalone programs
+
+.Clone this repository locally
+.Programs go in `./cmd`
+.Use `./cmd/standalone` as a basis
+.See `./scripts/build-standalone` for command to build your program
+
 == Modules
 Check the `docs` directory for more information about these modules.
 
