@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	"github.com/slack-go/slack"
@@ -49,7 +49,7 @@ func slackWebhookAttachment(L *lua.LState) int {
 	return 1
 }
 
-func slackLoader(L *lua.LState) int {
+func SlackLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, slackApi)
 	L.Push(t)

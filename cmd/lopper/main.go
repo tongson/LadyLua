@@ -1,6 +1,3 @@
-// +build !dsl
-// +build !main
-
 package main
 
 import (
@@ -13,6 +10,7 @@ import (
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
 	ljson "layeh.com/gopher-json"
+	"github.com/tongson/LadyLua"
 	"layeh.com/gopher-lfs"
 	"os"
 	"runtime"
@@ -32,7 +30,7 @@ func main() {
 }
 
 func mainAux() int {
-	defer RecoverPanic()
+	defer ll.RecoverPanic()
 	var opt_e, opt_l, opt_p string
 	var opt_i, opt_v, opt_dt, opt_dc bool
 	var opt_m int
@@ -64,7 +62,7 @@ Available options are:
 			os.Exit(1)
 		}
 		if err := pprof.StartCPUProfile(f); err != nil {
-			Panic(err.Error())
+			ll.Panic(err.Error())
 		}
 		defer pprof.StopCPUProfile()
 	}
@@ -78,51 +76,51 @@ Available options are:
 	defer L.Close()
 	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
 	L.SetGlobal("fs", nsFs)
-	L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
-	L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
-	L.SetField(nsFs, "read", L.NewFunction(fsRead))
-	L.SetField(nsFs, "write", L.NewFunction(fsWrite))
+	L.SetField(nsFs, "isdir", L.NewFunction(ll.FsIsdir))
+	L.SetField(nsFs, "isfile", L.NewFunction(ll.FsIsfile))
+	L.SetField(nsFs, "read", L.NewFunction(ll.FsRead))
+	L.SetField(nsFs, "write", L.NewFunction(ll.FsWrite))
 	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
-	L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
-	L.SetField(nsOs, "outbound_ip", L.NewFunction(osOutboundIP))
-	L.SetField(nsOs, "sleep", L.NewFunction(osSleep))
-	L.SetGlobal("pi", L.NewFunction(globalPi))
+	L.SetField(nsOs, "hostname", L.NewFunction(ll.OsHostname))
+	L.SetField(nsOs, "outbound_ip", L.NewFunction(ll.OsOutboundIP))
+	L.SetField(nsOs, "sleep", L.NewFunction(ll.OsSleep))
+	L.SetGlobal("pi", L.NewFunction(ll.GlobalPi))
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("ll_json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
-	L.PreloadModule("ksuid", ksuidLoader)
+	L.PreloadModule("ksuid", ll.KsuidLoader)
 	L.PreloadModule("mysql", mysql.Loader)
-	L.PreloadModule("lz4", lz4Loader)
-	L.PreloadModule("telegram", telegramLoader)
-	L.PreloadModule("pushover", pushoverLoader)
-	L.PreloadModule("slack", slackLoader)
-	L.PreloadModule("logger", loggerLoader)
-	L.PreloadModule("fsnotify", fsnLoader)
-	L.PreloadModule("bitcask", bitcaskLoader)
-	L.PreloadModule("refmt", refmtLoader)
-	L.PreloadModule("rr", rrLoader)
-	L.PreloadModule("uuid", uuidLoader)
-	L.PreloadModule("ulid", ulidLoader)
+	L.PreloadModule("lz4", ll.Lz4Loader)
+	L.PreloadModule("telegram", ll.TelegramLoader)
+	L.PreloadModule("pushover", ll.PushoverLoader)
+	L.PreloadModule("slack", ll.SlackLoader)
+	L.PreloadModule("logger", ll.LoggerLoader)
+	L.PreloadModule("fsnotify", ll.FsnLoader)
+	L.PreloadModule("bitcask", ll.BitcaskLoader)
+	L.PreloadModule("refmt", ll.RefmtLoader)
+	L.PreloadModule("rr", ll.RrLoader)
+	L.PreloadModule("uuid", ll.UuidLoader)
+	L.PreloadModule("ulid", ll.UlidLoader)
 	L.SetGlobal("exec", L.NewTable())
 	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
-	L.SetField(nsExec, "command", L.NewFunction(execCommand))
-	patchLoader(L, "exec")
-	patchLoader(L, "table")
-	patchLoader(L, "string")
-	globalLoader(L, "fmt")
-	L.PreloadModule("redis", redisLoader)
+	L.SetField(nsExec, "command", L.NewFunction(ll.ExecCommand))
+	ll.PatchLoader(L, "exec")
+	ll.PatchLoader(L, "table")
+	ll.PatchLoader(L, "string")
+	ll.GlobalLoader(L, "fmt")
+	L.PreloadModule("redis", ll.RedisLoader)
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
-	L.SetField(preload, "kapow", luaLoader(L, "kapow"))
-	L.SetField(preload, "util", luaLoader(L, "util"))
-	L.SetField(preload, "test", luaLoader(L, "test"))
-	L.SetField(preload, "template", luaLoader(L, "template"))
-	L.SetField(preload, "json", luaLoader(L, "json"))
-	L.SetField(preload, "list", luaLoader(L, "list"))
-	L.SetField(preload, "guard", luaLoader(L, "guard"))
-	L.SetField(preload, "deque", luaLoader(L, "deque"))
-	L.SetField(preload, "bimap", luaLoader(L, "bimap"))
-	L.SetField(preload, "tuple", luaLoader(L, "tuple"))
-	//__DSL__dslLoader(L, "__DSLMOD__")
+	L.SetField(preload, "kapow", ll.LuaLoader(L, "kapow"))
+	L.SetField(preload, "util", ll.LuaLoader(L, "util"))
+	L.SetField(preload, "test", ll.LuaLoader(L, "test"))
+	L.SetField(preload, "template", ll.LuaLoader(L, "template"))
+	L.SetField(preload, "json", ll.LuaLoader(L, "json"))
+	L.SetField(preload, "list", ll.LuaLoader(L, "list"))
+	L.SetField(preload, "guard", ll.LuaLoader(L, "guard"))
+	L.SetField(preload, "deque", ll.LuaLoader(L, "deque"))
+	L.SetField(preload, "bimap", ll.LuaLoader(L, "bimap"))
+	L.SetField(preload, "tuple", ll.LuaLoader(L, "tuple"))
+	ll.DslLoader(L, "lopper")
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)

@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	"github.com/gregdel/pushover"
@@ -48,7 +48,7 @@ var pushoverExports = map[string]lua.LGFunction{
 	"new": pushoverNew,
 }
 
-func pushoverLoader(L *lua.LState) int {
+func PushoverLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), pushoverExports)
 	L.Push(mod)
 	pushoverRegister(L)

@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	"bytes"
@@ -44,7 +44,7 @@ func lz4Decompress(L *lua.LState) int {
 	}
 }
 
-func lz4Loader(L *lua.LState) int {
+func Lz4Loader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, lz4Api)
 	L.Push(t)

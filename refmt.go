@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	gyaml "github.com/ghodss/yaml"
@@ -31,7 +31,7 @@ func refmtToJSON(L *lua.LState) int {
 	}
 }
 
-func refmtLoader(L *lua.LState) int {
+func RefmtLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, refmtApi)
 	L.Push(t)

@@ -1,4 +1,4 @@
-module ll
+module github.com/tongson/LadyLua
 
 go 1.16
 

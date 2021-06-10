@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	"github.com/go-telegram-bot-api/telegram-bot-api"
@@ -66,7 +66,7 @@ var telegramExports = map[string]lua.LGFunction{
 	"new": telegramNew,
 }
 
-func telegramLoader(L *lua.LState) int {
+func TelegramLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), telegramExports)
 	L.Push(mod)
 	telegramRegister(L)

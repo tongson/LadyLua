@@ -1,5 +1,5 @@
 // +build dsl
-package main
+package ll
 
 import (
 	"embed"
@@ -10,7 +10,7 @@ import (
 //go:embed dsl/*
 var dslSrc embed.FS
 
-func dslLoader(L *lua.LState, mod string) {
+func DslLoader(L *lua.LState, mod string) {
 	src, _ := dslSrc.ReadFile(fmt.Sprintf("dsl/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
 	L.Push(fn)

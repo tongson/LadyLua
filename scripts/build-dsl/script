@@ -1,7 +1,6 @@
-sed "s|//__DSL__||" ll.go > "$1.go"
-sed -i "s|__DSLMOD__|$1|g" "$1.go"
-sed -i "s|\!dsl|dsl|" "$1.go"
-GOOS=linux CGO_ENABLED=0 go build -tags dsl \
+mkdir -p "cmd/$1"
+sed "s|//__DSL__||" cmd/ll/main.go > "cmd/$1/main.go"
+sed -i "s|__DSLMOD__|$1|g" "cmd/$1/main.go"
+GOOS=linux CGO_ENABLED=0 go build \
     -trimpath -ldflags '-s -w -extldflags "-static"' \
-    -o "$1" .
-rm "$1.go"
+    -o "$1" "./cmd/$1"

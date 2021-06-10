@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	cryptorand "crypto/rand"
@@ -23,7 +23,7 @@ func ulidNew(L *lua.LState) int {
 	return 1
 }
 
-func ulidLoader(L *lua.LState) int {
+func UlidLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, ulidApi)
 	L.Push(t)

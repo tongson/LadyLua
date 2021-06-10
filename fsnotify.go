@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	"github.com/fsnotify/fsnotify"
@@ -155,7 +155,7 @@ func fsnRemove(L *lua.LState) int {
 	}
 }
 
-func fsnLoader(L *lua.LState) int {
+func FsnLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, fsnApi)
 	L.Push(t)

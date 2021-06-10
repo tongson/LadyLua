@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	"context"
@@ -207,7 +207,7 @@ var redisExports = map[string]lua.LGFunction{
 	"client": redisClient,
 }
 
-func redisLoader(L *lua.LState) int {
+func RedisLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), redisExports)
 	L.Push(mod)
 	redisRegister(L)

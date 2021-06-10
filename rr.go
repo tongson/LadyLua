@@ -1,4 +1,4 @@
-package main
+package ll
 
 import (
 	"fmt"
@@ -255,7 +255,7 @@ var rrApi = map[string]lua.LGFunction{
 	"ctx": rrInit,
 }
 
-func rrLoader(L *lua.LState) int {
+func RrLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), rrApi)
 	L.Push(mod)
 	rrRegister(L)
