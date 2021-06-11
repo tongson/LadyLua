@@ -202,8 +202,7 @@ func RecoverPanic() {
 
 func Assert(e error, s string) {
 	if e != nil {
-		strerr := strings.Replace(e.Error(), "\n", "\n | ", -1)
-		panic(panicT{msg: fmt.Sprintf("assertion failed: %s\n | \n | %s\n | ", s, strerr), code: 255})
+		panic(panicT{msg: PipeStr(s, fmt.Sprintf("%s\n", e.Error())), code: 255})
 	}
 }
 
