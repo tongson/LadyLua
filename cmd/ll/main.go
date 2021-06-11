@@ -109,8 +109,6 @@ Available options are:
 	ll.PatchLoader(L, "string")
 	L.PreloadModule("redis", ll.RedisLoader)
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
-	L.SetField(preload, "fmt", ll.LuaLoader(L, "fmt"))
-	L.SetField(preload, "util", ll.LuaLoader(L, "util"))
 	L.SetField(preload, "json", ll.LuaLoader(L, "json"))
 	L.SetField(preload, "list", ll.LuaLoader(L, "list"))
 	L.SetField(preload, "guard", ll.LuaLoader(L, "guard"))
