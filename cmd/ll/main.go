@@ -115,7 +115,6 @@ Available options are:
 	L.SetField(preload, "deque", ll.LuaLoader(L, "deque"))
 	L.SetField(preload, "bimap", ll.LuaLoader(L, "bimap"))
 	L.SetField(preload, "tuple", ll.LuaLoader(L, "tuple"))
-	//__DSL__ll.DslLoader(L, "__DSLMOD__")
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)
