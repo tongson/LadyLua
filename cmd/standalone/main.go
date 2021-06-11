@@ -63,6 +63,7 @@ func main() {
 	L.SetField(preload, "deque", ll.LuaLoader(L, "deque"))
 	L.SetField(preload, "bimap", ll.LuaLoader(L, "bimap"))
 	L.SetField(preload, "tuple", ll.LuaLoader(L, "tuple"))
+	L.SetField(preload, "argparse", ll.LuaLoader(L, "argparse"))
 	argtb := L.NewTable()
 	for i := 0; i < len(os.Args); i++ {
 		L.RawSet(argtb, lua.LNumber(i), lua.LString(os.Args[i]))
