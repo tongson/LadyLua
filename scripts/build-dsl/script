@@ -1,5 +1,5 @@
 mkdir -p "cmd/$1"
-sed "s|//__DSL__||" cmd/ll/main.go > "cmd/$1/main.go"
+sed "s|//__DSL__||" cmd/dsl/main.go > "cmd/$1/main.go"
 sed -i "s|__DSLMOD__|$1|g" "cmd/$1/main.go"
 GOOS=linux CGO_ENABLED=0 go build \
     -trimpath -ldflags '-s -w -extldflags "-static"' \
