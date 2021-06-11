@@ -235,6 +235,21 @@ local mutate = function()
 end
 if included then
 	return function()
+		T["Valid types"] = types
+		T["Tables passed"] = table_test
+		T["__tostring"] = printing
+		T["Slicing"] = slicing
+		T[":elements()"] = elements
+		T[":includes()"] = includes
+		T[":has()"] = has
+		T[":size()"] = size
+		T[":contents()"] = array
+		T["Addition"] = addition
+		T["Comparison"] = comparison
+		T["Multiplication"] = multiplication
+		T["<"] = less_than
+		T["<="] = lte
+		T["mutate"] = mutate
 	end
 else
 	T["Valid types"] = types
