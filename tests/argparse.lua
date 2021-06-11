@@ -94,6 +94,16 @@ local action_args = function()
 end
 if included then
 	return function()
+		T["new parser"] = new
+		T["one argument"] = one_arg
+		T["optional argument"] = opt_arg
+		T["several arguments"] = many_args
+		T["wildcard arguments"] = wildcard_args
+		T["hyphens"] = hyphens
+		T["commands after arguments"] = commands_after_args
+		T["command flags"] = command_flags
+		T["nested commands"] = nested_commands
+		T["action on arguments"] = action_args
 	end
 else
 	T["new parser"] = new
