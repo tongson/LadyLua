@@ -60,9 +60,9 @@ local InterfaceAddr = function(interface, ver)
 	local ip = exec.ctx("ip")
 	local ret, so, se = ip({ "-j", "addr" })
 	if not ret then
-		Panic("ip command failed", {
+		Panic("ip(8) command failed.", {
 			command = "ip",
-			what = "Get_IP",
+			fn = "InterfaceAddr",
 			stdout = so,
 			stderr = se,
 		})
@@ -77,8 +77,8 @@ local InterfaceAddr = function(interface, ver)
 			end
 		end
 	end
-	Panic("interface not found", {
-		what = "Get_IP",
+	Panic("Interface not found.", {
+		fn = "InterfaceAddr",
 	})
 end
 local Notify_Function = function(msg, tbl, bool)
