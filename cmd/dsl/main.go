@@ -116,6 +116,7 @@ Available options are:
 	L.SetField(preload, "bimap", ll.LuaLoader(L, "bimap"))
 	L.SetField(preload, "tuple", ll.LuaLoader(L, "tuple"))
 	L.SetField(preload, "util", ll.LuaLoader(L, "util"))
+	L.SetField(preload, "test", ll.LuaLoader(L, "test"))
 	//__DSL__ll.DslLoader(L, "__DSLMOD__")
 
 	if opt_m > 0 {
