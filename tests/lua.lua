@@ -14,10 +14,20 @@ local multiple_assignment = function()
 	expect(8)(d)
 	expect(4)(e)
 end
+local complex_multi_assign = function()
+	local a = {}
+	local d = "e"
+	local f = 1
+	f, a.d = f, d
+	expect("e")(a.d)
+	expect(false)(f == 1) -- bug
+end
 if included then
 	return function()
 		T["simple multiple assignment"] = multiple_assignment
+		T["complex multi assign #315"] = complex_multi_assign
 	end
 else
 	T["simple multiple assignment"] = multiple_assignment
+	T["complex multi assign #315"] = complex_multi_assign
 end
