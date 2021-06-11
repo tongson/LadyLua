@@ -249,6 +249,9 @@ api.tear_down = default_tear_down
 
 local all_test_cases = { __root = {} }
 local function handle_new_test(suite, test_name, test_function)
+    if not test_function then
+        return
+    end
     local suite_name = suite.test_suite_name
     if not all_test_cases[suite_name] then
         all_test_cases[suite_name] = {}
