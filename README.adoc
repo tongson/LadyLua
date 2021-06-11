@@ -20,6 +20,7 @@ Next release: *0.9.0 Scared Shrapnel* +
 + Added table.read_only +
 + Bug fix: list +
 + gopher-lua fixes for `pcall()`, `select()`, `#` operator, and `string.gsub()` +
++ `fmt` no longer loaded a global +[
 
 Current release: *0.8.0 Freckled Serpent* +
 + New setting for exec.*; timeout in seconds +
@@ -116,7 +117,7 @@ Check the `docs` directory for more information about these modules.
 |crypto      |N      |gluacrypto       |MIT
 |deque       |N      |cw-lua           |MIT
 |exec        |Y      |                 |MIT
-|fmt         |Y      |                 |MIT
+|fmt         |N      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
 |fsnotify    |N      |                 |MIT
 |guard       |N      |guard            |MIT
