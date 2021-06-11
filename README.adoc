@@ -5,7 +5,7 @@
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
 Next release: *0.9.0 Scared Shrapnel* +
-+ Removed kapow, test, and template modules +
++ Removed kapow, test, fmt, and template modules from `ll` interpreter +
 + Easier standalone programs +
 + Now a package to support ./cmd builds +
 + Added crypto.random +
@@ -118,7 +118,6 @@ Check the `docs` directory for more information about these modules.
 |crypto      |N      |gluacrypto       |MIT
 |deque       |N      |cw-lua           |MIT
 |exec        |Y      |                 |MIT
-|fmt         |N      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
 |fsnotify    |N      |                 |MIT
 |guard       |N      |guard            |MIT
