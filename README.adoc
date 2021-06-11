@@ -195,14 +195,6 @@ Sticking with 5.1 gets you a _finished_ language. For general purpose scripting,
 |Static executable bytes |8929280
 |=======================
 
-=== Startup time
-Compiling-in modules into LadyLua adds a bit to startup time. Compares vanilla GopherLua glua interpreter and current LadyLua ll interpreter.
-
-|======
-|GopherLua |313.073µs
-|LadyLua |10.520545ms
-|======
-
 === Bloat tracker
 Modules that adds significant bloat to the interpreter. If you don't need these maybe you can trim them from your fork. Just estimates though. The later added modules may have dependencies shared with earlier modules.
 
