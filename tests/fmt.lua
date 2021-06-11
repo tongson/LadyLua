@@ -1,4 +1,5 @@
 local included = pcall(debug.getlocal, 4, 1)
+local fmt = require("fmt")
 local T = require("test")
 --# = fmt
 --# :toc:
