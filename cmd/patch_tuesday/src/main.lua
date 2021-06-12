@@ -1,9 +1,9 @@
 -- https://github.com/Immersive-Labs-Sec/msrc-api/ in Lua
-local argparse = require("argparse")
 local json = require("json")
 local http = require("http")
-local parser = argparse()
 local fmt = require("fmt")
+local argparse = require("argparse")
+local parser = argparse()
 parser:argument("id")
 local a = parser:parse(arg)
 local vuln_types = {
