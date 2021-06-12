@@ -1,4 +1,4 @@
--- https://github.com/Immersive-Labs-Sec/msrc-api/ in Lua
+-- 2021-Jun-12 https://github.com/Immersive-Labs-Sec/msrc-api/ in Lua
 local json = require("json")
 local http = require("http")
 local fmt = require("fmt")
