@@ -16,6 +16,7 @@ Next release: *0.9.0 Scared Shrapnel* +
 + New module: deque +
 + New module: bimap +
 + New module: tuple +
++ New module: argparse +
 + Added table.clone +
 + Added table.read_only +
 + Bug fix: list +
@@ -111,6 +112,7 @@ Check the `docs` directory for more information about these modules.
 [options="header",width="88%"]
 |===
 |Module      |Global |Source           |License
+|argparse    |N      |argparse         |MIT
 |bimap       |N      |cw-lua           |MIT
 |bitcask     |N      |                 |MIT
 |crypto      |N      |gluacrypto       |MIT
