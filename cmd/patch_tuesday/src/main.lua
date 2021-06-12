@@ -2,7 +2,6 @@
 local argparse = require("argparse")
 local json = require("json")
 local http = require("http")
-local len = table.size
 local parser = argparse()
 local fmt = require("fmt")
 parser:argument("id")
@@ -44,7 +43,7 @@ for k in pairs(vuln_types) do
 	end
 end
 fmt.print("%s\n", body.DocumentTitle.Value)
-fmt.print("[+] Found %s vulnerabilities\n", len(body.Vulnerability))
+fmt.print("[+] Found %s vulnerabilities\n", table.size(body.Vulnerability))
 for k in pairs(vuln_types) do
 	fmt.print("    %s\t\t%s\n", k, vuln_types[k])
 end
