@@ -108,13 +108,11 @@ Available options are:
 	ll.PatchLoader(L, "table")
 	ll.PatchLoader(L, "string")
 	L.PreloadModule("redis", ll.RedisLoader)
-	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
-	L.SetField(preload, "json", ll.LuaLoader(L, "json"))
-	L.SetField(preload, "list", ll.LuaLoader(L, "list"))
-	L.SetField(preload, "guard", ll.LuaLoader(L, "guard"))
-	L.SetField(preload, "deque", ll.LuaLoader(L, "deque"))
-	L.SetField(preload, "bimap", ll.LuaLoader(L, "bimap"))
-	L.SetField(preload, "tuple", ll.LuaLoader(L, "tuple"))
+	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
+	if ltb, ok := loaders.(*lua.LTable); ok {
+		li := ltb.Len()
+		ltb.RawSetInt(li+1, L.NewFunction(ll.EmbedLoader))
+	}
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)
