@@ -9,6 +9,14 @@ import (
 //go:embed lua/*
 var luaSrc embed.FS
 
+func EmbedLoader(L *lua.LState) int {
+	name := L.CheckString(1)
+	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", name))
+	fn, _ := L.LoadString(string(src))
+	L.Push(fn)
+	return 1
+}
+
 func LuaLoader(L *lua.LState, mod string) lua.LValue {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))

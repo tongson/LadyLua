@@ -22,17 +22,29 @@ func main() {
 	defer ll.RecoverPanic()
 	L := lua.NewState()
 	defer L.Close()
+	// fs
 	nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
 	L.SetGlobal("fs", nsFs)
 	L.SetField(nsFs, "isdir", L.NewFunction(ll.FsIsdir))
 	L.SetField(nsFs, "isfile", L.NewFunction(ll.FsIsfile))
 	L.SetField(nsFs, "read", L.NewFunction(ll.FsRead))
 	L.SetField(nsFs, "write", L.NewFunction(ll.FsWrite))
+	// fs
+	// os
 	nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
 	L.SetField(nsOs, "hostname", L.NewFunction(ll.OsHostname))
 	L.SetField(nsOs, "outbound_ip", L.NewFunction(ll.OsOutboundIP))
 	L.SetField(nsOs, "sleep", L.NewFunction(ll.OsSleep))
+	// os
+	// pi
 	L.SetGlobal("pi", L.NewFunction(ll.GlobalPi))
+	// pi
+	// exec
+	L.SetGlobal("exec", L.NewTable())
+	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
+	L.SetField(nsExec, "command", L.NewFunction(ll.ExecCommand))
+	ll.PatchLoader(L, "exec")
+	// exec
 	L.PreloadModule("http", gluahttp.Xloader)
 	L.PreloadModule("ll_json", ljson.Loader)
 	L.PreloadModule("crypto", gluacrypto.Loader)
@@ -49,25 +61,15 @@ func main() {
 	L.PreloadModule("rr", ll.RrLoader)
 	L.PreloadModule("uuid", ll.UuidLoader)
 	L.PreloadModule("ulid", ll.UlidLoader)
-	L.SetGlobal("exec", L.NewTable())
-	nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
-	L.SetField(nsExec, "command", L.NewFunction(ll.ExecCommand))
-	ll.PatchLoader(L, "exec")
+	L.PreloadModule("redis", ll.RedisLoader)
 	ll.PatchLoader(L, "table")
 	ll.PatchLoader(L, "string")
-	L.PreloadModule("redis", ll.RedisLoader)
-	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
-	L.SetField(preload, "fmt", ll.LuaLoader(L, "fmt"))
-	L.SetField(preload, "kapow", ll.LuaLoader(L, "kapow"))
-	L.SetField(preload, "util", ll.LuaLoader(L, "util"))
-	L.SetField(preload, "test", ll.LuaLoader(L, "test"))
-	L.SetField(preload, "template", ll.LuaLoader(L, "template"))
-	L.SetField(preload, "json", ll.LuaLoader(L, "json"))
-	L.SetField(preload, "list", ll.LuaLoader(L, "list"))
-	L.SetField(preload, "guard", ll.LuaLoader(L, "guard"))
-	L.SetField(preload, "deque", ll.LuaLoader(L, "deque"))
-	L.SetField(preload, "bimap", ll.LuaLoader(L, "bimap"))
-	L.SetField(preload, "tuple", ll.LuaLoader(L, "tuple"))
+	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
+	if ltb, ok := loaders.(*lua.LTable); ok {
+		li := ltb.Len()
+		ltb.RawSetInt(li+1, L.NewFunction(ll.EmbedLoader))
+	}
+
 	argtb := L.NewTable()
 	for i := 0; i < len(os.Args); i++ {
 		L.RawSet(argtb, lua.LNumber(i), lua.LString(os.Args[i]))
