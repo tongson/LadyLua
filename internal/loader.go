@@ -19,7 +19,10 @@ func EmbedLoader(L *lua.LState) int {
 
 func LuaLoader(L *lua.LState, mod string) lua.LValue {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
-	fn, _ := L.LoadString(string(src))
+	fn, err := L.LoadString(string(src))
+	if err != nil {
+		L.RaiseError(err.Error())
+	}
 	return fn
 }
 

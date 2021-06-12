@@ -26,8 +26,6 @@ func main() {
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	L.SetField(preload, "fmt", ll.LuaLoader(L, "fmt"))
 	L.SetField(preload, "json", ll.LuaLoader(L, "json"))
-	L.SetField(preload, "list", ll.LuaLoader(L, "list"))
-	L.SetField(preload, "guard", ll.LuaLoader(L, "guard"))
 	L.SetField(preload, "argparse", ll.LuaLoader(L, "argparse"))
 	argtb := L.NewTable()
 	for i := 0; i < len(os.Args); i++ {
