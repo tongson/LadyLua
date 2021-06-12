@@ -3,8 +3,6 @@ local argparse = require("argparse")
 local json = require("json")
 local http = require("http")
 local len = table.size
-local find = table.find
-local count = table.count
 local parser = argparse()
 local fmt = require("fmt")
 parser:argument("id")
