@@ -5,6 +5,8 @@
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
 Next release: *0.9.0 Scared Shrapnel* +
++ Faster interpreter startup time; 18ms to 2ms in a test machine +
++ Loading plain Lua source is now done through `package.loaders` +
 + Easier standalone programs +
 + Now a package to support ./cmd builds +
 + Added crypto.random +
@@ -17,6 +19,7 @@ Next release: *0.9.0 Scared Shrapnel* +
 + New module: bimap +
 + New module: tuple +
 + New module: argparse +
++ Added back inspect.lua +
 + Added table.clone +
 + Added table.read_only +
 + Bug fix: list +
@@ -123,6 +126,7 @@ Check the `docs` directory for more information about these modules.
 |fsnotify    |N      |                 |MIT
 |guard       |N      |guard            |MIT
 |http        |N      |gluahttp         |MIT
+|inspect     |N      |inspect.lua      |MIT
 |json        |N      |gopher-json      |Unlicense
 |kapow       |N      |                 |MIT
 |ksuid       |N      |                 |MIT
