@@ -116,11 +116,13 @@ Check the `docs` directory for more information about these modules.
 |crypto      |N      |gluacrypto       |MIT
 |deque       |N      |cw-lua           |MIT
 |exec        |Y      |                 |MIT
+|fmt         |N      |                 |MIT
 |fs          |Y      |gopher-lfs       |Unlicense
 |fsnotify    |N      |                 |MIT
 |guard       |N      |guard            |MIT
 |http        |N      |gluahttp         |MIT
 |json        |N      |gopher-json      |Unlicense
+|kapow       |N      |                 |MIT
 |ksuid       |N      |                 |MIT
 |list        |N      |list.lua         |MIT
 |logger      |N      |                 |MIT
@@ -132,6 +134,8 @@ Check the `docs` directory for more information about these modules.
 |rr          |N      |                 |MIT
 |slack       |N      |                 |MIT
 |telegram    |N      |                 |MIT
+|template    |N      |etlua            |MIT
+|test        |N      |u-test           |MIT
 |tuple       |N      |tuple.lua        |MIT
 |ulid        |N      |                 |APL2
 |uuid        |N      |                 |MPL2
