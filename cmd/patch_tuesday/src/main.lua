@@ -34,7 +34,7 @@ for k in pairs(vuln_types) do
 		local cve = t.CVE
 		local title = t.Title.Value
 		for _, v in ipairs(t.Threats) do
-			if v.Type == 1 and (v.Description.Value):contains("Exploited:Yes") then
+			if v.Type == 1 and v.Description.Value:contains("Exploited:Yes") then
 				exploited = exploited + 1
 				cves[cve] = title
 			end
