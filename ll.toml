@@ -160,10 +160,10 @@ required = false
 [[table.auto.args]]
 type = "table"
 required = false
-[[table.len.args]]
+[[table.size.args]]
 type = "table"
 required = true
-[[table.len.args]]
+[[table.size.args]]
 type = "number"
 required = false
 [[table.count.args]]
