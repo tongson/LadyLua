@@ -6,14 +6,6 @@ local argparse = require("argparse")
 local parser = argparse()
 parser:argument("id")
 local a = parser:parse(arg)
-local vuln_types = {
-	["Elevation of Privilege "] = 0,
-	["Security Feature Bypass"] = 0,
-	["Remote Code Execution  "] = 0,
-	["Information Disclosure "] = 0,
-	["Denial of Service      "] = 0,
-	["Spoofing               "] = 0,
-}
 local body
 do
 	local options = {
@@ -26,6 +18,14 @@ do
 end
 local exploited = 0
 local cves = {}
+local vuln_types = {
+	["Elevation of Privilege "] = 0,
+	["Security Feature Bypass"] = 0,
+	["Remote Code Execution  "] = 0,
+	["Information Disclosure "] = 0,
+	["Denial of Service      "] = 0,
+	["Spoofing               "] = 0,
+}
 for k in pairs(vuln_types) do
 	for _, t in ipairs(body.Vulnerability) do
 		local cve = t.CVE
