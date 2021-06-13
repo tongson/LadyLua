@@ -1,13 +1,12 @@
-module ll
+module github.com/tongson/LadyLua
 
 go 1.16
 
 require (
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e
-	github.com/cjoudrey/gluahttp v0.0.0-25003d9adfa9
 	github.com/frankban/quicktest v1.11.3 // indirect
 	github.com/fsnotify/fsnotify v1.4.9
-	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
+  github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
 	github.com/go-redis/redis/v8 v8.8.0
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
@@ -22,25 +21,9 @@ require (
 	github.com/segmentio/ksuid v1.0.3
 	github.com/slack-go/slack v0.9.0
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
-	github.com/tengattack/gluacrypto v0.0.0-8bf181b63bba
-	github.com/tengattack/gluasql v0.0.0-2e5ed630c4cf
 	github.com/yuin/gluamapper v0.0.0-20150323120927-d836955830e7
 	github.com/yuin/gopher-lua v0.0.0-20210529063254-53ab9600e90f
-	layeh.com/gopher-json v0.0.0-552bb3c4c3bf
-	layeh.com/gopher-lfs v0.0.0-d5fb28581d14
 )
-
-replace layeh.com/gopher-lfs => ./external/gopher-lfs
-
-replace layeh.com/gopher-json => ./external/gopher-json
-
-replace github.com/cjoudrey/gluahttp => ./external/gluahttp
-
-replace github.com/tengattack/gluacrypto => ./external/gluacrypto
-
-replace github.com/tengattack/gluasql => ./external/gluasql
-
-replace github.com/ghodss/yaml => ./external/gyaml
 
 // replace github.com/yuin/gopher-lua => ./external/gopher-lua
 replace github.com/yuin/gopher-lua => github.com/tongson/gopher-lua v0.0.0-20210610051759-53ab9600e09f
