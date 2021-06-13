@@ -21,7 +21,7 @@ func EmbedLoader(L *lua.LState) {
 	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
 	if ltb, ok := loaders.(*lua.LTable); ok {
 		li := ltb.Len()
-		ltb.RawSetInt(li+1, L.NewFunction(embedLoader))
+		ltb.RawSetInt(li, L.NewFunction(embedLoader))
 	}
 }
 
@@ -36,7 +36,7 @@ func ModuleLoader(L *lua.LState, esrc embed.FS, dir string) {
 	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
 	if ltb, ok := loaders.(*lua.LTable); ok {
 		li := ltb.Len()
-		ltb.RawSetInt(li+1, L.NewFunction(embedLoader))
+		ltb.RawSetInt(li, L.NewFunction(embedLoader))
 	}
 }
 
