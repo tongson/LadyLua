@@ -65,11 +65,7 @@ func main() {
 	L.PreloadModule("redis", ll.RedisLoader)
 	ll.PatchLoader(L, "table")
 	ll.PatchLoader(L, "string")
-	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
-	if ltb, ok := loaders.(*lua.LTable); ok {
-		li := ltb.Len()
-		ltb.RawSetInt(li+1, L.NewFunction(ll.EmbedLoader))
-	}
+	ll.EmbedLoader(L)
 
 	argtb := L.NewTable()
 	for i := 0; i < len(os.Args); i++ {

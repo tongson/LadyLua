@@ -10,12 +10,19 @@ import (
 //go:embed lua/*
 var luaSrc embed.FS
 
-func EmbedLoader(L *lua.LState) int {
-	name := L.CheckString(1)
-	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", name))
-	fn, _ := L.LoadString(string(src))
-	L.Push(fn)
-	return 1
+func EmbedLoader(L *lua.LState) {
+	embedLoader := func(l *lua.LState) int {
+		name := l.CheckString(1)
+		src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", name))
+		fn, _ := l.LoadString(string(src))
+		l.Push(fn)
+		return 1
+	}
+	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
+	if ltb, ok := loaders.(*lua.LTable); ok {
+		li := ltb.Len()
+		ltb.RawSetInt(li+1, L.NewFunction(embedLoader))
+	}
 }
 
 func LuaLoader(L *lua.LState, mod string) lua.LValue {

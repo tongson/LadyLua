@@ -109,11 +109,7 @@ Available options are:
 	ll.PatchLoader(L, "table")
 	ll.PatchLoader(L, "string")
 	L.PreloadModule("redis", ll.RedisLoader)
-	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
-	if ltb, ok := loaders.(*lua.LTable); ok {
-		li := ltb.Len()
-		ltb.RawSetInt(li+1, L.NewFunction(ll.EmbedLoader))
-	}
+	ll.EmbedLoader(L)
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)
