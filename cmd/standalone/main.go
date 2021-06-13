@@ -67,8 +67,7 @@ func main() {
 	ll.PatchLoader(L, "string")
 	ll.EmbedLoader(L)
 	ll.FillArg(L, os.Args)
-	src, _ := mainSrc.ReadFile("src/main.lua")
-	if err := L.DoString(string(src)); err != nil {
+	if err := L.DoString(ll.ReadFile(mainSrc, "src/main.lua")); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}
