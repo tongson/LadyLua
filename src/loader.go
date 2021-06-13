@@ -25,11 +25,18 @@ func EmbedLoader(L *lua.LState) {
 	}
 }
 
-func ModuleLoader(L *lua.LState, loader lua.LGFunction) {
+func ModuleLoader(L *lua.LState, esrc embed.FS, dir string) {
+	embedLoader := func(l *lua.LState) int {
+		name := l.CheckString(1)
+		src, _ := esrc.ReadFile(fmt.Sprintf("%s/%s.lua", dir, name))
+		fn, _ := l.LoadString(string(src))
+		l.Push(fn)
+		return 1
+	}
 	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
 	if ltb, ok := loaders.(*lua.LTable); ok {
 		li := ltb.Len()
-		ltb.RawSetInt(li+1, L.NewFunction(loader))
+		ltb.RawSetInt(li+1, L.NewFunction(embedLoader))
 	}
 }
 
