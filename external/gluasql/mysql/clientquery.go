@@ -4,7 +4,7 @@ import (
 	"reflect"
 
 	"github.com/junhsieh/goexamples/fieldbinding/fieldbinding"
-	util "github.com/tengattack/gluasql/util"
+	util "ll/external/gluasql/util"
 	"github.com/yuin/gopher-lua"
 )
 
