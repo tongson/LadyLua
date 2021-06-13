@@ -2,7 +2,6 @@ package main
 
 import (
 	"embed"
-	"fmt"
 	gluacrypto "github.com/tongson/LadyLua/external/gluacrypto/crypto"
 	"github.com/tongson/LadyLua/external/gluahttp"
 	mysql "github.com/tongson/LadyLua/external/gluasql/mysql"
@@ -67,9 +66,6 @@ func main() {
 	ll.PatchLoader(L, "string")
 	ll.EmbedLoader(L)
 	ll.FillArg(L, os.Args)
-	if err := L.DoString(ll.ReadFile(mainSrc, "src/main.lua")); err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
+	ll.MainLoader(L, ll.ReadFile(mainSrc, "src/main.lua"))
 	os.Exit(0)
 }
