@@ -3,13 +3,14 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/tongson/LadyLua/external/gluahttp"
 	gluacrypto "github.com/tongson/LadyLua/external/gluacrypto/crypto"
+	"github.com/tongson/LadyLua/external/gluahttp"
 	mysql "github.com/tongson/LadyLua/external/gluasql/mysql"
-	"github.com/yuin/gopher-lua"
 	ljson "github.com/tongson/LadyLua/external/gopher-json"
 	"github.com/tongson/LadyLua/external/gopher-lfs"
 	"github.com/tongson/LadyLua/src"
+	"github.com/tongson/gl"
+	"github.com/yuin/gopher-lua"
 	"os"
 	"runtime"
 )
@@ -19,7 +20,7 @@ var mainSrc embed.FS
 
 func main() {
 	runtime.MemProfileRate = 0
-	defer ll.RecoverPanic()
+	defer gl.RecoverPanic()
 	L := lua.NewState()
 	defer L.Close()
 	// fs

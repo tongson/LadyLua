@@ -1,6 +1,7 @@
 package ll
 
 import (
+	"github.com/tongson/gl"
 	"github.com/yuin/gopher-lua"
 	"io"
 	"os"
@@ -8,7 +9,7 @@ import (
 
 func FsIsdir(L *lua.LState) int {
 	dir := L.CheckString(1)
-	is := StatPath("directory")
+	is := gl.StatPath("directory")
 	if is(dir) {
 		L.Push(lua.LTrue)
 		return 1
@@ -21,7 +22,7 @@ func FsIsdir(L *lua.LState) int {
 
 func FsIsfile(L *lua.LState) int {
 	f := L.CheckString(1)
-	is := StatPath("")
+	is := gl.StatPath("")
 	if is(f) {
 		L.Push(lua.LTrue)
 		return 1
@@ -34,7 +35,7 @@ func FsIsfile(L *lua.LState) int {
 
 func FsRead(L *lua.LState) int {
 	path := L.CheckString(1)
-	isFile := StatPath("file")
+	isFile := gl.StatPath("file")
 	/* #nosec G304 */
 	if isFile(path) {
 		file, err := os.Open(path)
@@ -64,7 +65,7 @@ func FsRead(L *lua.LState) int {
 func FsWrite(L *lua.LState) int {
 	f := L.CheckString(1)
 	s := L.CheckString(2)
-	err := StringToFile(f, s)
+	err := gl.StringToFile(f, s)
 	if err != nil {
 		L.Push(lua.LNil)
 		L.Push(lua.LString(err.Error()))

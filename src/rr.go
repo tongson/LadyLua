@@ -2,6 +2,7 @@ package ll
 
 import (
 	"fmt"
+	"github.com/tongson/gl"
 	"github.com/yuin/gopher-lua"
 	"os"
 	"path/filepath"
@@ -53,8 +54,8 @@ func rrRunFn(L *lua.LState) int {
 		return 2
 	}
 	hostname := lua.LVAsString(mt.RawGetH(lua.LString("hostname")))
-	isDir := StatPath("directory")
-	isFile := StatPath("file")
+	isDir := gl.StatPath("directory")
+	isFile := gl.StatPath("file")
 	var sh strings.Builder
 	targ := L.NewTable()
 	tenv := L.NewTable()
@@ -77,10 +78,10 @@ func rrRunFn(L *lua.LState) int {
 		L.Push(lua.LString("rr: Actual script not a file inside Script directory."))
 		return 2
 	}
-	fnwalk := PathWalker(&sh)
+	fnwalk := gl.PathWalker(&sh)
 	if !isDir(".lib") {
 		_ = os.MkdirAll(".lib", os.ModePerm)
-		if StringToFile(".lib/000-header.sh", libHeader) != nil {
+		if gl.StringToFile(".lib/000-header.sh", libHeader) != nil {
 			L.Push(lua.LNil)
 			L.Push(lua.LString("rr: Unable to write .lib."))
 			return 2
@@ -118,9 +119,9 @@ func rrRunFn(L *lua.LState) int {
 		})
 	}
 
-	arguments = InsertStr(arguments, "set --", 0)
+	arguments = gl.InsertStr(arguments, "set --", 0)
 	sh.WriteString(strings.Join(arguments, " "))
-	sh.WriteString("\n" + FileRead(namespace+"/"+script+"/"+run))
+	sh.WriteString("\n" + gl.FileRead(namespace+"/"+script+"/"+run))
 	modscript := sh.String()
 	if hostname == "local" || hostname == "localhost" {
 		for _, d := range []string{
@@ -135,7 +136,7 @@ func rrRunFn(L *lua.LState) int {
 			namespace + "/" + script + "/.files-localhost",
 		} {
 			if isDir(d) {
-				rargs := RunArgs{Exe: "sh", Args: []string{"-c", fmt.Sprintf(untar, d)}}
+				rargs := gl.RunArgs{Exe: "sh", Args: []string{"-c", fmt.Sprintf(untar, d)}}
 				ret, stdout, stderr, ero := rargs.Run()
 				if !ret {
 					L.Push(lua.LNil)
@@ -145,7 +146,7 @@ func rrRunFn(L *lua.LState) int {
 				}
 			}
 		}
-		rargs := RunArgs{Exe: "sh", Args: []string{"-c", modscript}}
+		rargs := gl.RunArgs{Exe: "sh", Args: []string{"-c", modscript}}
 		ret, stdout, stderr, ero := rargs.Run()
 		if !ret {
 			L.Push(lua.LNil)
@@ -169,7 +170,7 @@ func rrRunFn(L *lua.LState) int {
 			realhost = rh[1]
 		}
 		sshenv := []string{"LC_ALL=C"}
-		ssha := RunArgs{Exe: "ssh", Args: []string{"-T", "-a", "-x", "-C", hostname, "uname -n"}, Env: sshenv}
+		ssha := gl.RunArgs{Exe: "ssh", Args: []string{"-T", "-a", "-x", "-C", hostname, "uname -n"}, Env: sshenv}
 		ret, stdout, _, _ := ssha.Run()
 		if ret {
 			sshhost := strings.Split(stdout, "\n")
@@ -206,7 +207,7 @@ func rrRunFn(L *lua.LState) int {
 					return 2
 				}
 				tmpfile.Close()
-				sftpa := RunArgs{Exe: "sftp", Args: []string{"-C", "-b", tmpfile.Name(), hostname}, Env: sshenv}
+				sftpa := gl.RunArgs{Exe: "sftp", Args: []string{"-C", "-b", tmpfile.Name(), hostname}, Env: sshenv}
 				ret, _, _, _ := sftpa.Run()
 				if !ret {
 					L.Push(lua.LNil)
@@ -216,7 +217,7 @@ func rrRunFn(L *lua.LState) int {
 				os.Remove(tmpfile.Name())
 			}
 		}
-		sshb := RunArgs{Exe: "ssh", Args: []string{"-T", "-a", "-x", "-C", hostname}, Env: sshenv,
+		sshb := gl.RunArgs{Exe: "ssh", Args: []string{"-T", "-a", "-x", "-C", hostname}, Env: sshenv,
 			Stdin: []byte(modscript)}
 		ret, stdout, stderr, ero := sshb.Run()
 		if !ret {

@@ -1,6 +1,7 @@
 package ll
 
 import (
+	"github.com/tongson/gl"
 	"github.com/yuin/gopher-lua"
 )
 
@@ -25,7 +26,7 @@ func ExecCommand(L *lua.LState) int {
 			tenv = append(tenv, lua.LVAsString(value))
 		})
 	}
-	cmd := RunArgs{Exe: exe, Args: targ, Env: tenv, Dir: cwd, Stdin: []byte(sin), Timeout: int(tme)}
+	cmd := gl.RunArgs{Exe: exe, Args: targ, Env: tenv, Dir: cwd, Stdin: []byte(sin), Timeout: int(tme)}
 	ret, stdout, stderr, err := cmd.Run()
 
 	if ret {

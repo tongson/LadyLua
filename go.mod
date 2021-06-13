@@ -21,6 +21,7 @@ require (
 	github.com/segmentio/ksuid v1.0.3
 	github.com/slack-go/slack v0.9.0
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
+	github.com/tongson/gl v0.0.0-20210612034557-f2ffe6fda85c
 	github.com/yuin/gluamapper v0.0.0-20150323120927-d836955830e7
 	github.com/yuin/gopher-lua v0.0.0-20210529063254-53ab9600e90f
 )

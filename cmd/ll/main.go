@@ -4,14 +4,15 @@ import (
 	"flag"
 	"fmt"
 	"github.com/chzyer/readline"
-	"github.com/tongson/LadyLua/external/gluahttp"
 	gluacrypto "github.com/tongson/LadyLua/external/gluacrypto/crypto"
+	"github.com/tongson/LadyLua/external/gluahttp"
 	mysql "github.com/tongson/LadyLua/external/gluasql/mysql"
-	"github.com/yuin/gopher-lua"
-	"github.com/yuin/gopher-lua/parse"
 	ljson "github.com/tongson/LadyLua/external/gopher-json"
 	"github.com/tongson/LadyLua/external/gopher-lfs"
 	"github.com/tongson/LadyLua/src"
+	"github.com/tongson/gl"
+	"github.com/yuin/gopher-lua"
+	"github.com/yuin/gopher-lua/parse"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -30,7 +31,7 @@ func main() {
 }
 
 func mainAux() int {
-	defer ll.RecoverPanic()
+	defer gl.RecoverPanic()
 	var opt_e, opt_l, opt_p string
 	var opt_i, opt_v, opt_dt, opt_dc bool
 	var opt_m int
@@ -62,7 +63,7 @@ Available options are:
 			os.Exit(1)
 		}
 		if err := pprof.StartCPUProfile(f); err != nil {
-			ll.Panic(err.Error())
+			gl.Panic(err.Error())
 		}
 		defer pprof.StopCPUProfile()
 	}
