@@ -28,15 +28,6 @@ func EmbedLoader(L *lua.LState) {
 	}
 }
 
-func LuaLoader(L *lua.LState, mod string) lua.LValue {
-	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
-	fn, err := L.LoadString(string(src))
-	if err != nil {
-		L.RaiseError(err.Error())
-	}
-	return fn
-}
-
 func PatchLoader(L *lua.LState, mod string) {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
