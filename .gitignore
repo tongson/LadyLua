@@ -3,5 +3,6 @@
 /external/gopher-lua
 /cmd/lopper
 /cmd/lbuildah
+/cmd/test/main.go
 /*.lua
 /bin
