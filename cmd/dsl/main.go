@@ -4,14 +4,15 @@ import (
 	"flag"
 	"fmt"
 	"github.com/chzyer/readline"
-	"github.com/tongson/LadyLua/external/gluahttp"
 	gluacrypto "github.com/tongson/LadyLua/external/gluacrypto/crypto"
+	"github.com/tongson/LadyLua/external/gluahttp"
 	mysql "github.com/tongson/LadyLua/external/gluasql/mysql"
-	"github.com/yuin/gopher-lua"
-	"github.com/yuin/gopher-lua/parse"
 	ljson "github.com/tongson/LadyLua/external/gopher-json"
 	"github.com/tongson/LadyLua/external/gopher-lfs"
 	"github.com/tongson/LadyLua/src"
+	"github.com/tongson/gl"
+	"github.com/yuin/gopher-lua"
+	"github.com/yuin/gopher-lua/parse"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -20,8 +21,8 @@ import (
 
 var start time.Time
 
-const versionNumber = "0.0.0"
-const codeName = "\"LadyLua\""
+const versionNumber = "0.9.0"
+const codeName = "\"Scared Shrapnel\""
 
 func main() {
 	start = time.Now()
@@ -30,7 +31,7 @@ func main() {
 }
 
 func mainAux() int {
-	defer ll.RecoverPanic()
+	defer gl.RecoverPanic()
 	var opt_e, opt_l, opt_p string
 	var opt_i, opt_v, opt_dt, opt_dc bool
 	var opt_m int
@@ -62,7 +63,7 @@ Available options are:
 			os.Exit(1)
 		}
 		if err := pprof.StartCPUProfile(f); err != nil {
-			ll.Panic(err.Error())
+			gl.Panic(err.Error())
 		}
 		defer pprof.StopCPUProfile()
 	}
@@ -108,15 +109,7 @@ Available options are:
 	ll.PatchLoader(L, "table")
 	ll.PatchLoader(L, "string")
 	L.PreloadModule("redis", ll.RedisLoader)
-	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
-	L.SetField(preload, "json", ll.LuaLoader(L, "json"))
-	L.SetField(preload, "list", ll.LuaLoader(L, "list"))
-	L.SetField(preload, "guard", ll.LuaLoader(L, "guard"))
-	L.SetField(preload, "deque", ll.LuaLoader(L, "deque"))
-	L.SetField(preload, "bimap", ll.LuaLoader(L, "bimap"))
-	L.SetField(preload, "tuple", ll.LuaLoader(L, "tuple"))
-	L.SetField(preload, "util", ll.LuaLoader(L, "util"))
-	L.SetField(preload, "test", ll.LuaLoader(L, "test"))
+	ll.EmbedLoader(L)
 	//__DSL__ll.DslLoader(L, "__DSLMOD__")
 
 	if opt_m > 0 {
