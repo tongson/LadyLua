@@ -3,10 +3,10 @@ package main
 import (
 	"embed"
 	"fmt"
-	"github.com/cjoudrey/gluahttp"
+	"github.com/tongson/LadyLua/external/gluahttp"
 	"github.com/yuin/gopher-lua"
-	ljson "layeh.com/gopher-json"
-	"ll/internal"
+	"github.com/tongson/LadyLua/external/gopher-json"
+	"github.com/tongson/LadyLua/internal"
 	"os"
 	"runtime"
 )
@@ -20,7 +20,7 @@ func main() {
 	L := lua.NewState()
 	defer L.Close()
 	L.PreloadModule("http", gluahttp.Xloader)
-	L.PreloadModule("ll_json", ljson.Loader)
+	L.PreloadModule("ll_json", json.Loader)
 	ll.PatchLoader(L, "table")
 	ll.PatchLoader(L, "string")
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")

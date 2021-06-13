@@ -6,13 +6,13 @@ require (
 	github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e
 	github.com/frankban/quicktest v1.11.3 // indirect
 	github.com/fsnotify/fsnotify v1.4.9
-  github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
+	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
 	github.com/go-redis/redis/v8 v8.8.0
-	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/go-sql-driver/mysql v1.6.0
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/gregdel/pushover v0.0.0-20210420080121-f84e8ffafef5
 	github.com/hashicorp/go-uuid v1.0.1
-	github.com/junhsieh/goexamples v0.0.0-20190721045834-1c67ae74caa6 // indirect
+	github.com/junhsieh/goexamples v0.0.0-20190721045834-1c67ae74caa6
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/oklog/ulid/v2 v2.0.2
 	github.com/pierrec/lz4 v2.6.0+incompatible

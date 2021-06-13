@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/url"
 
-	util "ll/external/gluasql/util"
+	util "github.com/tongson/LadyLua/external/gluasql/util"
 	"github.com/yuin/gopher-lua"
 )
 
