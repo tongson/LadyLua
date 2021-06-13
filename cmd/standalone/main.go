@@ -9,7 +9,7 @@ import (
 	"github.com/yuin/gopher-lua"
 	ljson "github.com/tongson/LadyLua/external/gopher-json"
 	"github.com/tongson/LadyLua/external/gopher-lfs"
-	"github.com/tongson/LadyLua/internal"
+	"github.com/tongson/LadyLua/src"
 	"os"
 	"runtime"
 )
