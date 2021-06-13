@@ -28,24 +28,6 @@ func EmbedLoader(L *lua.LState) {
 	}
 }
 
-func ModuleLoader(L *lua.LState, esrc embed.FS, dir string) {
-	embedLoader := func(l *lua.LState) int {
-		name := l.CheckString(1)
-		src, _ := esrc.ReadFile(fmt.Sprintf("%s/%s.lua", dir, name))
-		fn, _ := l.LoadString(string(src))
-		l.Push(fn)
-		return 1
-	}
-	loaders := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "loaders")
-	if ltb, ok := loaders.(*lua.LTable); ok {
-		ltb.RawSetInt(4, L.NewFunction(embedLoader))
-	}
-	rloaders := L.GetField(L.Get(lua.RegistryIndex), "_LOADERS")
-	if rtb, ok := rloaders.(*lua.LTable); ok {
-		rtb.RawSetInt(4, L.NewFunction(embedLoader))
-	}
-}
-
 func LuaLoader(L *lua.LState, mod string) lua.LValue {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
 	fn, err := L.LoadString(string(src))
@@ -75,4 +57,14 @@ func MainLoader(L *lua.LState, src []byte) {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}
+}
+
+func ModuleLoader(L *lua.LState, name string, src string) lua.LValue {
+	fn, err := L.LoadString(string(src))
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
+	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
+	L.SetField(preload, name, fn)
 }
