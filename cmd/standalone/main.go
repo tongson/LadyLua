@@ -66,12 +66,7 @@ func main() {
 	ll.PatchLoader(L, "table")
 	ll.PatchLoader(L, "string")
 	ll.EmbedLoader(L)
-
-	argtb := L.NewTable()
-	for i := 0; i < len(os.Args); i++ {
-		L.RawSet(argtb, lua.LNumber(i), lua.LString(os.Args[i]))
-	}
-	L.SetGlobal("arg", argtb)
+	ll.FillArg(L, os.Args)
 	src, _ := mainSrc.ReadFile("src/main.lua")
 	if err := L.DoString(string(src)); err != nil {
 		fmt.Println(err.Error())
