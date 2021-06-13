@@ -10,9 +10,6 @@ import (
 //go:embed lua/*
 var luaSrc embed.FS
 
-//go:embed main/*
-var mainSrc embed.FS
-
 func EmbedLoader(L *lua.LState) int {
 	name := L.CheckString(1)
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", name))
@@ -45,8 +42,7 @@ func GlobalLoader(L *lua.LState, mod string) {
 	L.PCall(0, 0, nil)
 }
 
-func MainLoader(L *lua.LState, m string) {
-	src, _ := mainSrc.ReadFile(fmt.Sprintf("main/%s.lua", m))
+func MainLoader(L *lua.LState, src string) {
 	if err := L.DoString(string(src)); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
