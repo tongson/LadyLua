@@ -42,7 +42,7 @@ func GlobalLoader(L *lua.LState, mod string) {
 	L.PCall(0, 0, nil)
 }
 
-func MainLoader(L *lua.LState, src string) {
+func MainLoader(L *lua.LState, src []byte) {
 	if err := L.DoString(string(src)); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
