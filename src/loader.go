@@ -59,7 +59,7 @@ func MainLoader(L *lua.LState, src []byte) {
 	}
 }
 
-func ModuleLoader(L *lua.LState, name string, src string) lua.LValue {
+func ModuleLoader(L *lua.LState, name string, src string) {
 	fn, err := L.LoadString(string(src))
 	if err != nil {
 		fmt.Println(err.Error())
