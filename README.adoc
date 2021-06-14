@@ -8,7 +8,7 @@ Next release: *0.9.0 Scared Shrapnel* +
 + Faster interpreter startup time; 18ms to 2ms in a test machine +
 + Loading plain Lua source is now done through `package.loaders` +
 + Easier standalone programs +
-+ Now a package to support ./cmd builds +
++ Now a module to support ./cmd builds +
 + Added crypto.random +
 + Added crypto.fast_random +
 + Added kapow.redirect_permanent +
