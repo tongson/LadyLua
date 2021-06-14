@@ -76,6 +76,16 @@ func ModuleLoader(L *lua.LState, name string, src string) {
 	L.SetField(preload, name, fn)
 }
 
+//#
+//# == *ll.GLobalLoader*(*lua.LState, string)
+//# Load gopher-lua (Go) module into the global `_G` environment. +
+//#
+//# === Arguments
+//# [width="72%"]
+//# |===
+//# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
+//# |string |Name of the module
+//# |===
 func GlobalLoader(L *lua.LState, name string) {
 	if name == "exec" {
 		L.SetGlobal("exec", L.NewTable())
