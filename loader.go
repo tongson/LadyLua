@@ -9,10 +9,11 @@ import (
 	ljson "github.com/tongson/LadyLua/external/gopher-json"
 	"github.com/tongson/LadyLua/external/gopher-lfs"
 	"github.com/yuin/gopher-lua"
+	"github.com/tongson/LadyLua/internal"
 	"os"
 )
 
-//go:embed lua/*
+//go:embed internal/lua/*
 var luaSrc embed.FS
 
 //# = loader.go
@@ -24,12 +25,12 @@ var luaSrc embed.FS
 //# toc::[]
 //#
 //# == *ll.EmbedLoader*(*lua.LState)
-//# Fill Lua state with plain Lua modules from `src/lua`. +
+//# Add `package.loaders` entry for loading plain Lua modules from `internal/src/lua`. +
 //# This allows Lua code to `require()` these modules.
 func EmbedLoader(L *lua.LState) {
 	embedLoader := func(l *lua.LState) int {
 		name := l.CheckString(1)
-		src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", name))
+		src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", name))
 		fn, _ := l.LoadString(string(src))
 		l.Push(fn)
 		return 1
@@ -46,16 +47,17 @@ func EmbedLoader(L *lua.LState) {
 
 //#
 //# == *ll.PatchLoader*(*lua.LState, string)
-//# For monkey-patching Lua values. One example is in `src/lua/table.lua`. It adds custom functions to the global `table` value.
+//# For monkey-patching Lua values. +
+//# One example is in `internal/src/lua/table.lua`. It adds custom functions to the global `table` value.
 //#
 //# === Arguments
 //# [width="72%"]
 //# |===
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
-//# |string |Basename of Lua source in `src/lua`
+//# |string |Basename of Lua source in `internal/src/lua`
 //# |===
 func PatchLoader(L *lua.LState, mod string) {
-	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
+	src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
 	L.Push(fn)
 	L.PCall(0, 0, nil)
@@ -69,11 +71,11 @@ func PatchLoader(L *lua.LState, mod string) {
 //# [width="72%"]
 //# |===
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
-//# |string |Basename of Lua source in `src/lua`
+//# |string |Basename of Lua source in `internal/src/lua`
 //# |===
 func LuaGlobalLoader(L *lua.LState, mod string) {
 	L.SetGlobal(mod, L.NewTable())
-	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
+	src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
 	L.Push(fn)
 	L.PCall(0, 0, nil)
@@ -131,27 +133,27 @@ func GlobalLoader(L *lua.LState, name string) {
 	if name == "exec" {
 		L.SetGlobal("exec", L.NewTable())
 		nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
-		L.SetField(nsExec, "command", L.NewFunction(execCommand))
+		L.SetField(nsExec, "command", L.NewFunction(ll.ExecCommand))
 		return
 	}
 	if name == "fs" {
 		nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
 		L.SetGlobal("fs", nsFs)
-		L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
-		L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
-		L.SetField(nsFs, "read", L.NewFunction(fsRead))
-		L.SetField(nsFs, "write", L.NewFunction(fsWrite))
+		L.SetField(nsFs, "isdir", L.NewFunction(ll.FsIsdir))
+		L.SetField(nsFs, "isfile", L.NewFunction(ll.FsIsfile))
+		L.SetField(nsFs, "read", L.NewFunction(ll.FsRead))
+		L.SetField(nsFs, "write", L.NewFunction(ll.FsWrite))
 		return
 	}
 	if name == "os" {
 		nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
-		L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
-		L.SetField(nsOs, "outbound_ip", L.NewFunction(osOutboundIP))
-		L.SetField(nsOs, "sleep", L.NewFunction(osSleep))
+		L.SetField(nsOs, "hostname", L.NewFunction(ll.OsHostname))
+		L.SetField(nsOs, "outbound_ip", L.NewFunction(ll.OsOutboundIP))
+		L.SetField(nsOs, "sleep", L.NewFunction(ll.OsSleep))
 		return
 	}
 	if name == "pi" {
-		L.SetGlobal("pi", L.NewFunction(globalPi))
+		L.SetGlobal("pi", L.NewFunction(ll.GlobalPi))
 		return
 	}
 	L.RaiseError("Unknown module.")
@@ -178,31 +180,31 @@ func GoLoader(L *lua.LState, name string) {
 	case "crypto":
 		L.PreloadModule("crypto", gluacrypto.Loader)
 	case "ksuid":
-		L.PreloadModule("ksuid", ksuidLoader)
+		L.PreloadModule("ksuid", ll.KsuidLoader)
 	case "lz4":
-		L.PreloadModule("lz4", lz4Loader)
+		L.PreloadModule("lz4", ll.Lz4Loader)
 	case "telegram":
-		L.PreloadModule("telegram", telegramLoader)
+		L.PreloadModule("telegram", ll.TelegramLoader)
 	case "pushover":
-		L.PreloadModule("pushover", pushoverLoader)
+		L.PreloadModule("pushover", ll.PushoverLoader)
 	case "slack":
-		L.PreloadModule("slack", slackLoader)
+		L.PreloadModule("slack", ll.SlackLoader)
 	case "logger":
-		L.PreloadModule("logger", loggerLoader)
+		L.PreloadModule("logger", ll.LoggerLoader)
 	case "fsnotify":
-		L.PreloadModule("fsnotify", fsnLoader)
+		L.PreloadModule("fsnotify", ll.FsnLoader)
 	case "bitcask":
-		L.PreloadModule("bitcask", bitcaskLoader)
+		L.PreloadModule("bitcask", ll.BitcaskLoader)
 	case "refmt":
-		L.PreloadModule("refmt", refmtLoader)
+		L.PreloadModule("refmt", ll.RefmtLoader)
 	case "rr":
-		L.PreloadModule("rr", rrLoader)
+		L.PreloadModule("rr", ll.RrLoader)
 	case "uuid":
-		L.PreloadModule("uuid", uuidLoader)
+		L.PreloadModule("uuid", ll.UuidLoader)
 	case "ulid":
-		L.PreloadModule("ulid", ulidLoader)
+		L.PreloadModule("ulid", ll.UlidLoader)
 	case "redis":
-		L.PreloadModule("redis", redisLoader)
+		L.PreloadModule("redis", ll.RedisLoader)
 	default:
 		L.RaiseError("Unknown module.")
 	}

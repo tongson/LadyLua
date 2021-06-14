@@ -16,7 +16,7 @@ func uuidNew(L *lua.LState) int {
 	return 1
 }
 
-func uuidLoader(L *lua.LState) int {
+func UuidLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, uuidApi)
 	L.Push(t)

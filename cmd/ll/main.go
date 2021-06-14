@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/chzyer/readline"
-	"github.com/tongson/LadyLua/src"
+	"github.com/tongson/LadyLua"
 	"github.com/tongson/gl"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"

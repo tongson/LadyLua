@@ -10,7 +10,7 @@ func ksuidNew(L *lua.LState) int {
 	return 1
 }
 
-func ksuidLoader(L *lua.LState) int {
+func KsuidLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, ksuidApi)
 	L.Push(t)

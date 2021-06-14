@@ -47,7 +47,7 @@ func loggerCheck(L *lua.LState) *loggerT {
 	}
 }
 
-func loggerLoader(L *lua.LState) int {
+func LoggerLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), loggerExports)
 	L.Push(mod)
 	loggerRegister(L)

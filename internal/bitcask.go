@@ -161,7 +161,7 @@ var bitcaskExports = map[string]lua.LGFunction{
 	"open": bitcaskOpen,
 }
 
-func bitcaskLoader(L *lua.LState) int {
+func BitcaskLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), bitcaskExports)
 	L.Push(mod)
 	bitcaskRegister(L)

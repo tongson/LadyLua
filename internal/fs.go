@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func fsIsdir(L *lua.LState) int {
+func FsIsdir(L *lua.LState) int {
 	dir := L.CheckString(1)
 	is := gl.StatPath("directory")
 	if is(dir) {
@@ -20,7 +20,7 @@ func fsIsdir(L *lua.LState) int {
 	}
 }
 
-func fsIsfile(L *lua.LState) int {
+func FsIsfile(L *lua.LState) int {
 	f := L.CheckString(1)
 	is := gl.StatPath("")
 	if is(f) {
@@ -33,7 +33,7 @@ func fsIsfile(L *lua.LState) int {
 	}
 }
 
-func fsRead(L *lua.LState) int {
+func FsRead(L *lua.LState) int {
 	path := L.CheckString(1)
 	isFile := gl.StatPath("file")
 	/* #nosec G304 */
@@ -62,7 +62,7 @@ func fsRead(L *lua.LState) int {
 	}
 }
 
-func fsWrite(L *lua.LState) int {
+func FsWrite(L *lua.LState) int {
 	f := L.CheckString(1)
 	s := L.CheckString(2)
 	err := gl.StringToFile(f, s)

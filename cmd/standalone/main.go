@@ -2,7 +2,7 @@ package main
 
 import (
 	"embed"
-	"github.com/tongson/LadyLua/src"
+	"github.com/tongson/LadyLua"
 	"github.com/tongson/gl"
 	"github.com/yuin/gopher-lua"
 	"os"
