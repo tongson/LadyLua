@@ -15,6 +15,13 @@ import (
 //go:embed lua/*
 var luaSrc embed.FS
 
+//# = loader.go
+//# :toc:
+//# :toc-placement!:
+//#
+//# Module loaders.
+//#
+//# toc::[]
 //#
 //# == *ll.EmbedLoader*(*lua.LState)
 //# Fill Lua state with plain Lua modules from `LadyLua/src/lua`. +
