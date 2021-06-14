@@ -15,6 +15,10 @@ import (
 //go:embed lua/*
 var luaSrc embed.FS
 
+//#
+//# == *ll.EmbedLoader*(*lua.LState)
+//# Fill Lua state with plain Lua modules from `LadyLua/src/lua`. +
+//# This allows Lua code to `require()` these modules.
 func EmbedLoader(L *lua.LState) {
 	embedLoader := func(l *lua.LState) int {
 		name := l.CheckString(1)
@@ -95,6 +99,16 @@ func GlobalLoader(L *lua.LState, name string) {
 	L.RaiseError("Unknown module.")
 }
 
+//#
+//# == *ll.GoLoader*(*lua.LState, string)
+//# Load gopher-lua (Go) module into `package.preload`. +
+//#
+//# === Arguments
+//# [width="72%"]
+//# |===
+//# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
+//# |string |Name of the module
+//# |===
 func GoLoader(L *lua.LState, name string) {
 	switch name {
 	case "json":
