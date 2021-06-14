@@ -124,7 +124,7 @@ Check the `docs` directory for more information about these modules.
 |json        |N      |Go   |gopher-json      |Unlicense
 |kapow       |N      |Lua  |                 |MIT
 |ksuid       |N      |Go   |                 |MIT
-|list        |N      |Lua  |list.lua         |MIT
+|list        |N      |Lua  |linked_list.lua  |MIT
 |logger      |N      |Go   |                 |MIT
 |lz4         |N      |Go   |                 |BSD3
 |mysql       |N      |Go   |gluasql          |MIT
