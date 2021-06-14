@@ -92,6 +92,7 @@ func GlobalLoader(L *lua.LState, name string) {
 		L.SetGlobal("pi", L.NewFunction(globalPi))
 		return
 	}
+	L.RaiseError("Unknown module.")
 }
 
 func GoLoader(L *lua.LState, name string) {
