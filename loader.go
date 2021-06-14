@@ -25,7 +25,7 @@ var luaSrc embed.FS
 //# toc::[]
 //#
 //# == *ll.EmbedLoader*(*lua.LState)
-//# Add `package.loaders` entry for loading plain Lua modules from `internal/src/lua`. +
+//# Add `package.loaders` entry for loading plain Lua modules from `internal/lua`. +
 //# This allows Lua code to `require()` these modules.
 func EmbedLoader(L *lua.LState) {
 	embedLoader := func(l *lua.LState) int {
@@ -48,13 +48,13 @@ func EmbedLoader(L *lua.LState) {
 //#
 //# == *ll.PatchLoader*(*lua.LState, string)
 //# For monkey-patching Lua values. +
-//# One example is in `internal/src/lua/table.lua`. It adds custom functions to the global `table` value.
+//# One example is in `internal/lua/table.lua`. It adds custom functions to the global `table` value.
 //#
 //# === Arguments
 //# [width="72%"]
 //# |===
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
-//# |string |Basename of Lua source in `internal/src/lua`
+//# |string |Basename of Lua source in `internal/lua`
 //# |===
 func PatchLoader(L *lua.LState, mod string) {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", mod))
@@ -71,7 +71,7 @@ func PatchLoader(L *lua.LState, mod string) {
 //# [width="72%"]
 //# |===
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
-//# |string |Basename of Lua source in `internal/src/lua`
+//# |string |Basename of Lua source in `internal/lua`
 //# |===
 func LuaGlobalLoader(L *lua.LState, mod string) {
 	L.SetGlobal(mod, L.NewTable())
