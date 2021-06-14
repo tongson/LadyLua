@@ -24,7 +24,7 @@ var luaSrc embed.FS
 //# toc::[]
 //#
 //# == *ll.EmbedLoader*(*lua.LState)
-//# Fill Lua state with plain Lua modules from `LadyLua/src/lua`. +
+//# Fill Lua state with plain Lua modules from `src/lua`. +
 //# This allows Lua code to `require()` these modules.
 func EmbedLoader(L *lua.LState) {
 	embedLoader := func(l *lua.LState) int {
@@ -44,6 +44,16 @@ func EmbedLoader(L *lua.LState) {
 	}
 }
 
+//#
+//# == *ll.PatchLoader*(*lua.LState, string)
+//# For monkey-patching Lua values. One example is in `src/lua/table.lua`. It adds custom functions to the global `table` value.
+//#
+//# === Arguments
+//# [width="72%"]
+//# |===
+//# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
+//# |string |Basename of Lua source in `src/lua`
+//# |===
 func PatchLoader(L *lua.LState, mod string) {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
@@ -51,6 +61,16 @@ func PatchLoader(L *lua.LState, mod string) {
 	L.PCall(0, 0, nil)
 }
 
+//#
+//# == *ll.LuaGlobalLoader*(*lua.LState, string)
+//# For adding Lua values into the global `_G` environment.
+//#
+//# === Arguments
+//# [width="72%"]
+//# |===
+//# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
+//# |string |Basename of Lua source in `src/lua`
+//# |===
 func LuaGlobalLoader(L *lua.LState, mod string) {
 	L.SetGlobal(mod, L.NewTable())
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
@@ -59,6 +79,16 @@ func LuaGlobalLoader(L *lua.LState, mod string) {
 	L.PCall(0, 0, nil)
 }
 
+//#
+//# == *ll.MainLoader*(*lua.LState, string)
+//# The entrypoint(main) Lua code for standalone projects.
+//#
+//# === Arguments
+//# [width="72%"]
+//# |===
+//# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
+//# |string |Lua source code
+//# |===
 func MainLoader(L *lua.LState, src string) {
 	if err := L.DoString(src); err != nil {
 		fmt.Println(err.Error())
@@ -66,6 +96,17 @@ func MainLoader(L *lua.LState, src string) {
 	}
 }
 
+//#
+//# == *ll.ModuleLoader*(*lua.LState, string, string)
+//# Load plain Lua modules into `package.preload`. Useful for your own Lua modules loaded from standalone projects.
+//#
+//# === Arguments
+//# [width="72%"]
+//# |===
+//# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
+//# |string |Name of the module
+//# |string |Lua source code
+//# |===
 func ModuleLoader(L *lua.LState, name string, src string) {
 	fn, err := L.LoadString(string(src))
 	if err != nil {
