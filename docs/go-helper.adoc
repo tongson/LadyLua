@@ -1,0 +1,26 @@
+
+== *ll.FillArg*(*lua.LState, []string)
+Capture command line arguments as the `arg` table in the global `_G` environment.
+
+=== Arguments
+[width="72%"]
+|===
+|*lua.LState|The current `LState`; usually the result of `lua.NewState()`
+|[]string |Usually `os.Args`
+|===
+
+== *ll.ReadFile*(embed.FS, string) -> string
+Read file from an `embed.FS` location.
+
+=== Arguments
+[width="72%"]
+|===
+|embed.FS |Variable of embedded filesystem
+|string |Filename
+|===
+
+=== Returns
+[width="72%"]
+|===
+|string |Contents of file
+|===
