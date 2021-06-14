@@ -1,1 +1,1 @@
-*.lua linguist-language=Go
+*.lua linguist-detectable=false
