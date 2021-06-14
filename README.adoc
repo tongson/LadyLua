@@ -109,42 +109,43 @@ Check the `docs` directory for more information about these modules.
 
 [options="header",width="88%"]
 |===
-|Module      |Global |Source           |License
-|argparse    |N      |argparse         |MIT
-|bimap       |N      |cw-lua           |MIT
-|bitcask     |N      |                 |MIT
-|crypto      |N      |gluacrypto       |MIT
-|deque       |N      |cw-lua           |MIT
-|exec        |Y      |                 |MIT
-|fmt         |N      |                 |MIT
-|fs          |Y      |gopher-lfs       |Unlicense
-|fsnotify    |N      |                 |MIT
-|guard       |N      |guard            |MIT
-|http        |N      |gluahttp         |MIT
-|json        |N      |gopher-json      |Unlicense
-|kapow       |N      |                 |MIT
-|ksuid       |N      |                 |MIT
-|list        |N      |list.lua         |MIT
-|logger      |N      |                 |MIT
-|lz4         |N      |                 |BSD3
-|mysql       |N      |gluasql          |MIT
-|pushover    |N      |                 |MIT
-|redis       |N      |                 |MIT
-|refmt       |N      |                 |MIT
-|rr          |N      |                 |MIT
-|slack       |N      |                 |MIT
-|telegram    |N      |                 |MIT
-|template    |N      |etlua            |MIT
-|test        |N      |u-test           |MIT
-|tuple       |N      |tuple.lua        |MIT
-|ulid        |N      |                 |APL2
-|uuid        |N      |                 |MPL2
+|Module      |Global |Type |Source           |License
+|argparse    |N      |Lua  |argparse         |MIT
+|bimap       |N      |Lua  |cw-lua           |MIT
+|bitcask     |N      |Go   |                 |MIT
+|crypto      |N      |Go   |gluacrypto       |MIT
+|deque       |N      |Lua  |cw-lua           |MIT
+|exec        |Y      |Go   |                 |MIT
+|fmt         |N      |Lua  |                 |MIT
+|fs          |Y      |Go   |gopher-lfs       |Unlicense
+|fsnotify    |N      |Go   |                 |MIT
+|guard       |N      |Lua  |guard            |MIT
+|http        |N      |Go   |gluahttp         |MIT
+|json        |N      |Go   |gopher-json      |Unlicense
+|kapow       |N      |Lua  |                 |MIT
+|ksuid       |N      |Go   |                 |MIT
+|list        |N      |Lua  |list.lua         |MIT
+|logger      |N      |Go   |                 |MIT
+|lz4         |N      |Go   |                 |BSD3
+|mysql       |N      |Go   |gluasql          |MIT
+|pushover    |N      |Go   |                 |MIT
+|redis       |N      |Go   |                 |MIT
+|refmt       |N      |Go   |                 |MIT
+|rr          |N      |Go   |                 |MIT
+|slack       |N      |Go   |                 |MIT
+|telegram    |N      |Go   |                 |MIT
+|template    |N      |Lua  |etlua            |MIT
+|test        |N      |Lua  |u-test           |MIT
+|tuple       |N      |Lua  |tuple.lua        |MIT
+|ulid        |N      |Go   |                 |APL2
+|uuid        |N      |Go   |                 |MPL2
 |===
 
 :note-caption: :information_source:
 [NOTE]
 ====
-If it says *N* in the *Global* field, you need to `require()` it.
+If it says *N* in the *Global* field, you need to `require()` it. +
+Modules that are type `Go` should be loaded through `ll.GoLoader`
 ====
 
 === DSL modules
