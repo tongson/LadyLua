@@ -5,7 +5,7 @@ import (
 	"github.com/yuin/gopher-lua"
 )
 
-func ExecCommand(L *lua.LState) int {
+func execCommand(L *lua.LState) int {
 	targ := []string{}
 	tenv := []string{}
 	tbl := L.NewTable()

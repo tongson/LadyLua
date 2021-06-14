@@ -48,7 +48,7 @@ var pushoverExports = map[string]lua.LGFunction{
 	"new": pushoverNew,
 }
 
-func PushoverLoader(L *lua.LState) int {
+func pushoverLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), pushoverExports)
 	L.Push(mod)
 	pushoverRegister(L)

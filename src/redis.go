@@ -207,7 +207,7 @@ var redisExports = map[string]lua.LGFunction{
 	"client": redisClient,
 }
 
-func RedisLoader(L *lua.LState) int {
+func redisLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), redisExports)
 	L.Push(mod)
 	redisRegister(L)

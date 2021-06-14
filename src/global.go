@@ -6,7 +6,7 @@ import (
 )
 
 // From: https://golang.org/doc/play/pi.go
-func GlobalPi(L *lua.LState) int {
+func globalPi(L *lua.LState) int {
 	n := L.ToInt(1)
 	ch := make(chan float64)
 	for k := 0; k <= n; k++ {

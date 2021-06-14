@@ -69,27 +69,27 @@ func GlobalLoader(L *lua.LState, name string) {
 	if name == "exec" {
 		L.SetGlobal("exec", L.NewTable())
 		nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
-		L.SetField(nsExec, "command", L.NewFunction(ExecCommand))
+		L.SetField(nsExec, "command", L.NewFunction(execCommand))
 		return
 	}
 	if name == "fs" {
 		nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
 		L.SetGlobal("fs", nsFs)
-		L.SetField(nsFs, "isdir", L.NewFunction(FsIsdir))
-		L.SetField(nsFs, "isfile", L.NewFunction(FsIsfile))
-		L.SetField(nsFs, "read", L.NewFunction(FsRead))
-		L.SetField(nsFs, "write", L.NewFunction(FsWrite))
+		L.SetField(nsFs, "isdir", L.NewFunction(fsIsdir))
+		L.SetField(nsFs, "isfile", L.NewFunction(fsIsfile))
+		L.SetField(nsFs, "read", L.NewFunction(fsRead))
+		L.SetField(nsFs, "write", L.NewFunction(fsWrite))
 		return
 	}
 	if name == "os" {
 		nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
-		L.SetField(nsOs, "hostname", L.NewFunction(OsHostname))
-		L.SetField(nsOs, "outbound_ip", L.NewFunction(OsOutboundIP))
-		L.SetField(nsOs, "sleep", L.NewFunction(OsSleep))
+		L.SetField(nsOs, "hostname", L.NewFunction(osHostname))
+		L.SetField(nsOs, "outbound_ip", L.NewFunction(osOutboundIP))
+		L.SetField(nsOs, "sleep", L.NewFunction(osSleep))
 		return
 	}
 	if name == "pi" {
-		L.SetGlobal("pi", L.NewFunction(GlobalPi))
+		L.SetGlobal("pi", L.NewFunction(globalPi))
 		return
 	}
 }
@@ -105,31 +105,31 @@ func GoLoader(L *lua.LState, name string) {
 	case "crypto":
 		L.PreloadModule("crypto", gluacrypto.Loader)
 	case "ksuid":
-		L.PreloadModule("ksuid", KsuidLoader)
+		L.PreloadModule("ksuid", ksuidLoader)
 	case "lz4":
-		L.PreloadModule("lz4", Lz4Loader)
+		L.PreloadModule("lz4", lz4Loader)
 	case "telegram":
-		L.PreloadModule("telegram", TelegramLoader)
+		L.PreloadModule("telegram", telegramLoader)
 	case "pushover":
-		L.PreloadModule("pushover", PushoverLoader)
+		L.PreloadModule("pushover", pushoverLoader)
 	case "slack":
-		L.PreloadModule("slack", SlackLoader)
+		L.PreloadModule("slack", slackLoader)
 	case "logger":
-		L.PreloadModule("logger", LoggerLoader)
+		L.PreloadModule("logger", loggerLoader)
 	case "fsnotify":
-		L.PreloadModule("fsnotify", FsnLoader)
+		L.PreloadModule("fsnotify", fsnLoader)
 	case "bitcask":
-		L.PreloadModule("bitcask", BitcaskLoader)
+		L.PreloadModule("bitcask", bitcaskLoader)
 	case "refmt":
-		L.PreloadModule("refmt", RefmtLoader)
+		L.PreloadModule("refmt", refmtLoader)
 	case "rr":
-		L.PreloadModule("rr", RrLoader)
+		L.PreloadModule("rr", rrLoader)
 	case "uuid":
-		L.PreloadModule("uuid", UuidLoader)
+		L.PreloadModule("uuid", uuidLoader)
 	case "ulid":
-		L.PreloadModule("ulid", UlidLoader)
+		L.PreloadModule("ulid", ulidLoader)
 	case "redis":
-		L.PreloadModule("redis", RedisLoader)
+		L.PreloadModule("redis", redisLoader)
 	default:
 		L.RaiseError("Unknown module.")
 	}

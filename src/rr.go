@@ -256,7 +256,7 @@ var rrApi = map[string]lua.LGFunction{
 	"ctx": rrInit,
 }
 
-func RrLoader(L *lua.LState) int {
+func rrLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), rrApi)
 	L.Push(mod)
 	rrRegister(L)

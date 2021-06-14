@@ -66,7 +66,7 @@ var telegramExports = map[string]lua.LGFunction{
 	"new": telegramNew,
 }
 
-func TelegramLoader(L *lua.LState) int {
+func telegramLoader(L *lua.LState) int {
 	mod := L.SetFuncs(L.NewTable(), telegramExports)
 	L.Push(mod)
 	telegramRegister(L)
