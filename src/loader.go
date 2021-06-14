@@ -3,6 +3,11 @@ package ll
 import (
 	"embed"
 	"fmt"
+	gluacrypto "github.com/tongson/LadyLua/external/gluacrypto/crypto"
+	"github.com/tongson/LadyLua/external/gluahttp"
+	mysql "github.com/tongson/LadyLua/external/gluasql/mysql"
+	ljson "github.com/tongson/LadyLua/external/gopher-json"
+	"github.com/tongson/LadyLua/external/gopher-lfs"
 	"github.com/yuin/gopher-lua"
 	"os"
 )
@@ -35,7 +40,7 @@ func PatchLoader(L *lua.LState, mod string) {
 	L.PCall(0, 0, nil)
 }
 
-func GlobalLoader(L *lua.LState, mod string) {
+func LuaGlobalLoader(L *lua.LState, mod string) {
 	L.SetGlobal(mod, L.NewTable())
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
@@ -58,4 +63,74 @@ func ModuleLoader(L *lua.LState, name string, src string) {
 	}
 	preload := L.GetField(L.GetField(L.Get(lua.EnvironIndex), "package"), "preload")
 	L.SetField(preload, name, fn)
+}
+
+func GlobalLoader(L *lua.LState, name string) {
+	if name == "exec" {
+		L.SetGlobal("exec", L.NewTable())
+		nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
+		L.SetField(nsExec, "command", L.NewFunction(ExecCommand))
+		return
+	}
+	if name == "fs" {
+		nsFs := L.SetFuncs(L.NewTable(), lfs.Api)
+		L.SetGlobal("fs", nsFs)
+		L.SetField(nsFs, "isdir", L.NewFunction(FsIsdir))
+		L.SetField(nsFs, "isfile", L.NewFunction(FsIsfile))
+		L.SetField(nsFs, "read", L.NewFunction(FsRead))
+		L.SetField(nsFs, "write", L.NewFunction(FsWrite))
+		return
+	}
+	if name == "os" {
+		nsOs := L.GetField(L.Get(lua.EnvironIndex), "os")
+		L.SetField(nsOs, "hostname", L.NewFunction(OsHostname))
+		L.SetField(nsOs, "outbound_ip", L.NewFunction(OsOutboundIP))
+		L.SetField(nsOs, "sleep", L.NewFunction(OsSleep))
+		return
+	}
+	if name == "pi" {
+		L.SetGlobal("pi", L.NewFunction(GlobalPi))
+		return
+	}
+}
+
+func GoLoader(L *lua.LState, name string) {
+	switch name {
+	case "json":
+		L.PreloadModule("ll_json", ljson.Loader)
+	case "http":
+		L.PreloadModule("http", gluahttp.Xloader)
+	case "mysql":
+		L.PreloadModule("mysql", mysql.Loader)
+	case "crypto":
+		L.PreloadModule("crypto", gluacrypto.Loader)
+	case "ksuid":
+		L.PreloadModule("ksuid", KsuidLoader)
+	case "lz4":
+		L.PreloadModule("lz4", Lz4Loader)
+	case "telegram":
+		L.PreloadModule("telegram", TelegramLoader)
+	case "pushover":
+		L.PreloadModule("pushover", PushoverLoader)
+	case "slack":
+		L.PreloadModule("slack", SlackLoader)
+	case "logger":
+		L.PreloadModule("logger", LoggerLoader)
+	case "fsnotify":
+		L.PreloadModule("fsnotify", FsnLoader)
+	case "bitcask":
+		L.PreloadModule("bitcask", BitcaskLoader)
+	case "refmt":
+		L.PreloadModule("refmt", RefmtLoader)
+	case "rr":
+		L.PreloadModule("rr", RrLoader)
+	case "uuid":
+		L.PreloadModule("uuid", UuidLoader)
+	case "ulid":
+		L.PreloadModule("ulid", UlidLoader)
+	case "redis":
+		L.PreloadModule("redis", RedisLoader)
+	default:
+		L.RaiseError("Unknown module.")
+	}
 }
