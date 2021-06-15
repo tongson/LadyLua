@@ -118,10 +118,7 @@ do
 		t = t or {}
 		local meta = getmetatable(t)
 		if meta then
-			assert(
-				not meta.__index or meta.__index == auto_meta.__index,
-				"__index already set"
-			)
+			assert(not meta.__index or meta.__index == auto_meta.__index, "__index already set")
 			meta.__index = auto_meta.__index
 		else
 			setmetatable(t, auto_meta)
@@ -192,7 +189,7 @@ do
 			__newindex = function()
 				return error("Attempt to modify read-only table", 0)
 			end,
-			__metatable = false
-		});
+			__metatable = false,
+		})
 	end
 end
