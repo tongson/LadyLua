@@ -3,8 +3,9 @@ package ll
 import (
 	"embed"
 	"fmt"
-	"github.com/yuin/gopher-lua"
 	"os"
+
+	"github.com/yuin/gopher-lua"
 )
 
 //#

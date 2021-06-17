@@ -3,6 +3,8 @@ package ll
 import (
 	"embed"
 	"fmt"
+	"os"
+
 	gluacrypto "github.com/tongson/LadyLua/external/gluacrypto/crypto"
 	"github.com/tongson/LadyLua/external/gluahttp"
 	mysql "github.com/tongson/LadyLua/external/gluasql/mysql"
@@ -10,7 +12,6 @@ import (
 	"github.com/tongson/LadyLua/external/gopher-lfs"
 	"github.com/yuin/gopher-lua"
 	"github.com/tongson/LadyLua/internal"
-	"os"
 )
 
 //go:embed internal/lua/*
