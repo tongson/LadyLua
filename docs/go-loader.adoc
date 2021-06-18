@@ -14,6 +14,8 @@ This allows Lua code to `require()` these modules.
 For monkey-patching Lua values. +
 One example is in `internal/lua/table.lua`. It adds custom functions to the global `table` value.
 
+NOTE: Severely degrades VM start up time.
+
 === Arguments
 [width="72%"]
 |===
