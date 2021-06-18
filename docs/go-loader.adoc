@@ -11,10 +11,12 @@ Add `package.loaders` entry for loading plain Lua modules from `internal/lua`. +
 This allows Lua code to `require()` these modules.
 
 == *ll.PatchLoader*(*lua.LState, string)
-For monkey-patching Lua values. +
-One example is in `internal/lua/table.lua`. It adds custom functions to the global `table` value.
+For monkey-patching Lua values.
 
-NOTE: Severely degrades VM start up time.
+[NOTE]
+====
+Severely degrades VM start up time.
+====
 
 === Arguments
 [width="72%"]
