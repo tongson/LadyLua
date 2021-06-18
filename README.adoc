@@ -5,7 +5,7 @@
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
 Next release: *0.9.0 Scared Shrapnel* +
-+ Faster interpreter startup time; 18ms to 2ms in a test machine +
++ Faster interpreter startup time; 18ms to <1ms in a test machine +
 + Loading plain Lua source is now done through `package.loaders` +
 + Easier standalone programs +
 + Now a module to support ./cmd builds +
