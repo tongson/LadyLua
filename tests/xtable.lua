@@ -8,9 +8,9 @@ local expect = T.expect
 --#
 --# Functions added to the global `table` namespace.
 --#
---# To load:
+--# To load and patch global `table` namespace.
 --# ----
---# require("xtable"()
+--# require("xtable")()
 --# ----
 --#
 --# toc::[]

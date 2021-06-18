@@ -7,9 +7,9 @@ require("xstring")()
 --#
 --# Functions added to the global `string` namespace.
 --#
---# To load:
+--# To load and patch global `string` namespace.
 --# ----
---# require("xstring"()
+--# require("xstring")()
 --# ----
 --#
 --# toc::[]
