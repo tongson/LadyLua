@@ -50,7 +50,10 @@ func EmbedLoader(L *lua.LState) {
 //# == *ll.PatchLoader*(*lua.LState, string)
 //# For monkey-patching Lua values.
 //#
-//# NOTE: Severely degrades VM start up time.
+//# [NOTE]
+//# ====
+//# Severely degrades VM start up time.
+//# ====
 //#
 //# === Arguments
 //# [width="72%"]
