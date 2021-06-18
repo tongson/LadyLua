@@ -5,9 +5,9 @@ require("xstring")()
 --# :toc:
 --# :toc-placement!:
 --#
---# Functions added to the global `string` namespace.
+--# Additional functions for string operations.
 --#
---# To load and patch global `string` namespace.
+--# To load and patch global `string` namespace:
 --# ----
 --# require("xstring")()
 --# ----

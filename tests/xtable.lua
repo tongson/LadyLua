@@ -6,9 +6,9 @@ local expect = T.expect
 --# :toc:
 --# :toc-placement!:
 --#
---# Functions added to the global `table` namespace.
+--# Additional functions for table operations
 --#
---# To load and patch global `table` namespace.
+--# To load and patch global `table` namespace:
 --# ----
 --# require("xtable")()
 --# ----
