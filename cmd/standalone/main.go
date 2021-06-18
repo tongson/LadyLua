@@ -21,7 +21,6 @@ func main() {
 	ll.LoadGlobalGo(L, "os")
 	ll.LoadGlobalGo(L, "pi")
 	ll.LoadGlobalGo(L, "exec")
-	ll.LoadPatch(L, "exec")
 	ll.PreloadGo(L, "http")
 	ll.PreloadGo(L, "json")
 	ll.PreloadGo(L, "crypto")
