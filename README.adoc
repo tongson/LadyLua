@@ -11,9 +11,7 @@ Next release: *0.9.0 Scared Shrapnel* +
 + Now a module to support ./cmd builds +
 + Added crypto.random +
 + Added crypto.fast_random +
-+ Added kapow.redirect_permanent +
-+ Added kapow.redirect_temporary +
-+ Added kapow.redirect_post +
++ Removed kapow module +
 + New module: guard +
 + New module: deque +
 + New module: bimap +
@@ -122,7 +120,6 @@ Check the `docs` directory for more information about these modules.
 |guard       |N      |Lua  |guard            |MIT
 |http        |N      |Go   |gluahttp         |MIT
 |json        |N      |Go   |gopher-json      |Unlicense
-|kapow       |N      |Lua  |                 |MIT
 |ksuid       |N      |Go   |                 |MIT
 |list        |N      |Lua  |linked_list.lua  |MIT
 |logger      |N      |Go   |                 |MIT
