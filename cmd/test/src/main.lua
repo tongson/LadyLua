@@ -17,8 +17,8 @@ end
 T.register_assert("error", errstr)
 
 T["built-in => os.hostname"] = dofile("tests/os.lua")
-T["built-in => table"] = dofile("tests/table.lua")
-T["built-in => string"] = dofile("tests/string.lua")
+T["built-in => xtable"] = dofile("tests/xtable.lua")
+T["built-in => xstring"] = dofile("tests/xstring.lua")
 T["built-in => fmt"] = dofile("tests/fmt.lua")
 T["built-in => exec"] = dofile("tests/exec.lua")
 T["internal => lua"] = dofile("tests/lua.lua")
