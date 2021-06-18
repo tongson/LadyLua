@@ -139,6 +139,7 @@ func LoadGlobalGo(L *lua.LState, name string) {
 		L.SetGlobal("exec", L.NewTable())
 		nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
 		L.SetField(nsExec, "command", L.NewFunction(ll.ExecCommand))
+		L.SetField(nsExec, "ctx", L.NewFunction(ll.ExecCtx))
 		return
 	}
 	if name == "fs" {

@@ -39,3 +39,25 @@ func ExecCommand(L *lua.LState) int {
 	L.Push(lua.LString(err))
 	return 4
 }
+
+func ExecCtx(L *lua.LState) int {
+	exe := L.CheckString(1)
+	set := L.NewTable()
+	mt := L.NewTable()
+	L.SetField(mt, "__call", L.NewFunction(func(L *lua.LState) int {
+		deftbl := L.NewTable()
+		args := L.OptTable(2, deftbl)
+		L.Push(L.NewFunction(ExecCommand))
+		L.Push(lua.LString(exe))
+		L.Push(args)
+		L.Push(L.GetField(set, "env"))
+		L.Push(L.GetField(set, "cwd"))
+		L.Push(L.GetField(set, "stdin"))
+		L.Push(L.GetField(set, "timeout"))
+		L.Call(6, 4)
+		return 4
+	}))
+	L.SetMetatable(set, mt)
+	L.Push(set)
+	return 1
+}
