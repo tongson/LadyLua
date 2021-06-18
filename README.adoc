@@ -6,7 +6,7 @@ Single static executable, batteries-included, Lua 5.1 interpreter. A fat https:/
 
 Next release: *0.9.0 Scared Shrapnel* +
 + Loading plain Lua source is now done through `package.loaders` +
-+ Faster VM startup time; 18ms to <1ms in a test machine +
++ Faster VM startup time; From 18ms to <1ms in a test machine +
 + Now a module to support ./cmd builds +
 + Easier standalone programs +
 + Added crypto.random +
