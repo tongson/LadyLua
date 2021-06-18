@@ -25,10 +25,10 @@ var luaSrc embed.FS
 //#
 //# toc::[]
 //#
-//# == *ll.EmbedLoader*(*lua.LState)
+//# == *ll.PreloadEmbedded*(*lua.LState)
 //# Add `package.loaders` entry for loading plain Lua modules from `internal/lua`. +
 //# This allows Lua code to `require()` these modules.
-func EmbedLoader(L *lua.LState) {
+func PreloadEmbedded(L *lua.LState) {
 	embedLoader := func(l *lua.LState) int {
 		name := l.CheckString(1)
 		src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", name))
@@ -47,7 +47,7 @@ func EmbedLoader(L *lua.LState) {
 }
 
 //#
-//# == *ll.PatchLoader*(*lua.LState, string)
+//# == *ll.LoadPatch*(*lua.LState, string)
 //# For monkey-patching Lua values.
 //#
 //# [NOTE]
@@ -61,7 +61,7 @@ func EmbedLoader(L *lua.LState) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Basename of Lua source in `internal/lua`
 //# |===
-func PatchLoader(L *lua.LState, mod string) {
+func LoadPatch(L *lua.LState, mod string) {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
 	L.Push(fn)
@@ -69,7 +69,7 @@ func PatchLoader(L *lua.LState, mod string) {
 }
 
 //#
-//# == *ll.LuaGlobalLoader*(*lua.LState, string)
+//# == *ll.LoadGlobalLua*(*lua.LState, string)
 //# For adding Lua values into the global `_G` environment.
 //#
 //# === Arguments
@@ -78,7 +78,7 @@ func PatchLoader(L *lua.LState, mod string) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Basename of Lua source in `internal/lua`
 //# |===
-func LuaGlobalLoader(L *lua.LState, mod string) {
+func LoadGlobalLua(L *lua.LState, mod string) {
 	L.SetGlobal(mod, L.NewTable())
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
@@ -87,7 +87,7 @@ func LuaGlobalLoader(L *lua.LState, mod string) {
 }
 
 //#
-//# == *ll.MainLoader*(*lua.LState, string)
+//# == *ll.Main*(*lua.LState, string)
 //# The entrypoint(main) Lua code for standalone projects.
 //#
 //# === Arguments
@@ -96,7 +96,7 @@ func LuaGlobalLoader(L *lua.LState, mod string) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Lua source code
 //# |===
-func MainLoader(L *lua.LState, src string) {
+func Main(L *lua.LState, src string) {
 	if err := L.DoString(src); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
@@ -104,7 +104,7 @@ func MainLoader(L *lua.LState, src string) {
 }
 
 //#
-//# == *ll.ModuleLoader*(*lua.LState, string, string)
+//# == *ll.PreloadModule*(*lua.LState, string, string)
 //# Load plain Lua modules into `package.preload`. Useful for your own Lua modules loaded from standalone projects.
 //#
 //# === Arguments
@@ -114,7 +114,7 @@ func MainLoader(L *lua.LState, src string) {
 //# |string |Name of the module
 //# |string |Lua source code
 //# |===
-func ModuleLoader(L *lua.LState, name string, src string) {
+func PreloadModule(L *lua.LState, name string, src string) {
 	fn, err := L.LoadString(string(src))
 	if err != nil {
 		fmt.Println(err.Error())
@@ -125,7 +125,7 @@ func ModuleLoader(L *lua.LState, name string, src string) {
 }
 
 //#
-//# == *ll.GLobalLoader*(*lua.LState, string)
+//# == *ll.LoadGlobalGo*(*lua.LState, string)
 //# Load gopher-lua (Go) module into the global `_G` environment. +
 //#
 //# === Arguments
@@ -134,7 +134,7 @@ func ModuleLoader(L *lua.LState, name string, src string) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Name of the module
 //# |===
-func GlobalLoader(L *lua.LState, name string) {
+func LoadGlobalGo(L *lua.LState, name string) {
 	if name == "exec" {
 		L.SetGlobal("exec", L.NewTable())
 		nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
@@ -165,7 +165,7 @@ func GlobalLoader(L *lua.LState, name string) {
 }
 
 //#
-//# == *ll.GoLoader*(*lua.LState, string)
+//# == *ll.PreloadGo*(*lua.LState, string)
 //# Load gopher-lua (Go) module into `package.preload`. +
 //#
 //# === Arguments
@@ -174,7 +174,7 @@ func GlobalLoader(L *lua.LState, name string) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Name of the module
 //# |===
-func GoLoader(L *lua.LState, name string) {
+func PreloadGo(L *lua.LState, name string) {
 	switch name {
 	case "json":
 		L.PreloadModule("ll_json", ljson.Loader)
