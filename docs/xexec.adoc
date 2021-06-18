@@ -1,0 +1,74 @@
+= xexec
+:toc:
+:toc-placement!:
+
+Additional functions for the exec namespace.
+
+To load and patch global `exec` namespace:
+----
+require("xexec")()
+----
+
+toc::[]
+
+== *exec.cmd*(_String_) -> _Function_
+Execute program under a context. Difference with `exec.ctx` is this takes two additional settings; `errexit` and `error`. When `errexit` is set to `true`, the programs exits immediately when an error is encountered. The `error` setting takes a string to show when `errexit` is triggered. +
+The returned function's also accepts a format string OR a table(list) for building the argument.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Executable
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|function| A function that can be called and set values; the function also returns the same values as `exec.command`
+|===
+
+=== Map
+[options="header",width="72%"]
+|===
+|Value |Description
+|env |Environment
+|cwd |Working directory
+|stdin |STDIN
+|timeout |Timeout in seconds
+|errexit |Exit immediately when an error is encountered
+|error |Custom error message when errexit is triggered
+|===
+
+=== Example
+----
+local ls = exec.cmd'/bin/ls'
+ls.env = {'LC_ALL=C'}
+local tmp = '/tmp'
+local dev = '/dev'
+local r, o = ls('%s %s', tmp, dev)
+----
+
+== *exec.run*(_String_) -> _Function_
+A quick way run programs if you only need to set arguments.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Executable
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|function| A function that can be called; the function also returns the same values as `exec.command`
+|===
+
+=== Example
+----
+local rm = exec.run 'rm'
+rm'/tmp/test'
+----
