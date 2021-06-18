@@ -7,8 +7,6 @@ local T = require("test")
 --#
 --# Format string variants that wraps `string.format`. +
 --#
---# Loaded in the global namespace. No need to `require()`.
---#
 --# toc::[]
 --#
 --# == *fmt.print*(_String_, _..._)
