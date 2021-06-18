@@ -6,7 +6,7 @@ Module loaders.
 
 toc::[]
 
-== *ll.PreloadEmbedded*(*lua.LState)
+== *ll.Preload*(*lua.LState)
 Add `package.loaders` entry for loading plain Lua modules from `internal/lua`. +
 This allows Lua code to `require()` these modules.
 
