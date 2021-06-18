@@ -1,4 +1,4 @@
-do
+return setmetatable({}, { __call = function()
 	local F = string.format
 	local gmatch = string.gmatch
 	local find = string.find
@@ -115,4 +115,4 @@ do
 		end
 		return t
 	end
-end
+end})

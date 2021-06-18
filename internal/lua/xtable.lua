@@ -1,5 +1,5 @@
-do
-	local type, setmetatable, ipairs, next, pairs, getmetatable =
+return setmetatable({}, { __call = function()
+		local type, setmetatable, ipairs, next, pairs, getmetatable =
 		type, setmetatable, ipairs, next, pairs, getmetatable
 
 	local gsub = string.gsub
@@ -192,4 +192,4 @@ do
 			__metatable = false,
 		})
 	end
-end
+end})
