@@ -92,7 +92,7 @@ Available options are:
 	ll.PreloadGo(L, "uuid")
 	ll.PreloadGo(L, "ulid")
 	ll.PreloadGo(L, "redis")
-	ll.PreloadEmbedded(L)
+	ll.Preload(L)
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)

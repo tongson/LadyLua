@@ -25,10 +25,10 @@ var luaSrc embed.FS
 //#
 //# toc::[]
 //#
-//# == *ll.PreloadEmbedded*(*lua.LState)
+//# == *ll.Preload*(*lua.LState)
 //# Add `package.loaders` entry for loading plain Lua modules from `internal/lua`. +
 //# This allows Lua code to `require()` these modules.
-func PreloadEmbedded(L *lua.LState) {
+func Preload(L *lua.LState) {
 	embedLoader := func(l *lua.LState) int {
 		name := l.CheckString(1)
 		src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", name))
