@@ -75,8 +75,6 @@ Available options are:
 	ll.GlobalLoader(L, "pi")
 	ll.GlobalLoader(L, "exec")
 	ll.PatchLoader(L, "exec")
-	ll.PatchLoader(L, "table")
-	ll.PatchLoader(L, "string")
 	ll.GoLoader(L, "http")
 	ll.GoLoader(L, "json")
 	ll.GoLoader(L, "crypto")
