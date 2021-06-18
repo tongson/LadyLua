@@ -2,11 +2,16 @@ local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
 require("xtable")()
 local expect = T.expect
---# = table
+--# = xtable
 --# :toc:
 --# :toc-placement!:
 --#
 --# Functions added to the global `table` namespace.
+--#
+--# To load:
+--# ----
+--# require("xtable"()
+--# ----
 --#
 --# toc::[]
 --#

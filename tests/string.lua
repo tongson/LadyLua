@@ -1,11 +1,16 @@
 local not_main = pcall(debug.getlocal, 4, 1)
 local T = require("test")
 require("xstring")()
---# = string
+--# = xstring
 --# :toc:
 --# :toc-placement!:
 --#
 --# Functions added to the global `string` namespace.
+--#
+--# To load:
+--# ----
+--# require("xstring"()
+--# ----
 --#
 --# toc::[]
 --#
