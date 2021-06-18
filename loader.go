@@ -48,8 +48,7 @@ func EmbedLoader(L *lua.LState) {
 
 //#
 //# == *ll.PatchLoader*(*lua.LState, string)
-//# For monkey-patching Lua values. +
-//# One example is in `internal/lua/table.lua`. It adds custom functions to the global `table` value.
+//# For monkey-patching Lua values.
 //#
 //# NOTE: Severely degrades VM start up time.
 //#
