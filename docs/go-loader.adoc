@@ -6,11 +6,11 @@ Module loaders.
 
 toc::[]
 
-== *ll.EmbedLoader*(*lua.LState)
+== *ll.PreloadEmbedded*(*lua.LState)
 Add `package.loaders` entry for loading plain Lua modules from `internal/lua`. +
 This allows Lua code to `require()` these modules.
 
-== *ll.PatchLoader*(*lua.LState, string)
+== *ll.LoadPatch*(*lua.LState, string)
 For monkey-patching Lua values.
 
 [NOTE]
@@ -25,7 +25,7 @@ Severely degrades VM start up time.
 |string |Basename of Lua source in `internal/lua`
 |===
 
-== *ll.LuaGlobalLoader*(*lua.LState, string)
+== *ll.LoadGlobalLua*(*lua.LState, string)
 For adding Lua values into the global `_G` environment.
 
 === Arguments
@@ -35,7 +35,7 @@ For adding Lua values into the global `_G` environment.
 |string |Basename of Lua source in `internal/lua`
 |===
 
-== *ll.MainLoader*(*lua.LState, string)
+== *ll.Main*(*lua.LState, string)
 The entrypoint(main) Lua code for standalone projects.
 
 === Arguments
@@ -45,7 +45,7 @@ The entrypoint(main) Lua code for standalone projects.
 |string |Lua source code
 |===
 
-== *ll.ModuleLoader*(*lua.LState, string, string)
+== *ll.PreloadModule*(*lua.LState, string, string)
 Load plain Lua modules into `package.preload`. Useful for your own Lua modules loaded from standalone projects.
 
 === Arguments
@@ -56,7 +56,7 @@ Load plain Lua modules into `package.preload`. Useful for your own Lua modules l
 |string |Lua source code
 |===
 
-== *ll.GLobalLoader*(*lua.LState, string)
+== *ll.LoadGlobalGo*(*lua.LState, string)
 Load gopher-lua (Go) module into the global `_G` environment. +
 
 === Arguments
@@ -66,7 +66,7 @@ Load gopher-lua (Go) module into the global `_G` environment. +
 |string |Name of the module
 |===
 
-== *ll.GoLoader*(*lua.LState, string)
+== *ll.PreloadGo*(*lua.LState, string)
 Load gopher-lua (Go) module into `package.preload`. +
 
 === Arguments
