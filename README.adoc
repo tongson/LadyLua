@@ -17,8 +17,8 @@ Next release: *0.9.0 Scared Shrapnel* +
 + New module: bimap +
 + New module: tuple +
 + New module: argparse +
-+ Removed `exec.cmd` and `exec.run` +
 + `table` and `string` extensions are no longer loaded by default +
++ Moved `exec.cmd` and `exec.run` to `exec` extensions module +
 + Added table.clone +
 + Added table.read_only +
 + Bug fix: list +
