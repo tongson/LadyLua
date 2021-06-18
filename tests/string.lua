@@ -1,5 +1,6 @@
 local not_main = pcall(debug.getlocal, 4, 1)
 local T = require("test")
+require("xstring")()
 --# = string
 --# :toc:
 --# :toc-placement!:
