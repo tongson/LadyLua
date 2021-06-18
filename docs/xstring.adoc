@@ -1,8 +1,13 @@
-= string
+= xstring
 :toc:
 :toc-placement!:
 
 Functions added to the global `string` namespace.
+
+To load:
+----
+require("xstring"()
+----
 
 toc::[]
 

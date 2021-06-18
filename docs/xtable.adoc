@@ -1,8 +1,13 @@
-= table
+= xtable
 :toc:
 :toc-placement!:
 
 Functions added to the global `table` namespace.
+
+To load:
+----
+require("xtable"()
+----
 
 toc::[]
 
