@@ -1,4 +1,4 @@
-= xtable
+= extension: table
 :toc:
 :toc-placement!:
 
@@ -6,7 +6,7 @@ Additional functions for table operations
 
 To load and patch global `table` namespace:
 ----
-require("xtable")()
+extend("table")
 ----
 
 toc::[]

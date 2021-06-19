@@ -1,4 +1,4 @@
-= xexec
+= extension: exec
 :toc:
 :toc-placement!:
 
@@ -6,7 +6,7 @@ Additional functions for the exec namespace.
 
 To load and patch global `exec` namespace:
 ----
-require("xexec")()
+extend("exec")
 ----
 
 toc::[]

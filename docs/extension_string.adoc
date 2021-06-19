@@ -1,4 +1,4 @@
-= xstring
+= extension: string
 :toc:
 :toc-placement!:
 
@@ -6,7 +6,7 @@ Additional functions for string operations.
 
 To load and patch global `string` namespace:
 ----
-require("xstring")()
+extend("string")
 ----
 
 toc::[]
