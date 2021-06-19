@@ -1,6 +1,8 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
-require("xtable")()
+--require("xtable")()
+extend("table")
+
 local expect = T.expect
 --# = xtable
 --# :toc:

@@ -1,6 +1,8 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
-require("xexec")()
+--require("xexec")()
+extend("exec")
+
 local D = "/tmp/exec.command"
 local F = "/tmp/exec.command/file"
 --# = xexec

@@ -162,6 +162,10 @@ func LoadGlobalGo(L *lua.LState, name string) {
 		L.SetGlobal("pi", L.NewFunction(ll.GlobalPi))
 		return
 	}
+	if name == "extend" {
+		L.SetGlobal("extend", L.NewFunction(ll.Extend))
+		return
+	}
 	L.RaiseError("Unknown module.")
 }
 
