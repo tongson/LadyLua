@@ -5,7 +5,7 @@ extend("exec")
 
 local D = "/tmp/exec.command"
 local F = "/tmp/exec.command/file"
---# = xexec
+--# = extension: exec
 --# :toc:
 --# :toc-placement!:
 --#
@@ -13,7 +13,7 @@ local F = "/tmp/exec.command/file"
 --#
 --# To load and patch global `exec` namespace:
 --# ----
---# require("xexec")()
+--# extend("exec")
 --# ----
 --#
 --# toc::[]

@@ -4,7 +4,7 @@ local T = require("test")
 extend("table")
 
 local expect = T.expect
---# = xtable
+--# = extension: table
 --# :toc:
 --# :toc-placement!:
 --#
@@ -12,7 +12,7 @@ local expect = T.expect
 --#
 --# To load and patch global `table` namespace:
 --# ----
---# require("xtable")()
+--# extend("table")
 --# ----
 --#
 --# toc::[]

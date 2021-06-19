@@ -3,7 +3,7 @@ local T = require("test")
 --require("xstring")()
 extend("string")
 
---# = xstring
+--# = extension: string
 --# :toc:
 --# :toc-placement!:
 --#
@@ -11,7 +11,7 @@ extend("string")
 --#
 --# To load and patch global `string` namespace:
 --# ----
---# require("xstring")()
+--# extend("string")
 --# ----
 --#
 --# toc::[]
