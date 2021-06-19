@@ -158,10 +158,6 @@ func LoadGlobalGo(L *lua.LState, name string) {
 		L.SetField(nsOs, "sleep", L.NewFunction(ll.OsSleep))
 		return
 	}
-	if name == "pi" {
-		L.SetGlobal("pi", L.NewFunction(ll.GlobalPi))
-		return
-	}
 	if name == "extend" {
 		L.SetGlobal("extend", L.NewFunction(ll.Extend))
 		return

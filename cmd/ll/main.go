@@ -72,7 +72,6 @@ Available options are:
 	defer L.Close()
 	ll.LoadGlobalGo(L, "fs")
 	ll.LoadGlobalGo(L, "os")
-	ll.LoadGlobalGo(L, "pi")
 	ll.LoadGlobalGo(L, "extend")
 	ll.LoadGlobalGo(L, "exec")
 	ll.PreloadGo(L, "http")
