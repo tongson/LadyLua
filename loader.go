@@ -96,11 +96,8 @@ func LoadGlobalLua(L *lua.LState, mod string) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Lua source code
 //# |===
-func Main(L *lua.LState, src string) {
-	if err := L.DoString(src); err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
+func Main(L *lua.LState, src string) error {
+	return L.DoString(src)
 }
 
 //#
