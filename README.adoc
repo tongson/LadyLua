@@ -214,7 +214,7 @@ Wonder how it compares to PUC-Rio Lua 5.1.5 and LuaJIT2?
 
 Here's a benchmark for object access time. Check the `bench/` directory for the code. The results are from the default 100M runs. GopherLua is fast enough for unconvoluted work. It also demonstrates that LuaJIT is too smart for these benchmarks.
 
-.GopherLua
+.LadyLua
 |=======================
 |68.998712974 |Standard (solid)
 |81.63775507999999 |Standard (metatable)
