@@ -6,7 +6,7 @@ Wrapper to https://github.com/prologic/bitcask[Bitcask].
 
 toc::[]
 
-== *bitcask.open*(_String_) -> _Userdata_
+== *bitcask.open*(_String_[, _Number_]) -> _Userdata_
 Open a database. Creates a new database if it does not exists.
 
 === Arguments
@@ -14,6 +14,7 @@ Open a database. Creates a new database if it does not exists.
 |===
 |Type |Description
 |string |Path for directory hierarchy
+|number |Maximum value size in bytes; default 64KiB
 |===
 
 === Returns
