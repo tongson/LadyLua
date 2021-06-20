@@ -44,12 +44,13 @@
 --# Documentation and tests from etlua project page.
 --# Check github.com/leafo/etlua for information on the `Parser` raw API.
 --# ====
-return function()
-	local T = require("test")
-	local template = require("template")
-	local compile = template.compile
-	local render = template.render
-	local Parser = template.Parser
+local included = pcall(debug.getlocal, 4, 1)
+local T = require("test")
+local template = require("template")
+local compile = template.compile
+local render = template.render
+local Parser = template.Parser
+local single = function()
 	do
 		local cases = {
 			{
@@ -182,4 +183,11 @@ This is my message to <%= [=[oh yeah  %>"]=] %>]],
 			end
 		end
 	end
+end
+if included then
+	return function()
+		T["template"] = single
+	end
+else
+	T["template"] = single
 end
