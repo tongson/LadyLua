@@ -1,6 +1,6 @@
 extend("exec")
 local included = pcall(debug.getlocal, 4, 1)
-local T = require 'test'
+local T = require("test")
 local bitcask = require("bitcask")
 local db
 --# = bitcask
@@ -29,7 +29,7 @@ local db
 --# |userdata |Database lock
 --# |===
 local bitcask_open = function()
-  T.is_function(bitcask.open)
+	T.is_function(bitcask.open)
 	db = bitcask.open("/tmp/bitcask", 256000)
 	T.is_userdata(db)
 	T.is_true(fs.isdir("/tmp/bitcask"))
@@ -179,7 +179,7 @@ local bitcask_close = function()
 	T.is_true(db:close())
 end
 if included then
-  return function()
+	return function()
 		T["bitcask.open"] = bitcask_open
 		T["bitcask.put"] = bitcask_put
 		T["bitcask.get"] = bitcask_get
@@ -190,16 +190,16 @@ if included then
 		T["bitcask binary values"] = binary_values
 		T["bitcask.close"] = bitcask_close
 		exec.run.rm("-r", "-f", "/tmp/bitcask")
-  end
+	end
 else
-		T["bitcask.open"] = bitcask_open
-		T["bitcask.put"] = bitcask_put
-		T["bitcask.get"] = bitcask_get
-		T["bitcask.has"] = bitcask_has
-		T["bitcask.delete"] = bitcask_delete
-		T["bitcask.keys"] = bitcask_keys
-		T["bitcask.sync"] = bitcask_sync
-		T["bitcask binary values"] = binary_values
-		T["bitcask.close"] = bitcask_close
-		exec.run.rm("-r", "-f", "/tmp/bitcask")
+	T["bitcask.open"] = bitcask_open
+	T["bitcask.put"] = bitcask_put
+	T["bitcask.get"] = bitcask_get
+	T["bitcask.has"] = bitcask_has
+	T["bitcask.delete"] = bitcask_delete
+	T["bitcask.keys"] = bitcask_keys
+	T["bitcask.sync"] = bitcask_sync
+	T["bitcask binary values"] = binary_values
+	T["bitcask.close"] = bitcask_close
+	exec.run.rm("-r", "-f", "/tmp/bitcask")
 end
