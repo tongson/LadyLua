@@ -216,12 +216,12 @@ Here's a benchmark for object access time. Check the `bench/` directory for the 
 
 .GopherLua
 |=======================
-|72.804599166 |Standard (solid)
-|85.15575082900001 |Standard (metatable)
-|76.84095142800001 |Object using closures (PiL 16.4)
-|56.77138606499997 |Object using closures (noself)
-|54.96075333699997 |Direct Access
-|32.508254155999964 |Local Variable
+|68.998712974 |Standard (solid)
+|81.63775507999999 |Standard (metatable)
+|73.37786640899998 |Object using closures (PiL 16.4)
+|48.266743347000016 |Object using closures (noself)
+|46.76494954999998 |Direct Access
+|26.742789899 |Local Variable
 |=======================
 
 .Lua 5.1.5
