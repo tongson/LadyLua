@@ -1,3 +1,4 @@
+extend("exec")
 local included = pcall(debug.getlocal, 4, 1)
 local T = require 'test'
 local bitcask = require("bitcask")
@@ -153,6 +154,15 @@ local bitcask_sync = function()
 	T.is_function(db.sync)
 	T.is_true(db:sync())
 end
+local binary_values = function()
+	local C = require("crypto")
+	local bin = fs.read("/usr/bin/test")
+	local hash = C.sha256(bin)
+	local x,y = db:put("binary", bin)
+	local value = db:get("binary")
+	local got = C.sha256(value)
+	T.equal(hash, got)
+end
 --#
 --# == *:close*() -> _Boolean_
 --# Release database lock.
@@ -176,6 +186,7 @@ if included then
 		T["bitcask.delete"] = bitcask_delete
 		T["bitcask.keys"] = bitcask_keys
 		T["bitcask.sync"] = bitcask_sync
+		T["bitcask binary values"] = binary_values
 		T["bitcask.close"] = bitcask_close
 		exec.run.rm("-r", "-f", "/tmp/bitcask")
   end
@@ -187,6 +198,7 @@ else
 		T["bitcask.delete"] = bitcask_delete
 		T["bitcask.keys"] = bitcask_keys
 		T["bitcask.sync"] = bitcask_sync
+		T["bitcask binary values"] = binary_values
 		T["bitcask.close"] = bitcask_close
 		exec.run.rm("-r", "-f", "/tmp/bitcask")
 end
