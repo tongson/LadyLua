@@ -107,7 +107,7 @@ See this -> https://github.com/tongson/patch_tuesday[patch_tuesday] Github repos
 == Modules
 Check the `docs` directory for more information about these modules.
 
-=== Compiled-in modules
+=== Available modules
 
 [options="header",width="88%"]
 |===
@@ -146,8 +146,25 @@ Check the `docs` directory for more information about these modules.
 [NOTE]
 ====
 If it says *N* in the *Global* field, you need to `require()` it. +
-Modules that are type `Go` should be loaded through `ll.GoLoader`
+Modules that are type `Go` should be loaded through `ll.PreloadGo`
 ====
+
+=== Extensions
+These extensions extends a global namespace or module.
+
+Load by adding a call to `extend`. Example:
+----
+extend("json")
+----
+
+[options="header",width="88%"]
+|===
+|Extension |
+|table |
+|string |
+|exec |
+|json |
+|===
 
 === DSL modules
 Lua modules are single file Lua source that are loaded from the current working directory.
