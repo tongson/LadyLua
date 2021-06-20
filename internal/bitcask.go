@@ -175,7 +175,8 @@ func bitcaskRegister(L *lua.LState) {
 
 func bitcaskOpen(L *lua.LState) int {
 	f := L.CheckString(1)
-	db, _ := bitcask.Open(f)
+	n := L.OptNumber(2, lua.LNumber(65536))
+	db, _ := bitcask.Open(f, bitcask.WithMaxValueSize(uint64(n)))
 	ud := L.NewUserData()
 	ud.Value = db
 	L.SetMetatable(ud, L.GetTypeMetatable(BITCASK_TYPE))

@@ -11,7 +11,7 @@ local db
 --#
 --# toc::[]
 --#
---# == *bitcask.open*(_String_) -> _Userdata_
+--# == *bitcask.open*(_String_[, _Number_]) -> _Userdata_
 --# Open a database. Creates a new database if it does not exists.
 --#
 --# === Arguments
@@ -19,6 +19,7 @@ local db
 --# |===
 --# |Type |Description
 --# |string |Path for directory hierarchy
+--# |number |Maximum value size in bytes; default 64KiB
 --# |===
 --#
 --# === Returns
@@ -29,7 +30,7 @@ local db
 --# |===
 local bitcask_open = function()
   T.is_function(bitcask.open)
-	db = bitcask.open("/tmp/bitcask")
+	db = bitcask.open("/tmp/bitcask", 256000)
 	T.is_userdata(db)
 	T.is_true(fs.isdir("/tmp/bitcask"))
 end
@@ -156,9 +157,9 @@ local bitcask_sync = function()
 end
 local binary_values = function()
 	local C = require("crypto")
-	local bin = fs.read("/usr/bin/test")
+	local bin = fs.read("/usr/bin/ls")
 	local hash = C.sha256(bin)
-	local x,y = db:put("binary", bin)
+	T.is_true(db:put("binary", bin))
 	local value = db:get("binary")
 	local got = C.sha256(value)
 	T.equal(hash, got)
