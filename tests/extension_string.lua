@@ -1,4 +1,4 @@
-local not_main = pcall(debug.getlocal, 4, 1)
+local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
 --require("xstring")()
 extend("string")
@@ -269,7 +269,7 @@ local string_to_map = function()
 	T.equal(z[string.char(2) .. string.char(21)], true)
 	T.equal(z["six"], true)
 end
-if not_main then
+if included then
 	return function()
 		T["string.trim_start"] = string_trim_start
 		T["string.trim_end"] = string_trim_end
