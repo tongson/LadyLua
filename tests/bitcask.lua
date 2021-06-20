@@ -9,6 +9,12 @@ local db
 --#
 --# Wrapper to https://github.com/prologic/bitcask[Bitcask].
 --#
+--# [NOTE]
+--# ====
+--# Maximum key size is *64* bytes +
+--# Default maximum value size is *64* KiB
+--# ====
+--#
 --# toc::[]
 --#
 --# == *bitcask.open*(_String_[, _Number_]) -> _Userdata_
