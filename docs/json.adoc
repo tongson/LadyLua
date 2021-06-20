@@ -39,23 +39,3 @@ Decode JSON to Lua value
 |Type |Description
 |any |Lua value
 |===
-
-== *json.array*(_String_)
-JSON array iterator
-
-=== Arguments
-[options="header",width="72%"]
-|===
-|Type |Description
-|string |JSON
-|===
-
-== *json.object*(_String_)
-JSON object iterator.
-
-=== Arguments
-[options="header",width="72%"]
-|===
-|Type |Description
-|string |JSON
-|===

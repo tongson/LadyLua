@@ -1,0 +1,32 @@
+= extension: json
+:toc:
+:toc-placement!:
+
+Additional functions for the `json` module.
+
+To load and patch `json` namespace:
+----
+extend("json")
+----
+
+toc::[]
+
+== *json.array*(_String_)
+JSON array iterator
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON
+|===
+
+== *json.object*(_String_)
+JSON object iterator.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON
+|===
