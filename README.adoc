@@ -159,11 +159,11 @@ extend("json")
 
 [options="header",width="88%"]
 |===
-|Extension |
-|table |
-|string |
-|exec |
-|json |
+|Extension
+|table
+|string
+|exec
+|json
 |===
 
 === DSL modules
