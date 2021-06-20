@@ -178,7 +178,7 @@ func LoadGlobalGo(L *lua.LState, name string) {
 func PreloadGo(L *lua.LState, name string) {
 	switch name {
 	case "json":
-		L.PreloadModule("ll_json", ljson.Loader)
+		L.PreloadModule("json", ljson.Loader)
 	case "http":
 		L.PreloadModule("http", gluahttp.Xloader)
 	case "mysql":
