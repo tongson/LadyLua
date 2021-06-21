@@ -16,8 +16,8 @@ import (
 
 var start time.Time
 
-const versionNumber = "0.9.0"
-const codeName = "\"Scared Shrapnel\""
+const versionNumber = "1.0.0"
+const codeName = "\"Black Future\""
 
 func main() {
 	start = time.Now()
