@@ -15,5 +15,5 @@ func DslLoader(L *lua.LState, mod string) {
 	src, _ := dslSrc.ReadFile(fmt.Sprintf("internal/dsl/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
 	L.Push(fn)
-	L.PCall(0, 0, nil)
+	L.Call(0, 0)
 }
