@@ -784,7 +784,7 @@ local Epilogue = function()
 	Unmount()
 end
 local Json = require("json")
-ENV.NOTIFY = Setmetatable({}, {
+_G["NOTIFY"] = Setmetatable({}, {
 	__newindex = function(_, k, v)
 		local key = k:upper()
 		Notify_Toggle[key] = v
@@ -824,7 +824,7 @@ ENV.NOTIFY = Setmetatable({}, {
 		end
 	end,
 })
-ENV.FROM = function(base, cname, assets)
+_G["FROM"] = function(base, cname, assets)
 	Name = cname or require("ksuid").new()
 	local found = function()
 		local _, so, _ = buildah({
@@ -866,7 +866,7 @@ ENV.FROM = function(base, cname, assets)
 		})
 	end
 end
-ENV.ADD = function(src, dest, og, mo)
+_G["ADD"] = function(src, dest, og, mo)
 	if not Name then
 		Ok("ADD", { skip = true, name = false })
 		return
@@ -892,7 +892,7 @@ ENV.ADD = function(src, dest, og, mo)
 	}
 	B()
 end
-ENV.RUN = function(v)
+_G["RUN"] = function(v)
 	if not Name then
 		Ok("RUN", { skip = true, name = false })
 		return
@@ -905,7 +905,7 @@ ENV.RUN = function(v)
 	}
 	B(v)
 end
-ENV.SH = function(sc)
+_G["SH"] = function(sc)
 	if not Name then
 		Ok("SH", { skip = true, name = false })
 		return
@@ -921,7 +921,7 @@ ENV.SH = function(sc)
 	}
 	B()
 end
-ENV.RR = function(dir, a)
+_G["RR"] = function(dir, a)
 	if not Name then
 		Ok("RR", { skip = true, name = false })
 		return
@@ -947,7 +947,7 @@ ENV.RR = function(dir, a)
 	}
 	B()
 end
-ENV.SCRIPT = function(s)
+_G["SCRIPT"] = function(s)
 	if not Name then
 		Ok("SCRIPT", { skip = true, name = false })
 		return
@@ -976,7 +976,7 @@ __58jvnv82_04fimmv
 		})
 	end
 end
-ENV.APT_GET = function(v)
+_G["APT_GET"] = function(v)
 	if not Name then
 		Ok("APT_GET", { skip = true, name = false })
 		return
@@ -1005,7 +1005,7 @@ ENV.APT_GET = function(v)
 	}
 	B(v)
 end
-ENV.APT_PURGE = function(p)
+_G["APT_PURGE"] = function(p)
 	if not Name then
 		Ok("APT_PURGE", { skip = true, name = false })
 		return
@@ -1026,7 +1026,7 @@ ENV.APT_PURGE = function(p)
 	B.log = { package = p }
 	B()
 end
-ENV.APK = function(v)
+_G["APK"] = function(v)
 	if not Name then
 		Ok("APK", { skip = true, name = false })
 		return
@@ -1042,7 +1042,7 @@ ENV.APK = function(v)
 	}
 	B(v)
 end
-ENV.COPY = function(src, dest, og, mo)
+_G["COPY"] = function(src, dest, og, mo)
 	if not Name then
 		Ok("COPY", { skip = true, name = false })
 		return
@@ -1072,7 +1072,7 @@ ENV.COPY = function(src, dest, og, mo)
 	}
 	B()
 end
-ENV.UPLOAD = function(src, dest)
+_G["UPLOAD"] = function(src, dest)
 	if not Name then
 		Ok("UPLOAD", { skip = true, name = false })
 		return
@@ -1115,7 +1115,7 @@ ENV.UPLOAD = function(src, dest)
 		})
 	end
 end
-ENV.MKDIR = function(d, mode)
+_G["MKDIR"] = function(d, mode)
 	if not Name then
 		Ok("MKDIR", { skip = true, name = false })
 		return
@@ -1144,7 +1144,7 @@ ENV.MKDIR = function(d, mode)
 		})
 	end
 end
-ENV.CHMOD = function(p, mode)
+_G["CHMOD"] = function(p, mode)
 	if not Name then
 		Ok("CHMOD", { skip = true, name = false })
 		return
@@ -1168,7 +1168,7 @@ ENV.CHMOD = function(p, mode)
 		})
 	end
 end
-ENV.DOWNLOAD = function(src, dest)
+_G["DOWNLOAD"] = function(src, dest)
 	if not Name then
 		Ok("DOWNLOAD", { skip = true, name = false })
 		return
@@ -1204,7 +1204,7 @@ ENV.DOWNLOAD = function(src, dest)
 		})
 	end
 end
-ENV.RM = function(f)
+_G["RM"] = function(f)
 	if not Name then
 		Ok("RM", { skip = true, name = false })
 		return
@@ -1239,10 +1239,10 @@ ENV.RM = function(f)
 	end
 	Unmount()
 end
-ENV.CONFIG = Setmetatable({}, {
+_G["CONFIG"] = Setmetatable({}, {
 	__newindex = function(_, k, v)
 		if not Name then
-			Ok("RUN", { skip = true, name = false })
+			Ok("CONFIG", { skip = true, name = false })
 			return
 		end
 		k = k:lower()
@@ -1260,7 +1260,7 @@ ENV.CONFIG = Setmetatable({}, {
 		B()
 	end,
 })
-ENV.ENTRYPOINT = function(...)
+_G["ENTRYPOINT"] = function(...)
 	local entrypoint = Json.encode({ ... })
 	do
 		local B = Buildah("ENTRYPOINT(exe)")
@@ -1289,7 +1289,7 @@ ENV.ENTRYPOINT = function(...)
 		B()
 	end
 end
-ENV.ARCHIVE = function(cname)
+_G["ARCHIVE"] = function(cname)
 	Epilogue()
 	local B = Buildah("ARCHIVE")
 	B.cmd = {
@@ -1305,7 +1305,7 @@ ENV.ARCHIVE = function(cname)
 	}
 	B()
 end
-ENV.COMMIT = function(cname)
+_G["COMMIT"] = function(cname)
 	Epilogue()
 	local B = Buildah("COMMIT")
 	B.cmd = {
@@ -1321,7 +1321,7 @@ ENV.COMMIT = function(cname)
 	}
 	B()
 end
-ENV.PUSH = function(lc, cname)
+_G["PUSH"] = function(lc, cname)
 	local B = Buildah("PUSH")
 	B.cmd = {
 		"push",
@@ -1336,7 +1336,7 @@ ENV.PUSH = function(lc, cname)
 	}
 	B()
 end
-ENV.DIR = function(dirname)
+_G["DIR"] = function(dirname)
 	Epilogue()
 	local B = Buildah("DIR")
 	B.cmd = {
@@ -1352,7 +1352,7 @@ ENV.DIR = function(dirname)
 	}
 	B()
 end
-ENV.TAR = function(filename)
+_G["TAR"] = function(filename)
 	local location = "/tmp/" .. Name
 	local script = [[
 TAR=$(find %s -maxdepth 1 -type f -exec file {} \+ | awk -F\: '/archive/{print $1}')
@@ -1388,7 +1388,7 @@ rm -rf "%s"
 		})
 	end
 end
-ENV.PURGE = function(a, opts)
+_G["PURGE"] = function(a, opts)
 	if not Name then
 		Ok("PURGE", { skip = true, name = false })
 		return
@@ -1458,4 +1458,4 @@ ENV.PURGE = function(a, opts)
 	end
 end
 Util.format_operator()
-setfenv(0, ENV)
+setfenv(1, ENV)
