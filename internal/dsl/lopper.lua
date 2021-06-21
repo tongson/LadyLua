@@ -177,19 +177,7 @@ local Command = function(exe)
 	})
 end
 
-local ENV = {}
-local LOCAL = {}
-setmetatable(ENV, {
-	__newindex = function(_, k, v)
-		return rawset(LOCAL, k, v)
-	end,
-	__index = function(_, value)
-		return rawget(LOCAL, value)
-			or rawget(_G, value)
-			or Panic("Unknown command or variable", { string = value })
-	end,
-})
-ENV["Notify"] = setmetatable({}, {
+_G["Notify"] = setmetatable({}, {
 	__call = function(_, msg, tbl)
 		return Notify_Function(msg, tbl, true)
 	end,
@@ -199,7 +187,7 @@ ENV["Notify"] = setmetatable({}, {
 		Notify = Notify_Function
 	end,
 })
-ENV["Shell"] = setmetatable({}, {
+_G["Shell"] = setmetatable({}, {
 	__newindex = function(t, k, v)
 		rawset(t, k, v) --> Use the metatable to store settings
 	end,
@@ -211,7 +199,7 @@ ENV["Shell"] = setmetatable({}, {
 		})
 	end,
 })
-ENV["Script"] = setmetatable({}, {
+_G["Script"] = setmetatable({}, {
 	__newindex = function(t, k, v)
 		rawset(t, k, v) --> Use the metatable to store settings
 	end,
@@ -222,8 +210,8 @@ ENV["Script"] = setmetatable({}, {
 		})
 	end,
 })
-ENV["Command"] = Command
-ENV["InterfaceAddr"] = InterfaceAddr
+_G["Command"] = Command
+_G["InterfaceAddr"] = InterfaceAddr
 package.preload["lopper"] = function()
 	return {
 		panic = Panic,
@@ -235,4 +223,3 @@ package.preload["lopper"] = function()
 	}
 end
 util.format_operator()
-setfenv(0, ENV)
