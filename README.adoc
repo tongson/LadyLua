@@ -4,6 +4,8 @@
 
 Single static executable, batteries-included, Lua 5.1 interpreter. A fat https://github.com/yuin/gopher-lua[GopherLua] amalgamation of modules in Go and Lua.
 
+== Changelog
+
 Next release: *1.0.0 Black Future* +
 
 Current release: *0.9.0 Scared Shrapnel* +
