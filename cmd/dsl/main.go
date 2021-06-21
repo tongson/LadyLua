@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/chzyer/readline"
-	"github.com/tongson/LadyLua/src"
+	"github.com/tongson/LadyLua"
 	"github.com/tongson/gl"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
@@ -16,8 +16,8 @@ import (
 
 var start time.Time
 
-const versionNumber = "0.9.0"
-const codeName = "\"Scared Shrapnel\""
+const versionNumber = "1.0.0"
+const codeName = "\"Black Future\""
 
 func main() {
 	start = time.Now()
@@ -70,31 +70,28 @@ Available options are:
 
 	L := lua.NewState()
 	defer L.Close()
-	ll.GlobalLoader(L, "fs")
-	ll.GlobalLoader(L, "os")
-	ll.GlobalLoader(L, "pi")
-	ll.GlobalLoader(L, "exec")
-	ll.PatchLoader(L, "exec")
-	ll.PatchLoader(L, "table")
-	ll.PatchLoader(L, "string")
-	ll.GoLoader(L, "http")
-	ll.GoLoader(L, "json")
-	ll.GoLoader(L, "crypto")
-	ll.GoLoader(L, "ksuid")
-	ll.GoLoader(L, "mysql")
-	ll.GoLoader(L, "lz4")
-	ll.GoLoader(L, "telegram")
-	ll.GoLoader(L, "pushover")
-	ll.GoLoader(L, "slack")
-	ll.GoLoader(L, "logger")
-	ll.GoLoader(L, "fsnotify")
-	ll.GoLoader(L, "bitcask")
-	ll.GoLoader(L, "refmt")
-	ll.GoLoader(L, "rr")
-	ll.GoLoader(L, "uuid")
-	ll.GoLoader(L, "ulid")
-	ll.GoLoader(L, "redis")
-	ll.EmbedLoader(L)
+	ll.LoadGlobalGo(L, "fs")
+	ll.LoadGlobalGo(L, "os")
+	ll.LoadGlobalGo(L, "extend")
+	ll.LoadGlobalGo(L, "exec")
+	ll.PreloadGo(L, "http")
+	ll.PreloadGo(L, "json")
+	ll.PreloadGo(L, "crypto")
+	ll.PreloadGo(L, "ksuid")
+	ll.PreloadGo(L, "mysql")
+	ll.PreloadGo(L, "lz4")
+	ll.PreloadGo(L, "telegram")
+	ll.PreloadGo(L, "pushover")
+	ll.PreloadGo(L, "slack")
+	ll.PreloadGo(L, "logger")
+	ll.PreloadGo(L, "fsnotify")
+	ll.PreloadGo(L, "bitcask")
+	ll.PreloadGo(L, "refmt")
+	ll.PreloadGo(L, "rr")
+	ll.PreloadGo(L, "uuid")
+	ll.PreloadGo(L, "ulid")
+	ll.PreloadGo(L, "redis")
+	ll.Preload(L)
 	//__DSL__ll.DslLoader(L, "__DSLMOD__")
 
 	if opt_m > 0 {

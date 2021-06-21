@@ -4,14 +4,15 @@ package ll
 import (
 	"embed"
 	"fmt"
+
 	"github.com/yuin/gopher-lua"
 )
 
-//go:embed dsl/*
+//go:embed internal/dsl/*
 var dslSrc embed.FS
 
 func DslLoader(L *lua.LState, mod string) {
-	src, _ := dslSrc.ReadFile(fmt.Sprintf("dsl/%s.lua", mod))
+	src, _ := dslSrc.ReadFile(fmt.Sprintf("internal/dsl/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
 	L.Push(fn)
 	L.PCall(0, 0, nil)
