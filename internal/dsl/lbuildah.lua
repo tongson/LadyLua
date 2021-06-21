@@ -710,16 +710,7 @@ local Buildah = function(msg)
 		end,
 	})
 end
-local ENV = {}
-local LOCAL = {}
-Setmetatable(ENV, {
-	__newindex = function(_, k, v)
-		return rawset(LOCAL, k, v)
-	end,
-	__index = function(_, value)
-		return rawget(LOCAL, value) or rawget(_G, value) or Panic("Unknown command or variable", { string = value })
-	end,
-})
+
 local Name, Assets
 local Creds
 do
@@ -1458,4 +1449,3 @@ _G["PURGE"] = function(a, opts)
 	end
 end
 Util.format_operator()
-setfenv(1, ENV)
