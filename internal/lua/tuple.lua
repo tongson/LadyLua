@@ -13,6 +13,7 @@ local type = type
 local assert = assert
 local select = select
 local t_concat = table.concat
+extend("table")
 
 local tuple = {}
 tuple.__index = tuple
