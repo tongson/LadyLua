@@ -93,6 +93,14 @@ local push_back_string = function()
 	local x = l:pop_back()
 	expect("2")(x)
 end
+local push_alias = function()
+	local l = list.new()
+	func(l.push)
+	l:push("1")
+	l:push("2")
+	local x = l:pop_back()
+	expect("2")(x)
+end
 local push_back_number = function()
 	local l = list.new()
 	l:push_back(1)
@@ -155,6 +163,14 @@ local pop_back = function()
 	l:push_back("1")
 	l:push_back("2")
 	local x = l:pop_back()
+	expect("2")(x)
+end
+local pop_alias = function()
+	local l = list.new()
+	func(l.pop)
+	l:push_back("1")
+	l:push_back("2")
+	local x = l:pop()
 	expect("2")(x)
 end
 --#
@@ -330,6 +346,7 @@ if included then
 	return function()
 		T["new"] = new
 		T["push_front_string"] = push_front_string
+		T["push alias"] = push_alias
 		T["push_front_number"] = push_front_number
 		T["push_front_boolean"] = push_front_boolean
 		T["push_front_number"] = push_front_number
@@ -339,6 +356,7 @@ if included then
 		T["push_back_number"] = push_back_number
 		T["pop_front"] = pop_front
 		T["pop_back"] = pop_back
+		T["pop alias"] = pop_alias
 		T["contains"] = contains
 		T["size"] = count
 		T["front"] = front
@@ -350,6 +368,7 @@ if included then
 else
 	T["new"] = new
 	T["push_front_string"] = push_front_string
+	T["push alias"] = push_alias
 	T["push_front_number"] = push_front_number
 	T["push_front_boolean"] = push_front_boolean
 	T["push_front_number"] = push_front_number
@@ -359,6 +378,7 @@ else
 	T["push_back_number"] = push_back_number
 	T["pop_front"] = pop_front
 	T["pop_back"] = pop_back
+	T["pop alias"] = pop_alias
 	T["contains"] = contains
 	T["size"] = size
 	T["front"] = front
