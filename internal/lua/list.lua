@@ -183,6 +183,9 @@ local function _new()
     return setmetatable(ins, _M)
 end
 
+_M.push = _M.push_back
+_M.pop = _M.pop_back
+
 return {
     new = _new
 }
