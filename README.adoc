@@ -9,6 +9,8 @@ toc::[]
 == Changelog
 
 Next release: *1.0.0 Black Future* +
++ Aliases: `list:push` `list:pop`
++ Fix `tuple` module
 
 Current release: *0.9.0 Scared Shrapnel* +
 + Loading plain Lua source is now done through `package.loaders` +
