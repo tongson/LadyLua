@@ -78,6 +78,8 @@ end
 --#
 --# == *:push_back*(_Value_)
 --# Push to end of list.
+--# 
+--# Alias: `:push`
 --#
 --# === Arguments
 --# [options="header",width="72%"]
@@ -150,6 +152,8 @@ end
 --#
 --# == *:pop_back*() -> _Value_
 --# Pop value from end of list.
+--#
+--# Alias: `:pop`
 --#
 --# === Returns
 --# [options="header",width="72%"]
