@@ -22,12 +22,21 @@ local complex_multi_assign = function()
 	expect("e")(a.d)
 	expect(false)(f == 1) -- bug
 end
+local map_overwrite = function()
+	local t = {
+		[1] = 1,
+		"2"
+	}
+	expect(1)(#t)
+end
 if included then
 	return function()
 		T["simple multiple assignment"] = multiple_assignment
 		T["complex multi assign #315"] = complex_multi_assign
+		T["map vs list"] = map_overwrite
 	end
 else
 	T["simple multiple assignment"] = multiple_assignment
 	T["complex multi assign #315"] = complex_multi_assign
+	T["map vs list"] = map_overwrite
 end
