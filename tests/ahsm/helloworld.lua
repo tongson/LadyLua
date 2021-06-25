@@ -6,12 +6,12 @@ ahsm.debug = debug_plain.out
 
 local hello_s = ahsm.state({
 	after = function()
-		print("HW STATE hello")
+		--print("HW STATE hello")
 	end,
 }) --state with exit func
 local world_s = ahsm.state({
 	before = function()
-		print("HW STATE world")
+		--print("HW STATE world")
 	end,
 }) --state with entry func
 local t11 = ahsm.transition({
@@ -38,10 +38,10 @@ local helloworld_s = ahsm.state({
 		end
 	end),
 	before = function()
-		print("HW doo running")
+		--print("HW doo running")
 	end,
 	after = function()
-		print("HW doo iteration count", a)
+		--print("HW doo iteration count", a)
 	end, -- will show efect of doo on exit
 })
 
