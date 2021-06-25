@@ -1,8 +1,7 @@
 return setmetatable({}, {
 	__call = function()
 		exec.cmd = function(exe)
-			local format, len, gsub, gmatch =
-				string.format, string.len, string.gsub, string.gmatch
+			local format, len, gsub, gmatch = string.format, string.len, string.gsub, string.gmatch
 			local set = {}
 			return setmetatable(set, {
 				__call = function(_, a, ...)
@@ -33,7 +32,13 @@ return setmetatable({}, {
 							if n == 0 then
 								str = str .. ("\n %s > "):format(prefix)
 							end
-							return format("%s\n %s >\n %s > %s\n", header, prefix, prefix, str)
+							return format(
+								"%s\n %s >\n %s > %s\n",
+								header,
+								prefix,
+								prefix,
+								str
+							)
 						else
 							return ""
 						end
