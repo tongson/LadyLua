@@ -1,7 +1,7 @@
 --- Debug formatter that generates readable output.
--- @usage local ahsm = require 'ahsm'
+-- @usage local state = require 'state'
 -- local debug_plain = require 'tools.debug_plain'
--- ahsm.debug = debug_plain.out
+-- state.debug = debug_plain.out
 
 local M = {}
 
@@ -26,7 +26,7 @@ end
 -- Defaults to `print`
 M.print = print
 
--- -- Function to be passed assigned to `ahsm.debug`.
+-- -- Function to be passed assigned to `state.debug`.
 M.out = function(action, p1, p2, p3, p4)
 	if action == "step" then
 		M.print(

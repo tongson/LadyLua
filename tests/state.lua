@@ -1,12 +1,12 @@
-local ahsm = require("ahsm")
-ahsm.debug = require("tests.ahsm.debug_plain").out
+local state = require("state")
+state.debug = require("tests.state.debug_plain").out
 
-local composite_s = require("tests.ahsm.composite")
+local composite_s = require("tests.state.composite")
 composite_s.before = function()
 	print("MACHINE STARTED")
 end
 
-local hsm = ahsm.init(composite_s) -- create hsm from root composite state
+local hsm = state.init(composite_s) -- create hsm from root composite state
 
 local function send(e)
 	print("TEST sending event", e)

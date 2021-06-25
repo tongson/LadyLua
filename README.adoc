@@ -11,7 +11,7 @@ toc::[]
 Next release: *1.0.0 Black Future* +
 + Aliases: `list:push` `list:pop` +
 + Fix `tuple` module +
-+ New module: `ahsm` +
++ New module: `state` +
 
 Current release: *0.9.0 Scared Shrapnel* +
 + Loading plain Lua source is now done through `package.loaders` +
@@ -121,7 +121,7 @@ Check the `docs` directory for more information about these modules.
 [options="header",width="88%"]
 |===
 |Module      |Global |Type |Source           |License
-|ahsm        |N      |Lua  |ahsm             |MIT
+|state       |N      |Lua  |ahsm             |MIT
 |argparse    |N      |Lua  |argparse         |MIT
 |bimap       |N      |Lua  |cw-lua           |MIT
 |bitcask     |N      |Go   |                 |MIT
