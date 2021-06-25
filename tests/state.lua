@@ -10,7 +10,7 @@ local hsm = state.init(composite_s) -- create hsm from root composite state
 
 local function send(e)
 	print("TEST sending event", e)
-	hsm.send_event(e)
+	hsm.send(e)
 end
 local function loop(e)
 	print("===", hsm.loop())

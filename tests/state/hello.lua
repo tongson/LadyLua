@@ -49,6 +49,6 @@ local helloworld_s = state.state({
 
 --local helloworld_s = require 'helloworld'
 local fsm = state.init(helloworld_s)
-fsm.send_event("e_restart")
+fsm.send("e_restart")
 while fsm.loop() do
 end
