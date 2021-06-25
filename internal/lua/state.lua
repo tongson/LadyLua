@@ -93,13 +93,13 @@ local mt_transition = {
 			local number_v = tonumber(v)
 			if number_v then -- add a timeout
 				if M.debug then
-					M.debug("sched", t, v)
+					M.debug("tmout", t, v)
 				end
 				src_out_trans[EV_TIMEOUT] = src_out_trans[EV_TIMEOUT] or {}
 				src_out_trans[EV_TIMEOUT][t] = true
 			elseif src_out_trans[EV_TIMEOUT] then -- remove a timeout
 				if M.debug then
-					M.debug("sched", t, "unset")
+					M.debug("tmout", t, "unset")
 				end
 				src_out_trans[EV_TIMEOUT][t] = nil
 			end
