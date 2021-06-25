@@ -340,9 +340,9 @@ M.init = function(root)
 	-- The event will be queued, and then the machine will be looped using
 	-- @{loop}.
 	-- BEWARE: if this is called from a callback from C side, will cause a core
-	-- panic. In this scenario you must use @{queue_event}.
+	-- panic. In this scenario you must use @{queue}.
 	-- @param ev an event. Can be of any type except nil.
-	hsm.send_event = function(ev)
+	hsm.send = function(ev)
 		evqueue.n = evqueue.n + 1
 		evqueue[evqueue.n] = ev
 		hsm.loop()
@@ -350,9 +350,9 @@ M.init = function(root)
 
 	--- Queue new event to the hsm.
 	-- The queued messages will be processed when machine is stepped using
-	-- @{step} or @{loop}. Also, see @{send_event}
+	-- @{step} or @{loop}. Also, see @{send}
 	-- @param ev an event. Can be of any type except nil.
-	hsm.queue_event = function(ev)
+	hsm.queue = function(ev)
 		evqueue.n = evqueue.n + 1
 		evqueue[evqueue.n] = ev
 	end
