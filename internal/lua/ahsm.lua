@@ -107,7 +107,7 @@ local mt_transition = {
 
 local mt_state_gc = {
   __gc = function (s)
-    if s.exit then s.exit(s) end
+    if s.after then s.after(s) end
   end
 }
 
@@ -153,7 +153,7 @@ M.init = function ( root )
 
   init( root )
 
-  if root.exit then -- use gc to trigger exit() function on root state
+  if root.after then -- use gc to trigger after() function on root state
     setmetatable(root, mt_state_gc)
   end
 
@@ -162,7 +162,7 @@ M.init = function ( root )
   local active_trans = {} --must be balanced (enter and leave step() empty)
 
   local function enter_state (hsm, s, now)
-    if s.entry then s.entry(s) end
+    if s.before then s.before(s) end
     s.container.current_substate = s
     s.done = nil
     current_states[s] = true
@@ -185,7 +185,7 @@ M.init = function ( root )
   end
 
   local function exit_state (hsm, s)
-    if s.exit then s.exit(s) end
+    if s.after then s.after(s) end
     current_states[s] = nil
     if s.current_substate then 
       exit_state (hsm, s.current_substate) --FIXME call or not call?
@@ -378,10 +378,10 @@ end
 -- A state can be either leaf or composite. A composite state has a hsm 
 -- embedded, defined by the `states`, `transitions` and `initial` fields. When a
 -- compodite state is activated the embedded hsm is started from the `initial`
--- state. The activity of a state must be provided in the `entry`, `exit` and `op` 
+-- state. The activity of a state must be provided in the `before`, `after` and `op` 
 -- fields.
--- @field entry an optional function to be called on entering the state.
--- @field exit an optional function to be called on leaving the state.
+-- @field before an optional function to be called on entering the state.
+-- @field after an optional function to be called on leaving the state.
 -- @field op an optional function that will be called when the state is 
 -- active. If this function returns true, it will be polled again. If
 -- returns false, it is considered as completed.
