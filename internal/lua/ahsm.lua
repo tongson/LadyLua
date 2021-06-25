@@ -34,7 +34,7 @@ local function init ( composite )
   for _, s in pairs(composite.states) do
     s.container = composite
     for nt, t in pairs(composite.transitions or {}) do
-      if t.src == s then 
+      if t.from == s then 
         for _, e in pairs(t.events or {}) do
           if M.debug then
             M.debug('trsel', s, t, e)
@@ -88,7 +88,7 @@ local mt_transition = {
   end,
   __newindex = function(t, k, v)
     if k=='timeout' then
-      local src_out_trans = t.src.out_trans
+      local src_out_trans = t.from.out_trans
       local number_v = tonumber(v)
       if number_v then  -- add a timeout
         if M.debug then M.debug('sched', t, v) end
@@ -117,8 +117,8 @@ local mt_state_gc = {
 -- @return the initilized transition
 M.transition = function (transition_s)
   transition_s = transition_s or {}
-  assert(transition_s.src, 'missing source state in transition')
-  assert(transition_s.tgt, 'missing target state in transition')
+  assert(transition_s.from, 'missing source state in transition')
+  assert(transition_s.to, 'missing target state in transition')
 
   local timeout = transition_s.timeout
   transition_s.timeout = nil
@@ -273,28 +273,28 @@ M.init = function ( root )
 
     --call leave_state, traverse transition, and enter_state
     for t, e in pairs(active_trans) do
-      if current_states[t.src] then --src state could've been left
+      if current_states[t.from] then --src state could've been left
         if M.debug then 
           M.debug('step', t, e) 
         end
         idle = false
-        exit_state(hsm, t.src)
+        exit_state(hsm, t.from)
         if t.effect then t.effect(e) end --FIXME pcall
-        enter_state(hsm, t.tgt, now)
+        enter_state(hsm, t.to, now)
       end
       active_trans[t] = nil
     end
 
-    --call doo on active_states
+    --call op on active_states
     for s, _ in pairs(current_states) do
       if not s.done then
-        if type(s.doo)=='nil' then 
+        if type(s.op)=='nil' then 
           evqueue.n = evqueue.n + 1
           evqueue[evqueue.n] = s.EV_DONE
           s.done = true
           idle = false -- let step again for new event
-        elseif type(s.doo)=='function' then 
-          local poll_flag = s.doo(s) --TODO pcall
+        elseif type(s.op)=='function' then 
+          local poll_flag = s.op(s) --TODO pcall
           if not poll_flag then 
             evqueue.n = evqueue.n + 1
             evqueue[evqueue.n] = s.EV_DONE
@@ -336,12 +336,12 @@ M.init = function ( root )
 
   --- Step trough the hsm.
   -- A single step will consume all pending events, and do a round evaluating
-  -- available doo() functions on all active states. This call finishes as soon 
+  -- available op() functions on all active states. This call finishes as soon 
   -- as the cycle count is reached or the hsm becomes idle.
   -- @param count maximum number of cycles to perform. Defaults to 1
   -- @return the idle status, and the next impending expiration time if 
   -- available. Being idle means that all events have been consumed and no 
-  -- doo() function is pending to be run. The expiration time indicates there 
+  -- op() function is pending to be run. The expiration time indicates there 
   -- is a transition with timeout waiting.
   hsm.step = function ( count )
     count = count or 1
@@ -378,16 +378,16 @@ end
 -- A state can be either leaf or composite. A composite state has a hsm 
 -- embedded, defined by the `states`, `transitions` and `initial` fields. When a
 -- compodite state is activated the embedded hsm is started from the `initial`
--- state. The activity of a state must be provided in the `entry`, `exit` and `doo` 
+-- state. The activity of a state must be provided in the `entry`, `exit` and `op` 
 -- fields.
 -- @field entry an optional function to be called on entering the state.
 -- @field exit an optional function to be called on leaving the state.
--- @field doo an optional function that will be called when the state is 
+-- @field op an optional function that will be called when the state is 
 -- active. If this function returns true, it will be polled again. If
 -- returns false, it is considered as completed.
 -- @field EV_DONE This field is created when calling @{state}, and is an
--- event emitted when the `doo()` function is completed, or immediatelly if 
--- no `doo()` function is provided.
+-- event emitted when the `op()` function is completed, or immediatelly if 
+-- no `op()` function is provided.
 -- @field states When the state is a composite this table's values are the 
 -- states of the embedded hsm. Keys can be used to provide a name.
 -- @field transitions When the state is a composite this table's values are
@@ -397,7 +397,7 @@ end
 
 ------
 -- Transition specification.
--- @field src source state.
+-- @field from source state.
 -- @field dst destination state.
 -- @field events table where the values are the events that trigger the 
 -- transition. Can be supressed by the guard function
