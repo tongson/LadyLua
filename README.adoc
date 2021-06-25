@@ -121,7 +121,6 @@ Check the `docs` directory for more information about these modules.
 [options="header",width="88%"]
 |===
 |Module      |Global |Type |Source           |License
-|state       |N      |Lua  |ahsm             |MIT
 |argparse    |N      |Lua  |argparse         |MIT
 |bimap       |N      |Lua  |cw-lua           |MIT
 |bitcask     |N      |Go   |                 |MIT
@@ -144,6 +143,7 @@ Check the `docs` directory for more information about these modules.
 |refmt       |N      |Go   |                 |MIT
 |rr          |N      |Go   |                 |MIT
 |slack       |N      |Go   |                 |MIT
+|state       |N      |Lua  |ahsm             |MIT
 |telegram    |N      |Go   |                 |MIT
 |template    |N      |Lua  |etlua            |MIT
 |test        |N      |Lua  |u-test           |MIT
