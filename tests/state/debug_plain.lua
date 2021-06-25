@@ -42,7 +42,7 @@ M.out = function(action, p1, p2, p3, p4)
 		)
 	elseif action == "init" then
 		M.print(action .. "\t" .. debug_names[p1])
-	elseif action == "sched" then
+	elseif action == "tmout" then
 		--M.print(action, p1, p2, debug_names[p3],'--'..debug_names[p4]..'->', debug_names[p4.to])
 		--called before init
 		M.print(action .. "\t" .. (debug_names[p1] or tostring(p1)) .. "\t" .. tostring(p2))
