@@ -13,7 +13,23 @@ local type = type
 local assert = assert
 local select = select
 local t_concat = table.concat
-extend("table")
+
+local _clone
+_clone = function(obj, seen)
+    if type(obj) ~= "table" then
+        return obj
+    end
+    if seen and seen[obj] then
+        return seen[obj]
+    end
+    local s = seen or {}
+    local res = {}
+    s[obj] = res
+    for k, v in next, obj do
+        res[_clone(k, s)] = _clone(v, s)
+    end
+    return setmetatable(res, getmetatable(obj))
+end
 
 local tuple = {}
 tuple.__index = tuple
@@ -144,7 +160,7 @@ end
 return setmetatable(tuple, {
   __call = function(self,...)
     -- LadyLua modification; clone() to make tables passed immutable.
-    local new_tuple = table.clone{n = select('#',...),...}
+    local new_tuple = _clone{n = select('#',...),...}
     return setmetatable(new_tuple, tuple)
   end,
 })
