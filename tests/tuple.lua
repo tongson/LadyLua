@@ -6,6 +6,7 @@ local func = T.is_function
 local tbl = T.is_table
 local bool = T.is_boolean
 local num = T.is_number
+local error_raised = T.error_raised
 --# = tuple
 --# :toc:
 --# :toc-placement!:
@@ -166,25 +167,8 @@ local array = function()
 	expect(1)(arr[4][1])
 	arr[4][1] = 0
 	expect(0)(arr[4][1])
+	expect(1)(tup[4][1])
 	expect(1)(o[1])
-end
-local addition = function()
-	local tupA = tuple(1, 2, false)
-	local tupB = tuple(4, 5, true)
-	local nt = tupA + tupB
-	expect(1)(nt[1])
-	expect(2)(nt[2])
-	expect(false)(nt[3])
-	expect(4)(nt[4])
-	expect(5)(nt[5])
-	expect(true)(nt[6])
-	local xt = tupB + tupA
-	expect(4)(xt[1])
-	expect(5)(xt[2])
-	expect(true)(xt[3])
-	expect(1)(xt[4])
-	expect(2)(xt[5])
-	expect(false)(xt[6])
 end
 local comparison = function()
 	local tupA = tuple(1, true)
@@ -197,13 +181,6 @@ local comparison = function()
 	local tupD = tuple(1, 2, 3)
 	local tupE = tuple(1, 2)
 	expect(true)(tupA == tupB)
-end
-local multiplication = function()
-	local tupA = tuple(1, 2)
-	local new_tup = tupA * 3
-	local other_tup = 3 * tupA
-	expect("(1, 2, 1, 2, 1, 2)")(tostring(new_tup))
-	expect("(1, 2, 1, 2, 1, 2)")(tostring(other_tup))
 end
 local less_than = function()
 	local tupA = tuple(1,2)
@@ -233,6 +210,13 @@ local mutate = function()
 	expect(2)(tup[1])
 	expect(2)(tup[2])
 end
+local newindex = function()
+	local tup = tuple(1, 2)
+	local fn = function()
+		tup[3] = 3
+	end
+	error_raised(fn)
+end
 if included then
 	return function()
 		T["Valid types"] = types
@@ -250,6 +234,7 @@ if included then
 		T["<"] = less_than
 		T["<="] = lte
 		T["mutate"] = mutate
+		T["newindex"] = newindex
 	end
 else
 	T["Valid types"] = types
@@ -267,4 +252,5 @@ else
 	T["<"] = less_than
 	T["<="] = lte
 	T["mutate"] = mutate
+	T["newindex"] = newindex
 end
