@@ -173,7 +173,6 @@ end
 return setmetatable(tuple, {
 	__call = function(tbl, ...)
 		-- LadyLua modification; clone() to make tables passed immutable.
-		local new_tuple = _clone({ n = select("#", ...), ... })
-		return setmetatable(new_tuple, tbl)
+		return setmetatable(_clone({ n = select("#", ...), ... }), tbl)
 	end,
 })
