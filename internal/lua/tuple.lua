@@ -16,19 +16,29 @@ local t_concat = table.concat
 
 local _clone
 _clone = function(obj, seen)
-    if type(obj) ~= "table" then
-        return obj
-    end
-    if seen and seen[obj] then
-        return seen[obj]
-    end
-    local s = seen or {}
-    local res = {}
-    s[obj] = res
-    for k, v in next, obj do
-        res[_clone(k, s)] = _clone(v, s)
-    end
-    return setmetatable(res, getmetatable(obj))
+  if type(obj) ~= "table" then
+      return obj
+  end
+  if seen and seen[obj] then
+      return seen[obj]
+  end
+  local s = seen or {}
+  local res = {}
+  s[obj] = res
+  for k, v in next, obj do
+      res[_clone(k, s)] = _clone(v, s)
+  end
+  return setmetatable(res, getmetatable(obj))
+end
+
+_readonly = function(t)
+	return setmetatable({}, {
+		__index = t,
+		__newindex = function()
+			return error("Attempt to modify read-only table", 0)
+		end,
+		__metatable = false,
+	})
 end
 
 local tuple = {}
