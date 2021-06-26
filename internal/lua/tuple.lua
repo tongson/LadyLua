@@ -51,7 +51,7 @@ end
 
 -- Returns a string representation of tuple
 function tuple:__tostring()
-	local t = self:contents()
+	local t = {unpack(self)}
 	for k, v in ipairs(t) do
 		t[k] = tostring(v)
 	end
@@ -99,7 +99,7 @@ end
 
 -- Converts tuple to simpe array ?
 function tuple:contents()
-	return _clone(self)
+	return _readonly(_clone(self))
 end
 
 -- ==========
