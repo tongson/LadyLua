@@ -220,6 +220,21 @@ local mutate = function()
 	expect(2)(tup[1])
 	expect(2)(tup[2])
 end
+local iterate = function()
+	local tup = tuple(1, 2)
+	local t = {}
+	for x, y in ipairs(tup) do
+		t[x] = y
+	end
+	expect(1)(t[1])
+	expect(2)(t[2])
+	local p = {}
+	for x, y in pairs(tup) do
+		p[x] = y
+	end
+	expect(1)(p[1])
+	expect(2)(p[2])
+end
 local newindex = function()
 	local tup = tuple(1, 2)
 	local fn = function()
@@ -244,6 +259,7 @@ if included then
 		T["<"] = less_than
 		T["<="] = lte
 		T["mutate"] = mutate
+		T["iterate"] = iterate
 		T["newindex"] = newindex
 	end
 else
@@ -262,5 +278,6 @@ else
 	T["<"] = less_than
 	T["<="] = lte
 	T["mutate"] = mutate
+	T["iterate"] = iterate
 	T["newindex"] = newindex
 end
