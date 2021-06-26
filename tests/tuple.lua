@@ -13,6 +13,8 @@ local error_raised = T.error_raised
 --#
 --# Implementation of ordered n-tuples.
 --#
+--# Tuples are fixed sized. Values can be changed for existing keys. Tables passed are copied.
+--#
 --# toc::[]
 --#
 --# == *tuple([...])* -> _Table_
