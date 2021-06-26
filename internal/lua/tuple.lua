@@ -42,7 +42,7 @@ _readonly = function(t)
 end
 
 local tuple = {}
---tuple.__index = tuple
+tuple.__index = tuple
 
 -- Collects values i to j to return a new tuple
 function tuple.__call(t, i, j)
@@ -174,7 +174,6 @@ return setmetatable(tuple, {
 	__call = function(tbl, ...)
 		-- LadyLua modification; clone() to make tables passed immutable.
 		local new_tuple = _clone({ n = select("#", ...), ... })
-		tbl.__index = tbl
 		return setmetatable(new_tuple, tbl)
 	end,
 })
