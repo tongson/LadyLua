@@ -32,7 +32,7 @@ _clone = function(obj, seen)
 end
 
 local tuple = {}
-tuple.__index = tuple
+--tuple.__index = tuple
 
 -- Collects values i to j to return a new tuple
 function tuple.__call(t,i,j)
@@ -89,7 +89,7 @@ end
 
 -- Converts tuple to simpe array ?
 function tuple:contents()
-  return {unpack(self)}
+  return _clone(self)
 end
 
 -- ==========
@@ -156,11 +156,16 @@ function tuple.__mul(t,n)
   end
 end
 
+function tuple.__newindex()
+	error("Attempted to add value to tuple.", 0)
+end
+
 -- Class constructor, wrapping up and return
 return setmetatable(tuple, {
-  __call = function(self,...)
+  __call = function(tbl, ...)
     -- LadyLua modification; clone() to make tables passed immutable.
-    local new_tuple = _clone{n = select('#',...),...}
-    return setmetatable(new_tuple, tuple)
+    local new_tuple = _clone{n = select('#',...), ...}
+    tbl.__index =  tbl
+    return setmetatable(new_tuple, tbl)
   end,
 })
