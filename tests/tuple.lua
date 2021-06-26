@@ -142,7 +142,12 @@ local size = function()
 end
 --#
 --# == *:contents(_Table_)* -> _Table_
---# Converts the tuple contents to a simple array.
+--# Converts the tuple contents to a read-only array.
+--#
+--# [NOTE]
+--# ====
+--# Lower level tables can be modified.
+--# ====
 --#
 --# === Arguments
 --# [options="header",width="72%"]
@@ -169,6 +174,11 @@ local array = function()
 	expect(0)(arr[4][1])
 	expect(1)(tup[4][1])
 	expect(1)(o[1])
+	-- Test read-only effect
+	local fn = function()
+		arr[4] = nil
+	end
+	error_raised(fn)
 end
 local comparison = function()
 	local tupA = tuple(1, true)
