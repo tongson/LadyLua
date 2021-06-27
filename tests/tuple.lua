@@ -122,6 +122,10 @@ local includes = function()
 	expect(true)(tup:includes(tuple('a', 'b', 'c')))
 	expect(false)(tup:includes(tuple('d')))
 end
+local includes_nil = function()
+	local tup = tuple(1, nil, 3)
+	expect(true)(tup:includes(tuple(nil)))
+end
 --#
 --# == *:has(_Table_)* -> _Boolean_
 --# Returns `true` when the given value was found in the tuple. Otherwhise, returns `false`.
@@ -275,6 +279,7 @@ if included then
 		T["Slicing with nil"] = slicing_nil
 		T[":elements()"] = elements
 		T[":includes()"] = includes
+		T[":includes nil"] = includes_nil
 		T[":has()"] = has
 		T[":has(nil)"] = has_nil
 		T[":size()"] = size
@@ -297,6 +302,7 @@ else
 	T["Slicing with nil"] = slicing_nil
 	T[":elements()"] = elements
 	T[":includes()"] = includes
+	T[":includes nil"] = includes_nil
 	T[":has()"] = has
 	T[":has(nil)"] = has_nil
 	T[":size()"] = size
