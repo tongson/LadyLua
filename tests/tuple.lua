@@ -41,7 +41,7 @@ local types = function()
 	expect(3)(x:size())
 end
 local table_test = function()
-	local o = {1}
+	local o = { 1 }
 	local t = tuple(o)
 	local x = t[1]
 	expect(1)(x[1])
@@ -51,7 +51,7 @@ local table_test = function()
 	expect(1)(o[1]) -- immutable because table was cloned.
 end
 local printing = function()
-	local tup = tuple('a', true, 1)
+	local tup = tuple("a", true, 1)
 	expect("(a, true, 1)")(tostring(tup))
 end
 local printing_nil = function()
@@ -59,9 +59,9 @@ local printing_nil = function()
 	expect("(1, nil, 2)")(tostring(nup))
 end
 local slicing = function()
-	local f = {1}
-	local tup = tuple('a', 'b', 'c', 'd', 'e', f)
-	local new_tup = tup(2,4)
+	local f = { 1 }
+	local tup = tuple("a", "b", "c", "d", "e", f)
+	local new_tup = tup(2, 4)
 	expect("b")(new_tup[1])
 	expect("c")(new_tup[2])
 	expect("d")(new_tup[3])
@@ -79,7 +79,7 @@ local slicing_nil = function()
 	expect(nil)(nnup[1])
 	expect(3)(nnup[2])
 	local xup = tuple(2, nil, 3)
-	local xxup = xup(1,2)
+	local xxup = xup(1, 2)
 	expect(2)(xxup[1])
 	expect(nil)(xxup[2])
 end
@@ -116,11 +116,11 @@ end
 --# |boolean |Result
 --# |===
 local includes = function()
-	local tup = tuple('a', 'b', 'c')
-	expect(true)(tup:includes(tuple('a')))
-	expect(true)(tup:includes(tuple('a', 'b')))
-	expect(true)(tup:includes(tuple('a', 'b', 'c')))
-	expect(false)(tup:includes(tuple('d')))
+	local tup = tuple("a", "b", "c")
+	expect(true)(tup:includes(tuple("a")))
+	expect(true)(tup:includes(tuple("a", "b")))
+	expect(true)(tup:includes(tuple("a", "b", "c")))
+	expect(false)(tup:includes(tuple("d")))
 end
 local includes_nil = function()
 	local tup = tuple(1, nil, 3)
@@ -144,9 +144,9 @@ end
 --# |boolean |Result
 --# |===
 local has = function()
-	local tup = tuple(0, false, '3')
+	local tup = tuple(0, false, "3")
 	expect(false)(tup:has(true))
-	expect(true)(tup:has('3'))
+	expect(true)(tup:has("3"))
 end
 local has_nil = function()
 	local tup = tuple(0, nil, 1)
@@ -163,7 +163,7 @@ end
 --# |number |Size of tuple
 --# |===
 local size = function()
-	local tup = tuple(0, false, '3')
+	local tup = tuple(0, false, "3")
 	expect(3)(tup:size())
 	expect(3)(#tup)
 end
@@ -191,7 +191,7 @@ end
 --# |===
 local array = function()
 	local o = { 1 }
-	local tup = tuple(0, false, '3', o)
+	local tup = tuple(0, false, "3", o)
 	local arr = tup:contents()
 	expect(0)(arr[1])
 	expect(false)(arr[2])
@@ -215,10 +215,10 @@ local array_nil = function()
 	expect(1)(arr[3])
 end
 local addition = function()
-        local x = tuple(1) + tuple(2)
+	local x = tuple(1) + tuple(2)
 	expect(1)(x[1])
 	expect(2)(x[2])
-	local y = tuple(3,4) + tuple("a", false)
+	local y = tuple(3, 4) + tuple("a", false)
 	expect(3)(y[1])
 	expect(4)(y[2])
 	expect("a")(y[3])
@@ -238,7 +238,7 @@ local comparison = function()
 	local tupC = tuple(1, false)
 	expect(false)(tupA == tupC)
 	expect(true)(tupA ~= tupC)
-	expect(true)(not(tupA == tupC))
+	expect(true)(not (tupA == tupC))
 	local tupD = tuple(1, 2, 3)
 	local tupE = tuple(1, 2)
 	expect(true)(tupA == tupB)
@@ -252,8 +252,8 @@ local comparison_nil = function()
 	expect(false)(tupC == tupD)
 end
 local less_than = function()
-	local tupA = tuple(1,2)
-	local tupB = tuple(2,3)
+	local tupA = tuple(1, 2)
+	local tupB = tuple(2, 3)
 	expect(true)(tupA < tupB)
 	expect(false)(tupB < tupA)
 	expect(true)(tupB > tupA)
@@ -261,14 +261,14 @@ local less_than = function()
 end
 local lte = function()
 	do
-		local tupA = tuple(1,2)
-		local tupB = tuple(1,3)
+		local tupA = tuple(1, 2)
+		local tupB = tuple(1, 3)
 		expect(true)(tupA <= tupB)
 		expect(false)(tupB <= tupA)
 	end
 	do
-		local tupA = tuple(1,2,3)
-		local tupB = tuple(2,2)
+		local tupA = tuple(1, 2, 3)
+		local tupB = tuple(2, 2)
 		expect(true)(tupA <= tupB)
 		expect(false)(tupB <= tupA)
 	end
