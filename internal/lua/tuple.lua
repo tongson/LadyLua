@@ -145,11 +145,14 @@ end
 
 -- Tuple addition
 function tuple.__add(a, b)
-	local t = a()
-	for _, element in b:elements() do
-		t[#t + 1] = element
+	local t = {}
+	for i, element in a:elements() do
+		t[i] = element
 	end
-	t.n = #t
+	for i, element in b:elements() do
+		t[a.n+i] = element
+	end
+	t.n = a.n + b.n
 	return t
 end
 
