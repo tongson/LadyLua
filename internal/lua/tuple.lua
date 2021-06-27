@@ -52,14 +52,14 @@ end
 -- Returns a string representation of tuple
 function tuple:__tostring()
 	local t = {}
-	for k, v in self:elements() do
+	for k, v in self:iterator() do
 		t[k] = tostring(v)
 	end
 	return ("(%s)"):format(t_concat(t, ", "))
 end
 
--- Tuple elements iterator function
-function tuple:elements(...)
+-- Tuple iterator function
+function tuple:iterator(...)
 	local m = self.n
 	local i = 0
 	return function(...)
@@ -77,7 +77,7 @@ end
 
 -- Tests if tuple contains element v
 function tuple:has(v)
-	for _, _v in self:elements() do
+	for _, _v in self:iterator() do
 		if _v == v then
 			return true
 		end
@@ -90,7 +90,7 @@ function tuple:includes(other)
 	if self.n < other.n then
 		return false
 	end
-	for _, element in other:elements() do
+	for _, element in other:iterator() do
 		if not self:has(element) then
 			return false
 		end
@@ -112,7 +112,7 @@ function tuple:__eq(other)
 	if self.n ~= other.n then
 		return false
 	end
-	for i, element in other:elements() do
+	for i, element in other:iterator() do
 		if element ~= self[i] then
 			return false
 		end
@@ -145,10 +145,10 @@ end
 -- Tuple addition
 function tuple.__add(a, b)
 	local t = {}
-	for i, element in a:elements() do
+	for i, element in a:iterator() do
 		t[i] = element
 	end
-	for i, element in b:elements() do
+	for i, element in b:iterator() do
 		t[a.n+i] = element
 	end
 	t.n = a.n + b.n
