@@ -85,7 +85,9 @@ local slicing_nil = function()
 end
 --#
 --# == *:iterator()*
---# Iterator function to traverse a tuple. Returns a count and a value at each step of iteration, until nil value is encountered or the end of the tuple was reached.
+--# Iterator function to traverse a tuple. Returns a count and a value at each step of iteration, until the end of the tuple was reached.
+--#
+--# Use this instead of `ipairs` since the tuple may contain `nil`.
 local iterator = function()
 	local tup = tuple(1, nil, 2, {}, "z")
 	local t = {}
