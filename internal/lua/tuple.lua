@@ -7,7 +7,6 @@
 
 local unpack = unpack or table.unpack
 local setmetatable = setmetatable
-local ipairs = ipairs
 local tostring = tostring
 local min = math.min
 local type = type
