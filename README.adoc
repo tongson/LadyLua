@@ -10,7 +10,7 @@ toc::[]
 
 Next release: *1.0.0 Black Future* +
 + Aliases: `list:push` `list:pop` +
-+ Fix `tuple` module +
++ `tuple` module fixes and enhancements +
 + New module: `state` +
 + New module: `graph` +
 
