@@ -78,7 +78,7 @@ end
 
 -- Tests if tuple contains element v
 function tuple:has(v)
-	for k, _v in ipairs(self) do
+	for k, _v in self:elements() do
 		if _v == v then
 			return true
 		end
