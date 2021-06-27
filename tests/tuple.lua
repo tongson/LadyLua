@@ -53,6 +53,8 @@ end
 local printing = function()
 	local tup = tuple('a', true, 1)
 	expect("(a, true, 1)")(tostring(tup))
+	local nup = tuple(1, nil, 2)
+	expect("(1, nil, 2)")(tostring(nup))
 end
 local slicing = function()
 	local f = {1}
