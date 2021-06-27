@@ -39,7 +39,8 @@ Current release: *0.9.0 Scared Shrapnel* +
 + gopher-lua fixes for `pcall`, `select`, `#` operator, and `string.gsub` +
 + Add `bitcask.open` configuration argument for maximum value size +
 
-Current release: *0.8.0 Freckled Serpent* +
+Old releases: +
+*0.8.0 Freckled Serpent* +
 + New setting for exec.*; timeout in seconds +
 + New json functions, array and object iterators +
 + New function: os.sleep +
@@ -49,7 +50,6 @@ Current release: *0.8.0 Freckled Serpent* +
 + Stripped 1MiB by removing password and html modules +
 + New module: list +
 
-Old releases: +
 *0.7.0 Negligent Clamshell* +
 + New module: bitcask +
 + New function: logger.time() +
