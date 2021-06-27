@@ -2,6 +2,7 @@
 -- tuple, A minimal tuple class for Lua
 -- Copyright (c) 2013 Roland Y., MIT License
 -- v0.2.0 - compatible Lua 5.1, 5.2, 5.3
+-- 2021 LadyLua modifications
 -- =========================================
 
 local unpack = unpack or table.unpack
@@ -65,7 +66,7 @@ function tuple:elements(...)
 	return function(...)
 		i = i + 1
 		while i <= m do
-			return i, self[i]
+			return i, self[i] or nil
 		end
 	end
 end
