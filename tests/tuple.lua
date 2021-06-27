@@ -73,15 +73,16 @@ end
 --# == *:elements()*
 --# Iterator function to traverse a tuple. Returns a count and a value at each step of iteration, until nil value is encountered or the end of the tuple was reached.
 local elements = function()
-	local tup = tuple(1, 2, {}, "z")
+	local tup = tuple(1, nil, 2, {}, "z")
 	local t = {}
 	for i, element in tup:elements() do
-		t[#t+1] = element
+		t[i] = element
 	end
 	expect(1)(t[1])
-	expect(2)(t[2])
-	tbl(t[3])
-	expect("z")(t[4])
+	expect(nil)(t[2])
+	expect(2)(t[3])
+	tbl(t[4])
+	expect("z")(t[5])
 end
 --#
 --# == *:includes(_Table_)* -> _Boolean_
