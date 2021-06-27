@@ -97,7 +97,7 @@ local left = function()
 	testing(l, r)
 end
 local right = function()
-	l, r = bimap.new{"foo", "bar", "baz"}
+	local l, r = bimap.new{"foo", "bar", "baz"}
 	testing(r, l)
 end
 if included then
