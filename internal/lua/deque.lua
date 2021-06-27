@@ -119,10 +119,12 @@ end
 
 local methods = {
   push_back = push_back,
+  push = push_back,
   push_front = push_front,
   peek_back = peek_back,
   peek_front = peek_front,
   pop_back = pop_back,
+  pop = pop_back,
   pop_front = pop_front,
   rotate_back = rotate_back,
   rotate_front = rotate_front,
