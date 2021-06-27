@@ -51,7 +51,7 @@ end
 
 -- Returns a string representation of tuple
 function tuple:__tostring()
-	local t = {unpack(self)}
+	local t = { unpack(self) }
 	for k, v in ipairs(t) do
 		t[k] = tostring(v)
 	end
@@ -60,10 +60,11 @@ end
 
 -- Tuple elements iterator function
 function tuple:elements(...)
+	local m = self.n
 	local i = 0
 	return function(...)
 		i = i + 1
-		if self[i] ~= nil then
+		while i <= m do
 			return i, self[i]
 		end
 	end
