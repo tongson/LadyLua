@@ -224,6 +224,13 @@ local addition = function()
 	expect("a")(y[3])
 	expect(false)(y[4])
 end
+local addition_nil = function()
+	local x = tuple(1, nil) + tuple(nil, 2)
+	expect(1)(x[1])
+	expect(nil)(x[2])
+	expect(nil)(x[3])
+	expect(2)(x[4])
+end
 local comparison = function()
 	local tupA = tuple(1, true)
 	local tupB = tuple(1, true)
@@ -303,6 +310,7 @@ if included then
 		T[":contents()"] = array
 		T[":contents with nil"] = array_nil
 		T["Addition"] = addition
+		T["Addition with nil"] = addition_nil
 		T["Comparison"] = comparison
 		T["Multiplication"] = multiplication
 		T["<"] = less_than
@@ -327,6 +335,7 @@ else
 	T[":contents()"] = array
 	T[":contents with nil"] = array_nil
 	T["Addition"] = addition
+	T["Addition with nil"] = addition_nil
 	T["Comparison"] = comparison
 	T["Multiplication"] = multiplication
 	T["<"] = less_than
