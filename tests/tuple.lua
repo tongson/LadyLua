@@ -84,12 +84,12 @@ local slicing_nil = function()
 	expect(nil)(xxup[2])
 end
 --#
---# == *:elements()*
+--# == *:iterator()*
 --# Iterator function to traverse a tuple. Returns a count and a value at each step of iteration, until nil value is encountered or the end of the tuple was reached.
-local elements = function()
+local iterator = function()
 	local tup = tuple(1, nil, 2, {}, "z")
 	local t = {}
-	for i, element in tup:elements() do
+	for i, element in tup:iterator() do
 		t[i] = element
 	end
 	expect(1)(t[1])
@@ -309,7 +309,7 @@ if included then
 		T["__tostring nil"] = printing_nil
 		T["Slicing"] = slicing
 		T["Slicing with nil"] = slicing_nil
-		T[":elements()"] = elements
+		T[":iterator()"] = iterator
 		T[":includes()"] = includes
 		T[":includes nil"] = includes_nil
 		T[":has()"] = has
@@ -335,7 +335,7 @@ else
 	T["__tostring nil"] = printing_nil
 	T["Slicing"] = slicing
 	T["Slicing with nil"] = slicing_nil
-	T[":elements()"] = elements
+	T[":iterator()"] = iterator
 	T[":includes()"] = includes
 	T[":includes nil"] = includes_nil
 	T[":has()"] = has
