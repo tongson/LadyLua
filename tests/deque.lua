@@ -77,6 +77,8 @@ end
 --# == *:push_back*(_Value_)
 --# Push to end of queue.
 --#
+--# Alias: `:push`
+--#
 --# === Arguments
 --# [options="header",width="72%"]
 --# |===
@@ -128,6 +130,8 @@ end
 --#
 --# == *:pop_back*() -> _Value_
 --# Pop value from end of queue.
+--#
+--# Alias: `:pop`
 --#
 --# === Returns
 --# [options="header",width="72%"]
