@@ -52,8 +52,8 @@ end
 
 -- Returns a string representation of tuple
 function tuple:__tostring()
-	local t = { unpack(self) }
-	for k, v in ipairs(t) do
+	local t = {}
+	for k, v in self:elements() do
 		t[k] = tostring(v)
 	end
 	return ("(%s)"):format(t_concat(t, ", "))
