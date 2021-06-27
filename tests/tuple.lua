@@ -243,6 +243,14 @@ local comparison = function()
 	local tupE = tuple(1, 2)
 	expect(true)(tupA == tupB)
 end
+local comparison_nil = function()
+	local tupA = tuple(1, nil)
+	local tupB = tuple(1, nil)
+	expect(true)(tupA == tupB)
+	local tupC = tuple(1)
+	local tupD = tuple(1, nil)
+	expect(false)(tupC == tupD)
+end
 local less_than = function()
 	local tupA = tuple(1,2)
 	local tupB = tuple(2,3)
@@ -312,6 +320,7 @@ if included then
 		T["Addition"] = addition
 		T["Addition with nil"] = addition_nil
 		T["Comparison"] = comparison
+		T["Comparison with nil"] = comparison_nil
 		T["Multiplication"] = multiplication
 		T["<"] = less_than
 		T["<="] = lte
@@ -337,6 +346,7 @@ else
 	T["Addition"] = addition
 	T["Addition with nil"] = addition_nil
 	T["Comparison"] = comparison
+	T["Comparison with nil"] = comparison_nil
 	T["Multiplication"] = multiplication
 	T["<"] = less_than
 	T["<="] = lte
