@@ -207,6 +207,13 @@ local array = function()
 	end
 	error_raised(fn)
 end
+local array_nil = function()
+	local tup = tuple(0, nil, 1)
+	local arr = tup:contents()
+	expect(0)(arr[1])
+	expect(nil)(arr[2])
+	expect(1)(arr[3])
+end
 local comparison = function()
 	local tupA = tuple(1, true)
 	local tupB = tuple(1, true)
@@ -284,6 +291,7 @@ if included then
 		T[":has(nil)"] = has_nil
 		T[":size()"] = size
 		T[":contents()"] = array
+		T[":contents with nil"] = array_nil
 		T["Addition"] = addition
 		T["Comparison"] = comparison
 		T["Multiplication"] = multiplication
@@ -307,6 +315,7 @@ else
 	T[":has(nil)"] = has_nil
 	T[":size()"] = size
 	T[":contents()"] = array
+	T[":contents with nil"] = array_nil
 	T["Addition"] = addition
 	T["Comparison"] = comparison
 	T["Multiplication"] = multiplication
