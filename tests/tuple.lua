@@ -53,6 +53,8 @@ end
 local printing = function()
 	local tup = tuple('a', true, 1)
 	expect("(a, true, 1)")(tostring(tup))
+end
+local printing_nil = function()
 	local nup = tuple(1, nil, 2)
 	expect("(1, nil, 2)")(tostring(nup))
 end
@@ -254,6 +256,7 @@ if included then
 		T["Valid types"] = types
 		T["Tables passed"] = table_test
 		T["__tostring"] = printing
+		T["__tostring nil"] = printing_nil
 		T["Slicing"] = slicing
 		T[":elements()"] = elements
 		T[":includes()"] = includes
@@ -273,6 +276,7 @@ else
 	T["Valid types"] = types
 	T["Tables passed"] = table_test
 	T["__tostring"] = printing
+	T["__tostring nil"] = printing_nil
 	T["Slicing"] = slicing
 	T[":elements()"] = elements
 	T[":includes()"] = includes
