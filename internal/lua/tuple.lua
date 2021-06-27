@@ -5,7 +5,7 @@
 -- 2021 LadyLua modifications
 -- =========================================
 
-local unpack = unpack or table.unpack
+local unpack = unpack
 local setmetatable = setmetatable
 local tostring = tostring
 local min = math.min
@@ -77,7 +77,7 @@ end
 
 -- Tests if tuple contains element v
 function tuple:has(v)
-	for k, _v in self:elements() do
+	for _, _v in self:elements() do
 		if _v == v then
 			return true
 		end
@@ -160,7 +160,7 @@ function tuple.__mul(t, n)
 	if type(n) == "number" then
 		assert(math.floor(n) == n, ("Wrong argument n. Integer expected, got (%s)"):format(n))
 		local _t
-		for i = 1, n do
+		for _ = 1, n do
 			_t = (_t or tuple()) + t
 		end
 		return _t
