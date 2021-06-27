@@ -100,6 +100,17 @@ local right = function()
 	local l, r = bimap.new{"foo", "bar", "baz"}
 	testing(r, l)
 end
+local iter = function()
+	local l, r = bimap.new{"foo", "bar", "baz"}
+	local t = {}
+	local x = l("raw")
+	for n = 1, l("len") do
+		t[n] = x[n]
+	end
+	expect("foo")(t[1])
+	expect("bar")(t[2])
+	expect("baz")(t[3])
+end
 if included then
 	return function()
 		T["new"] = new
@@ -107,6 +118,7 @@ if included then
 		T["len argument"] = len
 		T["left"] = left
 		T["right"] = right
+		T["iteration"] = iter
 	end
 else
 	T["new"] = new
@@ -114,4 +126,5 @@ else
 	T["len argument"] = len
 	T["left"] = left
 	T["right"] = right
+	T["iteration"] = iter
 end
