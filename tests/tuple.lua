@@ -37,6 +37,8 @@ local types = function()
 	num(n[1])
 	local z = tuple()
 	expect(nil)(z[1])
+	local x = tuple(1, nil, 2)
+	expect(3)(x:size())
 end
 local table_test = function()
 	local o = {1}
