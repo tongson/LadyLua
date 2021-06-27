@@ -144,6 +144,10 @@ local has = function()
 	expect(false)(tup:has(true))
 	expect(true)(tup:has('3'))
 end
+local has_nil = function()
+	local tup = tuple(0, nil, 1)
+	expect(true)(tup:has(nil))
+end
 --#
 --# == *:size(_Table_)* -> _Number_
 --# Returns the size (the count of values) of the tuple.
@@ -272,6 +276,7 @@ if included then
 		T[":elements()"] = elements
 		T[":includes()"] = includes
 		T[":has()"] = has
+		T[":has(nil)"] = has_nil
 		T[":size()"] = size
 		T[":contents()"] = array
 		T["Addition"] = addition
@@ -293,6 +298,7 @@ else
 	T[":elements()"] = elements
 	T[":includes()"] = includes
 	T[":has()"] = has
+	T[":has(nil)"] = has_nil
 	T[":size()"] = size
 	T[":contents()"] = array
 	T["Addition"] = addition
