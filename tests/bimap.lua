@@ -19,8 +19,8 @@ local tbl = T.is_table
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
---# |table |Map
---# |table |Map
+--# |table |Array side
+--# |table |Map side
 --# |===
 local new = function()
 	func(bimap.new)
