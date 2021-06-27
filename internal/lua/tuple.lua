@@ -66,7 +66,7 @@ function tuple:elements(...)
 	return function(...)
 		i = i + 1
 		while i <= m do
-			return i, self[i] or nil
+			return i, self[i]
 		end
 	end
 end
