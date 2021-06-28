@@ -13,6 +13,8 @@ Next release: *1.0.0 Black Future* +
 + Aliases: `deque:push` `deque:pop` +
 + `tuple` module fixes and enhancements +
 + Renamed `tuple:elements` to `tuple:iterator` +
++ Renamed `bimap` module to `map` +
++ Renamed `deque` module to `queue` +
 + New module: `state` +
 + New module: `graph` +
 
