@@ -380,8 +380,8 @@ if included then
 		T[":contents with nil"] = array_nil
 		T["Addition"] = addition
 		T["Addition with nil"] = addition_nil
-		T["Comparison"] = comparison
-		T["Comparison with nil"] = comparison_nil
+		T["Equality"] = comparison
+		T["Equality with nil"] = comparison_nil
 		T["Multiplication"] = multiplication
 		T["Multiplication with nils"] = multiplication_nil
 		T["<"] = less_than
@@ -409,8 +409,8 @@ else
 	T[":contents with nil"] = array_nil
 	T["Addition"] = addition
 	T["Addition with nil"] = addition_nil
-	T["Comparison"] = comparison
-	T["Comparison with nil"] = comparison_nil
+	T["Equality"] = comparison
+	T["Equality with nil"] = comparison_nil
 	T["Multiplication"] = multiplication
 	T["Multiplication with nils"] = multiplication_nil
 	T["<"] = less_than
