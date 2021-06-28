@@ -12,7 +12,7 @@ local tbl = T.is_table
 --#
 --# toc::[]
 --#
---# == *bimap.new*() -> _Table_, _Table_
+--# == *map.new*() -> _Table_, _Table_
 --# Create a new map.
 --#
 --# === Returns

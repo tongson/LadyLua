@@ -14,7 +14,7 @@ local nope = T.is_false
 --#
 --# toc::[]
 --#
---# == *deque.new*() -> _Table_
+--# == *queue.new*() -> _Table_
 --# Create a new queue.
 --#
 --# === Returns
