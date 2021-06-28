@@ -152,8 +152,9 @@ function tuple.__add(a, b)
 	for i, element in b:iterator() do
 		t[a.n+i] = element
 	end
-	t.n = a.n + b.n
-	return tuple(unpack(t))
+	local m = a.n + b.n
+	t.n = m
+	return tuple(unpack(t, 1, m))
 end
 
 -- Multiplication
