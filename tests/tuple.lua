@@ -18,6 +18,7 @@ local not_eq = T.not_equal
 --# . May contain `nil`
 --# . Values can be changed for existing keys
 --# . Tables passed are copied
+--# . Maximum of 199 values
 --#
 --# toc::[]
 --#
