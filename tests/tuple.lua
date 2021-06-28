@@ -7,6 +7,7 @@ local tbl = T.is_table
 local bool = T.is_boolean
 local num = T.is_number
 local error_raised = T.error_raised
+local not_eq = T.not_equal
 --# = tuple
 --# :toc:
 --# :toc-placement!:
@@ -66,6 +67,9 @@ local metatable = function()
 	local x = t:pop()
 	tbl(x)
 	expect(2)(x.two)
+	local a = tostring(l)
+	local b = tostring(t)
+	not_eq(a, b)
 end
 local printing = function()
 	local tup = tuple("a", true, 1)
