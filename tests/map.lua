@@ -4,7 +4,7 @@ local T = require("test")
 local expect = T.expect
 local func = T.is_function
 local tbl = T.is_table
---# = bimap
+--# = map
 --# :toc:
 --# :toc-placement!:
 --#

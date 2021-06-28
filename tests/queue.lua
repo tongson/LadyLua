@@ -6,7 +6,7 @@ local func = T.is_function
 local tbl = T.is_table
 local trve = T.is_true
 local nope = T.is_false
---# = deque
+--# = queue
 --# :toc:
 --# :toc-placement!:
 --#
