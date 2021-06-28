@@ -274,6 +274,22 @@ local comparison_nil = function()
 	local tupD = tuple(1, nil)
 	expect(false)(tupC == tupD)
 end
+local multiplication = function()
+	local t1 = tuple("a", "z") * 2
+	expect("a")(t1[1])
+	expect("z")(t1[2])
+	expect("a")(t1[3])
+	expect("z")(t1[4])
+	local t2 = tuple(1) * 3
+	expect(1)(t2[1])
+	expect(1)(t2[2])
+	expect(1)(t2[3])
+	local t3 = 2 * tuple(2)
+	expect(2)(t3[1])
+	expect(2)(t3[2])
+	local t4 = tuple() * 0
+	expect(nil)(t4)
+end
 local less_than = function()
 	local tupA = tuple(1, 2)
 	local tupB = tuple(2, 3)
