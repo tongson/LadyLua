@@ -55,10 +55,10 @@ local commands_after_args = function()
 	expect("temp.txt")(args.file)
 	expect(true)(args.remove)
 end
-local commands_flags = function()
+local command_flags = function()
 	local parser = A("name")
 	local install = parser:command("install")
-	install:flag("-q", "--quiet")
+	install:flag "-q" "--quiet"
 	local args = parser:parse{"install", "-q"}
 	expect(true)(args.install)
 	expect(true)(args.quiet)
