@@ -276,6 +276,9 @@ local comparison_nil = function()
 	local tupC = tuple(1)
 	local tupD = tuple(1, nil)
 	expect(false)(tupC == tupD)
+	expect(true)(tuple() == tuple())
+	expect(true)(tuple(1, nil) == tuple(1, nil))
+	expect(false)(tuple(2, nil) == tuple(1, nil))
 end
 local multiplication = function()
 	local t1 = tuple("a", "z") * 2
