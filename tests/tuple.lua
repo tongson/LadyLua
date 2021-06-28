@@ -290,6 +290,15 @@ local multiplication = function()
 	local t4 = tuple() * 0
 	expect(nil)(t4)
 end
+local multiplication_nil = function()
+	local t = tuple("a", nil, 2) * 2
+	expect("a")(t[1])
+	expect(nil)(t[2])
+	expect(2)(t[3])
+	expect("a")(t[4])
+	expect(nil)(t[5])
+	expect(2)(t[6])
+end
 local less_than = function()
 	local tupA = tuple(1, 2)
 	local tupB = tuple(2, 3)
@@ -362,6 +371,7 @@ if included then
 		T["Comparison"] = comparison
 		T["Comparison with nil"] = comparison_nil
 		T["Multiplication"] = multiplication
+		T["Multiplication with nils"] = multiplication_nil
 		T["<"] = less_than
 		T["<="] = lte
 		T["mutate"] = mutate
@@ -389,6 +399,7 @@ else
 	T["Comparison"] = comparison
 	T["Comparison with nil"] = comparison_nil
 	T["Multiplication"] = multiplication
+	T["Multiplication with nils"] = multiplication_nil
 	T["<"] = less_than
 	T["<="] = lte
 	T["mutate"] = mutate
