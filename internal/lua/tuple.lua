@@ -46,6 +46,7 @@ tuple.__index = tuple
 
 -- Collects values i to j to return a new tuple
 function tuple.__call(t, i, j)
+	j = j or t.n
 	return tuple(unpack(t, i, j))
 end
 
