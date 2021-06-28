@@ -59,10 +59,10 @@ function tuple:__tostring()
 end
 
 -- Tuple iterator function
-function tuple:iterator(...)
+function tuple:iterator()
 	local m = self.n
 	local i = 0
-	return function(...)
+	return function()
 		i = i + 1
 		while i <= m do
 			return i, self[i]
