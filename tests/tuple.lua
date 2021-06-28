@@ -14,7 +14,10 @@ local not_eq = T.not_equal
 --#
 --# Implementation of ordered n-tuples.
 --#
---# Tuples are fixed sized and may contain `nil`. Values can be changed for existing keys. Tables passed are copied.
+--# . Fixed sized
+--# . May contain `nil`
+--# . Values can be changed for existing keys
+--# . Tables passed are copied
 --#
 --# toc::[]
 --#
