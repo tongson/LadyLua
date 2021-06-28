@@ -17,6 +17,7 @@ Next release: *1.0.0 Black Future* +
 + Renamed `deque` module to `queue` +
 + New module: `state` +
 + New module: `graph` +
++ New module: `object` +
 
 Current release: *0.9.0 Scared Shrapnel* +
 + Loading plain Lua source is now done through `package.loaders` +
@@ -144,6 +145,7 @@ Check the `docs` directory for more information about these modules.
 |logger      |N      |Go   |                 |MIT
 |lz4         |N      |Go   |                 |BSD3
 |mysql       |N      |Go   |gluasql          |MIT
+|object      |N      |Lua  |object           |Unlicense
 |pushover    |N      |Go   |                 |MIT
 |redis       |N      |Go   |                 |MIT
 |refmt       |N      |Go   |                 |MIT
