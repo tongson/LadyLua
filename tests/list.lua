@@ -364,7 +364,7 @@ if included then
 		T["pop_back"] = pop_back
 		T["pop alias"] = pop_alias
 		T["contains"] = contains
-		T["size"] = count
+		T["size"] = size
 		T["front"] = front
 		T["back"] = back
 		T["walk"] = walk
