@@ -284,6 +284,7 @@ local comparison_nil = function()
 	expect(true)(tuple() == tuple())
 	expect(true)(tuple(1, nil) == tuple(1, nil))
 	expect(false)(tuple(2, nil) == tuple(1, nil))
+	expect(false)(tuple(1, nil, { false }) == tuple(1, false, { false }))
 end
 local deep_comparison = function()
 	local tup1 = tuple(1, nil, { false })
