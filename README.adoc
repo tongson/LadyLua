@@ -10,7 +10,7 @@ toc::[]
 
 Next release: *1.0.0 Black Future* +
 + Aliases: `list:push` `list:pop` +
-+ Aliases: `queue:push` `queue:pop` +
++ Aliases: `queue:push` `queue:pop` `queue:iterator` +
 + `tuple` module fixes and enhancements +
 + Renamed `tuple:elements` to `tuple:iterator` +
 + Renamed `bimap` module to `map` +
