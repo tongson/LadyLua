@@ -296,6 +296,7 @@ local deep_comparison = function()
 	expect(false)(util.deepcompare(tup3, tup4, true))
 	local tup5 = tuple(1, nil, { false })
 	local tup6 = tuple(1, false, { false })
+	-- BUG: should be false
 	expect(true)(util.deepcompare(tup5, tup6, true))
 end
 local multiplication = function()
