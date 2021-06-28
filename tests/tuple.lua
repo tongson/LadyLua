@@ -290,6 +290,12 @@ local deep_comparison = function()
 	local tup2 = tuple(1, nil, { false })
 	local util = require("util")
 	expect(true)(util.deepcompare(tup1, tup2, true))
+	local tup3 = tuple(1, true, { false })
+	local tup4 = tuple(1, false, { false })
+	expect(false)(util.deepcompare(tup3, tup4, true))
+	local tup5 = tuple(1, nil, { false })
+	local tup6 = tuple(1, false, { false })
+	expect(true)(util.deepcompare(tup5, tup6, true))
 end
 local multiplication = function()
 	local t1 = tuple("a", "z") * 2
