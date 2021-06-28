@@ -6,7 +6,7 @@ Double-ended queue implementation.
 
 toc::[]
 
-== *deque.new*() -> _Table_
+== *queue.new*() -> _Table_
 Create a new queue.
 
 === Returns
