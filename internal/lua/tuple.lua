@@ -152,7 +152,7 @@ function tuple.__add(a, b)
 		t[a.n+i] = element
 	end
 	t.n = a.n + b.n
-	return t
+	return tuple(unpack(t))
 end
 
 -- Multiplication
