@@ -285,6 +285,12 @@ local comparison_nil = function()
 	expect(true)(tuple(1, nil) == tuple(1, nil))
 	expect(false)(tuple(2, nil) == tuple(1, nil))
 end
+local deep_comparison = function()
+	local tup1 = tuple(1, nil, { false })
+	local tup2 = tuple(1, nil, { false })
+	local util = require("util")
+	expect(true)(util.deepcompare(tup1, tup2, true))
+end
 local multiplication = function()
 	local t1 = tuple("a", "z") * 2
 	expect("a")(t1[1])
@@ -382,6 +388,7 @@ if included then
 		T["Addition with nil"] = addition_nil
 		T["Equality"] = comparison
 		T["Equality with nil"] = comparison_nil
+		T["Deep compare tuples"] = deep_comparison
 		T["Multiplication"] = multiplication
 		T["Multiplication with nils"] = multiplication_nil
 		T["<"] = less_than
@@ -411,6 +418,7 @@ else
 	T["Addition with nil"] = addition_nil
 	T["Equality"] = comparison
 	T["Equality with nil"] = comparison_nil
+	T["Deep compare tuples"] = deep_comparison
 	T["Multiplication"] = multiplication
 	T["Multiplication with nils"] = multiplication_nil
 	T["<"] = less_than
