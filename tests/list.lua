@@ -354,10 +354,12 @@ if included then
 		T["push_front_number"] = push_front_number
 		T["push_front_boolean"] = push_front_boolean
 		T["push_front_number"] = push_front_number
+		T["push front table"] = push_front_table
 		T["push_back_string"] = push_back_string
 		T["push_back_number"] = push_back_number
 		T["push_back_boolean"] = push_back_boolean
 		T["push_back_number"] = push_back_number
+		T["push back table"] = push_back_table
 		T["pop_front"] = pop_front
 		T["pop_back"] = pop_back
 		T["pop alias"] = pop_alias
@@ -376,10 +378,12 @@ else
 	T["push_front_number"] = push_front_number
 	T["push_front_boolean"] = push_front_boolean
 	T["push_front_number"] = push_front_number
+	T["push front table"] = push_front_table
 	T["push_back_string"] = push_back_string
 	T["push_back_number"] = push_back_number
 	T["push_back_boolean"] = push_back_boolean
 	T["push_back_number"] = push_back_number
+	T["push back table"] = push_back_table
 	T["pop_front"] = pop_front
 	T["pop_back"] = pop_back
 	T["pop alias"] = pop_alias
