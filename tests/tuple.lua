@@ -50,6 +50,23 @@ local table_test = function()
 	expect(0)(y[1])
 	expect(1)(o[1]) -- immutable because table was cloned.
 end
+local metatable = function()
+	local list = require("list")
+	local l = list.new()
+	local one = {
+		one = 1,
+	}
+	local two = {
+		two = 2,
+	}
+	l:push(one)
+	l:push(two)
+	local tup = tuple(l)
+	local t = tup[1]
+	local x = t:pop()
+	tbl(x)
+	expect(2)(x.two)
+end
 local printing = function()
 	local tup = tuple("a", true, 1)
 	expect("(a, true, 1)")(tostring(tup))
@@ -307,6 +324,7 @@ if included then
 	return function()
 		T["Valid types"] = types
 		T["Tables passed"] = table_test
+		T["metatable"] = metatable
 		T["__tostring"] = printing
 		T["__tostring nil"] = printing_nil
 		T["Slicing"] = slicing
@@ -333,6 +351,7 @@ if included then
 else
 	T["Valid types"] = types
 	T["Tables passed"] = table_test
+	T["metatable"] = metatable
 	T["__tostring"] = printing
 	T["__tostring nil"] = printing_nil
 	T["Slicing"] = slicing
