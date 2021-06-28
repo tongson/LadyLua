@@ -132,6 +132,7 @@ local methods = {
   remove_front = remove_front,
   iter_back = iter_back,
   iter_front = iter_front,
+  iterator = iter_front,
   size = size,
   is_empty = is_empty,
   contents = contents,
