@@ -1,5 +1,5 @@
 local included = pcall(debug.getlocal, 4, 1)
-local bimap = require("bimap")
+local bimap = require("map")
 local T = require("test")
 local expect = T.expect
 local func = T.is_function

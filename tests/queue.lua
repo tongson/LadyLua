@@ -1,5 +1,5 @@
 local included = pcall(debug.getlocal, 4, 1)
-local deque = require("deque")
+local deque = require("queue")
 local T = require("test")
 local expect = T.expect
 local func = T.is_function
