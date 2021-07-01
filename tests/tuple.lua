@@ -289,17 +289,19 @@ local comparison_nil = function()
 	expect(false)(tuple(1, nil, { false }) == tuple(1, false, { false }))
 end
 local comparison_map = function()
+	local a = tuple(true, nil, false)
 	local b = tuple(true, true, false)
-
-
 	local t = {
-		[tuple(false, true, false)] = "no",
+		[tuple(true, nil, false)] = "no",
 		[tuple(true, true, false)] = "ok",
 	}
 	local z = {}
 	for x, y in pairs(t) do
 		if x == b then
 			expect("ok")(y)
+		end
+		if x == a then
+			expect("no")(y)
 		end
 	end
 end
