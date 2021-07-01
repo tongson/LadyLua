@@ -288,6 +288,21 @@ local comparison_nil = function()
 	expect(false)(tuple(2, nil) == tuple(1, nil))
 	expect(false)(tuple(1, nil, { false }) == tuple(1, false, { false }))
 end
+local comparison_map = function()
+	local b = tuple(true, true, false)
+
+
+	local t = {
+		[tuple(false, true, false)] = "no",
+		[tuple(true, true, false)] = "ok",
+	}
+	local z = {}
+	for x, y in pairs(t) do
+		if x == b then
+			expect("ok")(y)
+		end
+	end
+end
 local deep_comparison = function()
 	local tup1 = tuple(1, nil, { false })
 	local tup2 = tuple(1, nil, { false })
@@ -397,6 +412,7 @@ if included then
 		T["Addition with nil"] = addition_nil
 		T["Equality"] = comparison
 		T["Equality with nil"] = comparison_nil
+		T["Tuples within map"] = comparison_map
 		T["Deep compare tuples"] = deep_comparison
 		T["Multiplication"] = multiplication
 		T["Multiplication with nils"] = multiplication_nil
@@ -427,6 +443,7 @@ else
 	T["Addition with nil"] = addition_nil
 	T["Equality"] = comparison
 	T["Equality with nil"] = comparison_nil
+	T["Tuples within map"] = comparison_map
 	T["Deep compare tuples"] = deep_comparison
 	T["Multiplication"] = multiplication
 	T["Multiplication with nils"] = multiplication_nil
