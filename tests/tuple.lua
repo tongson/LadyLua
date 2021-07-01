@@ -81,6 +81,16 @@ local printing_nil = function()
 	local nup = tuple(1, nil, 2)
 	expect("(1, nil, 2)")(tostring(nup))
 end
+local tostring_map = function()
+	local a = tuple(false, nil, false)
+	local b = tuple(true, true, false)
+	local t = {
+		[tostring(tuple(false, nil, false))] = "ok",
+		[tostring(tuple(true, true, false))] = "no",
+	}
+	expect("ok")(t[tostring(a)])
+	expect("no")(t[tostring(b)])
+end
 local slicing = function()
 	local f = { 1 }
 	local tup = tuple("a", "b", "c", "d", "e", f)
@@ -399,6 +409,7 @@ if included then
 		T["metatable"] = metatable
 		T["__tostring"] = printing
 		T["__tostring nil"] = printing_nil
+		T["__tostring within map"] = tostring_map
 		T["Slicing"] = slicing
 		T["Slicing with nil"] = slicing_nil
 		T[":iterator()"] = iterator
@@ -430,6 +441,7 @@ else
 	T["metatable"] = metatable
 	T["__tostring"] = printing
 	T["__tostring nil"] = printing_nil
+	T["__tostring within map"] = tostring_map
 	T["Slicing"] = slicing
 	T["Slicing with nil"] = slicing_nil
 	T[":iterator()"] = iterator
