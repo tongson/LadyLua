@@ -710,7 +710,6 @@ local Buildah = function(msg)
 		end,
 	})
 end
-
 local Name, Assets
 local Creds
 do
@@ -883,7 +882,7 @@ _G["ADD"] = function(src, dest, og, mo)
 	}
 	B()
 end
-_G["RUN"] = function(v)
+_G["ADD"] = function(v)
 	if not Name then
 		Ok("RUN", { skip = true, name = false })
 		return
