@@ -882,7 +882,7 @@ _G["ADD"] = function(src, dest, og, mo)
 	}
 	B()
 end
-_G["ADD"] = function(v)
+_G["RUN"] = function(v)
 	if not Name then
 		Ok("RUN", { skip = true, name = false })
 		return
