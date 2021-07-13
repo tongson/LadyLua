@@ -1,4 +1,5 @@
 -- Requires buildah, crun, coreutils, rsync
+extend("string")
 local stdin_userland = [[
 bin/domainname
 bin/findmnt
@@ -1011,10 +1012,9 @@ _G["APT_PURGE"] = function(p)
 		"--force-remove-essential",
 		"--force-breaks",
 		"--force-unsafe-io",
-		p,
 	}
 	B.log = { package = p }
-	B()
+	B(p)
 end
 _G["APK"] = function(v)
 	if not Name then
@@ -1262,6 +1262,19 @@ _G["ENTRYPOINT"] = function(...)
 		}
 		B.log = {
 			entrypoint = entrypoint,
+		}
+		B()
+	end
+	do
+		local B = Buildah("ENTRYPOINT(cmd)")
+		B.cmd = {
+			"config",
+			"--cmd",
+			"''",
+			Name,
+		}
+		B.log = {
+			term = "CMD",
 		}
 		B()
 	end
