@@ -91,6 +91,7 @@ Available options are:
 	ll.PreloadGo(L, "uuid")
 	ll.PreloadGo(L, "ulid")
 	ll.PreloadGo(L, "redis")
+	ll.PreloadGo(L, "ssh_config")
 	ll.Preload(L)
 
 	if opt_m > 0 {

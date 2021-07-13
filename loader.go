@@ -208,6 +208,8 @@ func PreloadGo(L *lua.LState, name string) {
 		L.PreloadModule("ulid", ll.UlidLoader)
 	case "redis":
 		L.PreloadModule("redis", ll.RedisLoader)
+	case "ssh_config":
+		L.PreloadModule("ssh_config", ll.SSHconfigLoader)
 	default:
 		L.RaiseError("Unknown module.")
 	}
