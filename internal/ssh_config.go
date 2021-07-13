@@ -19,6 +19,18 @@ func sshconfigIdentityFile(L *lua.LState) int {
 	return 1
 }
 
+func sshconfigHostname(L *lua.LState) int {
+	host := L.CheckString(1)
+	hn := ssh_config.Get(host, "Hostname")
+	if hn != "" {
+		L.Push(lua.LString(hn))
+		return 1
+	} else {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("ssh_config: No such host."))
+		return 2
+	}
+}
 
 func SSHconfigLoader(L *lua.LState) int {
 	t := L.NewTable()
@@ -30,4 +42,5 @@ func SSHconfigLoader(L *lua.LState) int {
 var sshconfigApi = map[string]lua.LGFunction{
 	"port": sshconfigPort,
 	"identity_file": sshconfigIdentityFile,
+	"hostname": sshconfigHostname,
 }
