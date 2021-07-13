@@ -8,15 +8,28 @@ import (
 func sshconfigPort(L *lua.LState) int {
 	host := L.CheckString(1)
 	port := ssh_config.Get(host, "Port")
-	L.Push(lua.LString(port))
-	return 1
+	if port != "" {
+		L.Push(lua.LString(port))
+		return 1
+	} else {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("ssh_config: No such host."))
+		return 2
+	}
+
 }
 
 func sshconfigIdentityFile(L *lua.LState) int {
 	host := L.CheckString(1)
 	key := ssh_config.Get(host, "IdentityFile")
-	L.Push(lua.LString(key))
-	return 1
+	if key != "" {
+		L.Push(lua.LString(key))
+		return 1
+	} else {
+		L.Push(lua.LNil)
+		L.Push(lua.LString("ssh_config: No such host."))
+		return 2
+	}
 }
 
 func sshconfigHostname(L *lua.LState) int {
