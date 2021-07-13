@@ -1,8 +1,8 @@
 package ll
 
 import (
-	"github.com/yuin/gopher-lua"
 	"github.com/kevinburke/ssh_config"
+	"github.com/yuin/gopher-lua"
 )
 
 func sshconfigPort(L *lua.LState) int {
@@ -53,7 +53,7 @@ func SSHconfigLoader(L *lua.LState) int {
 }
 
 var sshconfigApi = map[string]lua.LGFunction{
-	"port": sshconfigPort,
+	"port":          sshconfigPort,
 	"identity_file": sshconfigIdentityFile,
-	"hostname": sshconfigHostname,
+	"hostname":      sshconfigHostname,
 }
