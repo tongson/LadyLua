@@ -49,8 +49,18 @@ func sshconfigHostname(L *lua.LState) int {
 }
 
 func sshconfigHosts(L *lua.LState) int {
-	f, _ := os.Open(filepath.Join(os.Getenv("HOME"), ".ssh", "config"))
-	c, _ := ssh_config.Decode(f)
+	f, ferr := os.Open(filepath.Join(os.Getenv("HOME"), ".ssh", "config"))
+	if ferr != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString(ferr.Error()))
+		return 2
+	}
+	c, cerr := ssh_config.Decode(f)
+	if cerr != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString(cerr.Error()))
+		return 2
+	}
 	t := L.NewTable()
 	for _, host := range c.Hosts {
 		for _, pat := range host.Patterns {
