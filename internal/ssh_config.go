@@ -55,6 +55,7 @@ func sshconfigHosts(L *lua.LState) int {
 		L.Push(lua.LString(ferr.Error()))
 		return 2
 	}
+	// TODO: cerr does not do anything?
 	c, cerr := ssh_config.Decode(f)
 	if cerr != nil {
 		L.Push(lua.LNil)
