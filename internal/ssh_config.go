@@ -1,6 +1,9 @@
 package ll
 
 import (
+	"os"
+	"path/filepath"
+
 	"github.com/kevinburke/ssh_config"
 	"github.com/yuin/gopher-lua"
 )
@@ -45,6 +48,22 @@ func sshconfigHostname(L *lua.LState) int {
 	}
 }
 
+func sshconfigHosts(L *lua.LState) int {
+	f, _ := os.Open(filepath.Join(os.Getenv("HOME"), ".ssh", "config"))
+	c, _ := ssh_config.Decode(f)
+	t := L.NewTable()
+	for _, host := range c.Hosts {
+		for _, pat := range host.Patterns {
+			s := pat.String()
+			if s != "*" {
+				t.Append(lua.LString(s))
+			}
+		}
+	}
+	L.Push(t)
+	return 1
+}
+
 func SSHconfigLoader(L *lua.LState) int {
 	t := L.NewTable()
 	L.SetFuncs(t, sshconfigApi)
@@ -56,4 +75,5 @@ var sshconfigApi = map[string]lua.LGFunction{
 	"port":          sshconfigPort,
 	"identity_file": sshconfigIdentityFile,
 	"hostname":      sshconfigHostname,
+	"hosts":         sshconfigHosts,
 }
