@@ -1,3 +1,4 @@
+__mark "Building ll interpreter..."
 GOOS=linux CGO_ENABLED=0 go build \
     -trimpath -ldflags '-s -w -extldflags "-static"' \
     -o "bin/ll" ./cmd/ll
