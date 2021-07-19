@@ -154,6 +154,7 @@ Check the `docs` directory for more information about these modules.
 |refmt       |N      |Go   |                 |MIT
 |rr          |N      |Go   |                 |MIT
 |slack       |N      |Go   |                 |MIT
+|ssh_config  |N      |Go   |ssh_config       |MIT
 |state       |N      |Lua  |ahsm             |MIT
 |telegram    |N      |Go   |                 |MIT
 |template    |N      |Lua  |etlua            |MIT
