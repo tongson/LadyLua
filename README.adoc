@@ -8,7 +8,7 @@ toc::[]
 
 == Changelog
 
-Next release: *1.0.0 Black Future* +
+Next release: *0.10.0 Black Future* +
 + Aliases: `list:push` `list:pop` +
 + Aliases: `queue:push` `queue:pop` `queue:iterator` +
 + `tuple` module fixes and enhancements +

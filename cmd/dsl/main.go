@@ -16,7 +16,7 @@ import (
 
 var start time.Time
 
-const versionNumber = "1.0.0"
+const versionNumber = "0.10.0"
 const codeName = "\"Black Future\""
 
 func main() {
