@@ -177,7 +177,7 @@ Get the ISO 8601 week number (01 to 53). Using the Year-WeekOfYear-DayOfWeek dat
 |number|Week
 |===
 
-== *:getisoyear() -> _Number_
+== *:getisoyear*() -> _Number_
 Get the ISO 8601 year in a dateObject. Using the Year-WeekOfYear-DayOfWeek date system.
 
 === Returns
@@ -227,7 +227,7 @@ Get the ticks after the seconds value.
 |number|Ticks
 |===
 
-== *:gettime() -> _Number_, _Number_, _Number_
+== *:gettime*() -> _Number_, _Number_, _Number_
 Get the hours, minutes, seconds and ticks value.
 
 === Returns
@@ -377,7 +377,7 @@ Set the seconds after the minute value.
 |number|Ticks, default: current
 |===
 
-== *:setticks([_Number_])
+== *:setticks*([_Number_])
 Set the ticks after the second value.
 
 === Arguments
