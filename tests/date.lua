@@ -202,6 +202,259 @@ local getdate = function()
 	expect(1)(m)
 	expect(1)(d)
 end
+--#
+--# == *:getday*() -> _Number_
+--# Get day of month.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Day
+--# |===
+local getday = function()
+	local d = date(1966, 'sep', 6)
+	expect(6)(d:getday())
+end
+--#
+--# == *:getfracsec*() -> _Number_
+--# Get seconds after the minute (fractional) value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Seconds
+--# |===
+local getfracsec = function()
+	local d = date("Wed Apr 04 2181 11:51:06.996 UTC")
+	expect(6.996)(d:getfracsec())
+end
+--#
+--# == *:gethours*() -> _Number_
+--# Get hours value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Hour
+--# |===
+local gethours = function()
+	local d = date("Wed Apr 04 2181 11:51:06 UTC")
+	expect(11)(d:gethours())
+end
+--#
+--# == *:getisoweekday*() -> _Number_
+--# Get the day of week (sunday=7, monday=1, ...saturday=6).
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Day
+--# |===
+local getisoweekday = function()
+	local d = date(1970, 1, 1)
+	expect(4)(d:getisoweekday())
+end
+--#
+--# == *:getisoweeknumber*() -> _Number_
+--# Get the ISO 8601 week number (01 to 53). Using the Year-WeekOfYear-DayOfWeek date system.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Week
+--# |===
+local getisoweeknumber = function()
+	local d = date(1975, 12, 29)
+	expect(1)(d:getisoweeknumber())
+	expect(1976)(d:getisoyear())
+	expect(1)(d:getisoweekday())
+	local e = date(1977, 1, 2)
+	expect(53)(e:getisoweeknumber())
+	expect(1976)(e:getisoyear())
+	expect(7)(e:getisoweekday())
+end
+--#
+--# == *:getisoyear() -> _Number_
+--# Get the ISO 8601 year in a dateObject. Using the Year-WeekOfYear-DayOfWeek date system.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Year
+--# |===
+local getisoyear = function()
+	local d = date(1996, 12, 30)
+	expect(1997)(d:getisoyear())
+	local e = date(1997, 01, 05)
+	expect(1997)(d:getisoyear())
+end
+--#
+--# == *:getminutes*() -> _Number_
+--# Get the minutes after the hour value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Minutes
+--# |===
+local getminutes = function()
+	local d = date("Wed Apr 04 2181 11:51:06 UTC")
+	expect(51)(d:getminutes())
+end
+
+--#
+--# == *:getmonth*() -> _Number_
+--# Get the month value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Month
+--# |===
+local getmonth = function()
+	local d = date(1966, 'sep', 6)
+	expect(9)(d:getmonth())
+end
+--#
+--# == *:getseconds*() -> _Number_
+--# Get the seconds after the minute value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Seconds
+--# |===
+local getseconds = function()
+	local d = date("Wed Apr 04 2181 11:51:06.123 UTC")
+	expect(6)(d:getseconds())
+end
+--#
+--# == *:getticks*() -> _Number_
+--# Get the ticks after the seconds value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Ticks
+--# |===
+local getticks = function()
+	local d = date("Wed Apr 04 2181 11:51:06.123 UTC")
+	expect(123000)(d:getticks())
+end
+
+--#
+--# == *:gettime() -> _Number_, _Number_, _Number_
+--# Get the hours, minutes, seconds and ticks value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Hours
+--# |number|Minutes
+--# |number|Seconds
+--# |number|Ticks
+--# |===
+local gettime = function()
+	local a = date({hour=5,sec=.5,min=59})
+	local h, m, s, t = a:gettime()
+	expect(500000)(t)
+	expect(0)(s)
+	expect(59)(m)
+	expect(5)(h)
+end
+--#
+--# == *:getweekday*() -> _Number_
+--# Get the day of week (sunday=1, monday=2, ...saturday=7).
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Week
+--# |===
+local getweekday = function()
+	local d = date(1970, 1, 1)
+	expect(5)(d:getweekday())
+end
+--#
+--# == *:getweeknumber*([_Number_]) -> _Number_
+--# Get the week number.
+--#
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Optional, week base
+--# |===
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Week
+--# |===
+local getweeknumber = function()
+	local a = date("12/31/1972")
+	local b,c = a:getweeknumber(), a:getweeknumber(2)
+	expect(53)(b)
+	expect(52)(c)
+end
+--#
+--# == *:getyear*() -> _Number_
+--# Return year value.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Year
+--# |===
+local getyear = function()
+	local d = date(1965, 'jan', 0)
+	-- XXX -- 1964?
+	expect(1965)(d:getyear())
+end
+--#
+--# == *:getyearday*() -> _Number_
+--# Get the day of year (1-366)
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Day
+--# |===
+local getyearday = function()
+	local d = date(2181, 1, 12)
+	expect(12)(d:getyearday())
+end
+--#
+--# == *:setday*(_Number_)
+--# Set the day of month value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Month day
+--# |===
+local setday = function()
+	local d = date(1966, 'july', 6)
+	d:setday(1)
+	expect(date("1966 july 1"))(d)
+end
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -237,6 +490,21 @@ if included then
 		T[":copy"] = copy
 		T[":fmt"] = fmt
 		T[":getdate"] = getdate
+		T[":getday"] = getday
+		T[":getfracsec"] = getfracsec
+		T[":gethours"] = gethours
+		T[":getisoweekday"] = getisoweekday
+		T[":getisoweeknumber"] = getisoweeknumber
+		T[":getisoyear"] = getisoyear
+		T[":getminutes"] = getminutes
+		T[":getmonth"] = getmonth
+		T[":getticks"] = getticks
+		T[":gettime"] = gettime
+		T[":getweekday"] = getweekday
+		T[":getweeknumber"] = getweeknumber
+		T[":getyear"] = getyear
+		T[":getyearday"] = getyearday
+		T[":setday"] = setday
 		T["metamethods"] = metamethods
 	end
 else
@@ -254,5 +522,20 @@ else
 	T[":copy"] = copy
 	T[":fmt"] = fmt
 	T[":getdate"] = getdate
+	T[":getday"] = getday
+	T[":getfracsec"] = getfracsec
+	T[":gethours"] = gethours
+	T[":getisoweekday"] = getisoweekday
+	T[":getisoweeknumber"] = getisoweeknumber
+	T[":getisoyear"] = getisoyear
+	T[":getminutes"] = getminutes
+	T[":getmonth"] = getmonth
+	T[":getticks"] = getticks
+	T[":gettime"] = gettime
+	T[":getweekday"] = getweekday
+	T[":getweeknumber"] = getweeknumber
+	T[":getyear"] = getyear
+	T[":getyearday"] = getyearday
+	T[":setday"] = setday
 	T["metamethods"] = metamethods
 end
