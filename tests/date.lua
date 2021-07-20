@@ -71,18 +71,18 @@ end
 --# |===
 local date_setcenturyflip = function()
 	date.setcenturyflip(0)
-	equal(date("01-01-00"), date(1900,01,01))
-	equal(date("01-01-50"), date(1950,01,01))
-	equal(date("01-01-99"), date(1999,01,01))
+	equal(date("01-01-00"), date(1900, 01, 01))
+	equal(date("01-01-50"), date(1950, 01, 01))
+	equal(date("01-01-99"), date(1999, 01, 01))
 	date.setcenturyflip(100)
-	equal(date("01-01-00"), date(2000,01,01))
-	equal(date("01-01-50"), date(2050,01,01))
-	equal(date("01-01-99"), date(2099,01,01))
+	equal(date("01-01-00"), date(2000, 01, 01))
+	equal(date("01-01-50"), date(2050, 01, 01))
+	equal(date("01-01-99"), date(2099, 01, 01))
 	date.setcenturyflip(50)
-	equal(date("01-01-00"), date(2000,01,01))
-	equal(date("01-01-49"), date(2049,01,01))
-	equal(date("01-01-50"), date(1950,01,01))
-	equal(date("01-01-99"), date(1999,01,01))
+	equal(date("01-01-00"), date(2000, 01, 01))
+	equal(date("01-01-49"), date(2049, 01, 01))
+	equal(date("01-01-50"), date(1950, 01, 01))
+	equal(date("01-01-99"), date(1999, 01, 01))
 	date.setcenturyflip(0)
 end
 --#
@@ -121,8 +121,8 @@ local date_object = function()
 	expect(date("Sun Aug 13 2006"))(a)
 	local b = date("Jun 13 1999")
 	expect(date(1999, 6, 13))(b)
-	local d = date({year=2009, month=11, day=13, min=6})
-        expect(date("Nov 13 2009 00:06:00"))(d)
+	local d = date({ year = 2009, month = 11, day = 13, min = 6 })
+	expect(date("Nov 13 2009 00:06:00"))(d)
 	local e = date()
 	T.is_not_nil(e)
 	local f = date(true)
@@ -132,34 +132,34 @@ end
 --# == *:adddays*(_Number_)
 --# Add days to date object.
 local adddays = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = date(a):adddays(3)
-	local c = date.diff(b,a)
+	local c = date.diff(b, a)
 	expect(3)(c:spandays())
 end
 --#
 --# == *:addhours*(_Number_)
 --# Add hours to date object.
 local addhours = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = date(a):addhours(3)
-	local c = date.diff(b,a)
+	local c = date.diff(b, a)
 	expect(3)(c:spanhours())
 end
 --#
 --# == *:addminutes*(_Number_)
 --# Add minutes to date object.
 local addminutes = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = date(a):addminutes(3)
-	local c = date.diff(b,a)
+	local c = date.diff(b, a)
 	expect(3)(c:spanminutes())
 end
 --#
 --# == *:addmonths*(_Number_)
 --# Add months to date object.
 local addmonths = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = date(a):addmonths(3)
 	expect(3)(b:getmonth())
 end
@@ -167,27 +167,27 @@ end
 --# == *:addseconds*(_Number_)
 --# Add seconds to date object.
 local addseconds = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = date(a):addseconds(3)
-	local c = date.diff(b,a)
+	local c = date.diff(b, a)
 	expect(3)(c:spanseconds())
 end
 --#
 --# == *:addticks*(_Number_)
 --# Add ticks to date object.
 local addticks = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = date(a):addticks(3)
-	local c = date.diff(b,a)
+	local c = date.diff(b, a)
 	expect(3)(c:spanticks())
 end
 --#
 --# == *:addyears*(_Number_)
 --# Add years to date object.
 local addyears = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = date(a):addyears(3)
-	expect(2000+3)(b:getyear())
+	expect(2000 + 3)(b:getyear())
 end
 --#
 --# == *:copy*()
@@ -200,7 +200,7 @@ end
 --# |table|date object
 --# |===
 local copy = function()
-	local a = date(2000,12,30)
+	local a = date(2000, 12, 30)
 	local b = a:copy()
 	equal(a, b)
 end
@@ -215,14 +215,14 @@ end
 --# |string|Formatted string
 --# |===
 local fmt = function()
-	local d = date(1582,10,5)
-	equal(d:fmt('%D'), d:fmt("%m/%d/%y"))        -- month/day/year from 01/01/00 (12/02/79)
-	equal(d:fmt('%F'), d:fmt("%Y-%m-%d"))        -- year-month-day (1979-12-02)
-	equal(d:fmt('%h'), d:fmt("%b"))              -- same as %b (Dec)
-	equal(d:fmt('%r'), d:fmt("%I:%M:%S %p"))     -- 12-hour time, from 01:00:00 AM (06:55:15 AM)
-	equal(d:fmt('%T'), d:fmt("%H:%M:%S"))        -- 24-hour time, from 00:00:00 (06:55:15)
-	equal(d:fmt('%a %A %b %B'), "Tue Tuesday Oct October")
-	equal(d:fmt('%C %d'), "15 05")
+	local d = date(1582, 10, 5)
+	equal(d:fmt("%D"), d:fmt("%m/%d/%y")) -- month/day/year from 01/01/00 (12/02/79)
+	equal(d:fmt("%F"), d:fmt("%Y-%m-%d")) -- year-month-day (1979-12-02)
+	equal(d:fmt("%h"), d:fmt("%b")) -- same as %b (Dec)
+	equal(d:fmt("%r"), d:fmt("%I:%M:%S %p")) -- 12-hour time, from 01:00:00 AM (06:55:15 AM)
+	equal(d:fmt("%T"), d:fmt("%H:%M:%S")) -- 24-hour time, from 00:00:00 (06:55:15)
+	equal(d:fmt("%a %A %b %B"), "Tue Tuesday Oct October")
+	equal(d:fmt("%C %d"), "15 05")
 end
 --#
 --# == *:getdate*() -> _Number_, _Number_, _Number_
@@ -254,7 +254,7 @@ end
 --# |number|Day
 --# |===
 local getday = function()
-	local d = date(1966, 'sep', 6)
+	local d = date(1966, "sep", 6)
 	expect(6)(d:getday())
 end
 --#
@@ -361,7 +361,7 @@ end
 --# |number|Month
 --# |===
 local getmonth = function()
-	local d = date(1966, 'sep', 6)
+	local d = date(1966, "sep", 6)
 	expect(9)(d:getmonth())
 end
 --#
@@ -407,7 +407,7 @@ end
 --# |number|Ticks
 --# |===
 local gettime = function()
-	local a = date({hour=5,sec=.5,min=59})
+	local a = date({ hour = 5, sec = 0.5, min = 59 })
 	local h, m, s, t = a:gettime()
 	expect(500000)(t)
 	expect(0)(s)
@@ -448,7 +448,7 @@ end
 --# |===
 local getweeknumber = function()
 	local a = date("12/31/1972")
-	local b,c = a:getweeknumber(), a:getweeknumber(2)
+	local b, c = a:getweeknumber(), a:getweeknumber(2)
 	expect(53)(b)
 	expect(52)(c)
 end
@@ -463,7 +463,7 @@ end
 --# |number|Year
 --# |===
 local getyear = function()
-	local d = date(1965, 'jan', 0)
+	local d = date(1965, "jan", 0)
 	-- XXX -- 1964?
 	expect(1965)(d:getyear())
 end
@@ -492,7 +492,7 @@ end
 --# |number|Month day, default: current
 --# |===
 local setday = function()
-	local d = date(1966, 'july', 6)
+	local d = date(1966, "july", 6)
 	d:setday(1)
 	expect(date("1966 july 1"))(d)
 end
@@ -512,7 +512,7 @@ end
 local sethours = function()
 	local d = date(1984, 12, 3, 4, 39, 54)
 	d:sethours(1, 1, 1)
-        expect(date("1984 DEc 3 1:1:1"))(d)
+	expect(date("1984 DEc 3 1:1:1"))(d)
 end
 --#
 --# == *:setisoweekday*([_Number_])
@@ -559,7 +559,7 @@ end
 local setisoyear = function()
 	local d = date(1999, 12, 27)
 	d:setisoyear(2000, 1)
-	equal(d, date.isodate(2000,1,1))
+	equal(d, date.isodate(2000, 1, 1))
 	equal(d:getyear(), 2000)
 	equal(d:getday(), 3)
 end
@@ -592,7 +592,7 @@ end
 --# |number|Day, default: current
 --# |===
 local setmonth = function()
-	local d = date(1966, 'july', 6)
+	local d = date(1966, "july", 6)
 	d:setmonth(1)
 	equal(d, date("6 jan 1966"))
 end
@@ -640,7 +640,7 @@ end
 --# |number|Day, default: current
 --# |===
 local setyear = function()
-	d = date(1966, 'july', 6)
+	d = date(1966, "july", 6)
 	d:setyear(2000)
 	equal(d, date("jul 6 2000"))
 end
@@ -674,7 +674,7 @@ local spanhours = function()
 	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
 	local b = date(a):adddays(2)
 	local c = date.diff(b, a)
-	equal(c:spanhours(), (2*24))
+	equal(c:spanhours(), (2 * 24))
 end
 --#
 --# == *:spanminutes*() -> _Number_
@@ -690,7 +690,7 @@ local spanminutes = function()
 	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
 	local b = date(a):adddays(2)
 	local c = date.diff(b, a)
-	equal(c:spanminutes(), (2*24*60))
+	equal(c:spanminutes(), (2 * 24 * 60))
 end
 --#
 --# == *:spanseconds*() -> _Number_
@@ -706,7 +706,7 @@ local spanseconds = function()
 	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
 	local b = date(a):adddays(2)
 	local c = date.diff(b, a)
-	equal(c:spanseconds(), (2*24*60*60))
+	equal(c:spanseconds(), (2 * 24 * 60 * 60))
 end
 --#
 --# == *:spanticks*() -> _Number_
@@ -722,7 +722,7 @@ local spanticks = function()
 	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
 	local b = date(a):adddays(2)
 	local c = date.diff(b, a)
-	equal(c:spanticks(), (2*24*60*60*1000000))
+	equal(c:spanticks(), (2 * 24 * 60 * 60 * 1000000))
 end
 --#
 --# == *:tolocal*()
@@ -735,11 +735,11 @@ end
 --# |table|date object
 --# |===
 local tolocal = function()
-	local a = date(2^16)
-	local b = a:copy():tolocal();
+	local a = date(2 ^ 16)
+	local b = a:copy():tolocal()
 	T.is_table(a)
 	T.is_table(b)
-end	
+end
 --#
 --# == *:toutc*()
 --# Local to UTC.
@@ -751,13 +751,13 @@ end
 --# |table|date object
 --# |===
 local toutc = function()
-	local a = date(2^16)
-	local b = a:copy():toutc();
+	local a = date(2 ^ 16)
+	local b = a:copy():toutc()
 	T.is_table(a)
 	T.is_table(b)
-end	
+end
 local metamethods = function()
-	local a = date(1521,5,2)
+	local a = date(1521, 5, 2)
 	local b = a:copy():addseconds(0.001)
 	local D = a - b
 	expect(-0.001)(D:spanseconds())
@@ -765,13 +765,13 @@ local metamethods = function()
 	expect(b - date("00:00:00.001"))(a)
 	expect(a + date("00:00:00.001"))(b)
 	b:addseconds(-0.01)
-	expect(true)(a >  b and b <  a)
+	expect(true)(a > b and b < a)
 	expect(true)(a >= b and b <= a)
-	expect(true)(a ~= b and (not(a == b)))
+	expect(true)(a ~= b and not (a == b))
 	a = b:copy()
-	expect(false)(a >  b and b <  a)
+	expect(false)(a > b and b < a)
 	expect(true)(a >= b and b <= a)
-	expect(true)(a == b and (not(a ~= b)))
+	expect(true)(a == b and not (a ~= b))
 	expect(a .. 565369)(b .. 565369)
 	expect(a .. "????")(b .. "????")
 end
