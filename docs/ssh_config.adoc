@@ -1,0 +1,68 @@
+= ssh_config
+:toc:
+:toc-placement!:
+
+Get values from ~/.ssh/config
+
+toc::[]
+
+== *ssh_config.port*(_String_) -> _String_
+Get configured Port for Host.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Host
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Port
+|===
+
+== *ssh_config.hostname*(_String_) -> _String_
+Get configured Hostname for Host.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Host
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Hostname
+|===
+
+== *ssh_config.identity_file*(_String_) -> _String_
+Get configured IdentityFile for Host.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Host
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |Path of key
+|===
+
+== *ssh_config.hosts*() -> _Table_
+Get all hosts configured in ~/.ssh/config
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table|List of hosts
+|===
