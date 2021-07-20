@@ -732,7 +732,7 @@ end
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
---# |string|Time
+--# |table|date object
 --# |===
 local tolocal = function()
 	local a = date(2^16)
@@ -748,7 +748,7 @@ end
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
---# |string|Time
+--# |table|date object
 --# |===
 local toutc = function()
 	local a = date(2^16)
