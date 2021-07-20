@@ -86,16 +86,37 @@ local date_object = function()
 	local f = date(true)
 	T.is_not_nil(f)
 end
+local methods = function()
+	local a = date(1521,5,2)
+	local b = a:copy():addseconds(0.001)
+	local D = a - b
+	expect(-0.001)(D:spanseconds())
+	expect(a + b)(b + a)
+	expect(b - date("00:00:00.001"))(a)
+	expect(a + date("00:00:00.001"))(b)
+	b:addseconds(-0.01)
+	expect(true)(a >  b and b <  a)
+	expect(true)(a >= b and b <= a)
+	expect(true)(a ~= b and (not(a == b)))
+	a = b:copy()
+	expect(false)(a >  b and b <  a)
+	expect(true)(a >= b and b <= a)
+	expect(true)(a == b and (not(a ~= b)))
+	expect(a .. 565369)(b .. 565369)
+	expect(a .. "????")(b .. "????")
+end
 if included then
 	return function()
 		T["date.diff"] = date_diff
 		T["date.epoch"] = date_epoch
 		T["date.isleapyear"] = date_isleapyear
 		T["date"] = date_object
+		T["methods"] = methods
 	end
 else
 	T["date.diff"] = date_diff
 	T["date.epoch"] = date_epoch
 	T["date.isleapyear"] = date_isleapyear
 	T["date"] = date_object
+	T["methods"] = methods
 end
