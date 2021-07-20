@@ -104,6 +104,49 @@ local addhours = function()
 	local c = date.diff(b,a)
 	expect(3)(c:spanhours())
 end
+--#
+--# == *addminutes*(_Number_)
+--# Add minutes to date object.
+local addminutes = function()
+	local a = date(2000,12,30)
+	local b = date(a):addminutes(3)
+	local c = date.diff(b,a)
+	expect(3)(c:spanminutes())
+end
+--#
+--# == *addmonths*(_Number_)
+--# Add months to date object.
+local addmonths = function()
+	local a = date(2000,12,30)
+	local b = date(a):addmonths(3)
+	expect(3)(b:getmonth())
+end
+--#
+--# == *addseconds*(_Number_)
+--# Add seconds to date object.
+local addseconds = function()
+	local a = date(2000,12,30)
+	local b = date(a):addseconds(3)
+	local c = date.diff(b,a)
+	expect(3)(c:spanseconds())
+end
+--#
+--# == *addticks*(_Number_)
+--# Add ticks to date object.
+local addticks = function()
+	local a = date(2000,12,30)
+	local b = date(a):addticks(3)
+	local c = date.diff(b,a)
+	expect(3)(c:spanticks())
+end
+--#
+--# == *addyears*(_Number_)
+--# Add years to date object.
+local addyears = function()
+	local a = date(2000,12,30)
+	local b = date(a):addyears(3)
+	expect(2000+3)(b:getyear())
+end
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -131,6 +174,11 @@ if included then
 		T["date"] = date_object
 		T[":adddays"] = adddays
 		T[":addhours"] = addhours
+		T[":addminutes"] = addminutes
+		T[":addmonths"] = addmonths
+		T[":addseconds"] = addseconds
+		T[":addticks"] = addticks
+		T[":addyears"] = addyears
 		T["metamethods"] = metamethods
 	end
 else
@@ -140,5 +188,10 @@ else
 	T["date"] = date_object
 	T[":adddays"] = adddays
 	T[":addhours"] = addhours
+	T[":addminutes"] = addminutes
+	T[":addmonths"] = addmonths
+	T[":addseconds"] = addseconds
+	T[":addticks"] = addticks
+	T[":addyears"] = addyears
 	T["metamethods"] = metamethods
 end
