@@ -10,14 +10,14 @@ local expect = T.expect
 --#
 --# toc::[]
 --#
---# == *date.diff*(_Object_, _Object_) -> _Object_
+--# == *date.diff*(_Object_, _Object_) -> _Table_
 --# Subtract the date and time value of two `date` objects.
 --#
 --# === Returns
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
---# |object|date object
+--# |table|date object
 --# |===
 local date_diff = function()
 	T.is_function(date.diff)
@@ -25,14 +25,14 @@ local date_diff = function()
 	expect(5)(d:spandays())
 end
 --#
---# == *date.epoch* -> _Object_
+--# == *date.epoch* -> _Table_
 --# OS epoch.
 --#
 --# === Returns
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
---# |object|date object
+--# |table|date object
 --# |===
 local date_epoch = function()
 	T.is_function(date.epoch)
@@ -147,6 +147,21 @@ local addyears = function()
 	local b = date(a):addyears(3)
 	expect(2000+3)(b:getyear())
 end
+--#
+--# == *:copy*()
+--# Copy date object.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |table|date object
+--# |===
+local copy = function()
+	local a = date(2000,12,30)
+	local b = a:copy()
+	T.equal(a, b)
+end
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -179,6 +194,7 @@ if included then
 		T[":addseconds"] = addseconds
 		T[":addticks"] = addticks
 		T[":addyears"] = addyears
+		T[":copy"] = copy
 		T["metamethods"] = metamethods
 	end
 else
@@ -193,5 +209,6 @@ else
 	T[":addseconds"] = addseconds
 	T[":addticks"] = addticks
 	T[":addyears"] = addyears
+	T[":copy"] = copy
 	T["metamethods"] = metamethods
 end
