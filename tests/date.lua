@@ -86,7 +86,7 @@ local date_object = function()
 	local f = date(true)
 	T.is_not_nil(f)
 end
-local methods = function()
+local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
 	local D = a - b
@@ -111,12 +111,12 @@ if included then
 		T["date.epoch"] = date_epoch
 		T["date.isleapyear"] = date_isleapyear
 		T["date"] = date_object
-		T["methods"] = methods
+		T["metamethods"] = metamethods
 	end
 else
 	T["date.diff"] = date_diff
 	T["date.epoch"] = date_epoch
 	T["date.isleapyear"] = date_isleapyear
 	T["date"] = date_object
-	T["methods"] = methods
+	T["metamethods"] = metamethods
 end
