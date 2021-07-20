@@ -96,7 +96,7 @@ local adddays = function()
 	expect(3)(c:spandays())
 end
 --#
---# == *addhours*(_Number_)
+--# == *:addhours*(_Number_)
 --# Add hours to date object.
 local addhours = function()
 	local a = date(2000,12,30)
@@ -105,7 +105,7 @@ local addhours = function()
 	expect(3)(c:spanhours())
 end
 --#
---# == *addminutes*(_Number_)
+--# == *:addminutes*(_Number_)
 --# Add minutes to date object.
 local addminutes = function()
 	local a = date(2000,12,30)
@@ -114,7 +114,7 @@ local addminutes = function()
 	expect(3)(c:spanminutes())
 end
 --#
---# == *addmonths*(_Number_)
+--# == *:addmonths*(_Number_)
 --# Add months to date object.
 local addmonths = function()
 	local a = date(2000,12,30)
@@ -122,7 +122,7 @@ local addmonths = function()
 	expect(3)(b:getmonth())
 end
 --#
---# == *addseconds*(_Number_)
+--# == *:addseconds*(_Number_)
 --# Add seconds to date object.
 local addseconds = function()
 	local a = date(2000,12,30)
@@ -131,7 +131,7 @@ local addseconds = function()
 	expect(3)(c:spanseconds())
 end
 --#
---# == *addticks*(_Number_)
+--# == *:addticks*(_Number_)
 --# Add ticks to date object.
 local addticks = function()
 	local a = date(2000,12,30)
@@ -140,7 +140,7 @@ local addticks = function()
 	expect(3)(c:spanticks())
 end
 --#
---# == *addyears*(_Number_)
+--# == *:addyears*(_Number_)
 --# Add years to date object.
 local addyears = function()
 	local a = date(2000,12,30)
