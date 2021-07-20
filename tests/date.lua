@@ -86,6 +86,15 @@ local date_object = function()
 	local f = date(true)
 	T.is_not_nil(f)
 end
+--#
+--# == *:adddays*(_Number_)
+--# Add days to date object.
+local adddays = function()
+	local a = date(2000,12,30)
+	local b = date(a):adddays(3)
+	local c = date.diff(b,a)
+	expect(3)(c:spandays())
+end
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -111,6 +120,7 @@ if included then
 		T["date.epoch"] = date_epoch
 		T["date.isleapyear"] = date_isleapyear
 		T["date"] = date_object
+		T[":adddays"] = adddays
 		T["metamethods"] = metamethods
 	end
 else
@@ -118,5 +128,6 @@ else
 	T["date.epoch"] = date_epoch
 	T["date.isleapyear"] = date_isleapyear
 	T["date"] = date_object
+	T[":adddays"] = adddays
 	T["metamethods"] = metamethods
 end
