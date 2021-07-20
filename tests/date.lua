@@ -2,6 +2,7 @@ local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
 local date = require("date")
 local expect = T.expect
+local equal = T.equal
 --# = date
 --# :toc:
 --# :toc-placement!:
@@ -160,7 +161,27 @@ end
 local copy = function()
 	local a = date(2000,12,30)
 	local b = a:copy()
-	T.equal(a, b)
+	equal(a, b)
+end
+--#
+--# == *:fmt*(_String_) -> _String_
+--# Return a formatted version of date object.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string|Formatted string
+--# |===
+local fmt = function()
+	local d = date(1582,10,5)
+	equal(d:fmt('%D'), d:fmt("%m/%d/%y"))        -- month/day/year from 01/01/00 (12/02/79)
+	equal(d:fmt('%F'), d:fmt("%Y-%m-%d"))        -- year-month-day (1979-12-02)
+	equal(d:fmt('%h'), d:fmt("%b"))              -- same as %b (Dec)
+	equal(d:fmt('%r'), d:fmt("%I:%M:%S %p"))     -- 12-hour time, from 01:00:00 AM (06:55:15 AM)
+	equal(d:fmt('%T'), d:fmt("%H:%M:%S"))        -- 24-hour time, from 00:00:00 (06:55:15)
+	equal(d:fmt('%a %A %b %B'), "Tue Tuesday Oct October")
+	equal(d:fmt('%C %d'), "15 05")
 end
 local metamethods = function()
 	local a = date(1521,5,2)
@@ -195,6 +216,7 @@ if included then
 		T[":addticks"] = addticks
 		T[":addyears"] = addyears
 		T[":copy"] = copy
+		T[":fmt"] = fmt
 		T["metamethods"] = metamethods
 	end
 else
@@ -210,5 +232,6 @@ else
 	T[":addticks"] = addticks
 	T[":addyears"] = addyears
 	T[":copy"] = copy
+	T[":fmt"] = fmt
 	T["metamethods"] = metamethods
 end
