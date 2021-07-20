@@ -86,6 +86,19 @@ local date_setcenturyflip = function()
 	date.setcenturyflip(0)
 end
 --#
+--# == *date.getcenturyflip*() -> _Number_[
+--# Get the global value of centuryflip setting.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Flip
+--# |===
+local date_getcenturyflip = function()
+	expect(0)(date.getcenturyflip())
+end
+--#
 --# == *date*(_Number_)
 --# Represents the number of seconds in Universal Coordinated Time between the specified value and the System epoch.
 --#
@@ -508,6 +521,7 @@ if included then
 		T["date.epoch"] = date_epoch
 		T["date.isleapyear"] = date_isleapyear
 		T["date.setcenturyflip"] = date_setcenturyflip
+		T["date.getcenturyflip"] = date_getcenturyflip
 		T["date"] = date_object
 		T[":adddays"] = adddays
 		T[":addhours"] = addhours
@@ -541,6 +555,7 @@ else
 	T["date.epoch"] = date_epoch
 	T["date.isleapyear"] = date_isleapyear
 	T["date.setcenturyflip"] = date_setcenturyflip
+	T["date.getcenturyflip"] = date_getcenturyflip
 	T["date"] = date_object
 	T[":adddays"] = adddays
 	T[":addhours"] = addhours
