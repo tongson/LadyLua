@@ -38,6 +38,7 @@ func main() {
 	ll.PreloadGo(L, "uuid")
 	ll.PreloadGo(L, "ulid")
 	ll.PreloadGo(L, "redis")
+	ll.PreloadGo(L, "ssh_config")
 	ll.Preload(L)
 	ll.FillArg(L, os.Args)
 	ll.Main(L, ll.ReadFile(mainSrc, "src/main.lua"))
