@@ -320,7 +320,7 @@ local getisoweeknumber = function()
 	expect(7)(e:getisoweekday())
 end
 --#
---# == *:getisoyear() -> _Number_
+--# == *:getisoyear*() -> _Number_
 --# Get the ISO 8601 year in a dateObject. Using the Year-WeekOfYear-DayOfWeek date system.
 --#
 --# === Returns
@@ -394,7 +394,7 @@ local getticks = function()
 end
 
 --#
---# == *:gettime() -> _Number_, _Number_, _Number_
+--# == *:gettime*() -> _Number_, _Number_, _Number_
 --# Get the hours, minutes, seconds and ticks value.
 --#
 --# === Returns
@@ -613,7 +613,7 @@ local setseconds = function()
 	equal(d, date(1984, 12, 3, 4, 40))
 end
 --#
---# == *:setticks([_Number_])
+--# == *:setticks*([_Number_])
 --# Set the ticks after the second value.
 --#
 --# === Arguments
