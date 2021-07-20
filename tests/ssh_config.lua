@@ -12,7 +12,7 @@ local ssh_config = require("ssh_config")
 --# == *ssh_config.port*(_String_) -> _String_
 --# Get configured Port for Host.
 --#
---# === Arguments 
+--# === Arguments
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
@@ -32,7 +32,7 @@ end
 --# == *ssh_config.hostname*(_String_) -> _String_
 --# Get configured Hostname for Host.
 --#
---# === Arguments 
+--# === Arguments
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
@@ -52,7 +52,7 @@ end
 --# == *ssh_config.identity_file*(_String_) -> _String_
 --# Get configured IdentityFile for Host.
 --#
---# === Arguments 
+--# === Arguments
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
