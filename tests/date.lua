@@ -724,6 +724,38 @@ local spanticks = function()
 	local c = date.diff(b, a)
 	equal(c:spanticks(), (2*24*60*60*1000000))
 end
+--#
+--# == *:tolocal*()
+--# UTC to local.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string|Time
+--# |===
+local tolocal = function()
+	local a = date(2^16)
+	local b = a:copy():tolocal();
+	T.is_table(a)
+	T.is_table(b)
+end	
+--#
+--# == *:toutc*()
+--# Local to UTC.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |string|Time
+--# |===
+local toutc = function()
+	local a = date(2^16)
+	local b = a:copy():toutc();
+	T.is_table(a)
+	T.is_table(b)
+end	
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -790,6 +822,8 @@ if included then
 		T[":spanminutes"] = spanminutes
 		T[":spanseconds"] = spanseconds
 		T[":spanticks"] = spanticks
+		T[":tolocal"] = tolocal
+		T[":toutc"] = toutc
 		T["metamethods"] = metamethods
 	end
 else
@@ -838,5 +872,7 @@ else
 	T[":spanminutes"] = spanminutes
 	T[":spanseconds"] = spanseconds
 	T[":spanticks"] = spanticks
+	T[":tolocal"] = tolocal
+	T[":toutc"] = toutc
 	T["metamethods"] = metamethods
 end
