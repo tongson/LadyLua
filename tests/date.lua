@@ -482,19 +482,167 @@ local getyearday = function()
 	expect(12)(d:getyearday())
 end
 --#
---# == *:setday*(_Number_)
+--# == *:setday*([_Number_])
 --# Set the day of month value.
 --#
 --# === Arguments
 --# [options="header",width="72%"]
 --# |===
 --# |Type |Description
---# |number|Month day
+--# |number|Month day, default: current
 --# |===
 local setday = function()
 	local d = date(1966, 'july', 6)
 	d:setday(1)
 	expect(date("1966 july 1"))(d)
+end
+--#
+--# == *:sethours*([_Number_][, _Number_][, _Number_][, _Number])
+--# Set the hour value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Hour, default: current
+--# |number|Minutes, default: current
+--# |number|Seconds, default: current
+--# |number|Ticks, default: current
+--# |===
+local sethours = function()
+	local d = date(1984, 12, 3, 4, 39, 54)
+	d:sethours(1, 1, 1)
+        expect(date("1984 DEc 3 1:1:1"))(d)
+end
+--#
+--# == *:setisoweekday*([_Number_])
+--# Sets the ISO 8601 week day value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |number|Week day, default: current
+--# |===
+local setisoweekday = function()
+	local d = date.isodate(1999, 52, 1)
+	d:setisoweekday(7)
+	equal(d, date(2000, 1, 02))
+end
+--#
+--# == *:setisoweeknumber*([_Number_][, _Number_])
+--# Sets the ISO 8601 week number value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Week number, default: current
+--# |number|Week day, default: current
+--# |===
+local setisoweeknumber = function()
+	local d = date(1999, 12, 27)
+	d:setisoweeknumber(51, 7)
+	equal(d, date(1999, 12, 26))
+end
+--#
+--# == *:setisoyear*([_Number_][, _Number_][, _Number_])
+--# Sets the ISO 8601 year value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Year, default: current
+--# |number|Week, default: current
+--# |number|Week day, default: current
+--# |===
+local setisoyear = function()
+	local d = date(1999, 12, 27)
+	d:setisoyear(2000, 1)
+	equal(d, date.isodate(2000,1,1))
+	equal(d:getyear(), 2000)
+	equal(d:getday(), 3)
+end
+--#
+--# == *:setminutes*([_Number_][, _Number_][, _Number_])
+--# Sets the minutes value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Minutes, default: current
+--# |number|Seconds, default: current
+--# |number|Ticks, default: current
+--# |===
+local setminutes = function()
+	local d = date(1984, 12, 3, 4, 39, 54)
+	d:setminutes(59, 59, 500)
+	equal(d, date(1984, 12, 3, 4, 59, 59, 500))
+end
+--#
+--# == *:setmonth*([_Number_][, _Number_])
+--# Set the month value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Month, default current
+--# |number|Day, default: current
+--# |===
+local setmonth = function()
+	local d = date(1966, 'july', 6)
+	d:setmonth(1)
+	equal(d, date("6 jan 1966"))
+end
+--#
+--# == *:setseconds*([_Number_][, _Number_])
+--# Set the seconds after the minute value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Seconds, default: current
+--# |number|Ticks, default: current
+--# |===
+local setseconds = function()
+	local d = date(1984, 12, 3, 4, 39, 54)
+	d:setseconds(59, date.ticks())
+	equal(d, date(1984, 12, 3, 4, 40))
+end
+--#
+--# == *:setticks([_Number_])
+--# Set the ticks after the second value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Ticks, default: current
+--# |===
+local setticks = function()
+	local d = date(1984, 12, 3, 4, 39, 54)
+	d:setticks(444)
+	equal(d, date(1984, 12, 3, 4, 39, 54, 444))
+end
+--#
+--# == *:setyear*([_Number_][, _Number_][, _Number_])
+--# Set the year value.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Year, default: current
+--# |number|Month, default: current
+--# |number|Day, default: current
+--# |===
+local setyear = function()
+	d = date(1966, 'july', 6)
+	d:setyear(2000)
+	equal(d, date("jul 6 2000"))
 end
 local metamethods = function()
 	local a = date(1521,5,2)
@@ -548,6 +696,15 @@ if included then
 		T[":getyear"] = getyear
 		T[":getyearday"] = getyearday
 		T[":setday"] = setday
+		T[":sethours"] = sethours
+		T[":setisoweekday"] = setisoweekday
+		T[":setisoweeknumber"] = setisoweeknumber
+		T[":setisoyear"] = setisoyear
+		T[":setminutes"] = setminutes
+		T[":setmonth"] = setmonth
+		T[":setseconds"] = setseconds
+		T[":setticks"] = setticks
+		T[":setyear"] = setyear
 		T["metamethods"] = metamethods
 	end
 else
@@ -582,5 +739,14 @@ else
 	T[":getyear"] = getyear
 	T[":getyearday"] = getyearday
 	T[":setday"] = setday
+	T[":sethours"] = sethours
+	T[":setisoweekday"] = setisoweekday
+	T[":setisoweeknumber"] = setisoweeknumber
+	T[":setisoyear"] = setisoyear
+	T[":setminutes"] = setminutes
+	T[":setmonth"] = setmonth
+	T[":setseconds"] = setseconds
+	T[":setticks"] = setticks
+	T[":setyear"] = setyear
 	T["metamethods"] = metamethods
 end
