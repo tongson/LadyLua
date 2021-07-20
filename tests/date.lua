@@ -644,6 +644,86 @@ local setyear = function()
 	d:setyear(2000)
 	equal(d, date("jul 6 2000"))
 end
+--#
+--# == *:spandays*() -> _Number_
+--# How many days the date object has?
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Span
+--# |===
+local spandays = function()
+	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
+	local b = date(a):adddays(2)
+	local c = date.diff(b, a)
+	equal(c:spandays(), 2)
+end
+--#
+--# == *:spanhours*() -> _Number_
+--# How many hours the date object has?
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Span
+--# |===
+local spanhours = function()
+	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
+	local b = date(a):adddays(2)
+	local c = date.diff(b, a)
+	equal(c:spanhours(), (2*24))
+end
+--#
+--# == *:spanminutes*() -> _Number_
+--# How many minutes the date object has?
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Span
+--# |===
+local spanminutes = function()
+	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
+	local b = date(a):adddays(2)
+	local c = date.diff(b, a)
+	equal(c:spanminutes(), (2*24*60))
+end
+--#
+--# == *:spanseconds*() -> _Number_
+--# How many seconds the date object has?
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Span
+--# |===
+local spanseconds = function()
+	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
+	local b = date(a):adddays(2)
+	local c = date.diff(b, a)
+	equal(c:spanseconds(), (2*24*60*60))
+end
+--#
+--# == *:spanticks*() -> _Number_
+--# How many ticks the date object has?
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Span
+--# |===
+local spanticks = function()
+	local a = date(2181, "aPr", 4, 6, 30, 30, 15000)
+	local b = date(a):adddays(2)
+	local c = date.diff(b, a)
+	equal(c:spanticks(), (2*24*60*60*1000000))
+end
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -705,6 +785,11 @@ if included then
 		T[":setseconds"] = setseconds
 		T[":setticks"] = setticks
 		T[":setyear"] = setyear
+		T[":spandays"] = spandays
+		T[":spanhours"] = spanhours
+		T[":spanminutes"] = spanminutes
+		T[":spanseconds"] = spanseconds
+		T[":spanticks"] = spanticks
 		T["metamethods"] = metamethods
 	end
 else
@@ -748,5 +833,10 @@ else
 	T[":setseconds"] = setseconds
 	T[":setticks"] = setticks
 	T[":setyear"] = setyear
+	T[":spandays"] = spandays
+	T[":spanhours"] = spanhours
+	T[":spanminutes"] = spanminutes
+	T[":spanseconds"] = spanseconds
+	T[":spanticks"] = spanticks
 	T["metamethods"] = metamethods
 end
