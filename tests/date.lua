@@ -183,6 +183,25 @@ local fmt = function()
 	equal(d:fmt('%a %A %b %B'), "Tue Tuesday Oct October")
 	equal(d:fmt('%C %d'), "15 05")
 end
+--#
+--# == *:getdate*() -> _Number_, _Number_, _Number_
+--# Return year, month, day from date object.
+--#
+--# === Returns
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Year
+--# |number|Month
+--# |number|Day
+--# |===
+local getdate = function()
+	local a = date(1970, 1, 1)
+	local y, m, d = a:getdate()
+	expect(1970)(y)
+	expect(1)(m)
+	expect(1)(d)
+end
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -217,6 +236,7 @@ if included then
 		T[":addyears"] = addyears
 		T[":copy"] = copy
 		T[":fmt"] = fmt
+		T[":getdate"] = getdate
 		T["metamethods"] = metamethods
 	end
 else
@@ -233,5 +253,6 @@ else
 	T[":addyears"] = addyears
 	T[":copy"] = copy
 	T[":fmt"] = fmt
+	T[":getdate"] = getdate
 	T["metamethods"] = metamethods
 end
