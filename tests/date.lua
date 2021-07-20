@@ -95,6 +95,15 @@ local adddays = function()
 	local c = date.diff(b,a)
 	expect(3)(c:spandays())
 end
+--#
+--# == *addhours*(_Number_)
+--# Add hours to date object.
+local addhours = function()
+	local a = date(2000,12,30)
+	local b = date(a):addhours(3)
+	local c = date.diff(b,a)
+	expect(3)(c:spanhours())
+end
 local metamethods = function()
 	local a = date(1521,5,2)
 	local b = a:copy():addseconds(0.001)
@@ -121,6 +130,7 @@ if included then
 		T["date.isleapyear"] = date_isleapyear
 		T["date"] = date_object
 		T[":adddays"] = adddays
+		T[":addhours"] = addhours
 		T["metamethods"] = metamethods
 	end
 else
@@ -129,5 +139,6 @@ else
 	T["date.isleapyear"] = date_isleapyear
 	T["date"] = date_object
 	T[":adddays"] = adddays
+	T[":addhours"] = addhours
 	T["metamethods"] = metamethods
 end
