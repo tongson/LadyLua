@@ -456,7 +456,7 @@ UTC to local.
 [options="header",width="72%"]
 |===
 |Type |Description
-|string|Time
+|table|date object
 |===
 
 == *:toutc*()
@@ -466,5 +466,5 @@ Local to UTC.
 [options="header",width="72%"]
 |===
 |Type |Description
-|string|Time
+|table|date object
 |===
