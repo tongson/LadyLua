@@ -58,6 +58,34 @@ local date_isleapyear = function()
 	expect(true)(date.isleapyear(d:getyear()))
 end
 --#
+--# == *date.setcenturyflip*(_Number_)
+--# Sets the global value for centuryflip.
+--#
+--# Century flip determines how 2-digit years are interpreted when parsing string values. Any value smaller than centuryflip will be considered 20xx, and values greater or equal will become 19xx. The default value is 0, so all 2 digit years are considered 19xx.
+--#
+--# === Arguments
+--# [options="header",width="72%"]
+--# |===
+--# |Type |Description
+--# |number|Flip
+--# |===
+local date_setcenturyflip = function()
+	date.setcenturyflip(0)
+	equal(date("01-01-00"), date(1900,01,01))
+	equal(date("01-01-50"), date(1950,01,01))
+	equal(date("01-01-99"), date(1999,01,01))
+	date.setcenturyflip(100)
+	equal(date("01-01-00"), date(2000,01,01))
+	equal(date("01-01-50"), date(2050,01,01))
+	equal(date("01-01-99"), date(2099,01,01))
+	date.setcenturyflip(50)
+	equal(date("01-01-00"), date(2000,01,01))
+	equal(date("01-01-49"), date(2049,01,01))
+	equal(date("01-01-50"), date(1950,01,01))
+	equal(date("01-01-99"), date(1999,01,01))
+	date.setcenturyflip(0)
+end
+--#
 --# == *date*(_Number_)
 --# Represents the number of seconds in Universal Coordinated Time between the specified value and the System epoch.
 --#
@@ -479,6 +507,7 @@ if included then
 		T["date.diff"] = date_diff
 		T["date.epoch"] = date_epoch
 		T["date.isleapyear"] = date_isleapyear
+		T["date.setcenturyflip"] = date_setcenturyflip
 		T["date"] = date_object
 		T[":adddays"] = adddays
 		T[":addhours"] = addhours
@@ -511,6 +540,7 @@ else
 	T["date.diff"] = date_diff
 	T["date.epoch"] = date_epoch
 	T["date.isleapyear"] = date_isleapyear
+	T["date.setcenturyflip"] = date_setcenturyflip
 	T["date"] = date_object
 	T[":adddays"] = adddays
 	T[":addhours"] = addhours
