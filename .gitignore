@@ -6,3 +6,4 @@
 /cmd/test/main.go
 /*.lua
 /bin
+/rr.json
