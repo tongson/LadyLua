@@ -7,7 +7,7 @@ local db
 --# :toc:
 --# :toc-placement!:
 --#
---# Wrapper to https://github.com/prologic/bitcask[Bitcask].
+--# Wrapper to https://git.mills.io/prologic/bitcask[Bitcask].
 --#
 --# [NOTE]
 --# ====

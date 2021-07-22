@@ -17,7 +17,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
 	github.com/oklog/ulid/v2 v2.0.2
 	github.com/pierrec/lz4 v2.6.0+incompatible
-	github.com/prologic/bitcask v0.3.10
+	git.mills.io/prologic/bitcask v0.3.10
 	github.com/rs/zerolog v1.21.0
 	github.com/segmentio/ksuid v1.0.3
 	github.com/slack-go/slack v0.9.0
