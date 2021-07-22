@@ -1,7 +1,7 @@
 package ll
 
 import (
-	"github.com/prologic/bitcask"
+	"git.mills.io/prologic/bitcask"
 	"github.com/yuin/gopher-lua"
 )
 
