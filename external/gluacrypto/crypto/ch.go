@@ -82,7 +82,7 @@ func hexorFn(L *lua.LState) int {
 	t := L.NewTable()
 	for index, element := range aa {
 		v := uint8(element) ^ uint8(ba[index])
-		hexa.WriteString(fmt.Sprintf("%x", v))
+		hexa.WriteString(fmt.Sprintf("%02x", v))
 		t.Append(lua.LNumber(v))
 	}
 	L.Push(lua.LString(hexa.String()))
