@@ -23,6 +23,7 @@ var exports = map[string]lua.LGFunction{
 	"to_str":        hextostrFn,
 	"to_int":        hextointFn,
 	"to_tbl":        hextotblFn,
+	"hexor":         hexorFn,
 }
 
 func Loader(L *lua.LState) int {

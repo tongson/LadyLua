@@ -2,7 +2,9 @@ package gluacrypto_crypto
 
 import (
 	"encoding/hex"
+	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/yuin/gopher-lua"
 )
@@ -59,4 +61,31 @@ func hextotblFn(L *lua.LState) int {
 	}
 	L.Push(t)
 	return 1
+}
+
+func hexorFn(L *lua.LState) int {
+	a := L.CheckString(1)
+	b := L.CheckString(2)
+	aa, err := hex.DecodeString(a)
+	if err != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString(err.Error()))
+		return 2
+	}
+	ba, err := hex.DecodeString(b)
+	if err != nil {
+		L.Push(lua.LNil)
+		L.Push(lua.LString(err.Error()))
+		return 2
+	}
+	hexa := strings.Builder{}
+	t := L.NewTable()
+	for index, element := range aa {
+		v := uint8(element) ^ uint8(ba[index])
+		hexa.WriteString(fmt.Sprintf("%x", v))
+		t.Append(lua.LNumber(v))
+	}
+	L.Push(lua.LString(hexa.String()))
+	L.Push(t)
+	return 2
 }
