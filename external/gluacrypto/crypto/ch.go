@@ -81,25 +81,24 @@ func hexorFn(L *lua.LState) int {
 	hexa := strings.Builder{}
 	var ax *[]byte
 	var bx *[]byte
-	var other int
+	var sz int
 	la := len(aa)
 	lb := len(ba)
 	switch la > lb {
 	case true:
 		ax = &aa
 		bx = &ba
-		other = lb
+		sz = lb - 1
 	case false:
 		ax = &ba
 		bx = &aa
-		other = la
+		sz = la - 1
 	}
 	t := L.NewTable()
-	var n int = other - 1
 	var r int = 0
 	for _, element := range *ax {
 		var v uint8
-		if r < n {
+		if r < sz {
 			v = uint8(element) ^ uint8((*bx)[r])
 			r++
 		} else {
