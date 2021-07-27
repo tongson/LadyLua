@@ -99,10 +99,10 @@ func hexorFn(L *lua.LState) int {
 	for _, element := range *ax {
 		var v uint8
 		if r < sz {
-			v = uint8(element) ^ uint8((*bx)[r])
+			v = element ^ (*bx)[r]
 			r++
 		} else {
-			v = uint8(element) ^ uint8((*bx)[r])
+			v = element ^ (*bx)[r]
 			r = 0
 		}
 		hexa.WriteString(fmt.Sprintf("%02x", v))
