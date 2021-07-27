@@ -92,6 +92,9 @@ Available options are:
 	ll.PreloadGo(L, "ulid")
 	ll.PreloadGo(L, "redis")
 	ll.PreloadGo(L, "ssh_config")
+	ll.PreloadGo(L, "socket_core")
+	ll.PreloadGo(L, "socket_except")
+	ll.PreloadGo(L, "socket")
 	ll.Preload(L)
 
 	if opt_m > 0 {
