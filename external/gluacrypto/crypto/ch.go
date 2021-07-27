@@ -9,6 +9,8 @@ import (
 	"github.com/yuin/gopher-lua"
 )
 
+// xor two numbers
+// (number, number) -> (number)
 func xorFn(L *lua.LState) int {
 	i := L.CheckNumber(1)
 	x := L.CheckNumber(2)
@@ -16,6 +18,8 @@ func xorFn(L *lua.LState) int {
 	return 1
 }
 
+// Hexadecimal string to string
+// (string) -> string
 func hextostrFn(L *lua.LState) int {
 	h := L.CheckString(1)
 	decodedByteArray, err := hex.DecodeString(h)
@@ -28,6 +32,8 @@ func hextostrFn(L *lua.LState) int {
 	return 1
 }
 
+// String to Hexadecimal string
+// (string) -> string
 func strtohexFn(L *lua.LState) int {
 	h := L.CheckString(1)
 	encodedString := hex.EncodeToString([]byte(h))
@@ -35,6 +41,8 @@ func strtohexFn(L *lua.LState) int {
 	return 1
 }
 
+// Hexadecimal string to int
+// (string) -> number
 func hextointFn(L *lua.LState) int {
 	h := L.CheckString(1)
 	value, err := strconv.ParseInt(h, 16, 64)
@@ -47,6 +55,8 @@ func hextointFn(L *lua.LState) int {
 	return 1
 }
 
+// Hexadecimal string to int array
+// (string) -> table[number]
 func hextotblFn(L *lua.LState) int {
 	h := L.CheckString(1)
 	decodedByteArray, err := hex.DecodeString(h)
@@ -63,6 +73,8 @@ func hextotblFn(L *lua.LState) int {
 	return 1
 }
 
+// XOR two hex strings
+// (string, string) -> string, table[number]
 func hexorFn(L *lua.LState) int {
 	a := L.CheckString(1)
 	b := L.CheckString(2)
