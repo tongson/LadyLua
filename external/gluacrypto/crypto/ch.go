@@ -99,13 +99,13 @@ func hexorFn(L *lua.LState) int {
 	var v uint8
 	for _, element := range *ax {
 		v = element ^ (*bx)[r]
+		hexa.WriteString(fmt.Sprintf("%02x", v))
+		t.Append(lua.LNumber(v))
 		if r < sz {
 			r++
 		} else {
 			r = 0
 		}
-		hexa.WriteString(fmt.Sprintf("%02x", v))
-		t.Append(lua.LNumber(v))
 	}
 	L.Push(lua.LString(hexa.String()))
 	L.Push(t)
