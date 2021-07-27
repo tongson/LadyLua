@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 
 	"github.com/yuin/gopher-lua"
 )
@@ -128,4 +129,12 @@ func hexorFn(L *lua.LState) int {
 	L.Push(lua.LString(hexa.String()))
 	L.Push(t)
 	return 2
+}
+
+// ord
+func ordFn(L *lua.LState) int {
+	s := L.CheckString(1)
+	r, _ := utf8.DecodeRuneInString(s)
+	L.Push(lua.LNumber(r))
+	return 1
 }
