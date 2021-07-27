@@ -96,13 +96,12 @@ func hexorFn(L *lua.LState) int {
 	}
 	t := L.NewTable()
 	var r int = 0
+	var v uint8
 	for _, element := range *ax {
-		var v uint8
+		v = element ^ (*bx)[r]
 		if r < sz {
-			v = element ^ (*bx)[r]
 			r++
 		} else {
-			v = element ^ (*bx)[r]
 			r = 0
 		}
 		hexa.WriteString(fmt.Sprintf("%02x", v))
