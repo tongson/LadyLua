@@ -139,6 +139,7 @@ func ordFn(L *lua.LState) int {
 	return 1
 }
 
+// char
 func charFn(L *lua.LState) int {
 	L.Push(lua.LString(string(int32(L.CheckNumber(1)))))
 	return 1
