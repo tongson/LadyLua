@@ -57,7 +57,7 @@ func hextotblFn(L *lua.LState) int {
 	}
 	t := L.NewTable()
 	for _, element := range decodedByteArray {
-		t.Append(lua.LNumber(uint8(element)))
+		t.Append(lua.LNumber(element))
 	}
 	L.Push(t)
 	return 1
