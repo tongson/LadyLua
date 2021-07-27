@@ -19,10 +19,10 @@ var exports = map[string]lua.LGFunction{
 	"random":        randomFn,
 	"fast_random":   fastRandomFn,
 	"xor":           xorFn,
-	"to_hex":        strtohexFn,
-	"to_str":        hextostrFn,
-	"to_int":        hextointFn,
-	"to_tbl":        hextotblFn,
+	"stoh":          strtohexFn,
+	"htos":          hextostrFn,
+	"htoi":          hextointFn,
+	"htot":          hextotblFn,
 	"hexor":         hexorFn,
 }
 
