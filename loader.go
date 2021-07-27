@@ -7,11 +7,14 @@ import (
 
 	gluacrypto "github.com/tongson/LadyLua/external/gluacrypto/crypto"
 	"github.com/tongson/LadyLua/external/gluahttp"
+	gluasocket "github.com/tongson/LadyLua/external/gluasocket/socket"
+	gluasocketcore "github.com/tongson/LadyLua/external/gluasocket/socketcore"
+	gluasocketexcept "github.com/tongson/LadyLua/external/gluasocket/socketexcept"
 	mysql "github.com/tongson/LadyLua/external/gluasql/mysql"
 	ljson "github.com/tongson/LadyLua/external/gopher-json"
 	"github.com/tongson/LadyLua/external/gopher-lfs"
-	"github.com/yuin/gopher-lua"
 	"github.com/tongson/LadyLua/internal"
+	"github.com/yuin/gopher-lua"
 )
 
 //go:embed internal/lua/*
@@ -210,6 +213,12 @@ func PreloadGo(L *lua.LState, name string) {
 		L.PreloadModule("redis", ll.RedisLoader)
 	case "ssh_config":
 		L.PreloadModule("ssh_config", ll.SSHconfigLoader)
+	case "socket_core":
+		L.PreloadModule("socket.core", gluasocketcore.Loader)
+	case "socket_except":
+		L.PreloadModule("socket.except", gluasocketexcept.Loader)
+	case "socket":
+		L.PreloadModule("socket", gluasocket.Loader)
 	default:
 		L.RaiseError("Unknown module.")
 	}
