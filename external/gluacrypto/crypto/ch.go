@@ -9,6 +9,7 @@ import (
 	"github.com/yuin/gopher-lua"
 )
 
+// xor
 // xor two numbers
 // (number, number) -> (number)
 func xorFn(L *lua.LState) int {
@@ -18,6 +19,7 @@ func xorFn(L *lua.LState) int {
 	return 1
 }
 
+// htos
 // Hexadecimal string to string
 // (string) -> string
 func hextostrFn(L *lua.LState) int {
@@ -32,6 +34,7 @@ func hextostrFn(L *lua.LState) int {
 	return 1
 }
 
+// stoh
 // String to Hexadecimal string
 // (string) -> string
 func strtohexFn(L *lua.LState) int {
@@ -41,6 +44,7 @@ func strtohexFn(L *lua.LState) int {
 	return 1
 }
 
+// htoi
 // Hexadecimal string to int
 // (string) -> number
 func hextointFn(L *lua.LState) int {
@@ -55,6 +59,7 @@ func hextointFn(L *lua.LState) int {
 	return 1
 }
 
+// htot
 // Hexadecimal string to int array
 // (string) -> table[number]
 func hextotblFn(L *lua.LState) int {
@@ -73,6 +78,7 @@ func hextotblFn(L *lua.LState) int {
 	return 1
 }
 
+// hexor
 // XOR two hex strings
 // (string, string) -> string, table[number]
 func hexorFn(L *lua.LState) int {
