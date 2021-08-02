@@ -1,8 +1,8 @@
 package gluasocket
 
 import (
-	"github.com/nubix-io/gluasocket/socket"
-	"github.com/nubix-io/gluasocket/socketcore"
+	"github.com/tongson/LadyLua/external/gluasocket/socket"
+	"github.com/tongson/LadyLua/external/gluasocket/socketcore"
 	"github.com/yuin/gopher-lua"
 )
 
