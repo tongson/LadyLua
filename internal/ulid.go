@@ -1,19 +1,18 @@
 package ll
 
 import (
-	cryptorand "crypto/rand"
+	"bytes"
 	"github.com/oklog/ulid/v2"
 	"github.com/yuin/gopher-lua"
-	mathrand "math/rand"
+	"hash/maphash"
+	"strconv"
 	"time"
 )
 
 func ulidNew(L *lua.LState) int {
-	entropy := cryptorand.Reader
-	seed := time.Now().UnixNano()
-	source := mathrand.NewSource(seed)
-	entropy = mathrand.New(source)
-	id, err := ulid.New(ulid.Timestamp(time.Now()), entropy)
+	b := []byte(strconv.FormatUint(new(maphash.Hash).Sum64(), 10))
+	e := bytes.NewReader(b)
+	id, err := ulid.New(ulid.Timestamp(time.Now()), e)
 	if err != nil {
 		L.Push(lua.LNil)
 		L.Push(lua.LString(err.Error()))
