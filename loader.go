@@ -72,7 +72,7 @@ func LoadPatch(L *lua.LState, mod string) {
 }
 
 //#
-//# == *ll.LoadGlobalLua*(*lua.LState, string)
+//# == *ll.GlobalLua*(*lua.LState, string)
 //# For adding Lua values into the global `_G` environment.
 //#
 //# === Arguments
@@ -81,7 +81,7 @@ func LoadPatch(L *lua.LState, mod string) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Basename of Lua source in `internal/lua`
 //# |===
-func LoadGlobalLua(L *lua.LState, mod string) {
+func GlobalLua(L *lua.LState, mod string) {
 	L.SetGlobal(mod, L.NewTable())
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
@@ -125,7 +125,7 @@ func PreloadModule(L *lua.LState, name string, src string) {
 }
 
 //#
-//# == *ll.LoadGlobalGo*(*lua.LState, string)
+//# == *ll.GlobalGo*(*lua.LState, string)
 //# Load gopher-lua (Go) module into the global `_G` environment. +
 //#
 //# === Arguments
@@ -134,7 +134,7 @@ func PreloadModule(L *lua.LState, name string, src string) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Name of the module
 //# |===
-func LoadGlobalGo(L *lua.LState, name string) {
+func GlobalGo(L *lua.LState, name string) {
 	if name == "exec" {
 		L.SetGlobal("exec", L.NewTable())
 		nsExec := L.GetField(L.Get(lua.EnvironIndex), "exec")
