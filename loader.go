@@ -50,7 +50,7 @@ func Preload(L *lua.LState) {
 }
 
 //#
-//# == *ll.LoadPatch*(*lua.LState, string)
+//# == *ll.Patch*(*lua.LState, string)
 //# For monkey-patching Lua values.
 //#
 //# [NOTE]
@@ -64,7 +64,7 @@ func Preload(L *lua.LState) {
 //# |*lua.LState|The current `LState`; usually the result of `lua.NewState()`
 //# |string |Basename of Lua source in `internal/lua`
 //# |===
-func LoadPatch(L *lua.LState, mod string) {
+func Patch(L *lua.LState, mod string) {
 	src, _ := luaSrc.ReadFile(fmt.Sprintf("internal/lua/%s.lua", mod))
 	fn, _ := L.LoadString(string(src))
 	L.Push(fn)
