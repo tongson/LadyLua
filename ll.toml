@@ -2,6 +2,10 @@
 base = "lua51"
 name = "ll"
 
+[[extend.args]]
+type = "string"
+required = true
+
 [[os.sleep.args]]
 type = "number"
 required = true
