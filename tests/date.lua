@@ -640,7 +640,7 @@ end
 --# |number|Day, default: current
 --# |===
 local setyear = function()
-	d = date(1966, "july", 6)
+	local d = date(1966, "july", 6)
 	d:setyear(2000)
 	equal(d, date("jul 6 2000"))
 end
