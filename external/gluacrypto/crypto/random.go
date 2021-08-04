@@ -17,12 +17,12 @@ func randomFn(L *lua.LState) int {
 		L.Push(lua.LString("Failed to read bytes."))
 		return 2
 	}
-	L.Push(lua.LString(fmt.Sprintf("%0x", buf[0:size])))
+	L.Push(lua.LString(fmt.Sprintf("%016x", buf[0:size])))
 	return 1
 }
 
 func fastRandomFn(L *lua.LState) int {
 	h := new(maphash.Hash)
-	L.Push(lua.LString(fmt.Sprintf("%0x", h.Sum64())))
+	L.Push(lua.LString(fmt.Sprintf("%016X", h.Sum64())))
 	return 1
 }
