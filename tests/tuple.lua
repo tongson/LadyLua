@@ -305,7 +305,6 @@ local comparison_map = function()
 		[tuple(true, nil, false)] = "no",
 		[tuple(true, true, false)] = "ok",
 	}
-	local z = {}
 	for x, y in pairs(t) do
 		if x == b then
 			expect("ok")(y)
