@@ -123,7 +123,7 @@ required = true
 type = "table"
 required = true
 [[table.find.args]]
-type = "string"
+type = "any"
 required = true
 [[table.find.args]]
 type = "bool"
