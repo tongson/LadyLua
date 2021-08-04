@@ -382,7 +382,9 @@ end
 local table_read_only = function()
 	T.is_function(table.read_only)
 	local t = table.read_only({ 1, 2 })
-	T.error_raised(function() t[1] = 0 end)
+	T.error_raised(function()
+		t[1] = 0
+	end)
 	expect(2)(t[2])
 	expect(1)(t[1])
 end
