@@ -801,6 +801,7 @@ if included then
 		T[":getisoyear"] = getisoyear
 		T[":getminutes"] = getminutes
 		T[":getmonth"] = getmonth
+		T[":getseconds"] = getseconds
 		T[":getticks"] = getticks
 		T[":gettime"] = gettime
 		T[":getweekday"] = getweekday
@@ -851,6 +852,7 @@ else
 	T[":getisoyear"] = getisoyear
 	T[":getminutes"] = getminutes
 	T[":getmonth"] = getmonth
+	T[":getseconds"] = getseconds
 	T[":getticks"] = getticks
 	T[":gettime"] = gettime
 	T[":getweekday"] = getweekday
