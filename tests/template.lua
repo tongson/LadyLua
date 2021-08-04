@@ -161,8 +161,8 @@ This is my message to <%= [=[oh yeah  %>"]=] %>]],
 		end
 		T["template.Parser && readme example"] = function()
 			local parser = Parser()
-			first_fn = parser:load(parser:compile_to_lua("Hello "))
-			second_fn = parser:load(parser:compile_to_lua("World"))
+			local first_fn = parser:load(parser:compile_to_lua("Hello "))
+			local second_fn = parser:load(parser:compile_to_lua("World"))
 			local buffer = {}
 			parser:run(first_fn, nil, buffer, #buffer)
 			parser:run(second_fn, nil, buffer, #buffer)
