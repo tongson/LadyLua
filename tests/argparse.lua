@@ -4,7 +4,6 @@ local T = require("test")
 local A = require("argparse")
 local expect = T.expect
 local is_table = T.is_table
-local raised = T.error_raised
 local new = function()
 	local parser = A()
 	local p = parser:parse({})
