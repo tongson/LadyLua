@@ -316,7 +316,7 @@ local table_find = function()
 		"two",
 	}
 	T.is_true(table.find(t, "one"))
-	local r, e = table.find(t, "x")
+	local r = table.find(t, "x")
 	T.is_nil(r)
 	T.is_true(table.find(t, "^o.*", true))
 	local xt = {
