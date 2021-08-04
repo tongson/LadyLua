@@ -333,7 +333,7 @@ local getisoyear = function()
 	local d = date(1996, 12, 30)
 	expect(1997)(d:getisoyear())
 	local e = date(1997, 01, 05)
-	expect(1997)(d:getisoyear())
+	expect(1997)(e:getisoyear())
 end
 --#
 --# == *:getminutes*() -> _Number_
