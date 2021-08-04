@@ -179,3 +179,16 @@ required = true
 [[table.unique.args]]
 type = "table"
 required = true
+
+[string.to_map]
+args = []
+[string.splitv]
+args = []
+[string.split]
+args = []
+[string.contains]
+args = []
+[string.trim_start]
+args = []
+[string.trim_end]
+args = []
