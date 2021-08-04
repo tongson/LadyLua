@@ -284,7 +284,7 @@ local comparison = function()
 	expect(true)(not (tupA == tupC))
 	local tupD = tuple(1, 2, 3)
 	local tupE = tuple(1, 2)
-	expect(true)(tupA == tupB)
+	expect(false)(tupE == tupD)
 end
 local comparison_nil = function()
 	local tupA = tuple(1, nil)
