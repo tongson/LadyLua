@@ -137,7 +137,7 @@ local string_contains = function()
 	T.is_function(string.contains)
 	local x = "otwone"
 	local y = "two"
-	local a, b, c = x:contains(y)
+	local a, b = x:contains(y)
 	T.equal(a, 2)
 	T.equal(b, 4)
 end
