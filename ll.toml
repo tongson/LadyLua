@@ -192,3 +192,10 @@ args = []
 args = []
 [string.trim_end]
 args = []
+
+[[table.read_only.args]]
+required = false
+type = "table"
+[[table.clone.args]]
+required = false
+type = "table"
