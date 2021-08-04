@@ -117,6 +117,19 @@ required = true
 [[string.append.args]]
 type = "string"
 required = true
+[string.to_map]
+args = []
+[string.splitv]
+args = []
+[string.split]
+args = []
+[string.contains]
+args = []
+[string.trim_start]
+args = []
+[string.trim_end]
+args = []
+
 
 
 [[table.find.args]]
@@ -179,20 +192,6 @@ required = true
 [[table.unique.args]]
 type = "table"
 required = true
-
-[string.to_map]
-args = []
-[string.splitv]
-args = []
-[string.split]
-args = []
-[string.contains]
-args = []
-[string.trim_start]
-args = []
-[string.trim_end]
-args = []
-
 [[table.read_only.args]]
 required = false
 type = "table"
