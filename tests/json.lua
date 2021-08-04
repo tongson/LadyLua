@@ -1,7 +1,6 @@
 local included = pcall(debug.getlocal, 4, 1)
 local T = require("test")
 local json = require("json")
-local expect = T.expect
 --# = json
 --# :toc:
 --# :toc-placement!:
@@ -135,6 +134,7 @@ if included then
 		T["json.encode sparse table"] = json_encode_sparsetable
 		T["json.encode mixed table #1"] = json_encode_mixedtable1
 		T["json.encode mixed table #2"] = json_encode_mixedtable2
+		T["json.encode invalid table"] = json_encode_invalidtable
 		T["json.decode"] = json_decode
 		T["json.decode array"] = json_decode_array
 		T["json.decode object"] = json_decode_object
@@ -165,6 +165,7 @@ else
 	T["json.encode sparse table"] = json_encode_sparsetable
 	T["json.encode mixed table #1"] = json_encode_mixedtable1
 	T["json.encode mixed table #2"] = json_encode_mixedtable2
+	T["json.encode invalid table"] = json_encode_invalidtable
 	T["json.decode"] = json_decode
 	T["json.decode array"] = json_decode_array
 	T["json.decode object"] = json_decode_object
