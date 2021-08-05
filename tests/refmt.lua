@@ -92,6 +92,35 @@ local refmt_toml_json = function()
   }
 }]]
 	T.equal(refmt.toml_to_json(t), expected)
+
+	local t2 = [==[
+[[products]]
+name = "Hammer"
+sku = 738594937
+
+[[products]]
+
+[[products]]
+name = "Nail"
+sku = 284758393
+color = "gray"
+]==]
+	local expected2 = [[
+{
+  "products": [
+    {
+      "name": "Hammer",
+      "sku": 738594937
+    },
+    {},
+    {
+      "color": "gray",
+      "name": "Nail",
+      "sku": 284758393
+    }
+  ]
+}]]
+	expect(expected2)(refmt.toml_to_json(t2))
 end
 --#
 --# == *refmt.json_to_toml*(_String_) -> _String_
