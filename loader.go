@@ -203,8 +203,6 @@ func PreloadGo(L *lua.LState, name string) {
 		L.PreloadModule("bitcask", ll.BitcaskLoader)
 	case "refmt":
 		L.PreloadModule("refmt", ll.RefmtLoader)
-	case "rr":
-		L.PreloadModule("rr", ll.RrLoader)
 	case "uuid":
 		L.PreloadModule("uuid", ll.UuidLoader)
 	case "ulid":
