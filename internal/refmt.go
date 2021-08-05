@@ -41,4 +41,6 @@ func RefmtLoader(L *lua.LState) int {
 var refmtApi = map[string]lua.LGFunction{
 	"json": refmtToJSON,
 	"yaml": refmtToYAML,
+	"yaml_to_json": refmtToJSON,
+	"json_to_yaml": refmtToYAML,
 }
