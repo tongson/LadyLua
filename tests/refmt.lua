@@ -28,7 +28,7 @@ local expect = T.expect
 --# |string |YAML
 --# |===
 local refmt_yaml = function()
-  T.is_function(refmt.yaml)
+	T.is_function(refmt.yaml)
 	local t = {
 		one = "1",
 		two = "2",
@@ -38,7 +38,7 @@ local refmt_yaml = function()
 	local expected = [[one: "1"
 two: "2"
 ]]
-  T.equal(y, expected)
+	T.equal(y, expected)
 end
 --#
 --# == *refmt.yaml_to_json*(_String_) -> _String_
@@ -58,10 +58,10 @@ end
 --# |string |JSON
 --# |===
 local refmt_json = function()
-  T.is_function(refmt.json)
+	T.is_function(refmt.json)
 	local y = [[value: 'hello' # world]]
 	local expected = [[{"value":"hello"}]]
-  T.equal(refmt.yaml_to_json(y), expected)
+	T.equal(refmt.yaml_to_json(y), expected)
 end
 --#
 --# == *refmt.toml_to_json*(_String_) -> _String_
