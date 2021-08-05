@@ -16,6 +16,7 @@ require (
 	github.com/junhsieh/goexamples v0.0.0-20210713004924-3d9f14ba676d
 	github.com/kevinburke/ssh_config v1.1.0
 	github.com/oklog/ulid/v2 v2.0.2
+	github.com/pelletier/go-toml v1.9.3
 	github.com/pierrec/lz4 v2.6.1+incompatible
 	github.com/rs/zerolog v1.23.0
 	github.com/segmentio/ksuid v1.0.4
