@@ -87,7 +87,6 @@ Available options are:
 	ll.PreloadGo(L, "fsnotify")
 	ll.PreloadGo(L, "bitcask")
 	ll.PreloadGo(L, "refmt")
-	ll.PreloadGo(L, "rr")
 	ll.PreloadGo(L, "uuid")
 	ll.PreloadGo(L, "ulid")
 	ll.PreloadGo(L, "redis")
