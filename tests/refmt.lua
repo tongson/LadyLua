@@ -11,7 +11,7 @@ local expect = T.expect
 --#
 --# toc::[]
 --#
---# == *refmt.yaml*(_String_) -> _String_
+--# == *refmt.json_to_yaml*(_String_) -> _String_
 --# Convert JSON to YAML.
 --#
 --# === Arguments
@@ -34,14 +34,14 @@ local refmt_yaml = function()
 		two = "2",
 	}
 	local j = json.encode(t)
-	local y = refmt.yaml(j)
+	local y = refmt.json_to_yaml(j)
 	local expected = [[one: "1"
 two: "2"
 ]]
   T.equal(y, expected)
 end
 --#
---# == *refmt.json*(_String_) -> _String_
+--# == *refmt.yaml_to_json*(_String_) -> _String_
 --# Convert YAML to JSON.
 --#
 --# === Arguments
@@ -61,7 +61,7 @@ local refmt_json = function()
   T.is_function(refmt.json)
 	local y = [[value: 'hello' # world]]
 	local expected = [[{"value":"hello"}]]
-  T.equal(refmt.json(y), expected)
+  T.equal(refmt.yaml_to_json(y), expected)
 end
 --#
 --# == *refmt.toml_to_json*(_String_) -> _String_
