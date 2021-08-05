@@ -39,3 +39,37 @@ Convert YAML to JSON.
 |Type |Description
 |string |JSON
 |===
+
+== *refmt.toml_to_json*(_String_) -> _String_
+Convert TOML to JSON.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |TOML
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON
+|===
+
+== *refmt.json_to_toml*(_String_) -> _String_
+Convert JSON to TOML.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |JSON
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |TOML
+|===
