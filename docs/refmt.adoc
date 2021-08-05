@@ -6,7 +6,7 @@ Convert between JSON and YAML.
 
 toc::[]
 
-== *refmt.yaml*(_String_) -> _String_
+== *refmt.json_to_yaml*(_String_) -> _String_
 Convert JSON to YAML.
 
 === Arguments
@@ -23,7 +23,7 @@ Convert JSON to YAML.
 |string |YAML
 |===
 
-== *refmt.json*(_String_) -> _String_
+== *refmt.yaml_to_json*(_String_) -> _String_
 Convert YAML to JSON.
 
 === Arguments
