@@ -126,15 +126,15 @@ local refmt_json_toml = function()
 end
 if included then
   return function()
-		T["refmt.yaml"] = refmt_yaml
-		T["refmt.json"] = refmt_json
+		T["refmt.json_to_yaml"] = refmt_yaml
+		T["refmt.yaml_to_json"] = refmt_json
 		T["refmt.toml_to_json"] = refmt_toml_json
 		T["refmt.json_to_toml"] = refmt_json_toml
   end
 else
 
-		T["refmt.yaml"] = refmt_yaml
-		T["refmt.json"] = refmt_json
+		T["refmt.json_to_yaml"] = refmt_yaml
+		T["refmt.yaml_to_json"] = refmt_json
 		T["refmt.toml_to_json"] = refmt_toml_json
 		T["refmt.json_to_toml"] = refmt_json_toml
 end
