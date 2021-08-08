@@ -8,7 +8,7 @@ toc::[]
 
 == Changelog
 
-Next release: *0.10.0 Black Future* +
+Current release: *0.10.0 Black Future* +
 + Aliases: `list:push` `list:pop` +
 + Aliases: `queue:push` `queue:pop` `queue:iterator` +
 + `tuple` module fixes and enhancements +
@@ -23,7 +23,8 @@ Next release: *0.10.0 Black Future* +
 + New functions: `refmt.toml_to_json` and `refmt.json_to_toml` +
 + Removed `rr` module +
 
-Current release: *0.9.0 Scared Shrapnel* +
+Old releases: +
+*0.9.0 Scared Shrapnel* +
 + Loading plain Lua source is now done through `package.loaders` +
 + Faster VM startup time; From 18ms to <1ms in a test machine +
 + Now a module to support ./cmd builds +
@@ -46,7 +47,6 @@ Current release: *0.9.0 Scared Shrapnel* +
 + gopher-lua fixes for `pcall`, `select`, `#` operator, and `string.gsub` +
 + Add `bitcask.open` configuration argument for maximum value size +
 
-Old releases: +
 *0.8.0 Freckled Serpent* +
 + New setting for exec.*; timeout in seconds +
 + New json functions, array and object iterators +
