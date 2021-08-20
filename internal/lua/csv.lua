@@ -33,61 +33,22 @@ local ssub = string.sub
 
 -- luajit/lua compatability layer
 local luaCompatibility = {}
-if type(jit) == 'table' or _ENV then
-    -- luajit and lua 5.2+
-    luaCompatibility.load = _G.load
-else
-    -- lua 5.1
-    luaCompatibility.load = loadstring
+luaCompatibility.load = loadstring
+luaCompatibility.LuaJIT = false
+-- vanilla lua closing quote finder
+function luaCompatibility.findClosingQuote(i, inputLength, inputString, quote, doubleQuoteEscape)
+local j, difference
+i, j = inputString:find('"+', i)
+if j == nil then
+    return nil
 end
-
--- luajit specific speedups
--- luajit performs faster with iterating over string.byte,
--- whereas vanilla lua performs faster with string.find
-if type(jit) == 'table' then
-    luaCompatibility.LuaJIT = true
-    -- finds the end of an escape sequence
-    function luaCompatibility.findClosingQuote(i, inputLength, inputString, quote, doubleQuoteEscape)
-        local currentChar, nextChar = sbyte(inputString, i), nil
-        while i <= inputLength do
-            nextChar = sbyte(inputString, i+1)
-
-            -- this one deals with " double quotes that are escaped "" within single quotes "
-            -- these should be turned into a single quote at the end of the field
-            if currentChar == quote and nextChar == quote then
-                doubleQuoteEscape = true
-                i = i + 2
-                currentChar = sbyte(inputString, i)
-
-            -- identifies the escape toggle
-            elseif currentChar == quote and nextChar ~= quote then
-                return i-1, doubleQuoteEscape
-            else
-                i = i + 1
-                currentChar = nextChar
-            end
-        end
-    end
-
-else
-    luaCompatibility.LuaJIT = false
-
-    -- vanilla lua closing quote finder
-    function luaCompatibility.findClosingQuote(i, inputLength, inputString, quote, doubleQuoteEscape)
-        local j, difference
-        i, j = inputString:find('"+', i)
-        if j == nil then
-            return nil
-        end
-        difference = j - i
-        if difference >= 1 then doubleQuoteEscape = true end
-        if difference % 2 == 1 then
-            return luaCompatibility.findClosingQuote(j+1, inputLength, inputString, quote, doubleQuoteEscape)
-        end
-        return j-1, doubleQuoteEscape
-    end
+difference = j - i
+if difference >= 1 then doubleQuoteEscape = true end
+if difference % 2 == 1 then
+    return luaCompatibility.findClosingQuote(j+1, inputLength, inputString, quote, doubleQuoteEscape)
 end
-
+return j-1, doubleQuoteEscape
+end
 
 -- determine the real headers as opposed to the header mapping
 local function determineRealHeaders(headerField, fieldsToKeep) 
