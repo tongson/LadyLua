@@ -397,7 +397,7 @@ local function parseOptions(delimiter, options, fromParseLine)
         if options.bufferSize ~= nil then
             assert(type(options.bufferSize) == "number", "ftcsv only takes a number value for optional parameter 'bufferSize'. You passed in '" .. tostring(options.bufferSize) .. "' of type '" .. type(options.bufferSize) .. "'.")
             if fromParseLine == false then
-                error("ftcsv: bufferSize can only be specified using 'parseLine'. When using 'parse', the entire file is read into memory")
+                error("ftcsv: bufferSize can only be specified using 'parse_line'. When using 'parse', the entire file is read into memory")
             end
         end
     else
@@ -518,12 +518,12 @@ end
 
 local function initializeInputFile(inputString, options)
     if options.loadFromString == true then
-        error("ftcsv: parseLine currently doesn't support loading from string")
+        error("ftcsv: parse_line currently doesn't support loading from string")
     end
     return initializeInputFromStringOrFile(inputString, options, options.bufferSize)
 end
 
-function ftcsv.parseLine(inputFile, delimiter, userOptions)
+function ftcsv.parse_line(inputFile, delimiter, userOptions)
     local options, fieldsToKeep = parseOptions(delimiter, userOptions, true)
     local inputString, file = initializeInputFile(inputFile, options)
 
