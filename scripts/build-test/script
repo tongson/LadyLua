@@ -1,4 +1,4 @@
 cp cmd/standalone/main.go cmd/test
-GOOS=linux CGO_ENABLED=0 go build \
+GOOS=$(_go_os) CGO_ENABLED=0 go build \
     -trimpath -ldflags '-s -w -extldflags "-static"' \
     -o bin/test "./cmd/test"
