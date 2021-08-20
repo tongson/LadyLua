@@ -172,11 +172,63 @@ end
 --# |===
 local csv_encode = function()
 	T.is_function(csv.encode)
+	local a = {}
+	a[1] = {}
+	a[1].A = "apple"
+	a[1].B = "banana"
+	a[1].C = "carrot"
+	local ac = csv.encode(a, ",")
+	local aa = csv.parse(ac, ",")
+	local ae = csv.parse("A,B,C\napple,banana,carrot", ",")
+	expect(ae[1].A)(aa[1].A)
+	expect(ae[1].B)(aa[1].B)
+	expect(ae[1].C)(aa[1].C)
+	local b = {}
+	b[1] = {}
+	b[1].A = "apple"
+	b[1].B = "banana"
+	b[1].C = "carrot"
+	local bc = csv.encode(b, ">")
+	local ba = csv.parse(bc, ">")
+	local be = csv.parse("A,B,C\napple,banana,carrot", ",")
+	expect(be[1].A)(ba[1].A)
+	expect(be[1].B)(ba[1].B)
+	expect(be[1].C)(ba[1].C)
+	local c = {}
+	c[1] = {}
+	c[1].A = "apple"
+	c[1].B = "banana"
+	c[1].C = "carrot"
+	local cc = csv.encode(c, ",", {fieldsToKeep={"A", "B"}})
+	local ca = csv.parse(cc, ",")
+	local ce = csv.parse("A,B\napple,banana", ",")
+	expect(ce[1].A)(ca[1].A)
+	expect(ce[1].B)(ca[1].B)
+	local d = {}
+	d[1] = {}
+	d[1]["]] print('hello')"] = "apple"
+	d[1].b = "banana"
+	d[1].c = "carrot"
+	local da = csv.parse("]] print('hello'),b,c\napple,banana,carrot", ",")
+	expect(d[1].b)(da[1].b)
+	expect(d[1].c)(da[1].c)
+	expect(d[1]["]] print('hello')"])(da[1]["]] print('hello')"])
+	local e = {}
+	e[1] = {}
+	e[1].a = [["apple]]
+	e[1].b = "banana"
+	e[1].c = "carrot"
+	local ea = csv.parse('a,b,c\n"apple,banana,carrot', ",", {ignoreQuotes=true})
+	expect(e[1].a)(ea[1].a)
+	expect(e[1].b)(ea[1].b)
+	expect(e[1].c)(ea[1].c)
 end
 if included then
 	return function()
 		T["csv.parse"] = csv_parse
+		T["csv.encode"] = csv_encode
 	end
 else
 	T["csv.parse"] = csv_parse
+	T["csv.encode"] = csv_encode
 end
