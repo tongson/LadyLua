@@ -57,6 +57,8 @@ local string_trim_end = function()
 	T.is_function(string.trim_end)
 	local a = "ssaa   "
 	T.equal(a:trim_end(), "ssaa")
+	local a1 = ("hello"..((" "):rep(500)))
+	T.equal(a1:trim_end(), "hello")
 	local b = "ssss///"
 	T.equal(b:trim_end("/"), "ssss")
 end
