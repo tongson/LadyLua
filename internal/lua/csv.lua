@@ -341,20 +341,12 @@ local function loadFile(textFile, amount)
     return lines, file
 end
 
-local function initializeInputFromStringOrFile(inputFile, options, amount)
-    -- handle input via string or file!
-    local inputString, file
-    if options.loadFromString then
-        inputString = inputFile
-    else
-        inputString, file = loadFile(inputFile, amount)
-    end
-
+local function initializeInputFromStringOrFile(inputString)
     -- if they sent in an empty file...
     if inputString == "" then
         error('ftcsv: Cannot parse an empty file')
     end
-    return inputString, file
+    return inputString
 end
 
 local function parseOptions(delimiter, options, fromParseLine)
