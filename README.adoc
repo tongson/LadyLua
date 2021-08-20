@@ -10,6 +10,7 @@ toc::[]
 
 Next release: *0.11.0 Tarot Cruncher* +
 + `string.trim` fix +
++ New module `csv` +
 
 Current release: *0.10.0 Black Future* +
 + Aliases: `list:push` `list:pop` +
@@ -138,6 +139,7 @@ Check the `docs` directory for more information about these modules.
 |bimap       |N      |Lua  |cw-lua           |MIT
 |bitcask     |N      |Go   |                 |MIT
 |crypto      |N      |Go   |gluacrypto       |MIT
+|csv         |N      |Lua  |ftcsv            |MIT
 |date        |N      |Lua  |date             |MIT
 |deque       |N      |Lua  |cw-lua           |MIT
 |exec        |Y      |Go   |                 |MIT
