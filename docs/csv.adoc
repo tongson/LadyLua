@@ -1,0 +1,41 @@
+= csv
+:toc:
+:toc-placement!:
+
+Parse and encode CSV.
+
+toc::[]
+
+== *csv.parse*(_String_) -> _Table_
+Decode a CSV into a table.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |CSV
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Table
+|===
+
+== *csv.encode*(_Table_) -> _String_
+Encode table into CSV string.
+
+=== Arguments
+[options="header",width="72%"]
+|===
+|Type |Description
+|table |Table
+|===
+
+=== Returns
+[options="header",width="72%"]
+|===
+|Type |Description
+|string |CSV
+|===
