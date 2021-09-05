@@ -8,6 +8,7 @@ import (
 	"github.com/tongson/gl"
 	"github.com/yuin/gopher-lua"
 	"github.com/yuin/gopher-lua/parse"
+	"io"
 	"os"
 	"runtime"
 	"runtime/pprof"
@@ -98,6 +99,16 @@ Available options are:
 
 	if opt_m > 0 {
 		L.SetMx(opt_m)
+	}
+
+	script, nerr := io.ReadAll(os.Stdin)
+	if nerr == nil {
+		if err := L.DoString(string(script)); err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		} else {
+			os.Exit(0)
+		}
 	}
 
 	if opt_v || opt_i {
