@@ -101,13 +101,16 @@ Available options are:
 		L.SetMx(opt_m)
 	}
 
-	script, nerr := io.ReadAll(os.Stdin)
-	if nerr == nil {
-		if err := L.DoString(string(script)); err != nil {
-			fmt.Println(err.Error())
-			os.Exit(1)
-		} else {
-			os.Exit(0)
+	stat, _ := os.Stdin.Stat()
+	if (stat.Mode() & os.ModeCharDevice) == 0 {
+		script, nerr := io.ReadAll(os.Stdin)
+		if nerr == nil {
+			if err := L.DoString(string(script)); err != nil {
+				fmt.Println(err.Error())
+				os.Exit(1)
+			} else {
+				os.Exit(0)
+			}
 		}
 	}
 
