@@ -11,6 +11,7 @@ toc::[]
 Next release: *0.11.0 Tarot Cruncher* +
 + `string.trim` fix +
 + New module `csv` +
++ Take STDIN as code +
 
 Current release: *0.10.0 Black Future* +
 + Aliases: `list:push` `list:pop` +
