@@ -17,8 +17,8 @@ import (
 
 var start time.Time
 
-const versionNumber = "0.12.0"
-const codeName = "\"Dangling Latitude\""
+const versionNumber = "0.11.0"
+const codeName = "\"Tarot Cruncher\""
 
 func main() {
 	start = time.Now()
