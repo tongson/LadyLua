@@ -21,8 +21,8 @@ const versionNumber = "0.11.0"
 const codeName = "\"Tarot Cruncher\""
 
 func main() {
-	start = time.Now()
 	runtime.MemProfileRate = 0
+	start = time.Now()
 	os.Exit(mainAux())
 }
 
